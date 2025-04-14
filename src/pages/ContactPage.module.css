@@ -1,0 +1,213 @@
+.contactUsPage {
+  width: 100%;
+  font-family: inherit;
+  color: var(--dark-primary-text);
+  background-color: var(--color-darkslategray-100);
+  overflow-x: hidden;
+}
+
+.mainContent {
+  width: 100%;
+}
+
+/* Contact form section */
+.contactFormSection {
+  padding: 60px 20px;
+  background-color: var(--color-darkslategray-100);
+}
+
+.contactCard {
+  background-color: var(--color-gray-200);
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.contactSection {
+  padding: 30px;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--dark-primary-text);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.sectionTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, #117afa, rgba(17, 122, 250, 0.5));
+}
+
+.sectionDescription {
+  color: var(--dark-secondary-text);
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  padding: 15px 15px 15px 45px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: var(--color-darkslategray-100);
+  color: var(--dark-primary-text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.formTextarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #117afa;
+  box-shadow: 0 0 0 2px rgba(17, 122, 250, 0.1);
+}
+
+.formLabel {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dark-secondary-text);
+}
+
+.formTextareaLabel {
+  top: 20px;
+  transform: none;
+}
+
+.formIcon {
+  font-style: normal;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.submitButton {
+  background-color: #117afa;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(17, 122, 250, 0.25);
+  align-self: center;
+  margin-top: 10px;
+}
+
+.submitButton:hover {
+  background-color: #3990fa;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(17, 122, 250, 0.3);
+}
+
+/* Contact info section */
+.contactInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.contactIconWrapper {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(17, 122, 250, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contactIcon {
+  color: #117afa;
+  font-size: 20px;
+}
+
+.contactDetails {
+  flex: 1;
+}
+
+.contactLabel {
+  font-weight: 600;
+  color: var(--dark-primary-text);
+  margin-bottom: 5px;
+}
+
+.contactValue {
+  color: var(--dark-secondary-text);
+  line-height: 1.5;
+}
+
+/* Add this to make cards equal height */
+.cardsRow {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardsRow > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactCard {
+  background-color: var(--color-gray-200);
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%; /* This ensures the card takes full height of its container */
+  display: flex;
+  flex-direction: column;
+}
+
+.contactSection {
+  padding: 30px;
+  flex-grow: 1; /* This allows the section to expand to fill the card */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the contact info list grow to fill available space */
+.contactInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 20px;
+  flex-grow: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 30px 20px;
+  }
+}

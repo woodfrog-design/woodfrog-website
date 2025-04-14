@@ -1,0 +1,308 @@
+.whyChoseUs {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 120%;
+  font-weight: 500;
+  font-family: inherit;
+}
+.container {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.icons {
+  height: 25px;
+  width: 28px;
+  position: relative;
+}
+.items {
+  border-radius: var(--br-13xl);
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-base-5) var(--padding-sm);
+}
+.comprehensiveEndToEndSolut {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: inherit;
+}
+.ourExpertTeam {
+  flex: 1;
+  position: relative;
+  font-size: var(--body-2-medium-size);
+  line-height: 160%;
+  color: var(--dark-secondary-text);
+}
+.list {
+  width: 384px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-13xl) var(--padding-5xl);
+  box-sizing: border-box;
+  gap: var(--gap-21xl);
+  max-width: 100%;
+}
+
+.frame {
+  border-radius: var(--br-13xl);
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-xs);
+}
+.unmatchedRoi {
+  margin: 0;
+  align-self: stretch;
+  height: 72px;
+  position: relative;
+  font-size: inherit;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: inherit;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.list1,
+.unmatchedRoiParent {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.unmatchedRoiParent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.list1 {
+  width: 383px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-13xl) var(--padding-5xl) var(--padding-13xl) var(--padding-5xl); /* Make padding consistent */
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+  height: 100%; /* Keep this */
+  min-height: 418px; /* Keep this */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.list1:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.logo {
+  height: 40px;
+  width: 40px;
+  margin-bottom: 10px;
+}
+.features,
+.list1,
+.list2 {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.list2 {
+  width: 384px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--padding-13xl) var(--padding-5xl);
+  box-sizing: border-box;
+  gap: var(--gap-21xl);
+}
+/* .features {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 24px 20px;
+  min-height: 816px;
+} */
+
+.features {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* Changed from center to stretch */
+  justify-content: center; /* Changed from flex-start to center */
+  flex-wrap: wrap;
+  gap: 24px 20px;
+  min-height: 816px;
+  width: 100%;
+}
+.getAFree {
+  position: relative;
+  line-height: 160%;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 119px;
+  color: var(--color-gray-200);
+}
+
+/* 🔹 Updated "Get a Free POC" Button Styles */
+.pOCButton {
+  border-radius: var(--br-xs);
+  background-color: var(--dark-primary-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-2xs) var(--padding-mini);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: var(--body-2-medium-size);
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pOCButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pOCButton:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.buttonContainer,
+.buttonWrapper,
+.content,
+.pricing {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.buttonWrapper {
+  padding: 0 var(--padding-506xl);
+}
+.buttonContainer,
+.content,
+.pricing {
+  font-size: var(--body-2-medium-size);
+}
+.content,
+.pricing {
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xl);
+  max-width: 100%;
+  font-size: var(--body-1-size);
+}
+.pricing {
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  padding: var(--padding-61xl) var(--padding-93xl) var(--padding-61xl)
+    var(--padding-101xl);
+  box-sizing: border-box;
+  gap: var(--gap-21xl);
+  text-align: left;
+  font-size: var(--h1-size);
+  color: var(--dark-primary-text);
+  font-family: var(--caption);
+}
+@media screen and (max-width: 1410px) {
+  .buttonWrapper {
+    padding-left: var(--padding-243xl);
+    padding-right: var(--padding-243xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .pricing {
+    padding-top: var(--padding-33xl);
+    padding-bottom: var(--padding-33xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 825px) {
+  .whyChoseUs {
+    font-size: var(--font-size-13xl);
+    line-height: 38px;
+  }
+  .buttonWrapper {
+    padding-left: var(--padding-112xl);
+    padding-right: var(--padding-112xl);
+    box-sizing: border-box;
+  }
+  .pricing {
+    gap: var(--gap-xl);
+    padding: var(--padding-15xl) var(--padding-37xl) var(--padding-15xl)
+      var(--padding-41xl);
+    box-sizing: border-box;
+  }
+}
+@media (max-width: 768px) {
+  .list1 {
+    width: 339px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .whyChoseUs {
+    font-size: var(--body-1-size);
+    line-height: 29px;
+  }
+  .comprehensiveEndToEndSolut {
+    font-size: var(--font-size-lgi);
+    line-height: 29px;
+  }
+  .list {
+    gap: var(--gap-xl);
+    padding-top: var(--padding-2xl);
+    padding-bottom: var(--padding-2xl);
+    box-sizing: border-box;
+  }
+  .unmatchedRoi {
+    font-size: var(--font-size-lgi);
+    line-height: 29px;
+  }
+  .list1,
+  .list2 {
+    gap: var(--gap-xl);
+    padding-top: var(--padding-2xl);
+    padding-bottom: var(--padding-19xl);
+    box-sizing: border-box;
+  }
+  .list1 {
+    gap: var(--gap-xl);
+    padding: var(--padding-2xl) var(--padding-5xl) var(--padding-2xl) var(--padding-5xl); /* Make top and bottom padding the same */
+    box-sizing: border-box;
+  }
+  .list2 {
+    padding-bottom: var(--padding-2xl);
+  }
+  .buttonWrapper,
+  .pricing {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

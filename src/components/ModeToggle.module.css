@@ -1,0 +1,23 @@
+.toggleIcon {
+  height: var(--toggle-icon);
+  width:  var(--toggle-icon);
+  position: relative;
+}
+.toggleContainer {
+  border-radius: var(--br-81xl);
+  /* background-color: var(--color-darkslategray-200); */
+  /* border: 1px solid var(--color-gray-300); */
+  box-sizing: border-box;
+  /* padding: var(--padding-base); */
+  /* padding: 10px; */
+  cursor: pointer;
+}
+/* .modeToggle,
+.toggleContainer {
+  height: 62px;
+  width: 62px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+} */

@@ -1,0 +1,123 @@
+.whatOurClients {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 120%;
+  font-weight: 500;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+}
+.container,
+.slider {
+  display: flex;
+  justify-content: flex-start;
+}
+.slider::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+  background-color: #2F2F37; /* or add it to the track */
+  border-radius: 10px;
+}
+.slider::-webkit-scrollbar-thumb {
+  background: #117AFA;
+  border-radius: 10px;
+
+}
+.slider {
+  width: 1320px;
+  overflow-x: auto;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  box-sizing: border-box;
+  gap: var(--gap-5xl);
+  max-width: 100%;
+  font-size: var(--body-1-size);
+  color: var(--color-white);
+}
+.container {
+  width: 1368px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-21xl);
+  max-width: 114%;
+}
+.frameChild {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  border-radius: var(--br-11xs);
+  background-color: var(--color-darkslategray-100);
+  width: 1126px;
+  height: 2px;
+  display: none;
+}
+.button,
+.rectangleParent {
+  height: 6px;
+  border-radius: var(--br-11xs);
+}
+.button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-primary-color);
+  width: 500px;
+  z-index: 1;
+}
+.rectangleParent {
+  width: 1126px;
+  position: relative;
+  background-color: var(--color-darkslategray-100);
+  max-width: 100%;
+}
+.testimonials {
+  align-self: stretch;
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-61xl) var(--padding-101xl);
+  box-sizing: border-box;
+  gap: var(--gap-21xl);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--h1-size);
+  color: var(--color-gray-100);
+  font-family: var(--caption);
+}
+@media screen and (max-width: 1200px) {
+  .testimonials {
+    padding-top: var(--padding-33xl);
+    padding-bottom: var(--padding-33xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 825px) {
+  .whatOurClients {
+    font-size: var(--font-size-13xl);
+    line-height: 38px;
+  }
+  .container,
+  .testimonials {
+    gap: var(--gap-xl);
+  }
+  .testimonials {
+    padding-left: var(--padding-41xl);
+    padding-right: var(--padding-41xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .whatOurClients {
+    font-size: var(--body-1-size);
+    line-height: 29px;
+  }
+  .testimonials {
+    padding: var(--padding-15xl) var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

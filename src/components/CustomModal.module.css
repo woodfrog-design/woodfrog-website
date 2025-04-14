@@ -1,0 +1,237 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  /* Single smooth transition instead of animation to prevent flickering */
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  -webkit-backface-visibility: hidden;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction during fade out */
+}
+
+/* This class is added to the body when modal is open */
+/* It prevents scrolling but keeps the scrollbar visible */
+:global(body.bodyWithModalOpen) {
+  /* Block scrolling but keep scrollbar visible to prevent layout shift */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Very important - the body keeps its width including scrollbar */
+  width: 100%;
+  /* Ensure content doesn't move when modal opens */
+  overflow-y: scroll;
+}
+
+/* Modal container - the actual modal window */
+.modalContainer {
+  position: relative;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow: hidden;
+  /* Single smooth transition instead of animation to prevent flickering */
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  backface-visibility: hidden;
+  background-color: white; /* Default background, theme classes will override */
+}
+
+/* Modal sizes */
+.size-small {
+  max-width: 400px;
+}
+
+.size-medium {
+  max-width: 600px;
+}
+
+.size-large {
+  max-width: 800px;
+}
+
+.size-full {
+  max-width: 90vw;
+  height: 90vh;
+}
+
+/* Animation states - use transforms for better performance */
+.opening {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.closing {
+  transform: translateY(20px) scale(0.97);
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction during closing */
+}
+
+/* Modal header with title and close button */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  background-color: white; /* Default background, theme classes will override */
+}
+
+/* Modal title styling */
+.modalTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* Improved close button with better styling and larger hit area */
+.closeButton {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0;
+  margin-left: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid #1890FF;
+  outline-offset: 1px;
+}
+
+/* Larger hit area for the close button for better touch targets */
+.closeButton::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+}
+
+/* Modal body containing the actual content */
+.modalBody {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  position: relative;
+  /* Better scrolling experience on mobile */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Theme variants */
+.darkTheme {
+  background-color: var(--color-darkslategray-100);
+  color: var(--dark-primary-text);
+}
+
+.darkTheme .modalHeader {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-darkslategray-100);
+}
+
+.darkTheme .modalTitle {
+  color: var(--dark-primary-text);
+}
+
+.darkTheme .closeButton {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.darkTheme .closeButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.lightTheme {
+  background-color: white;
+  color: #333333;
+}
+
+.lightTheme .modalHeader {
+  background-color: white;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 768px) {
+  .size-small,
+  .size-medium,
+  .size-large {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  
+  .modalHeader {
+    padding: 16px 20px;
+  }
+  
+  .modalBody {
+    padding: 20px;
+  }
+  
+  .modalTitle {
+    font-size: 18px;
+  }
+  
+  /* Full screen on very small devices */
+  @media (max-width: 480px) {
+    .modalOverlay {
+      padding: 0;
+    }
+    
+    .modalContainer {
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      width: 100vw;
+    }
+  }
+}

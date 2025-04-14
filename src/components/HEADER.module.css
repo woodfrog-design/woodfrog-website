@@ -1,0 +1,48 @@
+.logoWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ourSolutions {
+  position: relative;
+  line-height: 160%;
+  font-weight: 500;
+}
+.headerContent,
+.navMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.navMenu {
+  margin: 0;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  text-align: left;
+  font-size: var(--body-2-medium-size);
+  color: var(--dark-primary-text);
+  font-family: var(--caption);
+}
+.headerContent {
+  align-self: stretch;
+  justify-content: space-between;
+}
+.header {
+  width: 100%;
+  height: 94px;
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-base) var(--padding-101xl);
+  box-sizing: border-box;
+  z-index: 0;
+  text-align: left;
+  font-size: var(--font-size-6xs-1);
+  color: var(--color-silver-100);
+  font-family: var(--font-avenir);
+}

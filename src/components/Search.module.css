@@ -1,0 +1,132 @@
+/* .label {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: none;
+}
+.inputPlaceholderIcon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.text {
+  flex: 1;
+  position: relative;
+  line-height: 24px;
+}
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.helpIcon {
+  width: 16px;
+  position: relative;
+  height: 16px;
+  display: none;
+}
+.input {
+  align-self: stretch;
+  box-shadow: var(--shadow-xs);
+  border-radius: var(--br-xs);
+  background-color: var(--dark-primary-text);
+  border: 1px solid var(--color-gray-600);
+  box-sizing: border-box;
+  height: 58px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-3xs) var(--padding-sm);
+  gap: var(--gap-5xs);
+  font-size: var(--body-2-medium-size);
+  color: var(--dark-placeholder-text);
+}
+.hintText {
+  width: 320px;
+  position: relative;
+  line-height: 20px;
+  color: var(--gray-500);
+  display: none;
+}
+.inputFieldBase {
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-7xs);
+}
+.inputField,
+.inputFieldBase,
+.search {
+  display: flex;
+  align-items: flex-start;
+}
+.inputField {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.search {
+  width: 382px;
+  flex-direction: row;
+  justify-content: center;
+  text-align: left;
+  font-size: var(--body-3-size);
+  color: var(--color-gray-100);
+  font-family: var(--caption);
+} */
+
+.search {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--input-bg, #fff);
+  border: 1px solid var(--border-color, #e1e1e1);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  color: var(--icon-color, #666);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+  color: var(--text-primary, #333);
+  width: 100%;
+}
+
+.clearButton {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #999);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+.hintText {
+  font-size: 0.8rem;
+  color: var(--text-muted, #888);
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+}

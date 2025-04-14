@@ -1,0 +1,9 @@
+.barChart {
+  width: 339px;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-11xs);
+}

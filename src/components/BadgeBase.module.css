@@ -1,0 +1,18 @@
+.text {
+  position: relative;
+  line-height: 18px;
+  font-weight: 500;
+}
+.badgeBase {
+  border-radius: var(--br-base);
+  background-color: var(--color-paleturquoise);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-11xs) var(--padding-5xs);
+  text-align: center;
+  font-size: var(--caption-size);
+  color: var(--color-seagreen);
+  font-family: var(--caption);
+}

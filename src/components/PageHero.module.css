@@ -1,0 +1,99 @@
+.heroSection {
+  width: 100%;
+  /* Standardized padding - same distance from navbar on all pages */
+  padding: 100px 0 60px;
+  background-color: var(--color-gray-200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.heroContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.heroTitle {
+  /* Standardized typography */
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--dark-primary-text);
+  line-height: 1.2;
+  letter-spacing: -1px;
+  transition: color 0.3s ease;
+}
+
+.heroDescription {
+  /* Standardized typography */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--dark-secondary-text);
+  max-width: 800px;
+  margin: 0 auto 30px;
+  transition: color 0.3s ease;
+}
+
+.contentArea {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+/* For landing page - maintain size but same spacing */
+/* .heroLarge .heroTitle {
+  font-size: rem;
+} */
+
+/* Consistent blue accent styling */
+.heroBlue .heroTitle::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #117afa, rgba(17, 122, 250, 0.5));
+  margin: 20px auto 0;
+}
+
+/* Responsive styles - maintain consistent proportions */
+@media (max-width: 992px) {
+  .heroSection {
+    padding: 80px 0 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 70px 0 40px;
+  }
+  
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroDescription {
+    font-size: 1rem;
+  }
+  
+  .heroLarge .heroTitle {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 60px 0 30px;
+  }
+  
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  
+  .heroLarge .heroTitle {
+    font-size: 2rem;
+  }
+}

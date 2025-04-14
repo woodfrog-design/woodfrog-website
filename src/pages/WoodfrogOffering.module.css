@@ -1,0 +1,64 @@
+.body {
+    /* display: flex; */
+    /* box-sizing: border-box; */
+    max-width: 100%;
+    align-self: stretch;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    /* padding: 0 0 222px; */
+    /* gap: var(--gap-21xl); */
+}
+
+.devider::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255, 0, 0, 0), #CE7131 50%, rgba(255, 0, 0, 0));
+}
+
+.joinUs {
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 300 !important;
+    font-family: 'Inter';
+    color: var(--dark-secondary-text);
+    line-height: 28px;
+    font-weight: 300 !important;
+    font-family: 'Inter';
+    color: var(--dark-secondary-text);
+    background-color: var(--color-gray-200);
+    padding: 0px 165px;
+    font-size: 16px;
+    margin-top: -73px;
+    padding-bottom: 100px;
+}
+
+
+
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    .joinUs {
+        padding: 0px 33px;
+        font-size: 15px;
+        margin-top: 0px;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {}

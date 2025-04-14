@@ -1,0 +1,77 @@
+/* Modal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    /* Use padding instead of margin to prevent layout shifts */
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .modal {
+    background-color: var(--color-darkslategray-100);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    /* Allow content to scroll if modal is too tall */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-content {
+    padding: 25px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  
+  .modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--dark-secondary-text);
+    cursor: pointer;
+    padding: 5px;
+    z-index: 10;
+  }
+  
+  .modal-close-button:hover {
+    color: var(--dark-primary-text);
+  }
+  
+  /* Add global styles to handle scrollbar */
+  body.modal-open {
+    /* The padding-right will be added dynamically by the hook */
+    overflow: hidden;
+  }
+  
+  /* Prevent content shift by keeping a consistent width even when the modal is open */
+  html {
+    overflow-y: scroll;
+  }
+  
+  /* Custom styles for responsive behavior */
+  @media (max-width: 576px) {
+    .modal {
+      width: 95%;
+      max-height: 80vh;
+    }
+    
+    .modal-content {
+      padding: 15px;
+    }
+  }

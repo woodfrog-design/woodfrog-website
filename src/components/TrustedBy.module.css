@@ -1,0 +1,313 @@
+/* .trustedBy1 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 120%;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.title {
+  position: absolute;
+  top: 80px;
+  left: 120px;
+  width: 1208px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+
+.imagesIcon {
+  align-self: stretch;
+  height: 28.8px;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.logos {
+  position: absolute;
+  top: 168px;
+  left: 120px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  width: 282px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-80xl-6) var(--padding-41xl);
+  box-sizing: border-box;
+}
+
+.altysysFinalLogo11sep24ENIcon {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.logos1,
+.logos2 {
+  position: absolute;
+  top: 168px;
+  left: 426px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  width: 282px;
+  height: 228px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-66xl) var(--padding-41xl);
+  box-sizing: border-box;
+}
+
+.logos2 {
+  left: 732px;
+}
+
+.groupIcon {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.logos3 {
+  position: absolute;
+  top: 168px;
+  left: 1038px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  width: 282px;
+  height: 228px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-66xl) var(--padding-41xl);
+  box-sizing: border-box;
+}
+
+.greenlightcyberHorizontalRevIcon {
+  align-self: stretch;
+  height: 48px;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.logos4 {
+  position: absolute;
+  top: 436px;
+  left: 120px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  width: 282px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-71xl) var(--padding-2xl);
+  box-sizing: border-box;
+}
+
+.dsLogoIcon {
+  width: 72px;
+  flex: 1;
+  position: relative;
+  max-height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.logos5,
+.logos6,
+.logos7 {
+  position: absolute;
+  top: 436px;
+  left: 426px;
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  width: 282px;
+  height: 228px;
+  box-sizing: border-box;
+  padding: var(--padding-62xl) var(--padding-xl);
+  justify-content: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logos6,
+.logos7 {
+  left: 732px;
+  padding: var(--padding-64xl) var(--padding-18xl);
+}
+
+.logos7 {
+  left: 1038px;
+  padding: var(--padding-66xl) var(--padding-17xl);
+}
+
+.trustedBy {
+  align-self: stretch;
+  height: 744px;
+  position: relative;
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  flex-shrink: 0;
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--h1-size);
+  color: var(--dark-primary-text);
+  font-family: var(--caption);
+}
+
+@media screen and (max-width: 825px) {
+  .trustedBy1 {
+    font-size: var(--font-size-13xl);
+    line-height: 38px;
+  }
+
+  .title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .trustedBy1 {
+    font-size: var(--body-1-size);
+    line-height: 29px;
+  }
+} */
+
+.trustedBy {
+  background-color: var(--color-gray-200);
+  padding: var(--padding-61xl) var(--padding-101xl) var(--padding-61xl)
+    var(--padding-101xl);
+  box-sizing: border-box;
+  gap: var(--gap-21xl);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--h1-size);
+  color: var(--dark-primary-text);
+  font-family: var(--caption);
+}
+.containerM {
+  /* gap: var(--gap-5xl); */
+  padding: 24px;
+}
+.trustedByHeading {
+  align-self: stretch;
+  background-color: var(--color-gray-200);
+  color: var(--dark-primary-text);
+  flex-shrink: 0;
+  font-family: var(--caption);
+  font-size: var(--h1-size);
+  margin-bottom: 20px;
+}
+
+.trustedByBox {
+  height: 228px;
+  /* width: 282px; */
+  border-radius: var(--br-5xl);
+  background-color: var(--color-darkslategray-100);
+  box-sizing: border-box;
+  padding: var(--padding-62xl) var(--padding-xl);
+  align-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trustedByBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trustedByBox img {
+  width: 110px;
+  height: 40px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .trustedByBox {
+    height: 105px;
+    padding: 0;
+  }
+
+  .trustedByHeading {
+    font-size: var(--font-size-13xl);
+    line-height: 38px;
+  }
+
+  .title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trustedBy {
+    padding: 40px;
+  }
+
+  .trustedByBox img {
+    width: 107px;
+    height: 35px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .trustedByBox:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .trustedByBox img {
+    height: 40px;
+    width: 110px;
+  }
+  .trustedByBox {
+    height: 194px;
+    padding: 0;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+
+@media (min-width: 1201px) {
+  .TrustedBy_trustedByBox__MXdQc img {
+      height: 58px;
+      width: 162px;
+  }
+}
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+}

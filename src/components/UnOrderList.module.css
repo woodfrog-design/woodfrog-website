@@ -1,0 +1,86 @@
+.UnOrderList {
+    background-color: var(--color-gray-200);
+    padding: var(--padding-61xl) var(--padding-101xl) var(--padding-61xl) var(--padding-101xl);
+    box-sizing: border-box;
+    gap: var(--gap-21xl);
+    max-width: 100%;
+    text-align: left;
+    font-size: var(--h1-size);
+    color: var(--dark-primary-text);
+    font-family: var(--caption);
+}
+
+.UnOrderList ul {
+    margin-left: 30px;
+    /* list-style-image: url('./../../public/data-management.png'); */
+}
+/* .UnOrderList ul li {
+    list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23808"><g transform="scale(0.5) translate(0, 15)" transform-origin="center"><path d="M18 4c-4-1-6 3-6 3s-2-4-6-3-4 6-2 8l8 8 8-8c2-2 2-7-2-8z"></path></g></svg>');
+}
+.UnOrderList ul li li::marker{
+   font-size: 3.6em;
+   line-height: .1;
+} */
+ 
+.UnOrderList .listTitle {
+    padding-left: 20px;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 300 !important;
+    font-family: 'Inter';
+    color: var(--dark-secondary-text);
+    /* line-height: 100px; */
+    margin-bottom: 20px;
+}
+.UnOrderList .listItemtitle {
+    padding-left: 10px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 300 !important;
+    font-family: 'Inter';
+        color: var(--dark-secondary-text);
+    line-height: 40px;
+}
+.UnOrderList .listItemDetails {
+   padding-left: 20px;
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 300 !important;
+    font-family: 'Inter';
+        color: var(--dark-secondary-text);
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    .UnOrderList .listTitle {
+        padding: 0px 20px;
+        font-size: 26px;
+        line-height: 40px;
+    }
+    .UnOrderList {
+        padding: 5px;
+    }
+    .UnOrderList ul {
+        margin-left: 10px;
+    }
+    .UnOrderList .listItemtitle {
+        padding: 0px 5px;
+        line-height: 28px;
+    }
+    .UnOrderList .listItemDetails  {
+        padding: 8px 5px;
+        font-size: 15px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {}

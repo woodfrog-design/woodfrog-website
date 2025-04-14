@@ -1,0 +1,105 @@
+.formContainer {
+    width: 100%;
+  }
+  
+  .form {
+    width: 100%;
+  }
+  
+  .formItem {
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    height: 48px;
+    border-radius: 6px;
+    background-color: var(--color-darkslategray-200);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--dark-primary-text);
+    font-size: 16px;
+    padding-left: 15px;
+  }
+  
+  .input:hover, .input:focus {
+    border-color: gold;
+  }
+  
+  .textArea {
+    border-radius: 6px;
+    background-color: var(--color-darkslategray-200);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--dark-primary-text);
+    font-size: 16px;
+    padding: 15px;
+    min-height: 120px;
+  }
+  
+  .textArea:hover, .textArea:focus {
+    border-color: gold;
+  }
+  
+  .submitContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  
+  .submitButton {
+    height: 48px;
+    min-width: 120px;
+    background-color: gold;
+    border: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .submitButton:hover {
+    background-color: #e6c200;
+    color: #000;
+  }
+  
+  .inputIcon {
+    margin-right: 10px;
+    opacity: 0.7;
+  }
+  
+  /* Dark theme specific styles */
+  :global(body.dark-mode) .input,
+  :global(body.dark-mode) .textArea {
+    background-color: var(--color-darkslategray-200);
+    color: var(--dark-primary-text);
+  }
+  
+  :global(body.dark-mode) .input::placeholder,
+  :global(body.dark-mode) .textArea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Light theme specific styles */
+  :global(body.light-mode) .input,
+  :global(body.light-mode) .textArea {
+    background-color: #f5f5f5;
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  :global(body.light-mode) .input::placeholder,
+  :global(body.light-mode) .textArea::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Ant Design overrides */
+  :global(.ant-form-item-label > label) {
+    color: var(--dark-primary-text);
+  }
+  
+  :global(.ant-form-item-explain-error) {
+    color: #ff4d4f;
+    margin-top: 5px;
+  }

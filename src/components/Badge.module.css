@@ -1,0 +1,10 @@
+.badge {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: var(--caption-size);
+  color: var(--color-seagreen);
+  font-family: var(--caption);
+}

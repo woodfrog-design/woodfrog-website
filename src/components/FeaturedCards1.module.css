@@ -1,0 +1,96 @@
+.imageIcon {
+  align-self: stretch;
+  /* height: 288px; */
+  /* border-radius: var(--br-5xl); */
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.enablingNextGenDigital {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: 22px;
+  line-height: 140%;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+  min-width: 110px;
+  max-width: 90%;
+}
+.frameIcon {
+  height: 22px;
+  width: 22px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frameContainer,
+.frameWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+.frameContainer {
+  height: 32px;
+  border-radius: var(--br-81xl);
+  border: 2px solid var(--dark-primary-text);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-12xs) var(--padding-11xs);
+  cursor: pointer;
+}
+.enablingNextGenDigitalExpeParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-5xs);
+  max-width: 100%;
+}
+.badgeParent {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.badgeParent,
+.featuredCards,
+.featuredCardsInner {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+}
+.featuredCardsInner {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 var(--padding-8xs);
+  box-sizing: border-box;
+}
+.featuredCards {
+  /* width: 379px; */
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+  text-align: left;
+  font-size: var(--body-1-size);
+  color: var(--dark-primary-text);
+  font-family: var(--caption);
+  padding: 15px 10px;
+  cursor: pointer;
+}
+@media screen and (max-width: 450px) {
+  .enablingNextGenDigital {
+    font-size: var(--font-size-lgi);
+    line-height: 29px;
+  }
+  .enablingNextGenDigitalExpeParent {
+    flex-wrap: wrap;
+  }
+}

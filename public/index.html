@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Woodfrog" />
+    
+    <!-- CRITICAL: Anti-flicker snippet (must be very first in head) -->
+    <script>
+      (function() {
+        // Immediately hide the body to prevent flashing
+        document.documentElement.style.visibility = 'hidden';
+        
+        // Get stored theme preference
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const useDarkTheme = savedTheme === "dark" || (savedTheme === null && prefersDark);
+        
+        // Store theme info for React
+        window.__THEME_PREFERENCE__ = useDarkTheme ? 'dark' : 'light';
+        
+        // Apply theme directly to root styles for immediate effect
+        const root = document.documentElement;
+        if (useDarkTheme) {
+          // Dark theme variables - copied from your ThemeContext
+          root.style.setProperty('--color-gray-200', '#1e1e1e');
+          root.style.setProperty('--color-gray-300', '#F5F5F5');
+          root.style.setProperty('--dark-secondary-text', '#c7c6c8');
+          root.style.setProperty('--color-darkslategray-100', '#2f2f37');
+          root.style.setProperty('--color-gray-400', 'rgba(18, 18, 18, 0.95)');
+          root.style.setProperty('--dark-primary-text', '#f9f8fa');
+          root.style.setProperty('--color-darkgray', '#abafb5');
+          root.style.setProperty('--color-darkslategray-200', '#2f2f2d');
+          root.style.setProperty('--toggle-icon', '50px');
+          
+          // Set body color and background directly for immediate effect
+          document.documentElement.style.backgroundColor = '#2f2f37';
+          document.documentElement.style.color = '#f9f8fa';
+        } else {
+          // Light theme variables - copied from your ThemeContext
+          root.style.setProperty('--color-gray-200', '#F5F5F5');
+          root.style.setProperty('--color-gray-300', '#F5F5F5');
+          root.style.setProperty('--dark-secondary-text', '#000000');
+          root.style.setProperty('--color-darkslategray-100', '#ffffff');
+          root.style.setProperty('--color-gray-400', '#ffffff');
+          root.style.setProperty('--dark-primary-text', '#000000');
+          root.style.setProperty('--color-darkgray', '#808080');
+          root.style.setProperty('--color-darkslategray-200', '#ffffff');
+          root.style.setProperty('--toggle-icon', '50px');
+          
+          // Set body color and background directly for immediate effect
+          document.documentElement.style.backgroundColor = '#ffffff';
+          document.documentElement.style.color = '#000000';
+        }
+        
+        // Also add appropriate class
+        if (useDarkTheme) {
+          document.documentElement.classList.add('dark-theme', 'dark-mode');
+          document.documentElement.classList.remove('light-theme', 'light-mode');
+        } else {
+          document.documentElement.classList.add('light-theme', 'light-mode');
+          document.documentElement.classList.remove('dark-theme', 'dark-mode');
+        }
+        
+        // Show the page once everything is set
+        setTimeout(function() {
+          document.documentElement.style.visibility = '';
+        }, 10);
+      })();
+    </script>
+    
+    <!-- Remaining head content -->
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Woodfrog Tech" />
+    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZFZ23FW3YD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-ZFZ23FW3YD");
+    </script>
+    <title>Woodfrog</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

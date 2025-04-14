@@ -1,0 +1,26 @@
+/* Always reserve space for scrollbar to prevent layout shifts */
+html {
+    overflow-y: scroll;
+  }
+  
+  /* Style for when modal is open */
+  body.modal-open {
+    overflow: hidden;
+    /* This padding compensates for the missing scrollbar when body overflow is hidden */
+    padding-right: var(--scrollbar-width, 17px) !important;
+  }
+  
+  /* Ensure all fixed elements also maintain consistent positioning */
+  .ant-modal,
+  .ant-modal-wrap,
+  .ant-modal-mask,
+  .ant-drawer,
+  .ant-drawer-content-wrapper,
+  .modal-open .fixed-element {
+    padding-right: var(--scrollbar-width, 17px) !important;
+  }
+  
+  /* Ensure the modal doesn't shift */
+  .ant-modal {
+    margin-right: var(--scrollbar-width, 17px) !important;
+  }

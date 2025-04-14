@@ -1,0 +1,468 @@
+.latestInsights {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 120%;
+  font-weight: 500;
+  font-family: inherit;
+  margin-bottom: var(--gap-21xl);
+}
+
+/* Layout for carousel and See All card */
+.carouselLayout {
+  display: flex;
+  width: 100%;
+  gap: var(--gap-5xl);
+  padding-right: var(--padding-41xl);
+}
+
+/* Carousel container to wrap slider and navigation buttons */
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.sliderWrapper {
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Simple Explore All card styles with consistent styling */
+.exploreAllCard {
+  width: 120px;
+  height: 388px; /* Match the card height exactly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.exploreAllCard:hover {
+  background-color: rgba(24, 144, 255, 0.05);
+}
+
+.exploreAllContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.exploreAllText {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1890FF; /* Match the blue theme */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.exploreAllCard:hover .exploreAllText {
+  color: #40A9FF; /* Lighter blue on hover */
+}
+
+/* Scroll indicator styles with arrows in the center */
+.scrollIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto 0;
+  position: relative;
+  width: fit-content;
+}
+
+.scrollTrackContainer {
+  position: relative;
+  width: 250px; /* Wider to accommodate the buttons */
+}
+
+.scrollTrack {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(24, 144, 255, 0.15); /* Light blue background */
+  border-radius: 4px;
+  position: relative;
+  overflow: visible;
+}
+
+.scrollProgress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #1890FF; /* Blue progress indicator */
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+/* Container to hold and center the arrow buttons */
+.arrowContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+/* Updated scroll arrow styles with blue theme and improved UX */
+.scrollArrow {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1890FF; /* Blue buttons */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  box-shadow: 0 2px 6px rgba(24, 144, 255, 0.25); /* Subtle shadow for depth */
+}
+
+.scrollArrow:hover {
+  background-color: #40A9FF; /* Lighter blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(24, 144, 255, 0.3);
+}
+
+.scrollArrow:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(24, 144, 255, 0.2);
+}
+
+/* Disabled state styling */
+.disabledArrow {
+  background-color: rgba(24, 144, 255, 0.4) !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.scrollingAnimation {
+  animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Focus styles for accessibility */
+.scrollArrow:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.5);
+}
+
+/* Touch-friendly tap targets for mobile */
+@media (max-width: 768px) {
+  .scrollArrow {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* Side navigation buttons - hidden by default, visible on hover */
+.navButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(80, 80, 80, 0.5);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  flex-shrink: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.carouselContainer:hover .navButton:not(.disabledButton) {
+  opacity: 0.8;
+}
+
+.navButton:hover:not(.disabledButton) {
+  background-color: rgba(80, 80, 80, 0.8);
+  opacity: 1 !important;
+}
+
+.navButton.disabledButton {
+  display: none;
+}
+
+.prevButton {
+  left: 10px;
+}
+
+.nextButton {
+  right: 10px;
+}
+
+/* Original styles with some modifications */
+.imageIcon,
+.item {
+  align-self: stretch;
+  border-radius: var(--br-5xl);
+}
+
+.imageIcon {
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+  height: 288px;
+}
+
+.item {
+  border: 1px solid var(--color-darkslategray-100);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.enablingNextGenDigital {
+  margin: 0;
+  width: 328px;
+  position: relative;
+  font-size: inherit;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: inherit;
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.actionIcon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.button {
+  border-radius: var(--br-81xl);
+  border: 2px solid var(--dark-primary-text);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-12xs) var(--padding-11xs);
+}
+
+.frameWrapper {
+  border-radius: var(--br-81xl);
+  border: 2px solid var(--dark-primary-text);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-12xs) var(--padding-11xs);
+  cursor: pointer;
+}
+
+.frameIcon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.content,
+.items,
+.slider {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+/* Modified to maintain scrollbar styling but make it hidden by default (controlled by buttons) */
+.slider {
+  overflow-x: auto;
+  flex-direction: row;
+  gap: var(--gap-5xl);
+  font-size: var(--body-1-size);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  width: 100%;
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.content {
+  width: 486px;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+
+.items,
+.slider {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+}
+
+.slider {
+  overflow-x: auto;
+  flex-direction: row;
+  gap: var(--gap-5xl);
+  font-size: var(--body-1-size);
+}
+
+.frameChild {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  border-radius: var(--br-11xs);
+  background-color: var(--color-darkslategray-100);
+  width: 1126px;
+  height: 2px;
+  display: none;
+}
+
+.button1,
+.rectangleParent {
+  height: 6px;
+  border-radius: var(--br-11xs);
+}
+
+.button1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-primary-color);
+  width: 500px;
+  z-index: 1;
+}
+
+.rectangleParent {
+  width: 1126px;
+  position: relative;
+  background-color: var(--color-darkslategray-100);
+  max-width: 100%;
+}
+
+.platformBenefits {
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-61xl) 0 var(--padding-61xl) var(--padding-101xl);
+  box-sizing: border-box;
+  gap: var(--gap-21xl);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--h1-size);
+  color: var(--dark-primary-text);
+  font-family: var(--caption);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+  .carouselLayout {
+    padding-right: var(--padding-21xl);
+  }
+}
+
+@media screen and (max-width: 825px) {
+  .latestInsights {
+    font-size: var(--font-size-13xl);
+    line-height: 38px;
+  }
+  
+  .carouselLayout {
+    padding-right: var(--padding-xl);
+  }
+  
+  .platformBenefits {
+    gap: var(--gap-xl);
+    padding-left: var(--padding-41xl);
+    padding-top: var(--padding-33xl);
+    padding-bottom: var(--padding-33xl);
+    box-sizing: border-box;
+  }
+  
+  .scrollTrack {
+    width: 150px;
+  }
+  
+  .exploreAllCard {
+    width: 100px;
+  }
+  
+  .exploreAllText {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .carouselLayout {
+    flex-direction: column;
+  }
+  
+  .exploreAllCard {
+    width: 100%;
+    height: 60px;
+    border-left: none;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+  }
+  
+  /* Adjust the arrows on smaller screens */
+  .scrollIndicator {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .latestInsights {
+    font-size: var(--body-1-size);
+    line-height: 29px;
+  }
+  
+  .enablingNextGenDigital {
+    font-size: var(--font-size-lgi);
+    line-height: 29px;
+  }
+  
+  .content {
+    flex-wrap: wrap;
+  }
+  
+  .platformBenefits {
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+  
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .scrollTrack {
+    width: 100px;
+  }
+}

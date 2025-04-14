@@ -1,0 +1,105 @@
+.frameIcon {
+    width: 16px;
+    position: relative;
+    height: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .insurance {
+    position: relative;
+    line-height: 160%;
+  }
+  .frameGroup {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--gap-5xs);
+  }
+  .theEvolutionAnd {
+    align-self: stretch;
+    position: relative;
+    font-size: var(--h1-size);
+    line-height: 120%;
+    font-weight: 500;
+    color: var(--dark-primary-text);
+  }
+  .badgeParent,
+  .frameParent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--gap-5xs);
+  }
+  .badgeParent {
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: var(--gap-base);
+  }
+  .generativeAiAGameChanger {
+    margin: 0;
+    
+  }
+  .subtext{
+    font-size: 18px;
+  }
+  .blankLine {
+    margin: 0;
+    font-size: var(--body-2-medium-size);
+  }
+  .generativeAiAContainer {
+    align-self: stretch;
+    position: relative;
+    line-height: 160%;
+    color: var(--dark-primary-text);
+    font-size: var(--body-1-size);
+  }
+  .horizontalTabs {
+    align-self: stretch;
+    background-color: var(--color-gray-200);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-61xl) var(--padding-101xl);
+    gap: var(--gap-21xl);
+    text-align: left;
+    font-size: var(--body-3-size);
+    color: var(--dark-secondary-text);
+    font-family: var(--caption);
+  }
+  
+
+  /* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) { 
+  .horizontalTabs {
+    padding: 15px;
+  }
+ }
+
+ /* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) { 
+  .aboutUs {
+    width: 100px;
+  }
+ }
+
+ /* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+ }
+
+ /* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+ }
+
+ /* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+
+ }

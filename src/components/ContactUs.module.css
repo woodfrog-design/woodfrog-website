@@ -1,0 +1,445 @@
+/* Modal styling */
+.contactModal {
+  min-width: 320px;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Form layout and styling with staggered animations */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.formRow {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(var(--animation-order, 0) * 0.08s);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+  animation: fadeSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(var(--animation-order, 0) * 0.08s);
+}
+
+/* Assign animation order to stagger entrances */
+.form > *:nth-child(1) { --animation-order: 1; }
+.form > *:nth-child(2) { --animation-order: 2; }
+.form > *:nth-child(3) { --animation-order: 3; }
+.form > *:nth-child(4) { --animation-order: 4; }
+.form > *:nth-child(5) { --animation-order: 5; }
+.form > *:nth-child(6) { --animation-order: 6; }
+.form > *:nth-child(7) { --animation-order: 7; }
+
+.label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--dark-primary-text);
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.required {
+  color: #ff4d4f;
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+/* Input wrapper with icon */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+.inputWrapper:focus-within {
+  transform: translateY(-2px);
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+/* Input styling */
+.input, .textarea, .select {
+  padding: 10px 12px;
+  padding-left: 40px; /* Space for icon */
+  height: 42px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  color: #333;
+  font-size: 15px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 100%;
+  will-change: transform, border-color, box-shadow;
+}
+
+.textarea {
+  padding-left: 12px; /* No icon for textarea */
+  min-height: 100px;
+  height: auto;
+  resize: vertical;
+}
+
+.input::placeholder, 
+.textarea::placeholder, 
+.select::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.input:hover, 
+.textarea:hover, 
+.select:hover {
+  border-color: rgba(24, 144, 255, 0.5);
+}
+
+.input:focus, 
+.textarea:focus, 
+.select:focus {
+  outline: none;
+  border-color: #1890FF;
+  box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.input:focus::placeholder,
+.textarea:focus::placeholder,
+.select:focus::placeholder {
+  opacity: 0.7;
+  transform: translateY(-3px);
+}
+
+.formSelect {
+  height: 42px;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #333;
+  font-size: 15px;
+  padding-left: 40px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 100%;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(0, 0, 0, 0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  will-change: transform, border-color, box-shadow;
+}
+
+/* Focus effect for input wrapper */
+.inputWrapper:focus-within .inputIcon {
+  color: #1890FF;
+}
+
+/* Dark mode input styles */
+.darkInput {
+  background-color: var(--color-darkslategray-200) !important;
+  color: var(--dark-primary-text) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.darkInput::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+  opacity: 1 !important;
+}
+
+.darkTextarea {
+  background-color: var(--color-darkslategray-200) !important;
+  color: var(--dark-primary-text) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.darkTextarea::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+  opacity: 1 !important;
+}
+
+/* Support for auto-fill/auto-complete in dark mode */
+.darkInput:-webkit-autofill,
+.darkInput:-webkit-autofill:hover,
+.darkInput:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--dark-primary-text) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-darkslategray-200) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* Error handling */
+.inputError {
+  border-color: #ff4d4f !important;
+}
+
+.errorText {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.errorText::before {
+  content: "⚠";
+  margin-right: 4px;
+}
+
+/* Form actions */
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  animation: fadeSlideUp 0.5s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0;
+}
+
+/* Improved Submit button (now full width without cancel button) */
+.submitButtonFull {
+  width: 100%;
+  height: 48px;
+  min-width: 120px;
+  background: linear-gradient(to right, #1668DC, #2988ff);
+  border: none !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  will-change: transform, box-shadow, background;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.submitButtonFull:hover {
+  background: linear-gradient(to right, #1658C4, #1890ff);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 6px 16px rgba(24, 144, 255, 0.35);
+}
+
+.submitButtonFull:active {
+  background: linear-gradient(to right, #0d4cb3, #0d79d0);
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+}
+
+.submitButtonFull:focus {
+  box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.3), 0 4px 12px rgba(24, 144, 255, 0.25);
+}
+
+.submitButtonFull::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.submitButtonFull:hover::after {
+  opacity: 1;
+}
+
+/* Input icon */
+.inputIcon {
+  margin-right: 8px;
+  opacity: 0.8;
+  line-height: 0;
+}
+
+/* Success message styling */
+.successMessage {
+  text-align: center;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.successIcon {
+  width: 64px;
+  height: 64px;
+  background-color: #52c41a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.2);
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.successTitle {
+  font-size: 22px;
+  margin: 0 0 12px 0;
+  color: var(--dark-primary-text);
+  font-weight: 600;
+  animation: fadeSlideUp 0.5s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.successText {
+  font-size: 16px;
+  color: var(--dark-secondary-text);
+  margin: 0;
+  line-height: 1.5;
+  animation: fadeSlideUp 0.5s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Dark theme specific styles */
+.darkTheme .formLabel,
+.darkTheme .label {
+  color: var(--dark-primary-text);
+}
+
+.darkTheme .inputIcon {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkTheme .input,
+.darkTheme .textarea,
+.darkTheme .select,
+.darkTheme .formSelect {
+  background-color: var(--color-darkslategray-200);
+  color: var(--dark-primary-text);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.darkTheme .input::placeholder,
+.darkTheme .textarea::placeholder,
+.darkTheme .select::placeholder,
+.darkTheme .formSelect::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+  opacity: 1 !important;
+}
+
+.darkTheme .formSelect {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+/* Spinner animation for loading state */
+.spinningIcon {
+  animation: spin 1.2s linear infinite;
+  margin-right: 8px;
+}
+
+/* Animation keyframes */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeSlideUp {
+  0% { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-3px); }
+  40%, 60% { transform: translateX(3px); }
+}
+
+/* Button animation for the submit button */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(24, 144, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(24, 144, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(24, 144, 255, 0); }
+}
+
+/* Improve focus state for accessibility */
+.input:focus-visible,
+.textarea:focus-visible,
+.formSelect:focus-visible {
+  outline: 2px solid #1890FF;
+  outline-offset: 1px;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+  .formRow {
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .formGroup {
+    min-width: 100%;
+  }
+  
+  .submitButtonFull {
+    width: 100%;
+    height: 50px;
+  }
+  
+  .successIcon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .successTitle {
+    font-size: 20px;
+  }
+  
+  .successText {
+    font-size: 15px;
+  }
+}
+
+/* Fix for safari input rendering */
+@supports (-webkit-touch-callout: none) {
+  .input, .textarea, .formSelect {
+    -webkit-appearance: none;
+  }
+}

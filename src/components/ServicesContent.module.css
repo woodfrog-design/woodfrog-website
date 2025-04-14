@@ -1,0 +1,99 @@
+.efficientlyManageAnd {
+  position: relative;
+  font-size: var(--body-2-medium-size);
+  line-height: 160%;
+  color: var(--dark-secondary-text);
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.cardBack {
+  background-color: var(--color-darkslategray-100) !important;
+  border-radius: var(--br-5xl);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cardBack:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.textColor {
+  color: var(--dark-secondary-text);
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.imageMarginBottom {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.minCardHeight {
+  min-height: 320px;
+}
+
+.servicesContent,
+.servicesGrid {
+  align-self: stretch;
+  flex-direction: row;
+  gap: var(--gap-5xl);
+  font-size: var(--body-1-size);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicesGrid:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.servicesContent {
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  flex-direction: column;
+  padding: var(--padding-61xl) var(--padding-101xl);
+  box-sizing: border-box;
+  gap: var(--gap-21xl);
+  z-index: 4;
+  text-align: left;
+  font-size: var(--h1-size);
+  color: var(--dark-primary-text);
+  font-family: var(--caption);
+}
+
+.coreServices {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: 120%;
+  margin: 0;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1200px) {
+  .servicesContent {
+    padding-top: var(--padding-33xl);
+    padding-bottom: var(--padding-33xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 825px) {
+  .servicesContent {
+    gap: var(--gap-xl);
+    padding: var(--padding-15xl) var(--padding-41xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .servicesContent {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,733 @@
+/* Main page styles */
+.offeringPage {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-gray-200);
+  overflow-x: hidden;
+  color: var(--dark-primary-text);
+}
+
+.mainContent {
+  width: 100%;
+}
+
+/* Hero section styles */
+.heroSection {
+  background-color: var(--color-darkslategray-100);
+  padding: 80px 0 60px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.06;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.heroContainer {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--dark-primary-text);
+  position: relative;
+  display: inline-block;
+}
+
+.heroDescription {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--dark-secondary-text);
+  max-width: 800px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+/* Category section styles */
+.categorySection {
+  padding: 90px 0;
+  width: 100%;
+}
+
+.evenSection {
+  background-color: var(--color-darkslategray-100);
+}
+
+.oddSection {
+  background-color: var(--color-gray-200);
+}
+
+.categoryContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Category overview - with image */
+.categoryOverview {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.reversed {
+  flex-direction: row-reverse;
+}
+
+.categoryImageContainer {
+  flex: 1;
+  min-width: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.categoryImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.categoryImageContainer:hover .categoryImage {
+  transform: scale(1.05);
+}
+
+.categoryIntro {
+  flex: 1;
+  min-width: 280px;
+}
+
+.categoryTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark-primary-text);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.categoryTitleLine {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #1668DC, rgba(22, 104, 220, 0.5));
+  border-radius: 2px;
+  margin-bottom: 25px;
+}
+
+.reversed .categoryTitleLine {
+  margin-left: auto;
+}
+
+.categoryDescription {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--dark-secondary-text);
+  font-weight: 400;
+}
+
+/* Features grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.featureCard {
+  background-color: var(--color-darkslategray-100);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.featureImageWrapper {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.featureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.featureCard:hover .featureImage {
+  transform: scale(1.1);
+}
+
+.featureIcon {
+  position: absolute;
+  bottom: -22px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1668DC;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  border: 1px solid #e0e0e0;
+}
+
+.featureContent {
+  padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.featureTitle {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: var(--dark-primary-text);
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.featureTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #1668DC;
+}
+
+.featureDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--dark-secondary-text);
+  flex-grow: 1;
+}
+
+/* Use Cases Section */
+.useCasesSection {
+  padding: 90px 0;
+  background-color: var(--color-darkslategray-100);
+  position: relative;
+  overflow: hidden;
+}
+
+.useCasesSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 10% 10%, rgba(24, 144, 255, 0.1) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.sectionContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark-primary-text);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #1668DC, rgba(22, 104, 220, 0.5));
+  border-radius: 2px;
+}
+
+.sectionDescription {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--dark-secondary-text);
+  max-width: 800px;
+  margin: 30px auto 0;
+}
+
+.useCasesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.useCaseCard {
+  background-color: var(--color-gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.useCaseCard:hover {
+  transform: translateY(-8px);
+}
+
+.useCaseImageWrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.useCaseImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.useCaseCard:hover .useCaseImage {
+  transform: scale(1.1);
+}
+
+.useCaseContent {
+  padding: 25px;
+}
+
+.useCaseIndustry {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark-primary-text);
+  margin-bottom: 10px;
+}
+
+.useCaseDescription {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--dark-secondary-text);
+}
+
+/* Process Section */
+.processSection {
+  padding: 90px 0;
+  background-color: var(--color-gray-200);
+}
+
+.processSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.processSteps::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 40px;
+  width: 2px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+
+.processStep {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.stepNumber {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  position: relative;
+  margin-right: 10px;
+}
+
+.stepNumberText {
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.stepContent {
+  padding-top: 10px;
+}
+
+.stepTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark-primary-text);
+  margin-bottom: 10px;
+}
+
+.stepDescription {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--dark-secondary-text);
+}
+
+/* CTA section */
+.ctaSection {
+  padding: 100px 0;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(to right, var(--color-gray-200), rgba(24, 144, 255, 0.1));
+}
+
+.ctaSectionBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ctaSectionBg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  mix-blend-mode: overlay;
+}
+
+.ctaContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaTitle {
+  font-size: 42px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: var(--dark-primary-text);
+}
+
+.ctaDescription {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: var(--dark-secondary-text);
+}
+
+.ctaButton {
+  background-color: #1668DC;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(22, 104, 220, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.ctaButton:hover {
+  background-color: #2378e8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(22, 104, 220, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+/* Title and description styles - preserved from original for compatibility */
+.title {
+  font-size: 28px;
+  line-height: 28px;
+  font-weight: 600 !important;
+  font-family: 'Inter', sans-serif;
+  color: var(--dark-primary-text);
+  margin-bottom: 20px;
+}
+
+.describe {
+  font-size: 17px;
+  line-height: 28px;
+  font-weight: 400 !important;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 20px;
+  color: var(--dark-secondary-text);
+}
+
+/* Body styles - preserved from original for compatibility */
+.body {
+  width: 100%;
+  align-self: stretch;
+  background-color: transparent;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .heroTitle {
+    font-size: 32px;
+  }
+  
+  .heroDescription {
+    font-size: 16px;
+  }
+  
+  .categoryTitle,
+  .sectionTitle {
+    font-size: 32px;
+  }
+  
+  .categoryDescription,
+  .sectionDescription {
+    font-size: 17px;
+  }
+  
+  .ctaTitle {
+    font-size: 36px;
+  }
+  
+  .ctaDescription {
+    font-size: 18px;
+  }
+  
+  .featureTitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .categoryOverview {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .reversed {
+    flex-direction: column;
+  }
+  
+  .categoryImageContainer {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .categoryTitle,
+  .categoryTitleLine {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .categoryDescription {
+    text-align: center;
+  }
+  
+  .featuresGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .stepNumber {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .stepNumberText {
+    font-size: 30px;
+  }
+  
+  .processSteps::before {
+    left: 30px;
+  }
+  
+  .heroTitle {
+    font-size: 36px;
+  }
+  
+  .heroSection, 
+  .categorySection,
+  .useCasesSection,
+  .processSection,
+  .ctaSection {
+    padding: 70px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .featuresGrid, 
+  .useCasesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .heroTitle {
+    font-size: 28px;
+  }
+  
+  .heroDescription {
+    font-size: 16px;
+  }
+  
+  .categoryTitle, 
+  .sectionTitle {
+    font-size: 26px;
+  }
+  
+  .featureTitle {
+    font-size: 18px;
+  }
+  
+  .ctaTitle {
+    font-size: 30px;
+  }
+  
+  .ctaDescription {
+    font-size: 16px;
+  }
+  
+  .ctaButton {
+    padding: 14px 36px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .featuresGrid, 
+  .useCasesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .heroTitle {
+    font-size: 30px;
+  }
+  
+  .heroDescription {
+    font-size: 16px;
+  }
+  
+  .categoryTitle, 
+  .sectionTitle {
+    font-size: 24px;
+  }
+  
+  .categoryDescription,
+  .sectionDescription {
+    font-size: 15px;
+  }
+  
+  .featureTitle {
+    font-size: 18px;
+  }
+  
+  .featureDescription,
+  .useCaseDescription,
+  .stepDescription {
+    font-size: 14px;
+  }
+  
+  .ctaTitle {
+    font-size: 26px;
+  }
+  
+  .ctaDescription {
+    font-size: 15px;
+  }
+  
+  .ctaButton {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+  
+  .heroSection, 
+  .categorySection,
+  .useCasesSection,
+  .processSection,
+  .ctaSection {
+    padding: 50px 0;
+  }
+  
+  .processSteps {
+    gap: 30px;
+  }
+  
+  .stepNumber {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .stepNumberText {
+    font-size: 24px;
+  }
+  
+  .processSteps::before {
+    left: 25px;
+  }
+  
+  .stepTitle {
+    font-size: 20px;
+  }
+}

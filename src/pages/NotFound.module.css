@@ -1,0 +1,142 @@
+.notFoundPage {
+    width: 100%;
+    font-family: inherit;
+    color: var(--dark-primary-text);
+    background-color: var(--color-gray-200);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mainContent {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  
+  .container {
+    max-width: 800px;
+    text-align: center;
+    padding: 40px 60px;
+    border-radius: 12px;
+    background-color: var(--color-darkslategray-100);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .errorCode {
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #1498CC, rgba(20, 152, 204, 0.5));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.05em;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    color: var(--dark-primary-text);
+    font-weight: 600;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--dark-secondary-text);
+    line-height: 1.6;
+  }
+  
+  .illustration {
+    margin: 20px auto 40px;
+    max-width: 150px;
+    transform: rotate(345deg);
+  }
+  
+  .svgImage {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+  }
+  
+  .actions {
+    margin-top: 30px;
+  }
+  
+  .homeButton {
+    display: inline-block;
+    background-color: #1498CC;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(20, 152, 204, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+  
+  .homeButton:hover {
+    background-color: #2AABDD;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(20, 152, 204, 0.3);
+  }
+  
+  /* Animation for the SVG */
+  @keyframes float {
+    0% {
+      transform: rotate(345deg) translateY(0);
+    }
+    50% {
+      transform: rotate(345deg) translateY(-10px);
+    }
+    100% {
+      transform: rotate(345deg) translateY(0);
+    }
+  }
+  
+  .illustration {
+    animation: float 2s infinite ease-in-out;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .errorCode {
+      font-size: 6rem;
+    }
+    
+    .title {
+      font-size: 2rem;
+    }
+    
+    .description {
+      font-size: 1rem;
+    }
+    
+    .container {
+      padding: 30px 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .errorCode {
+      font-size: 5rem;
+    }
+    
+    .title {
+      font-size: 1.8rem;
+    }
+    
+    .mainContent {
+      padding: 20px;
+    }
+  }

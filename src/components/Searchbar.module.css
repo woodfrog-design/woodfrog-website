@@ -1,0 +1,17 @@
+.myinput {
+  border: none !important;
+  /* max-width: 300px !important;   */
+  background-color: #ffffff !important;
+  border-top: 1px solid #dee2e6 !important;
+  border-bottom: 1px solid #dee2e6 !important;
+  border-right: 1px solid #dee2e6 !important;
+  background-color: #dee2e6;
+}
+
+
+.myinput:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  outline: 0;
+  box-shadow: none !important;
+}

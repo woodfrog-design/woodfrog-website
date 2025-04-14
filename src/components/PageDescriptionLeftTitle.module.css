@@ -1,0 +1,102 @@
+.PageDescriptionLeftTitle {
+    background-color: var(--color-gray-200);
+    padding: var(--padding-2xs) var(--padding-15xl) ;
+    box-sizing: border-box;
+    gap: var(--gap-21xl);
+    max-width: 100%;
+    text-align: left;
+    font-size: var(--h1-size);
+    color: var(--dark-primary-text);
+    font-family: var(--caption);
+}
+
+.container {
+    align-self: stretch;
+    background-color: var(--color-gray-200);
+    overflow: hidden;
+    justify-content: center;
+    padding: 0 var(--padding-61xl);
+    box-sizing: border-box;
+    text-align: left;
+    font-size: var(--body-1-size);
+    color: var(--dark-primary-text);
+    font-family: var(--caption);
+}
+
+.PageDescriptionLeftTitle>.container>.pageTitle {
+    padding-left: 20px;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 300 !important;
+    font-family: 'Inter';
+    color: var(--dark-secondary-text);
+    /* line-height: 100px; */
+    margin-bottom: 20px;
+}
+
+.PageDescriptionLeftTitle>.container>.description {
+    position: relative;
+    font-size: var(--body-2-medium-size);
+    line-height: 160%;
+    color: var(--dark-secondary-text);
+    padding-left: 22px;
+}
+
+.dividedContainer{
+    display: flex;
+    flex-flow: row;
+}
+
+.dividedContainer:nth-child(even) {
+    /* flex-flow: row-reverse; */
+    color: red;
+    background-color: red;
+}
+
+.imageContainer {
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: center;
+    /* gap: var(--gap-5xl); */
+    margin-top: 20px;
+    width: 50%;
+}
+
+.textContainer{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    justify-content: center;
+    /* gap: var(--gap-5xl); */
+    width: 50%;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    .PageDescriptionLeftTitle {
+        padding: 0;
+    }
+    .PageDescriptionLeftTitle .container{
+        width: 100%;
+        padding: 20px 10px 19px 20px;
+    }
+    .PageDescriptionLeftTitle>.container>.pageTitle {
+        padding: 0;
+    }
+    .PageDescriptionLeftTitle>.container>.description {
+        padding: 0;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {}
