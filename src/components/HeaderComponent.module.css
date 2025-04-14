@@ -372,6 +372,17 @@
   }
   
 }
+/* Specifically for iPad Mini (768px) */
+@media (max-width: 768px) and (min-width: 768px) {
+  .menu {
+    display: flex !important; /* Ensure menu is visible */
+    flex-direction: row; /* Layout menu items in a row */
+    justify-content: space-between; /* Space items out */
+    gap: var(--gap-base); /* Maintain gap between items */
+    font-size: 12px;
+  }
+}
+
 
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 767px) {
