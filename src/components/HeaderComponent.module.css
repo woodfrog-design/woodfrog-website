@@ -373,22 +373,23 @@
   
 }
 
-/* Ensure menu is visible on iPad Mini */
-@media (max-width: 768px) {
-  .menu {
-    display: flex !important; /* Override previous rule */
-    flex-direction: row; /* Ensure it's a row-based layout */
-    justify-content: space-between; /* Ensure spacing between menu items */
-    gap: var(--gap-base); /* Maintain consistent gap */
-    font-size: 12px;
-  }
-}
-
-/* Hide menu on smaller devices (below iPad Mini size) */
+/* Medium devices (tablets, 768px and up) */
 @media (max-width: 767px) {
-  .menu {
-    display: none;
+  .aboutUs {
+    width: 100px;
   }
+
+  .menu {
+    display: none; /* Hide menu on smaller screens */
+  }
+  
+  /* Maintain alignment for mobile menu */
+  .logoContainer {
+    height: 80px; /* Standardized height */
+  display: flex;
+    align-items: center; /* For mobile, center alignment is better */
+  }
+  
 }
 
 /* Updated link styles */
