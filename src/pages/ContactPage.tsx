@@ -137,17 +137,17 @@ const ContactPage: FunctionComponent = () => {
                                                     <PhoneOutlined className={styles.formIcon} />
                                                 </label>
                                                 <input
-  type="tel"
-  className={styles.formInput}
-  placeholder="+91XXXXXXXXXX"
-  name="phone"
-  value={formData.phone}
-  onChange={handleInputChange}
-  pattern="^\+\d{1,4}\d{10}$"
-  inputMode="tel"
-  maxLength={15}
-  title="Enter phone with country code, e.g. +911234567890"
-/>
+                                                    type="tel"
+                                                    className={styles.formInput}
+                                                    placeholder="+91XXXXXXXXXX"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handleInputChange}
+                                                    pattern="^\+\d{1,4}\d{10}$"
+                                                    inputMode="tel"
+                                                    maxLength={15}
+                                                    title="Enter phone with country code, e.g. +911234567890"
+                                                />
 
                                             </div>
 
@@ -195,7 +195,7 @@ const ContactPage: FunctionComponent = () => {
                                                 </div>
                                             </div>
 
-                                            <div className={styles.contactItem}>
+                                            {/* <div className={styles.contactItem}>
                                                 <div className={styles.contactIconWrapper}>
                                                     <PhoneOutlined className={styles.contactIcon} />
                                                 </div>
@@ -203,7 +203,7 @@ const ContactPage: FunctionComponent = () => {
                                                     <p className={styles.contactLabel}>Phone</p>
                                                     <p className={styles.contactValue}>+91 123 456 7890</p>
                                                 </div>
-                                            </div>
+                                            </div> */}
 
                                             <div className={styles.contactItem}>
                                                 <div className={styles.contactIconWrapper}>
