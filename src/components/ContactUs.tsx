@@ -3,7 +3,7 @@ import styles from './ContactUs.module.css';
 import { useTheme } from "../ThemeContext";
 import CustomModal from './CustomModal';
 import CustomButton from './CustomButton';
-import { addDoc, collection, serverTimestamp,} from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp, } from 'firebase/firestore';
 import { db } from '../firebase';
 
 // Message icon component
@@ -210,7 +210,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
     if (!formData.message.trim()) {
       errors.message = 'Message is required';
     }
-    
+
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -226,7 +226,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
     try {
       // Simulate API call
       // await new Promise(resolve => setTimeout(resolve, 1000));
-      await addDoc(collection(db,'contacts'),{
+      await addDoc(collection(db, 'contacts'), {
         ...formData,
         timestamp: serverTimestamp(),
       })
@@ -350,7 +350,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
                     placeholder="Your last name"
                     autoComplete="family-name"
                     aria-required="true"
-                     pattern="[A-Za-z\s]+"
+                    pattern="[A-Za-z\s]+"
                     title="Only letters are allowed"
                   />
                 </div>
@@ -390,19 +390,19 @@ const ContactForm: React.FC<ContactFormProps> = ({
               <div className={styles.inputWrapper}>
                 <span className={styles.inputIcon}><PhoneIcon /></span>
                 <input
-  type="tel"
-  id="phone"
-  name="phone"
-  className={`${styles.input} ${isDarkTheme ? styles.darkInput : ''}`}
-  value={formData.phone}
-  onChange={handleChange}
-  placeholder="+91 1234567890"
-  autoComplete="tel"
-  pattern="^\+\d{1,4}\s?\d{6,12}$"
-  inputMode="tel"
-  maxLength={15}
-  title="Enter phone number with country code (e.g. +91 1234567890)"
-/>
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  className={`${styles.input} ${isDarkTheme ? styles.darkInput : ''}`}
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+1-212-456-7890"
+                  autoComplete="tel"
+                  pattern="^\+[\d\s\-().]{7,20}$"
+                  inputMode="tel"
+                  maxLength={20}
+                  title="Enter a valid phone number starting with +. Allowed: digits, spaces, dashes, parentheses"
+                />
 
               </div>
             </div>

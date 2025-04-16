@@ -329,13 +329,13 @@
 
 .menus {
   font-size: 14px;
-  margin: 45px 0px;
+  margin: 1px 0px;
   padding: 5px;
   font-family: "Inter";
 }
 .menus li {
   list-style-type: none;
-  padding: 10px 14px;
+  padding: 8px 24px;
   /* margin-top: 20px; */
   /* padding-top: 20px; */
   color: var(--dark-secondary-text);
@@ -469,3 +469,169 @@ body.dark-mode .menu a {
   visibility: visible;
   transform: scaleX(1);
 }
+.overlayScroll {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: #111; /* dark theme */
+  z-index: 99;
+  /* padding: 20px 0; */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .overlayScroll {
+    display: none;
+  }
+}
+/*  */
+
+@media screen and (min-width: 576px) and (max-width: 766px) {
+  .logoContainerWrapper {
+    padding-left: var(--padding-20xl); /* reduced padding to fit content */
+    padding-right: var(--padding-20xl);
+    box-sizing: border-box;
+  }
+
+  .menu {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    font-size: 12px; /* reduced font size to fit better */
+    flex-shrink: 1;
+  }
+
+  .ourSolutions {
+    white-space: nowrap;
+    display: inline-block;
+    padding: 5px 8px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 12px; /* smaller size */
+  }
+
+  .logoContainer {
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+
+  .hero {
+    padding-top: 80px;
+    padding-bottom: var(--padding-142xl);
+  }
+
+  .heroButton {
+    padding-left: var(--padding-64xl); /* slightly reduced for smaller screens */
+    padding-right: var(--padding-64xl);
+  }
+
+  .unlockInsightsFaster {
+    font-size: var(--font-size-14xl); /* reduced font size */
+    line-height: 42px;
+  }
+
+  .transformComplexData {
+    font-size: var(--font-size-md); /* slightly smaller */
+    line-height: 26px;
+  }
+}
+
+
+
+
+@media screen and (min-width: 767px) and (max-width: 820px) {
+  .menu {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap; /* don't allow wrapping */
+    font-size: 13px;
+    white-space: nowrap; /* prevent text from wrapping */
+  }
+
+  .ourSolutions {
+    font-size: 13px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  .logoContainerWrapper {
+    padding-left: var(--padding-32xl);
+    padding-right: var(--padding-32xl);
+    box-sizing: border-box;
+  }
+
+  .heroButton {
+    padding-left: var(--padding-72xl);
+    padding-right: var(--padding-72xl);
+  }
+
+  .unlockInsightsFaster {
+    font-size: var(--font-size-18xl);
+    line-height: 48px;
+  }
+
+  .transformComplexData {
+    font-size: var(--font-size-base);
+    line-height: 28px;
+  }
+}
+
+
+/* General navbar styles */
+.navbar {
+  background-color: #333;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  color: white;
+  font-size: 24px;
+}
+
+.navbar .menu {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar .menu a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsive navbar for screen sizes between 579px and 606px */
+@media (min-width: 579px) and (max-width: 606px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    padding: 10px;
+  }
+
+  .navbar .menu {
+    flex-direction: column; /* Stack menu items vertically */
+    gap: 10px;
+  }
+
+  .navbar .menu a {
+    font-size: 18px; /* Adjust font size */
+  }
+
+  .navbar .logo {
+    font-size: 20px; /* Adjust logo font size */
+    margin-bottom: 10px; /* Space between logo and menu */
+  }
+}
+
+/* You can add additional media queries for smaller screen sizes below this if needed */
+

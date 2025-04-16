@@ -11,17 +11,17 @@
   margin: 0;
   flex: 1;
   position: relative;
-  font-size: 22px;
-  line-height: 140%;
-  font-weight: 400;
+  font-size: 17px;
+  line-height: 150%;
+  font-weight: 300;
   font-family: inherit;
   display: inline-block;
-  min-width: 110px;
+  min-width: 114px;
   max-width: 90%;
 }
 .frameIcon {
-  height: 22px;
-  width: 22px;
+  height: 23px;
+  width: 23px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;

@@ -139,15 +139,17 @@ const ContactPage: FunctionComponent = () => {
                                                 <input
                                                     type="tel"
                                                     className={styles.formInput}
-                                                    placeholder="+91XXXXXXXXXX"
+                                                    placeholder="+1-212-456-7890"
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handleInputChange}
-                                                    pattern="^\+\d{1,4}\d{10}$"
+                                                    pattern="^\+[\d\s\-().]{7,20}$"
                                                     inputMode="tel"
-                                                    maxLength={15}
-                                                    title="Enter phone with country code, e.g. +911234567890"
+                                                    maxLength={20}
+                                                    title="Enter a valid phone number starting with +. Allowed: digits, spaces, dashes, parentheses"
                                                 />
+
+
 
                                             </div>
 
