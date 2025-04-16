@@ -36,12 +36,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "netlify-build": "CI=false react-scripts build",
-    "netlify-deploy": "npm run netlify-build && netlify deploy --prod --dir=build",
-    "netlify-deploy-preview": "npm run netlify-build && netlify deploy --dir=build --alias preview",
-    "netlify-open": "netlify open",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "build": "react-scripts build",
+  "netlify-build": "CI=false react-scripts build",
+  "netlify-deploy": "npm run netlify-build && netlify deploy --prod --dir=build",
+  "netlify-deploy-preview": "npm run netlify-build && netlify deploy --dir=build --alias preview",
+  "netlify-open": "netlify open",
+  "tag-release": "git tag -a v$(node -p \"require('./package.json').version\") -m 'Release version $(node -p \"require('./package.json').version\")' && git push origin --tags",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "dev-deploy": "CI=false react-scripts build && netlify deploy --alias dev --dir=build"
   },
   "eslintConfig": {
     "extends": [
@@ -63,5 +66,12 @@
   },
   "devDependencies": {
     "@types/react-scroll": "^1.8.10"
+  },
+  "readme": {
+    "content": "...\n---\n📘 [CI/CD & Dev Workflow Guidelines](./CI-CD-Guidelines.md)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woodfrog-design/woodfrog-website.git"
   }
 }
