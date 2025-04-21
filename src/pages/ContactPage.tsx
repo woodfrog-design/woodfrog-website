@@ -193,7 +193,7 @@ const ContactPage: FunctionComponent = () => {
                                                 </div>
                                                 <div className={styles.contactDetails}>
                                                     <p className={styles.contactLabel}>Email</p>
-                                                    <p className={styles.contactValue}>info@woodfrog.tech</p>
+                                                    <p className={styles.contactValue}>hello@woodfrog.tech</p>
                                                 </div>
                                             </div>
 
