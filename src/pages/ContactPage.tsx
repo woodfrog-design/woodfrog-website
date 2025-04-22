@@ -36,10 +36,17 @@ const ContactPage: FunctionComponent = () => {
                 timestamp: serverTimestamp(),
             });
 
-            // Show success message
+            // Send Slack/email notification using Netlify Function
+            await fetch('/.netlify/functions/contactNotification', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
             alert('Thank you for your message! We will get back to you soon.');
 
-            // Clear form after submission
             setFormData({
                 firstName: '',
                 lastName: '',
@@ -47,8 +54,6 @@ const ContactPage: FunctionComponent = () => {
                 phone: '',
                 message: '',
             });
-            ;
-
         } catch (error) {
             console.error('Error submitting form:', error);
             alert('There was an error submitting your form. Please try again.');
@@ -68,7 +73,6 @@ const ContactPage: FunctionComponent = () => {
                 <section className={styles.contactFormSection}>
                     <div className="container">
                         <div className="row justify-content-center ${styles.cardsRow}">
-                            {/* Contact Form Card */}
                             <div className="col-12 col-lg-6 mb-4">
                                 <div className={styles.contactCard}>
                                     <div className={styles.contactSection}>
@@ -148,9 +152,6 @@ const ContactPage: FunctionComponent = () => {
                                                     maxLength={20}
                                                     title="Enter a valid phone number starting with +. Allowed: digits, spaces, dashes, parentheses"
                                                 />
-
-
-
                                             </div>
 
                                             <div className={styles.formGroup}>
@@ -177,7 +178,6 @@ const ContactPage: FunctionComponent = () => {
                                 </div>
                             </div>
 
-                            {/* Contact Information Card */}
                             <div className="col-12 col-lg-4 mb-4">
                                 <div className={styles.contactCard}>
                                     <div className={styles.contactSection}>
@@ -196,16 +196,6 @@ const ContactPage: FunctionComponent = () => {
                                                     <p className={styles.contactValue}>hello@woodfrog.tech</p>
                                                 </div>
                                             </div>
-
-                                            {/* <div className={styles.contactItem}>
-                                                <div className={styles.contactIconWrapper}>
-                                                    <PhoneOutlined className={styles.contactIcon} />
-                                                </div>
-                                                <div className={styles.contactDetails}>
-                                                    <p className={styles.contactLabel}>Phone</p>
-                                                    <p className={styles.contactValue}>+91 123 456 7890</p>
-                                                </div>
-                                            </div> */}
 
                                             <div className={styles.contactItem}>
                                                 <div className={styles.contactIconWrapper}>
@@ -232,8 +222,6 @@ const ContactPage: FunctionComponent = () => {
             </main>
 
             <Footer />
-
-            {/* Keep the popup contact form modal */}
             <ContactForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
         </div>
     );
