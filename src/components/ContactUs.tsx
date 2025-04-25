@@ -218,28 +218,33 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!validateForm()) return;
-
+  
     setIsSubmitting(true);
-
+  
     try {
-      // Simulate API call
-      // await new Promise(resolve => setTimeout(resolve, 1000));
+      // Save to Firebase
       await addDoc(collection(db, 'contacts'), {
         ...formData,
         timestamp: serverTimestamp(),
-      })
-
-
-      // Success
+      });
+  
+      // Trigger Slack notification via Netlify Function
+      await fetch('/.netlify/functions/contactNotification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      // Success state
       setSubmitSuccess(true);
-
-      // Reset form after success notification
+  
+      // Reset modal and form
       setTimeout(() => {
         setIsModalVisible(false);
-
-        // Reset all state after modal closes
         setTimeout(() => {
           setFormData({
             firstName: '',
@@ -247,14 +252,14 @@ const ContactForm: React.FC<ContactFormProps> = ({
             email: '',
             phone: '',
             organization: '',
-            message: ''
+            message: '',
           });
           setSubmitSuccess(false);
           setFormErrors({});
           setIsSubmitting(false);
         }, 300);
       }, 2000);
-
+  
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('There was an error submitting your form. Please try again.');
