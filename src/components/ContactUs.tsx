@@ -218,7 +218,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('test');
    
     if (!validateForm()) return;
   
