@@ -218,7 +218,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+    console.log('test');
+   
     if (!validateForm()) return;
   
     setIsSubmitting(true);
@@ -230,17 +231,19 @@ const ContactForm: React.FC<ContactFormProps> = ({
         timestamp: serverTimestamp(),
       });
   
-      // Send Slack notification via Netlify Function
+      // Send Slack Notification via Netlify Function
       await fetch('/.netlify/functions/contactNotification', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
   
-      // Success state
+      // If both succeed:
       setSubmitSuccess(true);
   
-      // Reset modal and form
+      // Reset modal and form after showing success
       setTimeout(() => {
         setIsModalVisible(false);
         setTimeout(() => {
