@@ -228,23 +228,12 @@ const ContactForm: React.FC<ContactFormProps> = ({
       await addDoc(collection(db, 'contacts'), {
         ...formData,
         timestamp: serverTimestamp(),
-        
-      });
-
-      await fetch('/.netlify/functions/contactNotification', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
       });
   
-      // Trigger Slack notification via Netlify Function
+      // Send Slack notification via Netlify Function
       await fetch('/.netlify/functions/contactNotification', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
   
