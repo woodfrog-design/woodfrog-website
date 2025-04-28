@@ -193,7 +193,9 @@ const ContactPage: FunctionComponent = () => {
                                                 </div>
                                                 <div className={styles.contactDetails}>
                                                     <p className={styles.contactLabel}>Email</p>
-                                                    <p className={styles.contactValue}>hello@woodfrog.tech</p>
+                                                    <p className={styles.contactValue}>
+                                                        <a href="mailto:hello@woodfrog.tech" className={styles.emailLink}>hello@woodfrog.tech</a>
+                                                    </p>
                                                 </div>
                                             </div>
 

@@ -211,3 +211,23 @@
     padding: 30px 20px;
   }
 }
+
+/* Subtle email link button */
+.emailLink {
+  display: inline-block;
+  padding: var(--padding-3xs) var(--padding-5xs);
+  background-color: transparent;
+  color: var(--dark-primary-color);
+  border: 1px solid var(--dark-primary-color);
+  border-radius: var(--br-base);
+  font-size: var(--body-2-medium-size);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.emailLink:hover {
+  background-color: var(--dark-primary-color);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}

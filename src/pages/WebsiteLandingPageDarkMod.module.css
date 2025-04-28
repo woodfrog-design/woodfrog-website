@@ -197,3 +197,23 @@
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
   }
 }
+
+/* Email link button */
+.emailLink {
+  display: inline-block;
+  padding: var(--padding-5xl) var(--padding-11xl);
+  background: linear-gradient(135deg, var(--dark-primary-color) 0%, var(--color-chocolate) 100%);
+  color: var(--color-white);
+  font-family: var(--caption), Inter, sans-serif;
+  font-weight: 500;
+  font-size: var(--body-2-medium-size);
+  text-decoration: none;
+  border-radius: var(--br-5xl);
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.emailLink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
