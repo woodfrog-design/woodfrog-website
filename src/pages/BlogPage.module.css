@@ -1,0 +1,237 @@
+.body,
+.featuredContentWrapper,
+.tabbedPane {
+  display: flex;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.tabbedPane {
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 0 var(--padding-xl);
+  gap: var(--gap-base);
+  border-bottom: 1px solid #ffffff;
+}
+.body,
+.featuredContentWrapper {
+  align-self: stretch;
+}
+.featuredContentWrapper {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  /* padding: 0 var(--padding-xl); */
+}
+.body {
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 0 222px;
+  gap: var(--gap-21xl);
+}
+/* .divider {
+  width: 1320px;
+  height: 1px;
+  position: absolute;
+  margin: 0 !important;
+  top: 614px;
+  right: 0;
+  background-color: var(--gray-200);
+} */
+.text {
+  height: 20px;
+  width: 66px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-12xs) var(--padding-9xs) var(--padding-mid);
+}
+.bottomBorder {
+  align-self: stretch;
+  position: relative;
+  height: 2px;
+}
+.tabButtonBase {
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.text1 {
+  height: 20px;
+  width: 37px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.tabButtonBase1 {
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+.text2 {
+  height: 20px;
+  width: 29px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.tabButtonBase2 {
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.text3 {
+  height: 20px;
+  width: 41px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.tabButtonBase3 {
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+}
+.text4 {
+  height: 20px;
+  width: 36px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.tabButtonBase4 {
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 7;
+}
+.text5 {
+  height: 20px;
+  width: 86px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.tabButtonBase5 {
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 8;
+}
+.text6 {
+  height: 20px;
+  width: 81px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.tabButtonBase6 {
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+}
+.text7 {
+  height: 20px;
+  width: 23px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.blogPage,
+.tabButtonBase7 {
+  overflow: hidden;
+  flex-direction: column;
+}
+.tabButtonBase7 {
+  height: 40px;
+  flex-shrink: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.blogPage {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-gray-200);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: var(--body-3-size);
+  color: var(--gray-500);
+  font-family: var(--caption);
+}
+@media screen and (max-width: 1350px) {
+  .tabbedPane {
+    flex-wrap: wrap;
+  }
+  .body {
+    padding-bottom: 144px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .body {
+    padding-bottom: 94px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 800px) {
+  .body {
+    gap: var(--gap-xl);
+    padding-bottom: 61px;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,32 @@
+.text {
+  height: 20px;
+  width: 239px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-12xs) var(--padding-9xs) var(--padding-5xs);
+}
+.bottomBorder {
+  align-self: stretch;
+  height: 2px;
+  position: relative;
+}
+.tabButtonBase {
+  height: 31px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  font-size: var(--body-3-size);
+  color: var(--dark-placeholder-text);
+  font-family: var(--caption);
+}

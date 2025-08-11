@@ -1,0 +1,9 @@
+.chartDotIcon {
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  margin: 0 !important;
+  top: -7px;
+  right: 35px;
+  z-index: 1;
+}

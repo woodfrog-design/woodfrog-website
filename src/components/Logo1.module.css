@@ -1,0 +1,22 @@
+.logoContainerIcon {
+  width: 112px;
+  height: 23.9px;
+  position: relative;
+}
+.insightsActionsInnovation {
+  position: relative;
+  line-height: 120%;
+  font-weight: 500;
+}
+.logo {
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-11xs-2);
+  text-align: left;
+  font-size: var(--font-size-6xs-1);
+  color: var(--color-silver-100);
+  font-family: var(--font-avenir);
+}
