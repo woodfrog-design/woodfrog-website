@@ -21,6 +21,7 @@ interface ServiceCategory {
 }
 
 // Content data for the Offering page
+// ...existing code...
 const offeringData = {
   hero: {
     title: 'Our Services & Solutions',
@@ -83,6 +84,13 @@ const offeringData = {
             'Our expert team develops bespoke AI models tailored to your specific business challenges, from predictive analytics to computer vision and NLP applications.',
           image: '/images/custom-ai.jpg',
           imageAlt: 'Custom AI solution diagram',
+        },
+        // New fourth card
+        {
+          title: 'Benchmarking and Evaluation',
+          description: 'Ensure your GenAI and LLM solutions meet enterprise standards for reliability, compliance, and ROI. We provide rigorous benchmarking and evaluation tailored for regulated industries and mission-critical deployments.',
+          image: '/images/benchmarking-evaluation.svg',
+          imageAlt: 'Benchmarking and Evaluation',
         },
       ],
     },

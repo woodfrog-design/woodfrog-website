@@ -3,49 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^6.0.0",
     "@netlify/functions": "^3.1.10",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
     "@types/react-countup": "^4.3.1",
     "antd": "^5.23.2",
     "bootstrap": "^5.3.3",
-    "chart.js": "^4.4.7",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "firebase": "^11.6.0",
-    "framer-motion": "^12.0.1",
     "gsap": "^3.13.0",
-    "lottie-react": "^2.4.1",
     "node-fetch": "^3.3.2",
     "react": "^18.3.1",
-    "react-chartjs-2": "^5.3.0",
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
-    "react-helmet": "^6.1.0",
     "react-icons": "^5.3.0",
-    "react-modal": "^3.16.3",
-    "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.29.0",
     "react-scripts": "5.0.1",
-    "react-scroll": "^1.9.0",
-    "split-type": "^0.3.4",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false react-scripts build",
-    "netlify-build": "CI=false react-scripts build",
-    "netlify-deploy": "npm run netlify-build && netlify deploy --prod --dir=build",
-    "netlify-deploy-preview": "npm run netlify-build && netlify deploy --dir=build --alias preview",
-    "netlify-open": "netlify open",
-    "tag-release": "git tag -a v$(node -p \"require('./package.json').version\") -m 'Release version $(node -p \"require('./package.json').version\")' && git push origin --tags",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write src",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev-deploy": "CI=false react-scripts build && netlify deploy --alias dev --dir=build",
-    "lint": "eslint src --ext .ts,.tsx",
-    "format": "prettier --write src"
+    "deploy": "npm run build && netlify deploy --prod --dir=build"
   },
   "eslintConfig": {
     "extends": [
@@ -67,17 +56,14 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.2.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "@types/react-scroll": "^1.8.10",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.6.2"
+    "@types/testing-library__jest-dom": "^5.14.9",
+    "eslint-config-prettier": "^10.1.8"
   },
-  "readme": {
-    "content": "...\n---\n📘 [CI/CD & Dev Workflow Guidelines](./CI-CD-Guidelines.md)"
-  },
+  "readme": "...\n---\n📘 [CI/CD & Dev Workflow Guidelines](./CI-CD-Guidelines.md)",
   "repository": {
     "type": "git",
     "url": "https://github.com/woodfrog-design/woodfrog-website.git"

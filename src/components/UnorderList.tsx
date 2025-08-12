@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import styles from './UnOrderList.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import '@testing-library/jest-dom';
 
 type FeatureItem = {
   title: string;
@@ -31,3 +32,5 @@ const UnOrderList: React.FC<UnorderListProps> = (props) => {
     </section>
   );
 };
+
+export default UnOrderList;

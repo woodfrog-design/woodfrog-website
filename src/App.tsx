@@ -7,7 +7,17 @@ import MachineLearning from './components/BlogsPage/MachineLearning';
 import DemandForecasting from './components/BlogsPage/DemandForecasting';
 import PredictiveMaintanance from './components/BlogsPage/PredictiveMaintenance';
 import SmartManufacturing from './components/BlogsPage/SmartMenufacturing';
+
 import Offering from './pages/Offering';
+import AiMlStrategy from './pages/AiMlStrategy';
+import ProductDevelopment from './pages/ProductDevelopment';
+import EnterpriseDataManagement from './pages/EnterpriseDataManagement';
+import AdvancedAnalytics from './pages/AdvancedAnalytics';
+import CustomLlmSolutions from './pages/CustomLlmSolutions';
+import AutomationScaling from './pages/AutomationScaling';
+import IntelligentAgents from './pages/IntelligentAgents';
+import BenchmarkingEvaluation from './pages/BenchmarkingEvaluation';
+
 import AboutUs from './pages/AboutUs';
 import OfferingPage from './pages/OfferingPage';
 import StickyTalkButton from './components/StickyTalkButton'; // Adjust the path as needed
@@ -131,6 +141,15 @@ function App() {
         <Route path="/" element={<WebsiteLandingPageDarkMod />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/services" element={<Offering />} />
+        <Route path="/services/ai-ml-strategy" element={<AiMlStrategy />} />
+        <Route path="/services/product-development" element={<ProductDevelopment />} />
+        <Route path="/services/enterprise-data-management" element={<EnterpriseDataManagement />} />
+        <Route path="/services/advanced-analytics" element={<AdvancedAnalytics />} />
+        <Route path="/services/custom-llm-solutions" element={<CustomLlmSolutions />} />
+        <Route path="/services/automation-scaling" element={<AutomationScaling />} />
+        <Route path="/services/intelligent-agents" element={<IntelligentAgents />} />
+        <Route path="/services/benchmarking-and-evaluation" element={<BenchmarkingEvaluation />} />
+        <Route path="/evals" element={<BenchmarkingEvaluation />} />
         <Route path="/offering" element={<OfferingPage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/demand-forecasting" element={<DemandForecasting />} />
@@ -149,7 +168,7 @@ function App() {
         {/* Added routes for Privacy Policy and Terms & Conditions */}
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/evals" element={<Evals />} />
+        {/* <Route path="/evals" element={<BenchmarkingEvaluation />} /> */}
 
         {/* ✅ Add new route for Contact Us page */}
         <Route path="/contact-us" element={<ContactPage />} />

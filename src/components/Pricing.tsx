@@ -210,7 +210,7 @@ const Pricing: FunctionComponent<PricingType> = ({ className = '' }) => {
               imgSrc: isDarkTheme ? '/frame-12.svg' : '/choose/frame-12.svg',
             },
           ].map((feature, index) => (
-            <div key={index} className={styles.list1} ref={(el) => (cardsRef.current[index] = el!)}>
+            <div key={index} className={styles.list1} ref={el => { if (el) cardsRef.current[index] = el; }}>
               <div className={styles.items}>
                 <img className={styles.frameIcon} loading="lazy" alt="" src={feature.imgSrc} />
               </div>

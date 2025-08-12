@@ -1,9 +1,0 @@
-{
-  "extends": ["react-app", "plugin:react/recommended", "plugin:react-hooks/recommended", "prettier"],
-  "plugins": ["react", "react-hooks"],
-  "rules": {
-    "react/prop-types": "off",
-    "no-console": ["error", { "allow": ["warn", "error"] }],
-    "@typescript-eslint/no-explicit-any": "error"
-  }
-}

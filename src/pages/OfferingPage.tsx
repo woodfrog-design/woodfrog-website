@@ -14,11 +14,13 @@ import {
   FiTrello,
   FiAward,
 } from 'react-icons/fi';
+import { Link } from 'react-router-dom'; // <-- Step 1: Import Link
 
 // TypeScript interfaces for type safety
 interface ServiceFeature {
   title: string;
   description: string;
+  link: string; // <-- link property is already here
   icon?: string;
   image?: string;
   imageAlt?: string;
@@ -52,6 +54,7 @@ const offeringData = {
           title: 'AI & ML Strategy Development',
           description:
             'We create customized AI/ML roadmaps aligned with your business goals. Our approach includes thorough assessment of your processes, identification of pain points, and development of strategic implementation plans.',
+          link: '/services/ai-ml-strategy', // <-- Step 2: Add link
           icon: 'strategy-icon',
           image: '/images/AiStrategy/aiStrat.png',
           imageAlt: 'Strategic planning illustration',
@@ -60,6 +63,7 @@ const offeringData = {
           title: 'Product Development',
           description:
             'Our team builds intelligent products that learn and evolve with your business. From concept to deployment, we deliver solutions that enhance customer experiences and drive growth.',
+          link: '/services/product-development', // <-- Step 2: Add link
           icon: 'product-icon',
           image: '/images/ProductDevelopment/prodDev.png',
           imageAlt: 'Product development cycle',
@@ -68,6 +72,7 @@ const offeringData = {
           title: 'Enterprise Data Management',
           description:
             'Transform your data landscape with our comprehensive approach to data management. We ensure seamless data democratization, reduce costs, and align your data with business priorities.',
+          link: '/services/enterprise-data-management', // <-- Step 2: Add link
           icon: 'data-icon',
           image: '/images/EnterpriceDataManagement/edm.png',
           imageAlt: 'Data management system',
@@ -76,6 +81,7 @@ const offeringData = {
           title: 'Advanced Analytics',
           description:
             'Turn complex data into actionable insights with our analytics services. We provide data visualization, predictive analytics, and business intelligence solutions tailored to your needs.',
+          link: '/services/advanced-analytics', // <-- Step 2: Add link
           icon: 'analytics-icon',
           image: '/images/AdvancedAnalytics/aa.png',
           imageAlt: 'Analytics dashboard',
@@ -93,6 +99,7 @@ const offeringData = {
           title: 'Custom LLM Solutions',
           description:
             "Generic solutions don't address unique business challenges. We create tailored LLM implementations infused with your specific business context and domain expertise, ensuring you maintain control of your data.",
+          link: '/services/custom-llm-solutions', // <-- Step 2: Add link
           icon: 'custom-icon',
           image: '/images/CustomLLM/CustomLLM.jpg',
           imageAlt: 'Custom AI solution',
@@ -101,6 +108,7 @@ const offeringData = {
           title: 'Automation & Scaling',
           description:
             'Our LLM solutions can automate up to 100% of repetitive tasks, dramatically improving efficiency and accuracy while reducing costs. Scale your operations with confidence using our AI-powered tools.',
+          link: '/services/automation-and-scaling', // <-- Step 2: Add link
           icon: 'automation-icon',
           image: '/images/AutomationScaling/autoScale.png',
           imageAlt: 'Business automation',
@@ -109,9 +117,18 @@ const offeringData = {
           title: 'Intelligent Agents',
           description:
             'Our LLM Agents and Small Language Models work together to tackle specific business needs. They enhance productivity, streamline workflows, and deliver personalized experiences with minimal computational resources.',
+          link: '/services/intelligent-agents', // <-- Step 2: Add link
           icon: 'agent-icon',
           image: '/images/IntelligentAgents/ia.png',
           imageAlt: 'AI agents at work',
+        },
+        {
+          title: 'Benchmarking and Evaluation',
+          description: 'Ensure your GenAI and LLM solutions meet enterprise standards for reliability, compliance, and ROI. We provide rigorous benchmarking and evaluation tailored for regulated industries and mission-critical deployments.',
+          link: '/services/benchmarking-and-evaluation', // <-- Step 2: Add link
+          icon: 'benchmark-icon',
+          image: '/images/BenchMarkingEvals/BE-1.png',
+          imageAlt: 'Benchmarking and Evaluation',
         },
       ],
     },
@@ -193,7 +210,6 @@ const HeroSection: FunctionComponent = () => {
       title="Unlock the Power of Data & AI"
       description="Woodfrog provides cutting-edge data science and AI solutions that transform raw information into strategic business advantages."
       large={true}
-      // blueAccent={true}
     />
   );
 };
@@ -248,8 +264,9 @@ const getIconComponent = (iconName: string) => {
   }
 };
 
+// Step 3: Wrap the card in a Link component
 const FeatureCard: FunctionComponent<FeatureCardProps> = ({ feature }) => (
-  <div className={styles.featureCard}>
+  <Link to={feature.link} className={styles.featureCard}>
     <div className={styles.featureImageWrapper}>
       <img
         src={feature.image || '/api/placeholder/400/240'}
@@ -262,7 +279,7 @@ const FeatureCard: FunctionComponent<FeatureCardProps> = ({ feature }) => (
       <h3 className={styles.featureTitle}>{feature.title}</h3>
       <p className={styles.featureDescription}>{feature.description}</p>
     </div>
-  </div>
+  </Link>
 );
 
 // Service Category Section
