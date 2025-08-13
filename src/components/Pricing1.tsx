@@ -73,6 +73,32 @@ const Pricing1: FunctionComponent<Pricing1Type> = ({
                 >
                   Contact Us
                 </Link>
+                {/* --- Start of corrected code --- */}
+                <a
+                  href="/brochure"
+                  className={styles.aboutUs}
+                  style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Brochure
+                </a>
+                <a
+                  href="/trajectory"
+                  className={styles.aboutUs}
+                  style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Trajectory
+                </a>
+                {/* --- End of corrected code --- */}
               </div>
               <div className={styles.social}>
                 <img className={styles.image9Icon} alt="" src="/image-9@2x.png" />
