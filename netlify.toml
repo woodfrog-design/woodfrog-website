@@ -1,11 +1,6 @@
 [build]
   functions = "netlify/functions"
 
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
 # Brochure Redirect
 [[redirects]]
   from = "/brochure"
@@ -18,9 +13,7 @@
   to = "https://www.notion.so/Woodfrog-Tech-Trajectory-2492428418a88045bde5dab89c37b0ca"
   status = 301
 
-# --- NEW ---
-# This rule makes sure the React app handles all other pages
-# and MUST be the last redirect rule.
+# SPA Catch-all Rule - MUST BE LAST
 [[redirects]]
   from = "/*"
   to = "/index.html"
