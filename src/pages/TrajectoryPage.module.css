@@ -1,0 +1,60 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container h1 {
+  margin-bottom: 1rem;
+}
+
+.container p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* --- Code for the button --- */
+
+.actionButton {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--dark-primary-color);
+  border-radius: var(--br-5xs);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.actionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for Light Mode */
+.light-mode .actionButton {
+  background-color: var(--color-seagreen);
+  color: var(--color-white);
+}
+
+.light-mode .actionButton:hover {
+  background-color: #026a3d;
+}
