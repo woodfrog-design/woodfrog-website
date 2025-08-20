@@ -11,6 +11,7 @@
   font-size: var(--hero-section-h1-size);
   font-weight: 600;
   margin-bottom: 20px;
+  line-height: 1.2;
 }
 
 .heroDescription {
@@ -19,4 +20,26 @@
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* --- Responsive styles for tablets and phones --- */
+@media (max-width: 768px) {
+  .pageHero, .large {
+    padding: 60px 15px;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroDescription {
+    font-size: 1.1rem;
+  }
+}
+
+/* --- NEW: Specific style for very narrow screens --- */
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2.1rem; /* Even smaller font size */
+  }
 }
