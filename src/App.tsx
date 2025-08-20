@@ -285,7 +285,7 @@ function App() {
         <Route path="/services/enterprise-data-management" element={<EnterpriseDataManagement />} />
         <Route path="/services/advanced-analytics" element={<AdvancedAnalytics />} />
         <Route path="/services/custom-llm-solutions" element={<CustomLlmSolutions />} />
-        <Route path="/services/automation-scaling" element={<AutomationScaling />} />
+        <Route path="/services/automation-and-scaling" element={<AutomationScaling />} />
         <Route path="/services/intelligent-agents" element={<IntelligentAgents />} />
         <Route path="/services/benchmarking-and-evaluation" element={<BenchmarkingEvaluation />} />
         <Route path="/evals" element={<BenchmarkingEvaluation />} />

@@ -1,11 +1,10 @@
 .imageIcon {
   align-self: stretch;
-  /* height: 288px; */
-  /* border-radius: var(--br-5xl); */
   max-width: 100%;
   overflow: hidden;
   flex-shrink: 0;
   object-fit: cover;
+  border-radius: 8px; /* Added for a softer look */
 }
 .enablingNextGenDigital {
   margin: 0;
@@ -73,8 +72,9 @@
   padding: 0 var(--padding-8xs);
   box-sizing: border-box;
 }
+
+/* --- UPDATED CARD STYLES --- */
 .featuredCards {
-  /* width: 379px; */
   flex-direction: column;
   justify-content: flex-start;
   gap: var(--gap-base);
@@ -82,9 +82,28 @@
   font-size: var(--body-1-size);
   color: var(--dark-primary-text);
   font-family: var(--caption);
-  padding: 15px 10px;
+  padding: 15px;
   cursor: pointer;
+  border-radius: var(--br-xs); /* Added border radius */
+  background-color: var(--color-gray-200); /* Added background */
+  
+  /* --- NEW: Add transition for smooth hover effect --- */
+  transition: all 0.3s ease;
+  border: 1px solid transparent; /* Prepare for hover border */
 }
+
+.light-mode .featuredCards {
+    background-color: var(--color-white);
+    border-color: #e0e0e0;
+}
+
+/* --- NEW: Add elevation hover effect --- */
+.featuredCards:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+    border-color: var(--dark-primary-color);
+}
+
 @media screen and (max-width: 450px) {
   .enablingNextGenDigital {
     font-size: var(--font-size-lgi);

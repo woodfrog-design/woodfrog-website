@@ -22,10 +22,16 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .contactSection {
   padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .sectionTitle {
@@ -71,6 +77,7 @@
 }
 
 .formTextarea {
+  /* The incorrect padding-left that caused the overlap has been removed */
   min-height: 150px;
   resize: vertical;
 }
@@ -128,6 +135,7 @@
   flex-direction: column;
   gap: 25px;
   margin-top: 20px;
+  flex-grow: 1;
 }
 
 .contactItem {
@@ -167,7 +175,6 @@
   line-height: 1.5;
 }
 
-/* Add this to make cards equal height */
 .cardsRow {
   display: flex;
   flex-wrap: wrap;
@@ -178,41 +185,6 @@
   flex-direction: column;
 }
 
-.contactCard {
-  background-color: var(--color-gray-200);
-  border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: all 0.3s ease;
-  height: 100%; /* This ensures the card takes full height of its container */
-  display: flex;
-  flex-direction: column;
-}
-
-.contactSection {
-  padding: 30px;
-  flex-grow: 1; /* This allows the section to expand to fill the card */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Make the contact info list grow to fill available space */
-.contactInfoList {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-top: 20px;
-  flex-grow: 1;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  .formContainer {
-    padding: 30px 20px;
-  }
-}
-
-/* Subtle email link button */
 .emailLink {
   display: inline-block;
   padding: var(--padding-3xs) var(--padding-5xs);
@@ -233,4 +205,127 @@
   background-color: var(--dark-primary-color);
   color: var(--color-white);
   transform: translateY(-1px);
+}
+
+
+/* --- Styles for Custom Dropdown Tag Selector --- */
+.dropdownWrapper {
+  position: relative;
+}
+
+.selectedContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 7px 15px; /* Match vertical padding of other inputs */
+  border-radius: 8px; /* Match formInput */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Match formInput */
+  width: 100%;
+  min-height: 52px; /* Match formInput height */
+  cursor: pointer;
+  background-color: var(--color-darkslategray-100);
+  transition: all 0.2s ease-in-out;
+}
+
+.light-mode .selectedContainer {
+    background-color: var(--color-white);
+}
+
+.selectedContainer:hover {
+  border-color: #117afa;
+}
+
+.placeholderText {
+  color: var(--dark-secondary-text);
+  opacity: 0.7;
+  font-size: 1rem;
+  align-self: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-darkslategray-100);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.light-mode .dropdownMenu {
+    background-color: #fff;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid;
+}
+
+.tag:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.tag span {
+  margin-left: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Selected Tag (Green) */
+.selectedTag {
+  background-color: #c8e6c9;
+  color: #026a3d;
+  border-color: #026a3d;
+}
+
+.dark-mode .selectedTag {
+  background-color: #026a3d;
+  color: #c8e6c9;
+  border-color: #c8e6c9;
+}
+
+/* Logic for multi-colored available tags using CSS variables */
+.tag {
+  --light-bg: #e9ecef; --light-text: #495057; --light-border: #dee2e6;
+  --dark-bg: #3e445c; --dark-text: #e0e0e0; --dark-border: #5f637c;
+}
+.tag:nth-child(8n + 1) { --light-bg: #e0f2f1; --light-text: #004d40; --light-border: #b2dfdb; --dark-bg: #004d40; --dark-text: #e0f2f1; --dark-border: #4db6ac; }
+.tag:nth-child(8n + 2) { --light-bg: #e3f2fd; --light-text: #0d47a1; --light-border: #bbdefb; --dark-bg: #0d47a1; --dark-text: #e3f2fd; --dark-border: #64b5f6; }
+.tag:nth-child(8n + 3) { --light-bg: #ede7f6; --light-text: #311b92; --light-border: #d1c4e9; --dark-bg: #311b92; --dark-text: #ede7f6; --dark-border: #9575cd; }
+.tag:nth-child(8n + 4) { --light-bg: #fce4ec; --light-text: #880e4f; --light-border: #f8bbd0; --dark-bg: #880e4f; --dark-text: #fce4ec; --dark-border: #f06292; }
+.tag:nth-child(8n + 5) { --light-bg: #fbe9e7; --light-text: #bf360c; --light-border: #ffccbc; --dark-bg: #bf360c; --dark-text: #fbe9e7; --dark-border: #ff8a65; }
+.tag:nth-child(8n + 6) { --light-bg: #fff8e1; --light-text: #f57f17; --light-border: #fff59d; --dark-bg: #f57f17; --dark-text: #fff8e1; --dark-border: #ffee58; }
+.tag:nth-child(8n + 7) { --light-bg: #f1f8e9; --light-text: #33691e; --light-border: #dcedc8; --dark-bg: #33691e; --dark-text: #f1f8e9; --dark-border: #aed581; }
+
+.dropdownMenu .tag {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+  border-color: var(--light-border);
+}
+
+.dark-mode .dropdownMenu .tag {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 30px 20px;
+  }
 }
