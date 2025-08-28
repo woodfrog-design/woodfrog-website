@@ -172,9 +172,8 @@
 // export default App;
 
 import React, { useEffect } from 'react';
-import { Routes, Route, useNavigationType, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigationType, useLocation, Link } from 'react-router-dom';
 import BlogPage from './pages/BlogPage';
-import Evals from './pages/Evals';
 import WebsiteLandingPageDarkMod from './pages/WebsiteLandingPageDarkMod';
 import MachineLearning from './components/BlogsPage/MachineLearning';
 import DemandForecasting from './components/BlogsPage/DemandForecasting';
@@ -209,35 +208,25 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import ContactPage from './pages/ContactPage';
 import NotFound from './pages/NotFound';
 import { useTheme } from './ThemeContext';
-
 import BrochurePage from './pages/BrochurePage';
-import TrajectoryPage from './pages/TrajectoryPage'; // --- NEW ---
+import TrajectoryPage from './pages/TrajectoryPage';
 
-// Add ThemeRouteListener component to prevent theme flickering during navigation
+// Import the Cookie Consent component
+import CookieConsent from "react-cookie-consent";
+
 const ThemeRouteListener = () => {
   const location = useLocation();
-  const navigationType = useNavigationType();
   const { isDarkTheme } = useTheme();
-
   useEffect(() => {
     const root = document.documentElement;
     if (isDarkTheme) {
-      root.style.backgroundColor = '#2f2f37';
-      root.style.color = '#f9f8fa';
       root.classList.add('dark-theme', 'dark-mode');
       root.classList.remove('light-theme', 'light-mode');
-      document.body.classList.add('dark-mode');
-      document.body.classList.remove('light-mode');
     } else {
-      root.style.backgroundColor = '#ffffff';
-      root.style.color = '#000000';
       root.classList.add('light-theme', 'light-mode');
       root.classList.remove('dark-theme', 'dark-mode');
-      document.body.classList.add('light-mode');
-      document.body.classList.remove('dark-mode');
     }
-  }, [location, navigationType, isDarkTheme]);
-
+  }, [location, isDarkTheme]);
   return null;
 };
 
@@ -254,23 +243,6 @@ function App() {
 
   useEffect(() => {
     document.title = 'woodfrog';
-    let metaDescription = '';
-    switch (pathname) {
-      case '/':
-        metaDescription = 'Welcome to Woodfrog Tech.';
-        break;
-      case '/contact-us':
-        metaDescription = 'Get in touch with the Woodfrog Tech team.';
-        break;
-    }
-    if (metaDescription) {
-      const metaDescriptionTag: HTMLMetaElement | null = document.querySelector(
-        'head > meta[name="description"]',
-      );
-      if (metaDescriptionTag) {
-        metaDescriptionTag.content = metaDescription;
-      }
-    }
   }, [pathname]);
 
   return (
@@ -279,20 +251,23 @@ function App() {
       <Routes>
         <Route path="/" element={<WebsiteLandingPageDarkMod />} />
         <Route path="/blog" element={<BlogPage />} />
+        
+        <Route path="/offering" element={<OfferingPage />} />
         <Route path="/services" element={<Offering />} />
         <Route path="/services/ai-ml-strategy" element={<AiMlStrategy />} />
         <Route path="/services/product-development" element={<ProductDevelopment />} />
         <Route path="/services/enterprise-data-management" element={<EnterpriseDataManagement />} />
         <Route path="/services/advanced-analytics" element={<AdvancedAnalytics />} />
         <Route path="/services/custom-llm-solutions" element={<CustomLlmSolutions />} />
-        <Route path="/services/automation-and-scaling" element={<AutomationScaling />} />
+        {/* --- FIX: Corrected route path --- */}
+        <Route path="/services/automation-scaling" element={<AutomationScaling />} />
         <Route path="/services/intelligent-agents" element={<IntelligentAgents />} />
         <Route path="/services/benchmarking-and-evaluation" element={<BenchmarkingEvaluation />} />
-        <Route path="/evals" element={<BenchmarkingEvaluation />} />
-        <Route path="/offering" element={<OfferingPage />} />
+        
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/brochure" element={<BrochurePage />} />
-        <Route path="/trajectory" element={<TrajectoryPage />} /> {/* --- NEW --- */}
+        <Route path="/trajectory" element={<TrajectoryPage />} />
+
         <Route path="/demand-forecasting" element={<DemandForecasting />} />
         <Route path="/Smart-Monitoring" element={<MachineLearning />} />
         <Route path="/pdf/:page" element={<SmartMonitoringView />} />
@@ -311,6 +286,21 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <StickyTalkButton />
+
+      {/* --- Added the Cookie Consent banner --- */}
+      <CookieConsent
+        location="bottom"
+        buttonText="I Understand"
+        cookieName="woodfrogCookieConsent"
+        style={{ background: "#1e1e1e", fontSize: "14px", zIndex: "10000" }}
+        buttonStyle={{ color: "#fff", background: "#117afa", fontSize: "14px", borderRadius: "6px" }}
+        expires={150}
+      >
+        This website uses cookies to enhance the user experience. By using this site, you agree to our use of cookies.{" "}
+        <Link to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
+            Learn more
+        </Link>
+      </CookieConsent>
     </>
   );
 }
