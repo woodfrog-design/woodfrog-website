@@ -14,7 +14,7 @@ const pageData = {
     description: 'An innovative AI and analytics firm specializing in next-generation data engineering and analytics solutions. We help businesses transition from chaotic, unstructured systems to streamlined, scalable, and insight-driven operations.',
   },
   links: {
-    pdf: '/Woodfrog-Brochure.pdf',
+    pdf: '/external/Woodfrog_Tech_Brochure.pdf',
     notion: 'https://www.notion.so/Woodfrog-Tech-Brochure-2242428418a880898d34cc88c64851b1'
   },
   howWeWork: {

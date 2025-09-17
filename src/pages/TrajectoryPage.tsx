@@ -14,7 +14,7 @@ const pageData = {
     description: 'Evolution from Data Consulting to Product-Led Intelligence Platform',
   },
   links: {
-    pdf: '/Woodfrog-Trajectory.pdf',
+    pdf: './external/Woodfrog_Tech_Trajectory.pdf',
     notion: 'https://www.notion.so/Woodfrog-Tech-Trajectory-2492428418a88045bde5dab89c37b0ca'
   },
   events: [
