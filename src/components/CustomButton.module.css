@@ -15,8 +15,8 @@
 
 /* Button types */
 .button-primary {
-  background-color: #1890ff;
-  color: white;
+  background-color: var(--dark-primary-color);
+  color: var(--dark-primary-text);
   box-shadow: 0 4px 6px rgba(24, 144, 255, 0.25);
 }
 
