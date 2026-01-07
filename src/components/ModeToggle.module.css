@@ -11,6 +11,13 @@
   /* padding: var(--padding-base); */
   /* padding: 10px; */
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggleContainer:hover {
+  background-color: var(--color-gray-200);
+  transform: scale(1.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 /* .modeToggle,
 .toggleContainer {

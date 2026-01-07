@@ -141,8 +141,8 @@ body {
 .dark-mode {
   --dark-primary-text: #f9f8fa; /* Light text for dark mode */
   --dark-secondary-text: #abafb5; /* Lighter text for dark mode */
-  --color-darkslategray-100: #1e1e1e; /* Page background */
-  --color-gray-200: #2f2f37; /* Section/Card background */
+  --color-darkslategray-100: #2f2f37; /* Section/Card background */
+  --color-gray-200: #1e1e1e; /* Page background */
   --color-darkgray: #abafb5; /* Body text */
   --dark-border-color: #2f2f37;
 }

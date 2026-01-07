@@ -16,24 +16,24 @@ const TrustedBy: FunctionComponent<TrustedByType> = ({ className = '' }) => {
   //  initializeAnimations();
   //}, []);
   const defaultImg = [
-    '/vector-1.svg',
-    '/altysysfinallogo11sep24en439x1621@2x.png',
-    '/golgix-logo@2x.png',
-    '/group.svg',
-    '/greenlightcyberhorizontalreversed@2x.png',
-    '/DS-LOGO.svg',
-    '5-data.png',
-    '/knowitall-logo.png',
+    '/company/dark/Aldefi.svg',
+    '/company/dark/Altysys.svg',
+    '/company/dark/Golgix Logo.svg',
+    '/company/dark/Onit.svg',
+    '/company/dark/GreenlightCyber-Horizontal-Reversed.svg',
+    '/company/dark/DS-LOGO.svg',
+    '/company/dArk/5Data.svg',
+    '/company/dark/knowitall-logo.svg',
   ];
   const defaultImgLight = [
-    '/company/Vector.svg',
-    '/company/Altysys-Final-Logo-11Sep24-e-n-439x162-1.svg',
-    '/company/Golgix_Logo.svg',
-    '/company/_Group_.svg',
-    '/company/GreenlightCyber-Horizontal-Reversed.svg',
-    '/company/DS-logo.svg',
-    '/company/image_18.svg',
-    '/company/knowitall-logo.svg',
+   '/company/light/Aldefi.svg',
+    '/company/light/Altysys.svg',
+    '/company/light/Golgix Logo.svg',
+    '/company/light/Onit.svg',
+    '/company/light/GreenlightCyber-Horizontal-Reversed.svg',
+    '/company/light/DS-LOGO.svg',
+    '/company/light/5Data.svg',
+    '/company/light/knowitall-logo.svg',
   ];
   const [trustedByImages, setTrustedByImages] = useState(defaultImg);
   const { isDarkTheme } = useTheme();
