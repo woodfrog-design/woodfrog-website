@@ -363,6 +363,7 @@ import { FiShield, FiTrendingUp, FiCheckCircle, FiCpu, FiAlertTriangle, FiGitMer
 
 // --- Data for the page ---
 const pageData = {
+  serviceName: 'Benchmarking and Evaluation',
   hero: {
     headline: 'Strategic GenAI Benchmarking & Decisive Evaluation',
     subheadline: 'Go from uncertainty to competitive advantage. Our advanced benchmarking and rigorous evaluation de-risk your deployments and ensure enterprise-grade performance.',
@@ -466,7 +467,7 @@ const BenchmarkingEvaluation: FunctionComponent = () => {
         <PageHero title={pageData.hero.headline} description={pageData.hero.subheadline} large>
             <div className={styles.heroExtra}>
                 <AnimatedStats />
-                <a href="/contact-us" className={styles.ctaButton}>{pageData.hero.cta}</a>
+                <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButton}>{pageData.hero.cta}</a>
             </div>
         </PageHero>
 
@@ -533,8 +534,8 @@ const BenchmarkingEvaluation: FunctionComponent = () => {
                 <h2 className={styles.sectionHeadline}>{pageData.getStarted.headline}</h2>
                 <p className={styles.sectionDescription}>{pageData.getStarted.description}</p>
                  <div className={styles.ctaGroup}>
-                    <a href="/contact-us" className={styles.ctaButton}>Schedule a Demo</a>
-                    <a href="/contact-us" className={styles.ctaButtonSecondary}>Request a Proposal</a>
+                    <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButton}>Schedule a Demo</a>
+                    <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButtonSecondary}>Request a Proposal</a>
                 </div>
             </section>
         </div>

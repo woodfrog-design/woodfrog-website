@@ -48,11 +48,22 @@
   text-decoration: none;
   color: var(--dark-primary-text);
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: color 0.2s ease;
 }
 
+.footerLinkSmall {
+  text-decoration: none;
+  color: var(--dark-secondary-text);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
 .footerLink:hover {
+  color: var(--dark-primary-color);
+}
+
+.footerLinkSmall:hover {
   color: var(--dark-primary-color);
 }
 

@@ -18,13 +18,14 @@
 
 .ctaButton {
   display: inline-block;
-  padding: 14px 28px;
+  padding: 12px 24px;
   background-color: var(--dark-primary-color);
   color: var(--color-white) !important;
-  border-radius: var(--br-5xs);
+  border-radius: var(--br-xs);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .ctaButton:hover {

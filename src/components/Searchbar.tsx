@@ -22,22 +22,20 @@ const Searchbar: FunctionComponent<SearchbarProps> = ({
   };
 
   return (
-    <div className="row mx-0 mt-5 w-100">
-      <div className="col-12 offest-3 col-xs-6 offset-xs-3 col-md-5 offset-md-3 col-lg-5 col-xl-3 offset-xl-4 p-0">
-        <form onSubmit={handleSubmit} className="input-group">
-          <span className="input-group-text">
-            <BsSearch />
-          </span>
-          <input
-            type="text"
-            className={['form-control', styles.myinput].join(' ')}
-            placeholder="Search blogs..."
-            aria-label="Search"
-            value={searchQuery}
-            onChange={handleInputChange}
-          />
-        </form>
-      </div>
+    <div className="d-flex justify-content-center mt-5 mb-0 w-100">
+      <form onSubmit={handleSubmit} className="input-group" style={{ maxWidth: '400px', width: '100%' }}>
+        <span className="input-group-text">
+          <BsSearch />
+        </span>
+        <input
+          type="text"
+          className={['form-control', styles.myinput].join(' ')}
+          placeholder="Search blogs..."
+          aria-label="Search"
+          value={searchQuery}
+          onChange={handleInputChange}
+        />
+      </form>
     </div>
   );
 };

@@ -59,6 +59,14 @@ export type Pricing1Type = {
 };
 
 const Pricing1: FunctionComponent<Pricing1Type> = ({ className = '' }) => {
+  const handleLinkedInClick = () => {
+    (window as any).gtag('event', 'click', {
+      event_category: 'social',
+      event_label: 'linkedin',
+      transport_type: 'beacon'
+    });
+  };
+
   return (
     <footer className={[styles.footerContainer, className].join(' ')}>
       <div className={styles.footerContent}>
@@ -83,6 +91,7 @@ const Pricing1: FunctionComponent<Pricing1Type> = ({ className = '' }) => {
               href="https://www.linkedin.com/company/woodfrogtech"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleLinkedInClick}
             >
               Linkedin
             </a>
@@ -92,8 +101,8 @@ const Pricing1: FunctionComponent<Pricing1Type> = ({ className = '' }) => {
         <hr className={styles.divider} />
 
         <div className={styles.footerBottom}>
-          <Link to="/privacy-policy" className={styles.footerLink}>Privacy Policy</Link>
-          <Link to="/terms-and-conditions" className={styles.footerLink}>Terms & Conditions</Link>
+          <Link to="/privacy-policy" className={styles.footerLinkSmall}>Privacy Policy</Link>
+          <Link to="/terms-and-conditions" className={styles.footerLinkSmall}>Terms & Conditions</Link>
         </div>
       </div>
     </footer>

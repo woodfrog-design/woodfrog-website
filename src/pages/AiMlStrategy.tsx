@@ -6,7 +6,8 @@ import styles from './ServiceDetailPage.module.css';
 import { FiCompass, FiShield, FiTrendingUp, FiMap } from 'react-icons/fi';
 
 // --- Data for this specific service page ---
-const serviceData = {
+const pageData = {
+  serviceName: "AI & ML Strategy Development",
   title: 'AI & ML Strategy Development',
   description: 'Navigate the complexities of AI adoption with a clear, strategic roadmap. We help you align technology with business goals to ensure your AI initiatives deliver measurable value and a competitive edge.',
   
@@ -66,8 +67,8 @@ const AiMlStrategy: FunctionComponent = () => {
       <main>
         {/* --- UPDATED: Replaced ServiceHero with the standard PageHero --- */}
         <PageHero
-          title={serviceData.title}
-          description={serviceData.description}
+          title={pageData.title}
+          description={pageData.description}
           large 
         />
 
@@ -75,11 +76,11 @@ const AiMlStrategy: FunctionComponent = () => {
             {/* --- Section 1: The Challenge --- */}
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
-                    <h2 className={styles.sectionHeadline}>{serviceData.challenge.headline}</h2>
-                    <p className={styles.sectionDescription}>{serviceData.challenge.description}</p>
+                    <h2 className={styles.sectionHeadline}>{pageData.challenge.headline}</h2>
+                    <p className={styles.sectionDescription}>{pageData.challenge.description}</p>
                 </div>
                 <div className={styles.cardsGrid}>
-                    {serviceData.challenge.points.map((point, index) => (
+                    {pageData.challenge.points.map((point, index) => (
                         <div key={index} className={styles.featureCard}>
                             <div className={styles.cardIcon}>{point.icon}</div>
                             <h3 className={styles.cardTitle}>{point.title}</h3>
@@ -92,9 +93,9 @@ const AiMlStrategy: FunctionComponent = () => {
              {/* --- Section 2: Our Approach --- */}
             <section className={`${styles.section} ${styles.approachSection}`}>
                 <div className={styles.approachContent}>
-                    <h2 className={styles.sectionHeadlineAlt}>{serviceData.approach.headline}</h2>
+                    <h2 className={styles.sectionHeadlineAlt}>{pageData.approach.headline}</h2>
                     <ul className={styles.approachList}>
-                        {serviceData.approach.steps.map((step, index) => (
+                        {pageData.approach.steps.map((step, index) => (
                             <li key={index}>
                                 <h3>{step.title}</h3>
                                 <p>{step.text}</p>
@@ -103,15 +104,15 @@ const AiMlStrategy: FunctionComponent = () => {
                     </ul>
                 </div>
                 <div className={styles.approachImage}>
-                    <img src={serviceData.approach.image} alt="Strategic Framework" />
+                    <img src={pageData.approach.image} alt="Strategic Framework" />
                 </div>
             </section>
 
              {/* --- Section 3: Key Deliverables --- */}
             <section className={`${styles.section} ${styles.deliverablesSection}`}>
-                <h2 className={styles.sectionHeadline}>{serviceData.deliverables.headline}</h2>
+                <h2 className={styles.sectionHeadline}>{pageData.deliverables.headline}</h2>
                 <div className={styles.deliverablesGrid}>
-                    {serviceData.deliverables.points.map((point, index) => (
+                    {pageData.deliverables.points.map((point, index) => (
                         <div key={index} className={styles.deliverableItem}>
                             <FiMap className={styles.deliverableIcon} />
                             <span>{point}</span>
@@ -124,7 +125,7 @@ const AiMlStrategy: FunctionComponent = () => {
             <section className={`${styles.section} ${styles.ctaSection}`}>
                 <h2 className={styles.sectionHeadline}>Ready to Build Your AI Strategy?</h2>
                 <p className={styles.sectionDescription}>Let's talk about how a tailored strategy can accelerate your success.</p>
-                <a href="/contact-us" className={styles.ctaButton}>Get in Touch</a>
+                <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButton}>Get in Touch</a>
             </section>
         </div>
       </main>
