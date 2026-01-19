@@ -109,24 +109,24 @@
 }
 
 .submitButton {
-  background-color: #117afa;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 25px;
-  cursor: pointer;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--dark-primary-color);
+  color: var(--color-white) !important;
+  border-radius: var(--br-xs);
+  text-decoration: none;
+  font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(17, 122, 250, 0.25);
+  border: 1px solid transparent;
+  cursor: pointer;
   align-self: center;
   margin-top: 10px;
 }
 
 .submitButton:hover {
-  background-color: #3990fa;
+  background-color: #005bb5;
   transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(17, 122, 250, 0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
 /* Contact info section */

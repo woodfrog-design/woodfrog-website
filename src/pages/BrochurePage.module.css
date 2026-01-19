@@ -51,7 +51,7 @@
     border-bottom-color: #e0e0e0;
 }
 .ctaButton, .ctaButtonSecondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background-color: var(--dark-primary-color); color: var(--color-white) !important; border-radius: var(--br-5xs); text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 1px solid transparent; }
-.ctaButton:hover { background-color: #005bb5; transform: translateY(-2px); }
+.ctaButton:hover { background-color: #005bb5; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
 .ctaButtonSecondary { background-color: transparent; border-color: var(--dark-primary-color); color: var(--dark-primary-text) !important; }
 .light-mode .ctaButtonSecondary { color: var(--color-darkslategray-100) !important; }
 .ctaButtonSecondary:hover { background-color: var(--dark-primary-color); color: var(--color-white) !important; }

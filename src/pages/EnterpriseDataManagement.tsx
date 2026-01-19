@@ -7,6 +7,7 @@ import { FiShield, FiDatabase, FiTarget, FiCheckCircle, FiGitMerge, FiBookOpen, 
 
 // --- Page-specific data ---
 const pageData = {
+  serviceName: "Enterprise Data Management",
   hero: {
     headline: 'Harness Your Data: Building the Foundation for Enterprise AI',
     subheadline: 'We design and implement robust data management strategies that ensure data quality, governance, and accessibility, turning your data into a reliable, high-value asset.',
@@ -53,7 +54,7 @@ const EnterpriseDataManagement: FunctionComponent = () => {
       <HeaderComponent />
       <main>
         <PageHero title={pageData.hero.headline} description={pageData.hero.subheadline} large>
-            <div className={styles.heroExtra}> <a href="/contact-us" className={styles.ctaButton}>{pageData.hero.cta}</a> </div>
+            <div className={styles.heroExtra}> <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButton}>{pageData.hero.cta}</a> </div>
         </PageHero>
         <div className={styles.contentWrapper}>
             <section className={styles.section}>
@@ -101,7 +102,7 @@ const EnterpriseDataManagement: FunctionComponent = () => {
             <section className={`${styles.section} ${styles.getStartedSection}`}>
                 <h2 className={styles.sectionHeadline}>{pageData.getStarted.headline}</h2>
                 <p className={styles.sectionDescription}>{pageData.getStarted.description}</p>
-                 <div className={styles.ctaGroup}> <a href="/contact-us" className={styles.ctaButton}>{pageData.getStarted.cta}</a> </div>
+                 <div className={styles.ctaGroup}> <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButton}>{pageData.getStarted.cta}</a> </div>
             </section>
         </div>
       </main>

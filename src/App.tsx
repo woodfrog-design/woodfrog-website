@@ -227,6 +227,7 @@ const ThemeRouteListener = () => {
       root.classList.remove('dark-theme', 'dark-mode');
     }
   }, [location, isDarkTheme]);
+
   return null;
 };
 
@@ -260,7 +261,7 @@ function App() {
         <Route path="/services/advanced-analytics" element={<AdvancedAnalytics />} />
         <Route path="/services/custom-llm-solutions" element={<CustomLlmSolutions />} />
         {/* --- FIX: Corrected route path --- */}
-        <Route path="/services/automation-scaling" element={<AutomationScaling />} />
+        <Route path="/services/automation-and-scaling" element={<AutomationScaling />} />
         <Route path="/services/intelligent-agents" element={<IntelligentAgents />} />
         <Route path="/services/benchmarking-and-evaluation" element={<BenchmarkingEvaluation />} />
         

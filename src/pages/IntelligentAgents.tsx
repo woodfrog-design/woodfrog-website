@@ -43,7 +43,8 @@ const pageData = {
       headline: 'Ready to Build Your AI Workforce?',
       description: 'Let\'s explore how intelligent agents can revolutionize your business processes.',
       cta: 'Book an Agent Strategy Session',
-  }
+  },
+  serviceName: 'Intelligent Agents'
 };
 
 // --- Main Page Component ---
@@ -53,7 +54,7 @@ const IntelligentAgents: FunctionComponent = () => {
       <HeaderComponent />
       <main>
         <PageHero title={pageData.hero.headline} description={pageData.hero.subheadline} large>
-            <div className={styles.heroExtra}> <a href="/contact-us" className={styles.ctaButton}>{pageData.hero.cta}</a> </div>
+            <div className={styles.heroExtra}> <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButton}>{pageData.hero.cta}</a> </div>
         </PageHero>
         <div className={styles.contentWrapper}>
             <section className={styles.section}>
@@ -100,7 +101,7 @@ const IntelligentAgents: FunctionComponent = () => {
             <section className={`${styles.section} ${styles.getStartedSection}`}>
                 <h2 className={styles.sectionHeadline}>{pageData.getStarted.headline}</h2>
                 <p className={styles.sectionDescription}>{pageData.getStarted.description}</p>
-                 <div className={styles.ctaGroup}> <a href="/contact-us" className={styles.ctaButton}>{pageData.getStarted.cta}</a> </div>
+                 <div className={styles.ctaGroup}> <a href={`/contact-us?service=${encodeURIComponent(pageData.serviceName)}`} className={styles.ctaButton}>{pageData.getStarted.cta}</a> </div>
             </section>
         </div>
       </main>

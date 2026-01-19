@@ -526,6 +526,7 @@
 // export default ContactPage;
 
 import { FunctionComponent, useState, useRef, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import styles from './ContactPage.module.css';
 import HeaderComponet from '../components/HeaderComponent';
@@ -568,7 +569,19 @@ const ContactPage: FunctionComponent = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
+  const [searchParams] = useSearchParams();
+
+  // Pre-populate service if provided in URL
+  useEffect(() => {
+    const serviceParam = searchParams.get('service');
+    if (serviceParam && allServices.includes(serviceParam)) {
+      setFormData(prev => ({
+        ...prev,
+        services: [serviceParam]
+      }));
+    }
+  }, [searchParams]);
+
   // --- THIS IS THE FIX: The hook logic is now directly inside the component ---
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

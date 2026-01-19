@@ -43,10 +43,6 @@
   border-left: 1px solid rgba(128, 128, 128, 0.2);
 }
 
-.exploreAllCard:hover {
-  background-color: rgba(24, 144, 255, 0.05);
-}
-
 .exploreAllContent {
   display: flex;
   flex-direction: column;
@@ -61,11 +57,6 @@
   color: #1890ff; /* Match the blue theme */
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  transition: color 0.3s ease;
-}
-
-.exploreAllCard:hover .exploreAllText {
-  color: #40a9ff; /* Lighter blue on hover */
 }
 
 
@@ -164,30 +155,6 @@
   padding-bottom: 15px; /* Space for scrollbar */
 }
 
-.slider::-webkit-scrollbar {
-  height: 4px; /* Very thin scrollbar track */
-}
-
-.slider::-webkit-scrollbar-button {
-  display: none; 
-}
-
-.slider::-webkit-scrollbar-track {
-  background: white; /* Invisible track - just a thin line */
-  border-bottom: 10px solid rgba(255, 255, 255, 0.2); /* Thin line as track */
-}
-
-.slider::-webkit-scrollbar-thumb {
-  background: #1890ff; /* Blue slider */
-  border-radius: 10px; /* Rounded slider */
-  transition: background-color 0.3s ease;
-  box-shadow: 0 0 2px rgba(24, 144, 255, 0.5); /* Subtle glow */
-}
-
-.slider::-webkit-scrollbar-thumb:hover {
-  background: #40a9ff; /* Lighter blue on hover */
-  box-shadow: 0 0 4px rgba(24, 144, 255, 0.8); /* Stronger glow on hover */
-}
 
 .content {
   width: 486px;
