@@ -1,6 +1,6 @@
 import { FunctionComponent, ChangeEvent } from 'react';
 import styles from './Searchbar.module.css';
-import { BsSearch } from 'react-icons/bs';
+import { CiSearch } from 'react-icons/ci';
 
 export type SearchbarProps = {
   className?: string;
@@ -23,18 +23,18 @@ const Searchbar: FunctionComponent<SearchbarProps> = ({
 
   return (
     <div className="d-flex justify-content-center mt-5 mb-0 w-100">
-      <form onSubmit={handleSubmit} className="input-group" style={{ maxWidth: '400px', width: '100%' }}>
-        <span className="input-group-text">
-          <BsSearch />
-        </span>
-        <input
-          type="text"
-          className={['form-control', styles.myinput].join(' ')}
-          placeholder="Search blogs..."
-          aria-label="Search"
-          value={searchQuery}
-          onChange={handleInputChange}
-        />
+      <form onSubmit={handleSubmit} style={{ maxWidth: '400px', width: '100%' }}>
+        <div className={styles.searchWrapper}>
+          <CiSearch className={styles.searchIcon} />
+          <input
+            type="text"
+            className={styles.searchInput}
+            placeholder="Search"
+            aria-label="Search"
+            value={searchQuery}
+            onChange={handleInputChange}
+          />
+        </div>
       </form>
     </div>
   );
