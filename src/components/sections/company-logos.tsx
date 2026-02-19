@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const companyImages = [
     '/company1.svg',
@@ -31,9 +30,19 @@ const CompanyLogos = () => {
 
     // Triple the items for a seamless long duration loop
     const marqueeItems = [...companyImages, ...companyImages, ...companyImages];
+    const duration = isMobile ? 25 : 35;
 
     return (
         <section className={`w-full bg-transparent ${isMobile ? 'py-12' : 'py-24'} overflow-hidden`}>
+            {/* CSS keyframe for marquee - much lighter than Framer Motion's JS-driven animation loop */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes marqueeScroll {
+                    0% { transform: translateX(-33.33%); }
+                    100% { transform: translateX(0%); }
+                }
+            `}} />
+
             <div className={`mx-auto ${isMobile ? 'px-6 mb-8 text-center' : 'px-12 md:px-32 mb-16'}`}>
                 <p className="text-[#8891A5] text-sm font-bold uppercase tracking-[0.4em]">
                     Trusted partner of
@@ -47,22 +56,13 @@ const CompanyLogos = () => {
                     WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
                 }}
             >
-                <motion.div
+                <div
                     className="flex items-center px-12"
                     style={{
                         width: 'fit-content',
-                        gap: isMobile ? '3rem' : '6rem' // gap-12 or gap-24 equivalent scaled
-                    }}
-                    animate={{
-                        x: ['-33.33%', 0], // Adjusted for the 3x repeat to ensure perfect overlap
-                    }}
-                    transition={{
-                        x: {
-                            repeat: Infinity,
-                            repeatType: 'loop',
-                            duration: isMobile ? 25 : 35, // Slightly faster on mobile due to smaller screen
-                            ease: 'linear',
-                        },
+                        gap: isMobile ? '3rem' : '6rem',
+                        animation: `marqueeScroll ${duration}s linear infinite`,
+                        willChange: 'transform',
                     }}
                 >
                     {marqueeItems.map((src, idx) => (
@@ -86,7 +86,7 @@ const CompanyLogos = () => {
                             />
                         </div>
                     ))}
-                </motion.div>
+                </div>
 
 
             </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 
@@ -16,13 +16,13 @@ const HeroSpeakSection = () => {
     const waveGap = "gap-1"; // Control distance between ripple bars
     const verticalOffset = 140; // Decrease this to move the entire animation UP
 
-    const analysisStatuses = [
+    const analysisStatuses = useMemo(() => [
         "Pattern detected", "Trend analyzed", "Risk projected", "Action triggered",
         "Anomaly identified", "Correlation found", "Outlier removed", "Variance calculated",
         "Model updated", "Signal isolated", "Feature engineered", "Insight generated",
         "Prediction verified", "Threshold crossed", "Optimization run", "Strategy refined",
         "Metric improved", "Impact measured", "Bottleneck found", "Efficiency mapped"
-    ];
+    ], []);
 
     const [statusIndex, setStatusIndex] = React.useState(0);
 
@@ -42,7 +42,7 @@ const HeroSpeakSection = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const pairs = [
+    const pairs = useMemo(() => [
         { p: "• Traffic density rising", s: "15% Congestion Reduced" },
         { p: "• Fraud risk elevated", s: "₹2.4M Preserved" },
         { p: "• Inventory dropping", s: "17% Stock Optimized" },
@@ -63,10 +63,10 @@ const HeroSpeakSection = () => {
         { p: "• Quality deviation found", s: "99.9% Yield Assured" },
         { p: "• Budget overburn imminent", s: "₹5.2M OpEx Saved" },
         { p: "• Market shift detected", s: "15% Faster Pivot" },
-    ];
+    ], []);
 
     // Perfect sync helper
-    const padToLength = (str, len) => {
+    const padToLength = (str: string, len: number) => {
         const current = str.length;
         if (current >= len) return str;
         return str + "\u00A0".repeat(len - current);
@@ -74,20 +74,41 @@ const HeroSpeakSection = () => {
 
     const maxItemLen = 32; // Reduced for higher density
 
-    let problemsArr = [];
-    let solutionsArr = [];
+    // Memoize the heavy .repeat(8) text generation so it only runs once
+    const { problemsText, solutionsText } = useMemo(() => {
+        const problemsArr: string[] = [];
+        const solutionsArr: string[] = [];
+        pairs.forEach(pair => {
+            problemsArr.push(padToLength(pair.p, maxItemLen));
+            solutionsArr.push(padToLength(pair.s, maxItemLen));
+        });
+        return {
+            problemsText: problemsArr.join("").repeat(8),
+            solutionsText: solutionsArr.join("").repeat(8),
+        };
+    }, [pairs]);
 
-    // Ensure we have enough items for a wide marquee
-    pairs.forEach(pair => {
-        problemsArr.push(padToLength(pair.p, maxItemLen));
-        solutionsArr.push(padToLength(pair.s, maxItemLen));
-    });
-
-    const problemsText = problemsArr.join("").repeat(8);
-    const solutionsText = solutionsArr.join("").repeat(8);
+    // Waveform heights - generate stable random durations once
+    const waveformBars = useMemo(() => {
+        const heights = [4, 6, 8, 5, 9, 3, 7, 5, 8, 4, 10, 6, 8, 4, 12, 5, 9, 3, 7];
+        return heights.map((h, i) => ({
+            targetHeight: h * 2.8,
+            duration: (0.25 + (i * 0.0317 + 0.15) % 0.4), // deterministic pseudo-random for SSR
+            delay: i * 0.04,
+        }));
+    }, []);
 
     return (
         <section className="relative w-full min-h-[400px] md:min-h-[750px] bg-transparent flex flex-col items-center justify-start overflow-hidden pt-10 md:pt-24 pb-0">
+            {/* Waveform CSS keyframes - injected once */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes waveBar {
+                    0%, 100% { height: 4px; }
+                    50% { height: var(--wave-h); }
+                }
+            `}} />
+
             {/* Header Content */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -214,20 +235,19 @@ const HeroSpeakSection = () => {
                                     </div>
                                 </div>
 
-                                {/* Waveform Pill */}
+                                {/* Waveform Pill - Pure CSS animations instead of 19 motion.div instances */}
                                 <div className={`bg-[#0D2D3E] border-2 border-white/20 rounded-full px-6 py-4 flex items-center justify-center ${waveGap} h-[90px] w-[250px] shadow-2xl overflow-hidden scale-90`}>
-                                    {[4, 6, 8, 5, 9, 3, 7, 5, 8, 4, 10, 6, 8, 4, 12, 5, 9, 3, 7].map((h, i) => (
-                                        <motion.div
+                                    {waveformBars.map((bar, i) => (
+                                        <div
                                             key={i}
-                                            initial={{ height: 4 }}
-                                            animate={{ height: h * 2.8 }}
-                                            transition={{
-                                                repeat: Infinity,
-                                                repeatType: "reverse",
-                                                duration: 0.25 + Math.random() * 0.4,
-                                                delay: i * 0.04
-                                            }}
                                             className="w-1.5 bg-white/80 rounded-full shrink-0"
+                                            style={{
+                                                height: 4,
+                                                // @ts-ignore -- CSS custom property
+                                                '--wave-h': `${bar.targetHeight}px`,
+                                                animation: `waveBar ${bar.duration}s ease-in-out ${bar.delay}s infinite alternate`,
+                                                willChange: 'height',
+                                            } as React.CSSProperties}
                                         />
                                     ))}
                                 </div>
