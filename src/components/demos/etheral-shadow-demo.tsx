@@ -277,21 +277,21 @@ const DemoOne = () => {
                     </div>
 
                     {/* Right Side Card Grid - Following fixed replica layout */}
-                    <div className="flex-[1.2] flex flex-col items-center lg:items-end gap-3 md:gap-6 origin-center lg:origin-right scale-[0.5] sm:scale-[0.8] md:scale-95 lg:scale-100 -mt-24 lg:mt-0">
+                    <div className="flex-[1.2] flex flex-col items-center lg:items-end gap-3 md:gap-6 origin-center lg:origin-right scale-[0.5] sm:scale-[0.8] md:scale-95 lg:scale-100 -mt-24 lg:mt-0" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
                         {/* Top Card: Finance Trends (Wide) */}
-                        <div className="flex-shrink-0 w-[150vw] lg:w-[620px] h-[260px] bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20">
+                        <div className="flex-shrink-0 w-[150vw] lg:w-[620px] h-[260px] bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20" style={{ contain: 'content' }}>
                             <FinanceSalesTrendsDemo />
                         </div>
 
                         {/* Bottom Row: Revenues and Profitability */}
                         <div className="flex flex-row gap-3 md:gap-6 w-[90vw] max-w-[620px] justify-center lg:justify-end items-end">
                             {/* Revenues Card (Medium) */}
-                            <div className="flex-shrink-0 w-full sm:w-[336px] h-[280px] bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20">
+                            <div className="flex-shrink-0 w-full sm:w-[336px] h-[280px] bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20" style={{ contain: 'content' }}>
                                 <RevenueChartDemo />
                             </div>
 
                             {/* Profitability Card (Square) */}
-                            <div className="flex-shrink-0 w-full sm:w-[260px] h-[240px] bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20">
+                            <div className="flex-shrink-0 w-full sm:w-[260px] h-[240px] bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20" style={{ contain: 'content' }}>
                                 <ProfitabilityDemo />
                             </div>
                         </div>
@@ -303,7 +303,7 @@ const DemoOne = () => {
             {/* Enterprise Dashboard Section - Integrated into Premium Container */}
             <CompanyLogos />
             <SectionWithScrollAnimation />
-            
+
 
             <ServicesSection />
             <ScrollStack />
