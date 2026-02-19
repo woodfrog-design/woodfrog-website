@@ -776,9 +776,8 @@ export const AnalyticsDashboardDemo: React.FC<{ isActive?: boolean }> = ({ isAct
 
         const runSequence = async () => {
             if (!containerRef.current || cancelled) return;
-            const rect = containerRef.current.getBoundingClientRect();
-            const w = rect.width;
-            const h = rect.height;
+            const w = containerRef.current.offsetWidth;
+            const h = containerRef.current.offsetHeight;
 
             // Reset
             setFilters({ currency: 'USD', year: '2024' });

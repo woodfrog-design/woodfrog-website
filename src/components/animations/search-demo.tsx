@@ -279,8 +279,10 @@ export const SearchDemo: React.FC<{ isActive?: boolean }> = ({ isActive = true }
             if (cancelled || !ref.current || !containerRef.current) return;
             const containerRect = containerRef.current.getBoundingClientRect();
             const elRect = ref.current.getBoundingClientRect();
-            const x = elRect.left - containerRect.left + elRect.width / 2;
-            const y = elRect.top - containerRect.top + elRect.height / 2;
+            // Detect CSS scale factor from parent transforms
+            const scale = containerRect.width / (containerRef.current.offsetWidth || containerRect.width) || 1;
+            const x = (elRect.left - containerRect.left + elRect.width / 2) / scale;
+            const y = (elRect.top - containerRect.top + elRect.height / 2) / scale;
             await moveTo(x, y, duration);
         };
 
@@ -299,9 +301,8 @@ export const SearchDemo: React.FC<{ isActive?: boolean }> = ({ isActive = true }
 
         const run = async () => {
             if (!containerRef.current || cancelled) return;
-            const rect = containerRef.current.getBoundingClientRect();
-            const w = rect.width;
-            const h = rect.height;
+            const w = containerRef.current.offsetWidth;
+            const h = containerRef.current.offsetHeight;
 
             // Reset
             setScreen('idle');
