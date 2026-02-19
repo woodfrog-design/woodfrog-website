@@ -1,0 +1,1120 @@
+2026-02-11T14:12:11.736Z [console][error] motion() is deprecated. Use motion.create() instead.
+2026-02-11T14:12:11.840Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:12:11.842Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:12:11.847Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:12:11.932Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <LinkComponent href="/contact" className="relative o..." style={{}} ...>
+                                <a className="relative o..." style={{}} ref={function} onClick={function onClick} ...>
+                                  <div
+                                    className="relative z-10 h-5 overflow-hidden pointer-events-none"
+-                                   data-orchid-ref="ref-18kmtrravo"
+                                  >
+                                    <motion.div variants={{initial:{y:0}, ...}} transition={{duration:0.4, ...}}>
+                                      <div
+                                        style={{transform:"none"}}
+                                        ref={function useMotionRef.useCallback}
+-                                       data-orchid-ref="ref-55dqoxbnqg"
+                                      >
+                                        <span
+                                          className="flex items-center justify-center h-5 leading-none"
+-                                         data-orchid-ref="ref-p1wyj5dttt"
+                                        >
++                                         Contact us
+                                        <span
+                                          className="flex items-center justify-center h-5 leading-none text-white"
+-                                         data-orchid-ref="ref-wv60lx3ops"
+                                        >
++                                         Contact us
+                                  <motion.div className="absolute i..." variants={{...}} transition={{duration:0.4, ...}}>
+                                    <div
+                                      className="absolute inset-0 bg-[#4A3728]"
+                                      style={{transform:"translateY..."}}
+                                      ref={function useMotionRef.useCallback}
+-                                     data-orchid-ref="ref-l6o4lpjlhn"
+                                    >
+                            ...
+                              <SegmentViewNode type="page" pagePath="/Documents...">
+                                <SegmentTrieNode>
+                                <Home>
+                                  <main
+-                                   da... [truncated]
+2026-02-11T14:12:11.932Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <LinkComponent href="/contact" className="relative o..." style={{}} ...>
+                                <a className="relative o..." style={{}} ref={function} onClick={function onClick} ...>
+                                  <div
+                                    className="relative z-10 h-5...
+2026-02-11T14:12:11.736Z [console][error] motion() is deprecated. Use motion.create() instead.
+2026-02-11T14:12:11.840Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:12:11.842Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:12:11.847Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:12:11.932Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <LinkComponent href="/contact" className="relative o..." style={{}} ...>
+                                <a className="relative o..." style={{}} ref={function} onClick={function onClick} ...>
+                                  <div
+                                    className="relative z-10 h-5 overflow-hidden pointer-events-none"
+-                                   data-orchid-ref="ref-18kmtrravo"
+                                  >
+                                    <motion.div variants={{initial:{y:0}, ...}} transition={{duration:0.4, ...}}>
+                                      <div
+                                        style={{transform:"none"}}
+                                        ref={function useMotionRef.useCallback}
+-                                       data-orchid-ref="ref-55dqoxbnqg"
+                                      >
+                                        <span
+                                          className="flex items-center justify-center h-5 leading-none"
+-                                         data-orchid-ref="ref-p1wyj5dttt"
+                                        >
++                                         Contact us
+                                        <span
+                                          className="flex items-center justify-center h-5 leading-none text-white"
+-                                         data-orchid-ref="ref-wv60lx3ops"
+                                        >
++                                         Contact us
+                                  <motion.div className="absolute i..." variants={{...}} transition={{duration:0.4, ...}}>
+                                    <div
+                                      className="absolute inset-0 bg-[#4A3728]"
+                                      style={{transform:"translateY..."}}
+                                      ref={function useMotionRef.useCallback}
+-                                     data-orchid-ref="ref-l6o4lpjlhn"
+                                    >
+                            ...
+                              <SegmentViewNode type="page" pagePath="/Documents...">
+                                <SegmentTrieNode>
+                                <Home>
+                                  <main
+-                                   da... [truncated]
+2026-02-11T14:12:11.932Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <LinkComponent href="/contact" className="relative o..." style={{}} ...>
+                                <a className="relative o..." style={{}} ref={function} onClick={function onClick} ...>
+                                  <div
+                                    className="relative z-10 h-5...
+2026-02-11T14:53:55.695Z [console][error] motion() is deprecated. Use motion.create() instead.
+2026-02-11T14:53:55.835Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:53:55.840Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:53:55.842Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:53:56.534Z [console][error] motion() is deprecated. Use motion.create() instead.
+2026-02-11T14:53:56.635Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:53:56.638Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:53:56.640Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T14:53:56.720Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <nav className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                                <div className="flex items...">
+                                  <LinkComponent>
+                                  <div className="hidden md:...">
+                                    <div>
+                                    <LinkComponent href="/achievements" className="flex items...">
+                                      <a className="flex items..." ref={function} onClick={function onClick} ...>
+                                        <span
+                                          className="group-hover:bg-gradient-to-r group-hover:from-[#ff6b3d] group-hov..."
+-                                         data-orchid-ref="ref-3f9oeol89d"
+                                        >
++                                         achievements
+                                        <ChevronDown className="w-4 h-4 op...">
+                                          <svg
+                                            ref={null}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={24}
+                                            height={24}
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="lucide lucide-chevron-down w-4 h-4 opacity-30"
+                                            aria-hidden="true"
+-                                           data-orchid-ref="ref-aznhqgf00f"
+                                          >
+                                            <path
+                                              d="m6 9 6 6 6-6"
+-                                             data-orchid-ref="ref-4vca4cml9i"
+                                            >
+                                    <div
+                                      className="relative"
+                                      ref={{current:null}}... [truncated]
+2026-02-11T14:53:56.720Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <nav className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                                <div className="flex items...">
+                                  <LinkComponent>
+                                  <div className="hidden md:...">
+                             ...
+2026-02-11T15:14:30.268Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T15:14:30.270Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T15:14:30.359Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            <Navbar>
+                            ...
+                              <DemoOne>
+                                <div className="flex flex-...">
+                                  <div>
+                                  <div>
+                                  <SectionWithScrollAnimation>
+                                  <ServicesSection>
+                                  <ScrollStack>
+                                    <div
+                                      ref={{current:null}}
+                                      className="w-full bg-black"
+-                                     data-orchid-ref="ref-pzy8yd52uc"
+                                    >
+                                      <div
+                                        ref={{current:null}}
+                                        className="relative h-screen w-full flex items-center justify-center overflow-..."
+-                                       data-orchid-ref="ref-47arb2y9ak"
+                                      >
+                                        <div
+                                          className="scroll-card absolute w-[90vw] h-[90vh] rounded-[2rem] border bord..."
+                                          style={{zIndex:4,backgroundColor:"#0b0b0b"}}
+-                                         data-orchid-ref="ref-uq4wutuuwi"
+                                        >
+                                          <div
+                                            className="absolute top-0 right-0 w-[50%] h-[100%] bg-gradient-to-l from-w..."
+-                                           data-orchid-ref="ref-1ywvc8nqy6"
+                                          >
+                                          <div
+                                            className="flex-1 p-8 md:p-16 flex flex-col justify-center relative z-10"
+-                                           data-orchid-ref="ref-9eu4envjad"
+                                          >
+                                            <div
+                                              className="inline-flex items-center gap-3 mb-8"
+-                                             data-orchid-ref="ref-7btt1kqtzf"
+                                            >
+                                              <div
+                                                className=... [truncated]
+2026-02-11T15:14:57.682Z [console][error] motion() is deprecated. Use motion.create() instead.
+2026-02-11T15:14:57.758Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T15:14:57.760Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T15:14:57.764Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T15:14:57.765Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T15:14:57.844Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            <Navbar>
+                            ...
+                              <DemoOne>
+                                <div className="flex flex-...">
+                                  <div>
+                                  <div>
+                                  <SectionWithScrollAnimation>
+                                  <ServicesSection>
+                                  <ScrollStack>
+                                  <CompanyLogos>
+                                    <section className="w-full bg-...">
+                                      <div>
+                                      <div className="relative f...">
+                                        <motion.div className="flex items..." animate={{x:[...]}} transition={{x:{...}}} ...>
+                                          <div className="flex items..." style={{width:"fit..."}} ...>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div>
+                                            <div
+                                              className="flex items-center justify-center min-w-[180px] opacity-50 hov..."
+-                                             data-orchid-ref="ref-3lv33hmnmf"
+                                            >
+                                              <img
+                                                src="/company3.svg"
+                                                alt="Company 3"
+                                                className="h-12 w-auto object-contain brightness-... [truncated]
+2026-02-11T15:14:57.844Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            <Navbar>
+                            ...
+                              <DemoOne>
+                                <div className="flex flex-...">
+                                  <div>
+                                  <div>
+                                  <SectionWithScrollAnimation>
+                                  <Servic...
+2026-02-11T17:35:46.794Z [console][error] motion() is deprecated. Use motion.create() instead.
+2026-02-11T17:35:46.896Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:35:46.900Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:35:46.902Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:35:46.979Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <LinkComponent href="/contact" className="relative o..." style={{}} ...>
+                                <a
+                                  className="relative overflow-hidden px-6 py-2.5 bg-white text-black text-sm font-bol..."
+                                  style={{}}
+                                  ref={function}
+                                  onClick={function onClick}
+                                  onMouseEnter={function onMouseEnter}
+                                  onTouchStart={function onTouchStart}
+                                  href="/contact"
+-                                 data-orchid-ref="ref-bpp7ayyrx7"
+                                >
+                                  <div
+                                    className="relative z-10 h-5 overflow-hidden pointer-events-none"
+-                                   data-orchid-ref="ref-lud1ngh41f"
+                                  >
+                                    <motion.div variants={{initial:{y:0}, ...}} transition={{duration:0.4, ...}}>
+                                      <div
+                                        style={{transform:"none"}}
+                                        ref={function useMotionRef.useCallback}
+-                                       data-orchid-ref="ref-lrah1g9l7w"
+                                      >
+                                        <span
+                                          className="flex items-center justify-center h-5 leading-none"
+-                                         data-orchid-ref="ref-j5oipjtq2q"
+                                        >
++                                         Contact us
+                                        <span
+                                          className="flex items-center justify-center h-5 leading-none text-white"
+-                                         data-orchid-ref="ref-hwso0xp16f"
+                                        >
++                                         Contact us
+                                  <motion.div className="absolute i..." variants={{...}} transition={{duration:0.4, ...}}>
+                                    <div
+                                      className="absolute inset-0 bg-[#4A3728]"
+                                      style={{transform:"t... [truncated]
+2026-02-11T17:37:26.863Z [console][error] motion() is deprecated. Use motion.create() instead.
+2026-02-11T17:37:26.953Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:37:26.954Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:37:26.955Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:37:26.960Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:37:27.046Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <nav className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                                <div className="flex items...">
+                                  <LinkComponent>
+                                  <div className="hidden md:...">
+                                    <div>
+                                    <LinkComponent>
+                                    <div className="relative" ref={{current:null}}>
+                                      <button onClick={function t21} className="flex items...">
+                                        <span
+                                          className="group-hover:bg-gradient-to-r group-hover:from-[#ff6b3d] group-hov..."
+-                                         data-orchid-ref="ref-gpmicm9q84"
+                                        >
++                                         woodfrog
+                                        <ChevronDown className="w-4 h-4 tr...">
+                                          <svg
+                                            ref={null}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={24}
+                                            height={24}
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="lucide lucide-chevron-down w-4 h-4 transition-transform duratio..."
+                                            aria-hidden="true"
+-                                           data-orchid-ref="ref-ym7s4ju7bw"
+                                          >
+                                            <path
+                                              d="m6 9 6 6 6-6"
+-                                             data-orchid-ref="ref-9i28rwih7x"
+                                            >
+                                      ...
+                                  <div
+                                    class... [truncated]
+2026-02-11T17:37:27.045Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            ...
+                              <nav className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                                <div className="flex items...">
+                                  <LinkComponent>
+                                  <div className="hidden md:...">
+                             ...
+2026-02-11T17:52:37.726Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:52:37.732Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:52:37.734Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-11T17:52:37.809Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            <Navbar>
+                            ...
+                              <DemoOne>
+                                <div className="flex flex-...">
+                                  <div>
+                                  <div className="h-screen w...">
+                                    <EtherealShadow color="rgba(180, ..." animation={{scale:100,speed:80}} ...>
+                                      <div className={undefined} style={{overflow:"...", ...}}>
+                                        <div style={{position:"...", ...}}>
+                                          <svg style={{position:"..."}}>
+                                            <defs>
+                                              <filter id="shadowover...">
+                                                <feTurbulence>
+                                                <feColorMatrix
+                                                  ref={{current:null}}
+                                                  in="undulation"
+                                                  type="hueRotate"
+                                                  values="180"
+-                                                 data-orchid-ref="ref-2wlrn72pm9"
+                                                >
+                                                <feColorMatrix
+                                                  in="dist"
+                                                  result="circulation"
+                                                  type="matrix"
+                                                  values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0"
+-                                                 data-orchid-ref="ref-yt75aew6xk"
+                                                >
+                                                <feDisplacementMap
+                                                  in="SourceGraphic"
+                                                  in2="circulation"
+                                                  scale={100}
+                                                  result="dist"
+-                                                 data-orchid-ref="ref-29x5jufx3r"
+                                                >
+                                                <feDisplacementMap
+                                               ... [truncated]
+2026-02-11T17:52:37.809Z [console][error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/Documents...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body className="geist_a715...">
+                            <Navbar>
+                            ...
+                              <DemoOne>
+                                <div className="flex flex-...">
+                                  <div>
+                                  <div className="h-screen w...">
+                                    <EtherealShadow color="rgba(180, ..." anim...
+2026-02-18T10:40:16.673Z [console][debug] __ORCHIDS_NAVIGATE__ http://localhost:3000/data-engineering
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cx from "undefined" to "115". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cy from "undefined" to "94.66666666666667". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cx from "undefined" to "190". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cy from "undefined" to "30.666666666666657". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cx from "undefined" to "265". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cy from "undefined" to "105.33333333333333". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cx from "undefined" to "340". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.475Z [console][error] You are trying to animate cy from "undefined" to "116". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.483Z [console][error] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:56:14.484Z [console][error] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-18T11:57:32.094Z [console][error] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <body className="geist_a715...">
+      <SmoothScroll>
+        <Navbar>
+        <OuterLayoutRouter>
+        <FooterSection>
+          <footer className="w-full bg-...">
+            <div className="w-full bg-...">
+              <div>
+              <div className="relative z-10">
+                <div>
+                <div className="grid grid-...">
+                  <div className="flex flex-...">
+                    <button>
+                    <AnimatePresence>
+                      <PresenceChild isPresent={true} initial={undefined} custom={undefined} presenceAffectsLayout={true} ...>
+                        <PopChild pop={false} isPresent={true} anchorX="left" anchorY="top" root={undefined}>
+                          <PopChildMeasure isPresent={true} childRef={{current:null}} sizeRef={{...}} pop={false}>
+                            <motion.div initial={false} animate={{height:"auto", ...}} exit={{height:0,opacity:0}} ...>
++                             <div
++                               className="overflow-hidden md:!h-auto md:!opacity-100"
++                               style={{height:"auto",opacity:1}}
++                               ref={function useMotionRef.useCallback}
++                             >
+                  ...
+                ...
+
+2026-02-18T12:10:08.735Z [console][error] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined".
+2026-02-18T12:10:09.235Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-18T12:10:08.735Z [console][error] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined".
+2026-02-18T12:10:09.235Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-18T12:11:15.586Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-18T12:11:46.099Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-19T12:12:58.662Z [console][error] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SmoothScroll>
+      <Suspense>
+      <Navbar>
+      ...
+        <ScrollStack>
+          <div ref={{current:null}} className="w-full bg-...">
+            <div ref={{current:null}} className="relative h...">
+              <div>
+              <div>
+              <div className="scroll-car..." style={{zIndex:4, ...}}>
+                <div>
+                <div>
+                <div className="flex-[1.2]...">
+                  <div className="absolute i...">
+                    <AIGovernanceDemo isActive={false}>
+                      <div className="relative w..." style={{...}}>
+                        <div className="absolute i...">
+                          <svg viewBox="0 0 800 500" className="w-full h-full">
+                            <defs>
+                            <line>
+                            <line>
+                            <text>
+                            <text>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <motion.circle r={1.6624769171809057} fill="#10B981" fillOpacity="0.3" initial={{...}} ...>
+                              <circle
++                               r={1.6624769171809057}
+-                               r="1.8508510370064877"
+                                fill="#10B981"
+                                fillOpacity="0.3"
++                               cx={292.1821909541781}
+-                               cx="586.9927205843348"
++                               cy={303.6324737080537}
+-                               cy="383.75723301644405"
+                                style={{}}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <motion.circle r={1.1119725275011045} fill="#10B981" fillOpacity="0.3" initial={{...}} ...>
+                              <circle
++                               r={1.1119725275011045}
+-                               r="1.7526367525962359"
+                                fill="#10B981"
+                                fillOpacity="0.3"
++                               cx={381.094420130321}
+-                               cx="494.770063183703"
++                               cy={169.00022970846527}
+-                               cy="301.70045106022064"
+                                style={{}}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <motion.circle r={2.497317038462721} fill="#10B981" fillOpacity="0.3" initial={{...}} ...>
+                              <circle
++                               r={2.497317038462721}
+-                               r="2.0329314462386177"
+                                fill="#10B981"
+                                fillOpacity="0.3"
++                               cx={491.07171919788885}
+-                               cx="241.67973924689448"
++                               cy={204.51328461431274}
+-                               cy="163.2838090326901"
+                                style={{}}
+                     ... [truncated]
+2026-02-19T12:12:59.229Z [console][error] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-19T12:12:59.230Z [console][error] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-19T12:20:24.979Z [console][error] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SmoothScroll>
+      <Suspense>
+      <Navbar>
+      <OuterLayoutRouter>
+      <FooterSection>
+        <footer className="w-full bg-...">
+          <div className="w-full bg-...">
+            <div>
+            <div className="relative z-10">
+              <div>
+              <div className="grid grid-...">
+                <div className="flex flex-...">
+                  <button>
+                  <AnimatePresence>
+                    <PresenceChild isPresent={true} initial={undefined} custom={undefined} presenceAffectsLayout={true} ...>
+                      <PopChild pop={false} isPresent={true} anchorX="left" anchorY="top" root={undefined}>
+                        <PopChildMeasure isPresent={true} childRef={{current:null}} sizeRef={{...}} pop={false}>
+                          <motion.div initial={false} animate={{height:"auto", ...}} exit={{height:0,opacity:0}} ...>
++                           <div
++                             className="overflow-hidden md:!h-auto md:!opacity-100"
++                             style={{height:"auto",opacity:1}}
++                             ref={function useMotionRef.useCallback}
++                           >
+                ...
+              ...
+
+2026-02-19T12:20:25.593Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-19T12:20:56.112Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-19T12:21:26.621Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-19T12:21:57.138Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-19T12:21:57.139Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-19T12:22:27.652Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-19T12:22:58.159Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
