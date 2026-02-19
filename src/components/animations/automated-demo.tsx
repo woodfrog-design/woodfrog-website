@@ -29,9 +29,10 @@ export const AutomatedDemo: React.FC<{ isActive?: boolean }> = ({ isActive = tru
 
         const runSequence = async () => {
             if (!containerRef.current || cancelled) return;
-            const rect = containerRef.current.getBoundingClientRect();
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
+            const w = containerRef.current.offsetWidth;
+            const h = containerRef.current.offsetHeight;
+            const centerX = w / 2;
+            const centerY = h / 2;
 
             // 1. Reset / Start Center
             setState('IDLE');
@@ -61,8 +62,8 @@ export const AutomatedDemo: React.FC<{ isActive?: boolean }> = ({ isActive = tru
 
             // 4. Move Mouse to Chat Trigger
             setState('MOVING'); // Cursor starts moving
-            const chatTargetX = rect.width - 72;
-            const chatTargetY = rect.height - 72;
+            const chatTargetX = w - 72;
+            const chatTargetY = h - 72;
 
             animate(cursorX, chatTargetX, { duration: 1.2, ease: "easeInOut" });
             animate(cursorY, chatTargetY, { duration: 1.2, ease: "easeInOut" });
@@ -90,7 +91,7 @@ export const AutomatedDemo: React.FC<{ isActive?: boolean }> = ({ isActive = tru
             }
 
             // 7. Move to Close button
-            const closeTargetX = rect.width - 60;
+            const closeTargetX = w - 60;
             const closeTargetY = 40;
             animate(cursorX, closeTargetX, { duration: 1.2, ease: "easeInOut" });
             animate(cursorY, closeTargetY, { duration: 1.2, ease: "easeInOut" });

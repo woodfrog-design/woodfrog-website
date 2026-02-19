@@ -211,9 +211,11 @@ export const DataEngineeringDemo: React.FC<{ isActive?: boolean }> = ({ isActive
         if (!el || !containerRef.current) return null;
         const containerRect = containerRef.current.getBoundingClientRect();
         const elRect = el.getBoundingClientRect();
+        // Detect CSS scale factor from parent transforms
+        const scale = containerRect.width / (containerRef.current.offsetWidth || containerRect.width) || 1;
         return {
-            x: elRect.left - containerRect.left + elRect.width / 2,
-            y: elRect.top - containerRect.top + elRect.height / 2,
+            x: (elRect.left - containerRect.left + elRect.width / 2) / scale,
+            y: (elRect.top - containerRect.top + elRect.height / 2) / scale,
         };
     }, []);
 
@@ -247,13 +249,12 @@ export const DataEngineeringDemo: React.FC<{ isActive?: boolean }> = ({ isActive
 
         const runSequence = async () => {
             if (!containerRef.current || cancelled) return;
-            const rect = containerRef.current.getBoundingClientRect();
 
             setActiveStep(-1);
             setSourceStatuses(['idle', 'idle', 'idle']);
             setShowResult(false);
-            cursorX.set(rect.width * 0.5);
-            cursorY.set(rect.height * 0.5);
+            cursorX.set(containerRef.current.offsetWidth * 0.5);
+            cursorY.set(containerRef.current.offsetHeight * 0.5);
             await wait(800);
 
             // Step 1: Ingest
