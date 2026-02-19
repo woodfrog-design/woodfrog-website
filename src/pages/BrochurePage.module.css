@@ -1,0 +1,143 @@
+/* --- Page Wrapper --- */
+.pageWrapper {
+  background-color: var(--color-darkslategray-100);
+  color: var(--dark-primary-text);
+  overflow-x: hidden;
+}
+.light-mode .pageWrapper {
+    background-color: var(--color-white);
+}
+
+.contentWrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- General Section Styles --- */
+.section {
+  padding: 80px 0;
+}
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.sectionHeadline {
+  font-size: var(--h1-size);
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: var(--dark-primary-text);
+}
+.light-mode .sectionHeadline {
+    color: var(--color-darkslategray-100);
+}
+.sectionDescription {
+  font-size: var(--body-2-medium-size);
+  color: var(--color-darkgray);
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* Links Section */
+.linksSection { 
+    padding: 0 0 40px 0; 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    border-bottom: 1px solid var(--dark-border-color);
+}
+.light-mode .linksSection {
+    border-bottom-color: #e0e0e0;
+}
+.ctaButton, .ctaButtonSecondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background-color: var(--dark-primary-color); color: var(--color-white) !important; border-radius: var(--br-5xs); text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 1px solid transparent; }
+.ctaButton:hover { background-color: #005bb5; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+.ctaButtonSecondary { background-color: transparent; border-color: var(--dark-primary-color); color: var(--dark-primary-text) !important; }
+.light-mode .ctaButtonSecondary { color: var(--color-darkslategray-100) !important; }
+.ctaButtonSecondary:hover { background-color: var(--dark-primary-color); color: var(--color-white) !important; }
+
+/* Cards Grid ("How We Work" & "Why Us") */
+.cardsGrid, .whyUsGrid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
+}
+.whyUsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+}
+.featureCard {
+    background-color: var(--color-gray-200);
+    padding: 35px;
+    border-radius: var(--br-xs);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.light-mode .featureCard {
+    background-color: #f8f9fa;
+    border-color: #e0e0e0;
+}
+.featureCard:hover {
+    transform: translateY(-8px);
+    border-color: var(--dark-primary-color);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+.cardIcon { font-size: 2.5rem; color: var(--dark-primary-color); margin-bottom: 20px; display: inline-block; }
+.cardTitle { font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; color: var(--dark-primary-text); }
+.light-mode .cardTitle { color: var(--color-darkslategray-100); }
+.cardText { color: var(--color-darkgray); line-height: 1.6; }
+
+/* Offerings Section */
+.offeringsGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.offeringTitle { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid var(--dark-primary-color); padding-bottom: 10px; color: var(--dark-primary-text); }
+.light-mode .offeringTitle { color: var(--color-darkslategray-100); }
+.offeringIcon { color: var(--dark-primary-color); }
+.offeringList { list-style-type: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px; color: var(--color-darkgray); }
+.offeringList li { display: flex; align-items: center; gap: 10px; }
+.listIcon { color: var(--dark-primary-color); flex-shrink: 0; }
+
+/* --- Pills with Multi-Color Backgrounds --- */
+.pillsGrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.pill { padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+/* Dark Mode Pill Colors */
+.pill:nth-child(8n + 1) { background-color: #004d40; color: #e0f2f1; }
+.pill:nth-child(8n + 2) { background-color: #0d47a1; color: #e3f2fd; }
+.pill:nth-child(8n + 3) { background-color: #311b92; color: #ede7f6; }
+.pill:nth-child(8n + 4) { background-color: #880e4f; color: #fce4ec; }
+.pill:nth-child(8n + 5) { background-color: #bf360c; color: #fbe9e7; }
+.pill:nth-child(8n + 6) { background-color: #f57f17; color: #fff8e1; }
+.pill:nth-child(8n + 7) { background-color: #33691e; color: #f1f8e9; }
+.pill:nth-child(8n + 8) { background-color: #006064; color: #e0f7fa; }
+/* Light Mode Pill Colors */
+.light-mode .pill:nth-child(8n + 1) { background-color: #e0f2f1; color: #004d40; }
+.light-mode .pill:nth-child(8n + 2) { background-color: #e3f2fd; color: #0d47a1; }
+.light-mode .pill:nth-child(8n + 3) { background-color: #ede7f6; color: #311b92; }
+.light-mode .pill:nth-child(8n + 4) { background-color: #fce4ec; color: #880e4f; }
+.light-mode .pill:nth-child(8n + 5) { background-color: #fbe9e7; color: #bf360c; }
+.light-mode .pill:nth-child(8n + 6) { background-color: #fff8e1; color: #f57f17; }
+.light-mode .pill:nth-child(8n + 7) { background-color: #f1f8e9; color: #33691e; }
+.light-mode .pill:nth-child(8n + 8) { background-color: #e0f7fa; color: #006064; }
+
+
+/* Get Started Section */
+.getStartedSection {
+    background-color: var(--color-gray-200);
+    border-radius: var(--br-xs);
+    padding: 100px 20px;
+    text-align: center;
+}
+.light-mode .getStartedSection {
+    background-color: #f8f9fa;
+}
+.ctaGroup { margin-top: 30px; }
+
+/* --- Responsive Styles (Completed) --- */
+@media (max-width: 768px) {
+  .cardsGrid { grid-template-columns: 1fr 1fr; }
+  .offeringsGrid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .cardsGrid, .whyUsGrid {
+        grid-template-columns: 1fr;
+    }
+}

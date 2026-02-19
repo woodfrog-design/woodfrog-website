@@ -1,0 +1,153 @@
+.pageWrapper {
+  background-color: var(--color-darkslategray-100);
+  color: var(--dark-primary-text);
+  overflow-x: hidden;
+}
+.light-mode .pageWrapper {
+    background-color: var(--color-white);
+}
+
+.contentWrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Links Section --- */
+.linksSection { 
+    padding: 0 0 40px 0; 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    border-bottom: 1px solid var(--dark-border-color);
+}
+.light-mode .linksSection {
+    border-bottom-color: #e0e0e0;
+}
+.ctaButton, .ctaButtonSecondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background-color: var(--dark-primary-color); color: var(--color-white) !important; border-radius: var(--br-xs); text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 1px solid transparent; }
+.ctaButton:hover { background-color: #005bb5; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+.ctaButtonSecondary { background-color: transparent; border-color: var(--dark-primary-color); color: var(--dark-primary-text) !important; }
+.light-mode .ctaButtonSecondary { color: var(--color-darkslategray-100) !important; }
+.ctaButtonSecondary:hover { background-color: var(--dark-primary-color); color: var(--color-white) !important; }
+
+
+/* --- NARRATIVE TIMELINE --- */
+.timelineContainer {
+    position: relative;
+    padding: 50px 0;
+}
+/* The central line */
+.timelineContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    height: 100%;
+    width: 3px;
+    background-color: var(--dark-border-color);
+}
+.light-mode .timelineContainer::before {
+    background-color: #e0e0e0;
+}
+
+.timelineBlock {
+    position: relative;
+    padding-left: 120px; /* Space for the icon and line */
+    margin-bottom: 50px;
+    /* Animation setup */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.timelineBlock:last-child {
+    margin-bottom: 0;
+}
+/* Animation trigger class */
+.timelineBlock.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timelineDecorator {
+    position: absolute;
+    left: 15px; /* (40px - 50px/2) */
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-gray-200);
+    border: 3px solid var(--dark-primary-color);
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--dark-primary-color);
+}
+.light-mode .timelineDecorator {
+    background-color: var(--color-white);
+}
+
+.timelineContent {
+    background-color: var(--color-gray-200);
+    padding: 30px;
+    border-radius: var(--br-xs);
+}
+.light-mode .timelineContent {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+}
+
+.timelineEra {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+.timelineTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--dark-primary-text);
+}
+.light-mode .timelineTitle {
+    color: var(--color-darkslategray-100);
+}
+.timelineText {
+    color: var(--color-darkgray);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* --- Get Started Section --- */
+.getStartedSection {
+    margin-top: 50px;
+    background-color: var(--color-gray-200);
+    border-radius: var(--br-xs);
+    padding: 100px 20px;
+    text-align: center;
+}
+.light-mode .getStartedSection {
+    background-color: #f8f9fa;
+}
+.sectionHeader { text-align: center; }
+.sectionHeadline { font-size: var(--h1-size); margin-bottom: 15px; font-weight: 600; color: var(--dark-primary-text); }
+.light-mode .sectionHeadline { color: var(--color-darkslategray-100); }
+.sectionDescription { font-size: var(--body-2-medium-size); color: var(--color-darkgray); line-height: 1.7; max-width: 750px; margin: 0 auto; }
+.ctaGroup { margin-top: 30px; }
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .timelineContainer::before {
+        left: 25px;
+    }
+    .timelineBlock {
+        padding-left: 80px;
+    }
+    .timelineDecorator {
+        left: 0;
+    }
+}

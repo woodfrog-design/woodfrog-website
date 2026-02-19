@@ -58,12 +58,16 @@ const ServicesContent: FunctionComponent<ServicesContentType> = ({ className = '
           </div>
           <div className="mb-4 flex-grow-1">
             <div className={['card h-100', 'rounded-3', styles.cardBack].join(' ')}>
-              <div className="card-body d-flex flex-column">
+              <div className={['card-body d-flex flex-column', styles.relativePosition].join(' ')}>
                 <h4 className={['card-title', 'font-weight-bold', styles.textColor].join(' ')}>
                   {' '}
                   Machine Learning
                 </h4>
-                <br />
+                <img
+                  src={isDarkTheme ? './images/machine_learning_core_service_dark.svg' : './images/machine_learning_core_service_light.svg'}
+                  className={styles.topRightImage}
+                  alt=""
+                />
                 <div className="mt-auto">
                   <div className={styles.efficientlyManageAnd}>
                     Implement machine learning models that automate tasks and uncover patterns for
@@ -75,12 +79,16 @@ const ServicesContent: FunctionComponent<ServicesContentType> = ({ className = '
           </div>
           <div className="mb-3 flex-grow-1">
             <div className={['card h-100', styles.cardBack].join(' ')}>
-              <div className="card-body d-flex flex-column">
+              <div className={['card-body d-flex flex-column', styles.relativePosition].join(' ')}>
                 <h4 className={['card-title', 'font-weight-bold', styles.textColor].join(' ')}>
                   {' '}
                   MLOps
                 </h4>
-                <br />
+                <img
+                  src={isDarkTheme ? './images/machine_learning_core_service_dark.svg' : './images/machine_learning_core_service_light.svg'}
+                  className={styles.topRightImage}
+                  alt=""
+                />
                 <div className="mt-auto">
                   <div className={styles.efficientlyManageAnd}>
                     Optimize machine learning model lifecycles with efficient workflows, ensuring

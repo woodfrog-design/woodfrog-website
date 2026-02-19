@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Avenir:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-* {
-  transition-duration: 0.3s;
-}
-
 body {
   margin: 0;
   line-height: normal;
   font-family: 'Inter' !important;
-  /* background-color: #037a48; */
+  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--color-white);
+  color: var(--color-gray-200);
 }
 
-:root {
+/* --- LIGHT MODE (DEFAULT) --- */
+:root, .light-mode {
   /* fonts */
   --caption: Inter;
   --font-avenir: Avenir;
@@ -31,34 +30,28 @@ body {
   --font-size-26xl: 45px;
 
   /* Colors */
-  --color-gray-100: #fefefe;
-  --color-gray-600: #84888f;
-  --color-gray-200: #1e1e1e;
-  --color-gray-400: rgba(18, 18, 18, 0.95);
-  --color-gray-500: rgba(43, 43, 43, 0.08);
-  --color-gray-300: rgba(251, 251, 251, 0.1);
-  --color-darkgray: #abafb5;
-  --dark-primary-text: #f9f8fa;
-  --gray-200: #eaecf0;
-  --gray-500: #667085;
-  --toggle-icon: 50px;
-  --dark-placeholder-text: #5f637c;
-  --color-paleturquoise: #c1f8d7;
-  --color-seagreen: #037a48;
-  --gray-700: #344154;
-  --color-darkslategray-100: #2f2f37;
-  --color-darkslategray-200: #2f2d2d;
-  --blue-light-50: #f0f9ff;
-  --blue-light-700: #026aa2;
+  --dark-primary-text: #1e1e1e; /* Dark text for light mode */
+  --dark-secondary-text: #667085; /* Gray text for light mode */
+  --color-darkslategray-100: #ffffff; /* Page background */
+  --color-gray-200: #f8f9fa; /* Section/Card background */
+  --color-darkgray: #667085; /* Body text */
+  --dark-border-color: #e0e0e0;
+  
+  /* Unchanged Branding Colors */
   --dark-primary-color: #117afa;
-  --dark-secondary-text: #c7c6c8;
-  --color-silver-100: #b7b3bc;
   --color-white: #fff;
-  --color-chocolate: #ce7131;
-  --color-lightgray: #d0d5dd;
-  --dark-icon-color: #9199a9;
+  --color-seagreen: #037a48;
+  
+  /* Legacy Vars (mapped for light mode) */
+  --gray-500: #667085;
+  --gray-700: #344154;
+  --color-gray-100: #fefefe;
+  --color-gray-400: rgba(255, 255, 255, 0.95);
+  --color-gray-500: rgba(230, 230, 230, 0.08);
+  --color-gray-300: rgba(245, 245, 245, 0.1);
+  --gray-200: #eaecf0;
 
-  /* Gaps */
+  /* (All other sizing, gap, padding, and radius variables remain below) */
   --gap-8xl: 27px;
   --gap-5xs: 8px;
   --gap-35xl: 54px;
@@ -79,8 +72,6 @@ body {
   --gap-11xs-9: 1.9px;
   --gap-28xl: 47px;
   --gap-4xl: 23px;
-
-  /* Paddings */
   --padding-29xl: 48px;
   --padding-101xl: 131px;
   --padding-xl: 20px;
@@ -136,8 +127,6 @@ body {
   --padding-4xl: 23px;
   --padding-12xs-1: 0.1px;
   --padding-smi: 13px;
-
-  /* Border radiuses */
   --br-81xl: 100px;
   --br-base: 16px;
   --br-5xl: 24px;
@@ -145,7 +134,15 @@ body {
   --br-13xl: 32px;
   --br-11xs: 2px;
   --br-5xs: 8px;
-
-  /* Effects */
   --shadow-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+/* --- DARK MODE OVERRIDES --- */
+.dark-mode {
+  --dark-primary-text: #f9f8fa; /* Light text for dark mode */
+  --dark-secondary-text: #abafb5; /* Lighter text for dark mode */
+  --color-darkslategray-100: #2f2f37; /* Section/Card background */
+  --color-gray-200: #1e1e1e; /* Page background */
+  --color-darkgray: #abafb5; /* Body text */
+  --dark-border-color: #2f2f37;
 }

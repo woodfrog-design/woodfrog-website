@@ -38,22 +38,42 @@
   opacity: 1;
 }
 
+/* --- UPDATED: Styles for clickable stat source --- */
 .statSource {
   font-style: normal;
   color: var(--dark-primary-color);
   font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease;
+  margin-left: 8px; /* Add some space from the quote */
+}
+
+.statSource:hover {
+    /* color: var(--color-white); */
+    color: var(--blue-light-700);
+}
+
+.externalIcon {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.statSource:hover .externalIcon {
+    transform: translateX(2px) translateY(-2px);
 }
 
 .ctaButton, .ctaButtonSecondary {
   display: inline-block;
-  padding: 14px 28px;
+  padding: 12px 24px;
   background-color: var(--dark-primary-color);
   color: var(--color-white) !important;
   border-radius: var(--br-5xs);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 .ctaButton:hover {
@@ -254,6 +274,68 @@
     gap: 20px;
     flex-wrap: wrap;
 }
+
+/* --- NEW: Case Studies section --- */
+
+.caseStudiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.caseStudyCard {
+  background-color: var(--color-gray-200);
+  border-radius: var(--br-xs);
+  padding: 2rem;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.light-mode .caseStudyCard {
+    background-color: var(--color-white);
+    border-color: #e0e0e0;
+}
+
+.caseStudyCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--dark-primary-color);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+.caseStudyCard .cardIcon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.caseStudyCard .cardTitle {
+  margin-top: 0; /* Adjusted from previous */
+  margin-bottom: 0.75rem;
+}
+
+.caseStudyCard .cardText {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem; /* Slightly smaller text */
+}
+
+.caseStudyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--dark-primary-color);
+  margin-top: auto; /* Pushes the link to the bottom */
+}
+
+.light-mode .caseStudyLink {
+    color: var(--color-seagreen);
+}
+
 
 /* --- Media Queries for Responsiveness --- */
 @media (max-width: 900px) {

@@ -100,7 +100,7 @@ const handler: Handler = async (event) => {
 
     // This is the final version that includes all fields
     const slackPayload = {
-      text: `📨 *New Contact Form Submission*\\n\\n*Name:* ${formData.firstName} ${formData.lastName}\\n*Email:* ${formData.email}\\n*Phone:* ${formData.phone || 'Not provided'}\\n*Organization:* ${formData.organization || 'Not provided'}\\n*Service:* ${formData.service || 'Not selected'}\\n*Message:* ${formData.message}`,
+      text: `📨 *New Contact Form Submission*\\n\\n*Name:* ${formData.firstName} ${formData.lastName}\\n*Email:* ${formData.email}\\n*Phone:* ${formData.phone || 'Not provided'}\\n*Organization:* ${formData.organization || 'Not provided'}\\n*Services:* ${formData.services && formData.services.length > 0 ? formData.services.join(', ') : 'Not selected'}\\n*Message:* ${formData.message}`,
     };
 
     // Sending the data to your Slack channel

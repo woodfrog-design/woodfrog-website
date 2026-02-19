@@ -1,0 +1,245 @@
+.pageWrapper {
+  background-color: var(--color-darkslategray-100);
+  color: var(--dark-primary-text);
+  overflow-x: hidden;
+}
+
+.contentWrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Hero --- */
+.heroExtra {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--dark-primary-color);
+  color: var(--color-white) !important;
+  border-radius: var(--br-5xs);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.ctaButton:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* --- General Section Styles --- */
+.section {
+  padding: 80px 0;
+}
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.sectionHeadline {
+  font-size: var(--h1-size);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.sectionDescription {
+  font-size: var(--body-2-medium-size);
+  color: var(--color-darkgray);
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* --- Benefits Section (Cards) --- */
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.featureCard {
+    background-color: var(--color-gray-200);
+    padding: 35px;
+    border-radius: var(--br-xs);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.light-mode .featureCard {
+    background-color: var(--color-white);
+    border-color: #e0e0e0;
+}
+
+.featureCard:hover {
+    transform: translateY(-8px);
+    border-color: var(--dark-primary-color);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+.cardIcon {
+    font-size: 2.5rem;
+    color: var(--dark-primary-color);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.cardTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark-primary-text);
+}
+
+.cardText {
+    color: var(--color-darkgray);
+    line-height: 1.6;
+}
+
+/* --- Process Section Timeline --- */
+.processSection {
+    background-color: var(--color-gray-200);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    margin: 40px 0;
+    border-radius: var(--br-xs);
+}
+
+.light-mode .processSection {
+    background-color: #f8f9fa;
+}
+
+.processSubheadline {
+    text-transform: uppercase;
+    color: var(--dark-primary-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background-color: var(--dark-primary-color);
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.timelineItem {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timelineIcon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: var(--color-darkslategray-100);
+    border: 2px solid var(--dark-primary-color);
+    color: var(--dark-primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.timelineItem:hover .timelineIcon {
+    background-color: var(--dark-primary-color);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+.timelineTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark-primary-text);
+}
+
+.timelineText {
+    color: var(--color-darkgray);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- Get Started Section --- */
+.getStartedSection {
+    text-align: center;
+}
+
+.ctaGroup {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* --- Responsive Styles for Timeline --- */
+@media (max-width: 900px) {
+    .timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    .timeline::before {
+        display: none;
+    }
+}
+@media (max-width: 576px) {
+    .timeline {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- NEW: Image and Text Feature Section --- */
+.featureSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.featureImage img {
+  width: 100%;
+  border-radius: var(--br-xs);
+}
+
+.featureContent .sectionHeadline,
+.featureContent .sectionDescription {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}
+
+/* On smaller screens, stack them */
+@media (max-width: 900px) {
+  .featureSection {
+    grid-template-columns: 1fr;
+  }
+}

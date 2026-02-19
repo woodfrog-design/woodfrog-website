@@ -1,11 +1,9 @@
 .logoWrapper {
   display: flex;
-  flex-direction: row;
-  align-items: center; /* Change to flex-end for bottom alignment */
+  align-items: center;
   justify-content: flex-start;
   margin-right: 15px;
 }
-
 .ourSolutions {
   position: relative;
   line-height: 160%;
@@ -14,615 +12,193 @@
   cursor: pointer;
   margin: 0 15px;
 }
-
-.resources {
-  display: inline-block;
-  min-width: 82px;
-}
-
-.aboutUs,
-.resources {
-  position: relative;
-  line-height: 160%;
-  font-weight: 500;
-}
-
 .logoContainer,
 .menu {
   display: flex;
   flex-direction: row;
-  align-items: flex-end; /* Change to flex-end for bottom alignment */
+  align-items: center;
 }
-
 .menu {
   margin: 0;
   justify-content: center;
   gap: var(--gap-base);
-  text-align: left;
-  /* font-size: var(--body-2-medium-size); */
-  font-size: 14px;
+  font-size: 1rem;
   color: var(--dark-primary-text);
   font-family: var(--caption);
-  flex: 1; /* This gives the menu flex space to grow */
-  height: 100%; /* Ensure the menu takes full height */
-  padding-bottom: 4px; /* Fine-tune the bottom alignment */
+  flex: 1;
+  height: 100%;
 }
-
 .logoContainer {
   align-self: stretch;
   justify-content: space-between;
   gap: var(--gap-xl);
   width: 100%;
   padding: 0 15px;
-  min-height: 60px; /* Set a minimum height for consistency */
+  min-height: 60px;
 }
-
 .logoContainerWrapper {
+  position: fixed;
   align-self: stretch;
   background-color: var(--color-gray-200);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center everything horizontally */
+  align-items: center;
   justify-content: center;
   padding: var(--padding-base) var(--padding-72xl);
   top: 0;
-  z-index: 10; /* Increased z-index */
-  /* position: fixed; Changed from sticky to fixed for custom scroll behavior */
+  z-index: 999;
   width: 100%;
-  text-align: left;
-  font-size: var(--font-size-6xs-1);
-  color: var(--color-silver-100);
-  font-family: var(--font-avenir);
   box-sizing: border-box;
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease; /* Add transition for smooth animation */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0); /* Transparent shadow by default */
+    box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0);
 }
-
-/* Add shadow when scrolled */
 .scrolledHeader {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow appears when scrolled */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
-/* Ensure ModeToggle and other elements are aligned */
-.navbarActions {
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 4px;
-}
-
-/* Space added to account for fixed header */
 .headerSpacer {
-  height: 0px; /* Must match the header height */
+  height: 92px; 
   width: 100%;
 }
 
-/* Rest of the CSS remains the same */
-.transformComplexData,
-.unlockInsightsFaster {
-  margin: 0;
-  position: relative;
-  font-family: inherit;
-}
-
-.unlockInsightsFaster {
-  font-size: inherit;
-  line-height: 150%;
-  font-weight: 600;
-}
-
-.transformComplexData {
-  font-size: var(--body-1-size);
-  line-height: 160%;
-  font-weight: 400;
-  color: var(--dark-secondary-text);
-}
-
-.unlockInsightsFasterWithScParent {
-  align-self: stretch;
+/* --- Full-Width Mega Menu Styles --- */
+.dropdown {
+  position: static;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: var(--gap-base);
-}
-
-.heroButtonWrapper {
-  border-radius: var(--br-xs);
-  background-color: var(--dark-primary-color);
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: var(--padding-xs) var(--padding-4xl);
-}
-
-.frameParent,
-.hero,
-.heroButton,
-.heroContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.heroButton {
-  align-items: center;
-  padding: 0 var(--padding-410xl);
-  font-size: var(--body-2-medium-size);
-  cursor: pointer;
-}
-
-.frameParent,
-.hero,
-.heroContent {
-  max-width: 100%;
-}
-
-.heroContent {
-  width: 996px;
-  align-items: flex-start;
-  gap: var(--gap-5xl);
-}
-
-.frameParent,
-.hero {
-  align-self: stretch;
-}
-
-.hero {
-  background-color: var(--color-gray-200);
-  overflow: hidden;
-  align-items: center;
-  padding: var(--padding-200xl) var(--padding-xl) var(--padding-228xl);
-  box-sizing: border-box;
-  z-index: 1;
-}
-
-.frameParent {
-  align-items: flex-start;
-  text-align: left;
-  font-size: var(--hero-section-h1-size);
-  color: var(--dark-primary-text);
-  font-family: var(--caption);
-}
-
-@media screen and (max-width: 1200px) {
-  .logoContainerWrapper {
-    padding-left: var(--padding-41xl);
-    padding-right: var(--padding-41xl);
-  }
-
-  .heroButton {
-    padding-left: var(--padding-195xl);
-    padding-right: var(--padding-195xl);
-    box-sizing: border-box;
-  }
-}
-
-@media screen and (max-width: 825px) {
-  .logoContainerWrapper {
-    padding-left: var(--padding-41xl);
-    padding-right: var(--padding-41xl);
-    box-sizing: border-box;
-  }
-
-  .unlockInsightsFaster {
-    font-size: var(--font-size-26xl);
-    line-height: 67px;
-  }
-
-  .hero,
-  .heroButton {
-    box-sizing: border-box;
-  }
-
-  .heroButton {
-    padding-left: var(--padding-88xl);
-    padding-right: var(--padding-88xl);
-  }
-
-  .hero {
-    padding-top: 100px;
-    padding-bottom: var(--padding-142xl);
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .menu {
-    display: none;
-  }
-
-  .logoContainerWrapper {
-    padding-left: var(--padding-xl);
-    padding-right: var(--padding-xl);
-    box-sizing: border-box;
-  }
-
-  .unlockInsightsFaster {
-    font-size: var(--font-size-15xl);
-    line-height: 50px;
-  }
-
-  .transformComplexData {
-    font-size: var(--font-size-lgi);
-    line-height: 31px;
-  }
-
-  .hero {
-    padding-bottom: var(--padding-86xl);
-    box-sizing: border-box;
-  }
-}
-
-.navbarToggle {
-  color: #fff;
-  height: 50px;
-  width: 50px;
-  background: black;
-  margin: 5px;
-  cursor: pointer;
-  z-index: 999;
-}
-
-/* Overlay style */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+}
+
+.megaMenu {
+  position: fixed;
+  top: 92px;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-gray-200);
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+  z-index: 998;
+  border-top: 1px solid var(--dark-border-color, #e0e0e0);
+  padding: 30px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 24px;
-  z-index: 2;
-  animation: fadeIn 0.3s;
-}
-
-/* Add some style to the overlay content */
-.overlayContent {
-  padding: 20px;
-  width: 100%;
-  background: var(--color-gray-200);
-  font-size: 32px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 0px 0px 7px 7px;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.close {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  opacity: 0.3;
-  cursor: pointer;
-}
-.close img {
-  margin-top: -26px;
-}
-.close:hover {
-  opacity: 1;
-  color: var(--dark-secondary-text);
-  background-color: var(--color-gray-200);
-}
-.close:before,
-.close:after {
-  position: absolute;
-  left: 5px;
-  height: 33px;
-  width: 2px;
-  background-color: var(--dark-secondary-text);
-}
-
-.menus {
-  font-size: 14px;
-  margin: 1px 0px;
-  padding: 5px;
-  font-family: 'Inter';
-}
-.menus li {
-  list-style-type: none;
-  padding: 8px 24px;
-  /* margin-top: 20px; */
-  /* padding-top: 20px; */
-  color: var(--dark-secondary-text);
-  background-color: var(--color-gray-200);
-}
-.menus li a {
-  text-decoration-line: none;
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media (max-width: 576px) {
-  .trustedByBox {
-    height: 112px;
-    padding: 0;
-  }
-  .trustedByHeading {
-    font-size: var(--body-1-size);
-    line-height: 38px;
-  }
-
-  .title {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .trustedBy {
-    padding: 40px;
-  }
-
-  .trustedByBox img {
-    width: 107px;
-    height: 35px;
-  }
-}
-/* Specifically for iPad Mini (768px) */
-@media (max-width: 768px) and (min-width: 768px) {
-  .menu {
-    display: flex !important; /* Ensure menu is visible */
-    flex-direction: row; /* Layout menu items in a row */
-    justify-content: space-between; /* Space items out */
-    gap: var(--gap-base); /* Maintain gap between items */
-    font-size: 12px;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (max-width: 767px) {
-  .aboutUs {
-    width: 100px;
-  }
-
-  .menu {
-    display: none; /* Hide menu on smaller screens */
-  }
-
-  /* Maintain alignment for mobile menu */
-  .logoContainer {
-    height: 80px; /* Standardized height */
-    display: flex;
-    align-items: center; /* For mobile, center alignment is better */
-  }
-}
-
-/* Updated link styles */
-:root {
-  --link-color-light: black;
-  --link-color-dark: white;
-  --link-hover-color: #1668dc; /* Changed from gold to blue */
-}
-
-/* body.light-mode .menu a {
-  color: var(--link-color-light) !important;
-  text-decoration: none !important;
-}
-
-body.dark-mode .menu a {
-  color: var(--link-color-dark) !important;
-  text-decoration: none !important;
-} */
-/* :root {
-  --link-color-light: black;
-  --link-color-dark: white;
-} */
-
-.light-theme {
-  --link-color: var(--link-color-light);
-}
-
-.dark-theme {
-  --link-color: var(--link-color-dark);
-}
-
-.menus li a {
-  color: var(--link-color);
-}
-
-.menu a {
-  color: inherit !important;
-  text-decoration: none !important;
-  position: relative;
-  transition: color 0.3s ease !important;
-  padding: 5px 0;
-  display: flex;
-  align-items: flex-end; /* Bottom align text */
-}
-
-.menu a::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #1668dc; /* Changed from gold to blue */
+  opacity: 0;
+  transform: translateY(-10px);
   visibility: hidden;
-  transform: scaleX(0);
-  transition: transform 0.3s ease-in-out;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
-.menu a:hover {
-  color: #1668dc !important; /* Changed from gold to blue */
-}
-
-.menu a:hover::before {
+.megaMenu.isOpen {
+  opacity: 1;
+  transform: translateY(0);
   visibility: visible;
-  transform: scaleX(1);
 }
-.overlayScroll {
-  position: absolute;
-  top: 80px;
-  left: 0;
+
+.megaMenuContent {
   width: 100%;
-  background-color: #111; /* dark theme */
-  z-index: 99;
-  /* padding: 20px 0; */
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.linkColumn {
+  display: flex;
+  gap: 20px; /* Gap between the two category sections */
+}
+
+/* --- NEW: Styles for categories in dropdown --- */
+.categorySection {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 5px; /* Gap between title and links */
+  flex: 1;
 }
 
-@media (min-width: 768px) {
-  .overlayScroll {
-    display: none;
-  }
-}
-/*  */
-
-@media screen and (min-width: 576px) and (max-width: 766px) {
-  .logoContainerWrapper {
-    padding-left: var(--padding-20xl); /* reduced padding to fit content */
-    padding-right: var(--padding-20xl);
-    box-sizing: border-box;
-  }
-
-  .menu {
-    display: flex !important;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: nowrap;
-    font-size: 12px; /* reduced font size to fit better */
-    flex-shrink: 1;
-  }
-
-  .ourSolutions {
-    white-space: nowrap;
-    display: inline-block;
-    padding: 5px 8px;
-    font-weight: 500;
-    text-align: center;
-    font-size: 12px; /* smaller size */
-  }
-
-  .logoContainer {
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
-  }
-
-  .hero {
-    padding-top: 80px;
-    padding-bottom: var(--padding-142xl);
-  }
-
-  .heroButton {
-    padding-left: var(--padding-64xl); /* slightly reduced for smaller screens */
-    padding-right: var(--padding-64xl);
-  }
-
-  .unlockInsightsFaster {
-    font-size: var(--font-size-14xl); /* reduced font size */
-    line-height: 42px;
-  }
-
-  .transformComplexData {
-    font-size: var(--font-size-md); /* slightly smaller */
-    line-height: 26px;
-  }
+.categoryTitle {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-darkgray);
+  letter-spacing: 0.5px;
+  padding: 0 15px;
+  margin-bottom: 5px;
 }
 
-@media screen and (min-width: 767px) and (max-width: 820px) {
-  .menu {
-    display: flex !important;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: nowrap; /* don't allow wrapping */
-    font-size: 13px;
-    white-space: nowrap; /* prevent text from wrapping */
-  }
-
-  .ourSolutions {
-    font-size: 13px;
-    padding: 6px 10px;
-    white-space: nowrap;
-  }
-
-  .logoContainerWrapper {
-    padding-left: var(--padding-32xl);
-    padding-right: var(--padding-32xl);
-    box-sizing: border-box;
-  }
-
-  .heroButton {
-    padding-left: var(--padding-72xl);
-    padding-right: var(--padding-72xl);
-  }
-
-  .unlockInsightsFaster {
-    font-size: var(--font-size-18xl);
-    line-height: 48px;
-  }
-
-  .transformComplexData {
-    font-size: var(--font-size-base);
-    line-height: 28px;
-  }
-}
-
-/* General navbar styles */
-.navbar {
-  background-color: #333;
-  padding: 15px;
+.previewColumn {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Stack image and link */
   align-items: center;
+  justify-content: flex-start;
 }
 
-.navbar .logo {
-  color: white;
-  font-size: 24px;
+.previewImage {
+  width: 100%;
+  height: 200px; /* Set a fixed height */
+  border-radius: 6px;
+  object-fit: cover; /* Ensures image covers the area without distortion */
 }
 
-.navbar .menu {
-  display: flex;
-  gap: 15px;
+.bringYourIdeaLink {
+  width: 100%;
+  padding: 10px 15px !important;
+  text-align: center;
+  background-color: var(--dark-primary-color);
+  color: var(--color-white) !important;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease;
 }
 
-.navbar .menu a {
-  color: white;
-  text-decoration: none;
+.bringYourIdeaLink:hover {
+  background-color: #005bb5;
 }
 
-/* Responsive navbar for screen sizes between 579px and 606px */
-@media (min-width: 579px) and (max-width: 606px) {
-  .navbar {
-    flex-direction: column; /* Stack items vertically */
-    padding: 10px;
-  }
-
-  .navbar .menu {
-    flex-direction: column; /* Stack menu items vertically */
-    gap: 10px;
-  }
-
-  .navbar .menu a {
-    font-size: 18px; /* Adjust font size */
-  }
-
-  .navbar .logo {
-    font-size: 20px; /* Adjust logo font size */
-    margin-bottom: 10px; /* Space between logo and menu */
-  }
+.dropdownLink {
+  padding: 10px 15px !important;
+  text-decoration: none !important;
+  display: block;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 0 !important;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* You can add additional media queries for smaller screen sizes below this if needed */
+.dark-theme .dropdownLink { color: #FFFFFF !important; }
+.light-theme .dropdownLink { color: #000000 !important; }
+nav.menu .dropdown .dropdownLink:hover {
+  background-color: #1668dc !important;
+  color: #FFFFFF !important;
+}
+.dropdownLink::before { display: none !important; }
+
+/* --- General Link Styles --- */
+.menu a { color: inherit !important; text-decoration: none !important; position: relative; transition: color 0.3s ease !important; padding: 5px 0; }
+.menu a::before { content: ''; position: absolute; width: 100%; height: 2px; bottom: -2px; left: 0; background-color: var(--dark-primary-color); visibility: hidden; transform: scaleX(0); transition: transform 0.3s ease-in-out; }
+.menu a:hover, .dropdown:hover > .ourSolutions { color: var(--dark-primary-color) !important; }
+.menu a:hover::before, .dropdown:hover > .ourSolutions::before { visibility: visible; transform: scaleX(1); }
+
+/* --- Mobile Menu & Submenu Styles --- */
+.mobileMenuIcon { display: none; cursor: pointer; }
+.overlayScroll { position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px); background-color: var(--color-gray-200); z-index: 998; padding: 1rem 0; overflow-y: auto; opacity: 0; transform: translateY(-20px); visibility: hidden; transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; }
+.overlayScroll.isOpen { opacity: 1; transform: translateY(0); visibility: visible; }
+.menus { list-style-type: none; padding: 0; margin: 0; font-size: 16px; font-family: 'Inter'; width: 100%; }
+.menus li a { padding: 16px 24px; display: block; text-decoration: none; color: var(--dark-primary-text); transition: background-color 0.2s ease, color 0.2s ease; }
+.menus li a:hover { background-color: var(--dark-primary-color); color: var(--color-white); }
+.submenuContainer { padding: 0; }
+.submenuTrigger { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; cursor: pointer; color: var(--dark-primary-text); font-weight: 500; }
+.submenuIcon { transition: transform 0.3s ease; }
+.submenuIcon.isOpen { transform: rotate(180deg); }
+.submenu { list-style-type: none; padding: 0; margin: 0; background-color: rgba(0,0,0,0.1); }
+.submenu li a { padding: 12px 24px 12px 40px; font-size: 15px; font-weight: 400; }
+
+/* --- Responsive Breakpoints --- */
+@media screen and (max-width: 991px) { .menu { display: none; } .mobileMenuIcon { display: block; } }
+@media screen and (max-width: 1200px) { .logoContainerWrapper { padding-left: var(--padding-41xl); padding-right: var(--padding-41xl); } }
+@media screen and (max-width: 825px) { .logoContainerWrapper { padding-left: var(--padding-20xl); padding-right: var(--padding-20xl); } }
+@media screen and (max-width: 450px) { .logoContainerWrapper { padding-left: var(--padding-xl); padding-right: var(--padding-xl); } }

@@ -244,45 +244,47 @@ const StickyTalkButton: React.FC = () => {
 
   return (
     <>
-      <div
-        ref={buttonRef}
-        style={{
-          position: 'fixed',
-          zIndex: 1000,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '10px',
-          ...buttonPosition,
-          transformOrigin: 'center',
-        }}
-        onMouseEnter={() => {
-          // Reset opacity and stop pulse when user hovers
-          if (buttonRef.current) {
-            gsap.to(buttonRef.current, { opacity: 1, duration: 0.3 });
-          }
-          stopPulseAnimation();
-        }}
-        onMouseLeave={() => {
-          // Restart inactivity timers when user stops hovering
-          resetInactivityTimers();
-        }}
-      >
-        <CustomButton
-          type="primary"
-          size="large"
-          rounded={true}
-          icon={<MessageIcon />}
-          onClick={showModal}
+      {!isMobile && (
+        <div
+          ref={buttonRef}
           style={{
-            boxShadow: isDarkTheme
-              ? '0 4px 12px rgba(255, 255, 255, 0.15)'
-              : '0 4px 12px rgba(0, 0, 0, 0.15)',
+            position: 'fixed',
+            zIndex: 1000,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+            gap: '10px',
+            ...buttonPosition,
+            transformOrigin: 'center',
+          }}
+          onMouseEnter={() => {
+            // Reset opacity and stop pulse when user hovers
+            if (buttonRef.current) {
+              gsap.to(buttonRef.current, { opacity: 1, duration: 0.3 });
+            }
+            stopPulseAnimation();
+          }}
+          onMouseLeave={() => {
+            // Restart inactivity timers when user stops hovering
+            resetInactivityTimers();
           }}
         >
-          Let's Talk!
-        </CustomButton>
-      </div>
+          <CustomButton
+            type="primary"
+            size="large"
+            rounded={true}
+            icon={<MessageIcon />}
+            onClick={showModal}
+            style={{
+              boxShadow: isDarkTheme
+                ? '0 4px 12px rgba(255, 255, 255, 0.15)'
+                : '0 4px 12px rgba(0, 0, 0, 0.15)',
+            }}
+          >
+            Let's Talk!
+          </CustomButton>
+        </div>
+      )}
 
       <ContactForm
         isModalVisible={isModalVisible}

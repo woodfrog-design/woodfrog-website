@@ -35,7 +35,7 @@ interface ServiceCategory {
 }
 
 // Content data for the Offering page
-const offeringData = {
+export const offeringData = {
   hero: {
     title: 'Unlock the Power of Data & AI',
     description:

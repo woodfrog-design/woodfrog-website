@@ -1,0 +1,226 @@
+.pageWrapper {
+  background-color: var(--color-darkslategray-100);
+  color: var(--dark-primary-text);
+  overflow-x: hidden;
+}
+
+.contentWrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Hero --- */
+.heroExtra {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--dark-primary-color);
+  color: var(--color-white) !important;
+  border-radius: var(--br-xs);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.ctaButton:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* --- General Section Styles --- */
+.section {
+  padding: 80px 0;
+}
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.sectionHeadline {
+  font-size: var(--h1-size);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.sectionDescription {
+  font-size: var(--body-2-medium-size);
+  color: var(--color-darkgray);
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* --- Benefits Section (Cards) --- */
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.featureCard {
+    background-color: var(--color-gray-200);
+    padding: 35px;
+    border-radius: var(--br-xs);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.light-mode .featureCard {
+    background-color: var(--color-white);
+    border-color: #e0e0e0;
+}
+
+.featureCard:hover {
+    transform: translateY(-8px);
+    border-color: var(--dark-primary-color);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+.cardIcon {
+    font-size: 2.5rem;
+    color: var(--dark-primary-color);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.cardTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark-primary-text);
+}
+
+.cardText {
+    color: var(--color-darkgray);
+    line-height: 1.6;
+}
+
+/* --- Image and Text Feature Section --- */
+.featureSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.featureImage img {
+  width: 100%;
+  border-radius: var(--br-xs);
+}
+
+.featureContent .sectionHeadline,
+.featureContent .sectionDescription {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}
+
+/* --- NEW: Quadrant Grid Section --- */
+.processSection {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.processSubheadline {
+    text-transform: uppercase;
+    color: var(--dark-primary-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.quadrantGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background-color: var(--dark-border-color);
+    border: 1px solid var(--dark-border-color);
+    border-radius: var(--br-xs);
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.light-mode .quadrantGrid {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+}
+
+.quadrantItem {
+    background-color: var(--color-gray-200);
+    padding: 40px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.light-mode .quadrantItem {
+    background-color: #f8f9fa;
+}
+
+.quadrantItem:hover {
+    background-color: var(--color-darkslategray-100);
+    transform: scale(1.02);
+    z-index: 2;
+}
+
+.quadrantIcon {
+    font-size: 2.5rem;
+    color: var(--dark-primary-color);
+    margin-bottom: 15px;
+}
+
+.quadrantNumber {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--dark-primary-text);
+    opacity: 0.05;
+}
+
+.quadrantTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.quadrantText {
+    color: var(--color-darkgray);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+
+/* --- Get Started Section --- */
+.getStartedSection {
+    text-align: center;
+}
+
+.ctaGroup {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 900px) {
+  .featureSection {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+    .quadrantGrid {
+        grid-template-columns: 1fr;
+    }
+}

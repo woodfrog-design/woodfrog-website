@@ -9,13 +9,7 @@ export type FooterType = {
 const Footer: FunctionComponent<FooterType> = ({ className = '' }) => {
   return (
     <footer className={[styles.footer, className].join(' ')}>
-      <Pricing1
-        contactUsDisplay="inline-block"
-        contactUsMinWidth="87px"
-        line56="pending_1019:3851"
-        policyStatementDisplay="inline-block"
-        policyStatementMinWidth="97px"
-      />
+      <Pricing1 />
     </footer>
   );
 };
