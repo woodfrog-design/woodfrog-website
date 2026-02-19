@@ -157,8 +157,17 @@
   }
 }
 
+html,
 body {
-  background-color: var(--background);
+  overscroll-behavior: none;
+}
+
+html {
+  background-color: #031722;
+}
+
+body {
+  background-color: #031722;
   font-family: var(--font-sans), sans-serif;
 }
 
