@@ -6,20 +6,20 @@ import { Plus, X } from 'lucide-react';
 
 const faqData = [
     {
-        question: "Do you do organizational strategy?",
-        answer: "Although we are able to fully understand a strategic plan, our expertise is focused on analytical alignment. We leave it to other management consulting firms to set up organizational strategies. However, once this strategy and the objectives are in place, we will be able to support you on an analytical level to ensure the implementation of tools and strategies to help monitor the achievement of these objectives."
+        question: "Do you support data and analytics strategy?",
+        answer: "Yes. We help organizations define clear data strategies aligned with business objectives. This includes analytics roadmaps, governance frameworks, technology selection, and operating models that ensure long-term scalability and measurable value."
     },
     {
-        question: "Are you able to develop custom visuals in Power BI?",
-        answer: "Yes, we specialize in creating bespoke Power BI visualizations tailored to your specific business needs, ensuring your data is not just seen, but understood at a glance."
+        question: "Are you able to develop custom data visualizations?",
+        answer: "Absolutely. We design and build custom visual components tailored to your specific metrics, workflows, and industry requirements. Whether extending existing platforms or creating entirely bespoke interfaces, we ensure every visualization supports clear and actionable insight."
     },
     {
-        question: "Are you able to integrate directly from Power BI?",
-        answer: "Absolutely. We can set up direct integrations with various data sources and ensure seamless data flow within the Power BI ecosystem for real-time reporting."
+        question: "Are you able to integrate directly with our analytics platform?",
+        answer: "Yes. We integrate seamlessly with modern analytics and data platforms, ensuring secure data flows between dashboards, applications, and enterprise systems. Our approach prioritizes performance, governance, and scalability."
     },
     {
-        question: "Are you able to integrate data from sources outside my organization?",
-        answer: "Yes, we have extensive experience in aggregating and normalizing data from external APIs, public datasets, and third-party platforms to provide a comprehensive view of your market landscape."
+        question: "Can you integrate external and third-party data sources?",
+        answer: "Yes. We design secure data pipelines that connect internal systems with external APIs, partner platforms, and third-party datasets. All integrations follow best practices for data quality, compliance, and security."
     }
 ];
 

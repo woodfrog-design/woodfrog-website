@@ -12,52 +12,52 @@ const DARK_BG = '#1a1a2e';
 
 // Microsoft Fabric
 const FabricIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools17.svg" width={size} height={size} alt="Microsoft Fabric" className="object-contain" />
+  <img src="/logos/tools17.svg" width={size} height={size} alt="Data Platform" className="object-contain" />
 );
 
 // Power BI
 const PowerBIIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/image7.svg" width={size} height={size} alt="Power BI" className="object-contain" />
+  <img src="/logos/image7.svg" width={size} height={size} alt="Analytics Platform" className="object-contain" />
 );
 
 // Fivetran
 const FivetranIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools18.svg" width={size} height={size} alt="Fivetran" className="object-contain" />
+  <img src="/logos/tools18.svg" width={size} height={size} alt="Data Integration" className="object-contain" />
 );
 
 // Azure DevOps
 const AzureDevOpsIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools19.svg" width={size} height={size} alt="Azure DevOps" className="object-contain" />
+  <img src="/logos/tools19.svg" width={size} height={size} alt="DevOps Platform" className="object-contain" />
 );
 
 // Power Automate
 const PowerAutomateIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools20.svg" width={size} height={size} alt="Power Automate" className="object-contain" />
+  <img src="/logos/tools20.svg" width={size} height={size} alt="Workflow Automation" className="object-contain" />
 );
 
 // SQL Server / Azure SQL
 const SQLServerIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools21.svg" width={size} height={size} alt="SQL Server" className="object-contain" />
+  <img src="/logos/tools21.svg" width={size} height={size} alt="Database" className="object-contain" />
 );
 
 // Microsoft Synapse
 const SynapseIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools22.svg" width={size} height={size} alt="Azure Synapse" className="object-contain" />
+  <img src="/logos/tools22.svg" width={size} height={size} alt="Modern Data Platform" className="object-contain" />
 );
 
 // Microsoft Purview / Shield
 const PurviewIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools23.svg" width={size} height={size} alt="Azure Purview" className="object-contain" />
+  <img src="/logos/tools23.svg" width={size} height={size} alt="Governance Service" className="object-contain" />
 );
 
 // OneLake / Data Lake
 const DataLakeIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools24.svg" width={size} height={size} alt="Azure Data Lake" className="object-contain" />
+  <img src="/logos/tools24.svg" width={size} height={size} alt="Cloud Storage Service" className="object-contain" />
 );
 
 // Power Apps
 const PowerAppsIcon = ({ size = 32 }: { size?: number }) => (
-  <img src="/logos/tools25.svg" width={size} height={size} alt="Power Apps" className="object-contain" />
+  <img src="/logos/tools25.svg" width={size} height={size} alt="Application Platform" className="object-contain" />
 );
 
 /* ─── Tool Card ─────────────────────────────────────────────────────── */
@@ -82,8 +82,8 @@ const ToolCard = ({
   >
     <div
       className={`relative rounded-xl flex items-center justify-center shadow-md transition-all ${highlighted
-          ? 'shadow-yellow-200/50 ring-2 ring-yellow-300/60'
-          : 'shadow-black/5'
+        ? 'shadow-yellow-200/50 ring-2 ring-yellow-300/60'
+        : 'shadow-black/5'
         }`}
       style={{
         width: 56,
@@ -265,7 +265,7 @@ const IllustrationWrap = ({ children }: { children: React.ReactNode }) => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  1. CI/CD — Continuous Integration / Deployment                    */
+/*  1. CI/CD - Continuous Integration / Deployment                    */
 /* ═══════════════════════════════════════════════════════════════════ */
 export const CICDIllustration = () => {
   const [step, setStep] = useState(0);
@@ -280,8 +280,8 @@ export const CICDIllustration = () => {
       <div className="flex flex-col items-center gap-6 w-full px-8 py-6">
         {/* Top: tool icons */}
         <div className="flex items-center gap-8 justify-center">
-          <ToolCard icon={<AzureDevOpsIcon size={30} />} label="Azure DevOps" delay={0} highlighted={step >= 0} />
-          <ToolCard icon={<PowerBIIcon size={30} />} label="Power BI" delay={0.1} highlighted={step >= 2} />
+          <ToolCard icon={<AzureDevOpsIcon size={30} />} label="DevOps" delay={0} highlighted={step >= 0} />
+          <ToolCard icon={<PowerBIIcon size={30} />} label="Analytics" delay={0.1} highlighted={step >= 2} />
         </div>
 
         {/* Main CI/CD flow */}
@@ -356,8 +356,8 @@ export const CICDIllustration = () => {
 
         {/* Bottom: Fabric & Fivetran */}
         <div className="flex items-center gap-8 justify-center">
-          <ToolCard icon={<FabricIcon size={30} />} label="MS Fabric" delay={0.2} highlighted={step >= 3} />
-          <ToolCard icon={<FivetranIcon size={30} />} label="Fivetran" delay={0.3} highlighted={step >= 1} />
+          <ToolCard icon={<FabricIcon size={30} />} label="Data Platform" delay={0.2} highlighted={step >= 3} />
+          <ToolCard icon={<FivetranIcon size={30} />} label="Integration" delay={0.3} highlighted={step >= 1} />
         </div>
       </div>
     </IllustrationWrap>
@@ -365,7 +365,7 @@ export const CICDIllustration = () => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  2. Architectures — Data flow from analyst to outputs              */
+/*  2. Architectures - Data flow from analyst to outputs              */
 /* ═══════════════════════════════════════════════════════════════════ */
 export const ArchitectureIllustration = () => {
   const [step, setStep] = useState(0);
@@ -375,10 +375,10 @@ export const ArchitectureIllustration = () => {
   }, []);
 
   const nodes = [
-    { icon: <SQLServerIcon size={26} />, label: 'SQL DB', x: 80, y: 100 },
-    { icon: <FivetranIcon size={26} />, label: 'Fivetran', x: 200, y: 60 },
-    { icon: <FabricIcon size={26} />, label: 'MS Fabric', x: 300, y: 100 },
-    { icon: <PowerBIIcon size={26} />, label: 'Power BI', x: 420, y: 60 },
+    { icon: <SQLServerIcon size={26} />, label: 'Database', x: 80, y: 100 },
+    { icon: <FivetranIcon size={26} />, label: 'Integration', x: 200, y: 60 },
+    { icon: <FabricIcon size={26} />, label: 'Data Platform', x: 300, y: 100 },
+    { icon: <PowerBIIcon size={26} />, label: 'Analytics', x: 420, y: 60 },
   ];
 
   return (
@@ -453,17 +453,17 @@ export const ArchitectureIllustration = () => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  3. Automation — Hub & spoke (Azure Functions center)              */
+/*  3. Automation - Hub & spoke (Azure Functions center)              */
 /* ═══════════════════════════════════════════════════════════════════ */
 export const AutomationIllustration = () => {
   const [activeSpoke, setActiveSpoke] = useState(0);
   const spokes = [
-    { icon: <FivetranIcon size={22} />, label: 'Fivetran', angle: 210, dist: 100 },
-    { icon: <PowerAutomateIcon size={22} />, label: 'Power Automate', angle: 270, dist: 100 },
-    { icon: <FivetranIcon size={22} />, label: 'Fivetran 2', angle: 330, dist: 100 },
-    { icon: <FabricIcon size={22} />, label: 'MS Fabric', angle: 30, dist: 100 },
-    { icon: <PowerAppsIcon size={22} />, label: 'Power Apps', angle: 90, dist: 100 },
-    { icon: <FabricIcon size={22} />, label: 'Fabric 2', angle: 150, dist: 100 },
+    { icon: <FivetranIcon size={22} />, label: 'Integration', angle: 210, dist: 100 },
+    { icon: <PowerAutomateIcon size={22} />, label: 'Workflow Automation', angle: 270, dist: 100 },
+    { icon: <FivetranIcon size={22} />, label: 'Integration 2', angle: 330, dist: 100 },
+    { icon: <FabricIcon size={22} />, label: 'Data Platform', angle: 30, dist: 100 },
+    { icon: <PowerAppsIcon size={22} />, label: 'Application Platform', angle: 90, dist: 100 },
+    { icon: <FabricIcon size={22} />, label: 'Data Platform 2', angle: 150, dist: 100 },
   ];
 
   useEffect(() => {
@@ -521,7 +521,7 @@ export const AutomationIllustration = () => {
           );
         })}
 
-        {/* Center hub — Azure Functions */}
+        {/* Center hub - Azure Functions */}
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center gap-2 px-4 py-3 rounded-2xl shadow-xl"
           style={{
@@ -535,8 +535,8 @@ export const AutomationIllustration = () => {
         >
           <FabricIcon size={22} />
           <div>
-            <div className="text-[9px] text-slate-400 font-semibold">Microsoft</div>
-            <div className="text-[11px] font-bold text-slate-700">Azure Functions</div>
+            <div className="text-[9px] text-slate-400 font-semibold">General</div>
+            <div className="text-[11px] font-bold text-slate-700">Cloud Functions</div>
           </div>
         </motion.div>
 
@@ -571,7 +571,7 @@ export const AutomationIllustration = () => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  4. Data Modeling — Star schema with connecting nodes              */
+/*  4. Data Modeling - Star schema with connecting nodes              */
 /* ═══════════════════════════════════════════════════════════════════ */
 export const DataModelingIllustration = () => {
   const [pulse, setPulse] = useState(0);
@@ -694,7 +694,7 @@ export const DataModelingIllustration = () => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  5. Data Archiving — Lines to data lake/storage icons              */
+/*  5. Data Archiving - Lines to data lake/storage icons              */
 /* ═══════════════════════════════════════════════════════════════════ */
 export const ArchivingIllustration = () => {
   const [wave, setWave] = useState(0);
@@ -774,7 +774,7 @@ export const ArchivingIllustration = () => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  6. Data Security — Lock icons with scanning animation             */
+/*  6. Data Security - Lock icons with scanning animation             */
 /* ═══════════════════════════════════════════════════════════════════ */
 export const SecurityIllustration = () => {
   const [scanning, setScanning] = useState(0);
@@ -999,7 +999,7 @@ export const MigrationIllustration = () => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */
-/*  8. Cost Optimization — Gauge/metrics                              */
+/*  8. Cost Optimization - Gauge/metrics                              */
 /* ═══════════════════════════════════════════════════════════════════ */
 export const CostOptimizationIllustration = () => {
   const [tick, setTick] = useState(0);

@@ -24,7 +24,7 @@ const ScrollStack = () => {
     const cards = [
         {
             id: 1,
-            label: "Microsoft Power BI Experts | Design-driven",
+            label: "Enterprise Data Visualization Experts | Design-driven",
             title: "Data Visualization",
             description1: "Creating intuitive and interactive dashboards that transform complex data into clear, actionable business stories.",
             description2: "Our design-driven approach ensures that every visualization is not just beautiful, but strategically aligned with your decision-making needs.",
@@ -33,9 +33,9 @@ const ScrollStack = () => {
         },
         {
             id: 2,
-            label: "Azure Experts & Microsoft Fabric",
+            label: "Cloud & Modern Data Platform Experts",
             title: "Data Engineering",
-            description1: "Building robust and scalable data foundations using Azure and Microsoft Fabric to power your organization's analytics.",
+            description1: "Building robust and scalable data foundations using modern cloud and data platforms to power your organization's analytics",
             description2: "We engineer high-performance data pipelines that ensure security, accessibility, and reliability for all your information assets.",
             bg: "var(--brand-card-bg)",
             link: "/data-engineering"
@@ -51,10 +51,10 @@ const ScrollStack = () => {
         },
         {
             id: 4,
-            label: "Microsoft Power Platform Experts",
+            label: "Enterprise Automation Experts",
             title: "Applications and Automations",
             description1: "We automate your key processes to increase efficiency, reduce errors, and speed up your operations.",
-            description2: "Thanks to Microsoft Power Platform and the integration of artificial intelligence, we design smart and scalable solutions focused on your business needs.",
+            description2: "Through modern automation platforms and the integration of artificial intelligence, we design smart and scalable solutions focused on your business needs.",
             bg: "var(--brand-card-bg)",
             link: "/applications-and-automations"
         },

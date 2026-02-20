@@ -145,6 +145,25 @@ const ProductsSection = () => {
                         )}
 
                     </div>
+
+                    {/* See All Button */}
+                    {!isLoading && products.length > 0 && (
+                        <div className="mt-12 md:mt-20 flex justify-start">
+                            <Link
+                                href="/products"
+                                className="group/seeall flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-brand-primary/50 transition-all duration-300"
+                            >
+                                <span className="text-[#E6EAF0] font-bold text-sm tracking-tight group-hover/seeall:text-brand-primary transition-colors">
+                                    View all products
+                                </span>
+                                <div className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center -rotate-45 group-hover/seeall:rotate-0 transition-transform duration-500">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </div>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

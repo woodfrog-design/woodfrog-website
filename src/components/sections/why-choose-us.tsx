@@ -91,31 +91,27 @@ const WFLogoAnimation = ({ trigger }: { trigger: boolean }) => {
 const choices = [
     {
         id: 1,
-        title: "For AI Model",
-        subtitle: "Developers",
-        description: "Build, train, and monetize AI models with access to high-quality datasets, end-to-end developer tools, and multiple revenue opportunities in an open, collaborative ecosystem.",
-        cta: "AI Developer Platform"
+        title: "For Data & AI Teams",
+        description: "Design, deploy, and scale intelligent systems with robust data pipelines, modern architecture, and production-ready AI solutions built for real-world performance.",
+        cta: "Data & AI Engineering"
     },
     {
         id: 2,
-        title: "AI Data Services",
-        subtitle: "for Enterprises",
-        description: "Access a global, on-demand workforce for high-quality data pipelines, spanning data collection, labeling, enrichment, and validation for AI development.",
-        cta: "AI Data Services"
+        title: "For Enterprise Leaders",
+        description: "Unlock reliable insights through scalable data platforms, executive dashboards, and AI-powered decision systems designed to reduce costs and accelerate growth.",
+        cta: "Enterprise Solutions"
     },
     {
         id: 3,
-        title: "For Resource",
-        subtitle: "Providers",
-        description: "Contribute compute, storage, or bandwidth to the network and earn rewards. Power the next generation of AI applications while maximizing your hardware utility.",
-        cta: "Provider Portal"
+        title: "For Operations & Technology Teams",
+        description: "Automate workflows, integrate systems, and modernize legacy processes with custom applications and intelligent automation built to increase efficiency.",
+        cta: "Applications & Automations"
     },
     {
         id: 4,
-        title: "Decentralized",
-        subtitle: "Governance",
-        description: "Participate in the evolution of the platform through democratic voting and proposal systems. Your voice matters in shaping the future of AI infrastructure.",
-        cta: "Governance Hub"
+        title: "For Strategic Decision Makers",
+        description: "Establish data governance, AI oversight, and scalable infrastructure frameworks that ensure security, compliance, and long-term business value.",
+        cta: "AI Governance"
     }
 ];
 
@@ -149,9 +145,9 @@ const WhyChooseUs = () => {
                 relative w-full lg:w-[75%] p-5 md:p-10 rounded-[1.25rem] md:rounded-[3rem] border border-white/5 shadow-2xl overflow-hidden
                 bg-[var(--brand-card-bg)]
                 ${idx === 0 ? 'z-0 md:self-start' : ''}
-                ${idx === 1 ? 'z-10 md:self-end md:-mt-32 lg:-ml-24' : ''}
+                ${idx === 1 ? 'z-10 md:self-end md:-mt-32 lg:-ml-24 lg:translate-x-[60px]' : ''}
                 ${idx === 2 ? 'z-20 md:self-start md:-mt-24 lg:-mr-16' : ''}
-                ${idx === 3 ? 'z-30 md:self-end md:-mt-32 lg:-ml-12' : ''}
+                ${idx === 3 ? 'z-30 md:self-end md:-mt-32 lg:-ml-12 lg:translate-x-[60px]' : ''}
               `}
                         >
                             <motion.div
@@ -169,17 +165,17 @@ const WhyChooseUs = () => {
                 ${idx === 2 ? 'top-0 right-0 opacity-30 mix-blend-overlay rotate-90 -translate-y-1/2 translate-x-1/4 max-md:scale-[0.45] max-md:translate-x-1/2 max-md:-translate-y-1/4' : ''}
                 ${idx === 3 ? 'top-[160px] right-[10px] opacity-100 scale-150 rotate-0 -translate-y-1/2 translate-x-1/4 max-md:scale-75 max-md:top-[130px] max-md:right-[-40px]' : ''}
               `}>
-                                {idx === 1 ? <WFLogoAnimation trigger={hoveredIdx === 1} /> :
-                                    idx === 3 ? <GoldCurveGraphic /> : <SunburstPlaceholder />}
+                                {/* {idx === 1 ? <WFLogoAnimation trigger={hoveredIdx === 1} /> :
+                                    idx === 3 ? <GoldCurveGraphic /> : <SunburstPlaceholder />} */}
                             </div>
 
                             <div className="relative z-10 flex flex-col items-start gap-3 md:gap-5">
                                 <div className="max-w-[65%] md:max-w-xl">
                                     <h3 className="text-xl md:text-5xl font-black text-[#E6EAF0] leading-tight tracking-tight">
-                                        {idx === 0 ? <>For AI Model <br /><span className="text-brand-primary">Developers</span></> :
-                                            idx === 1 ? <>AI Data Services <br /><span className="text-[#E6EAF0]">for </span><span className="text-brand-primary">Enterprises</span></> :
-                                                idx === 2 ? <>For Resource <br /><span className="text-brand-primary">Providers</span></> :
-                                                    idx === 3 ? <><span className="text-[#E6EAF0]">Decentralized</span> <br /><span className="text-brand-primary">Governance</span></> :
+                                        {idx === 0 ? <>For Data & <br /><span className="text-brand-primary">AI Teams</span></> :
+                                            idx === 1 ? <>For Enterprise <br /><span className="text-brand-primary">Leaders</span></> :
+                                                idx === 2 ? <>For Operations & <br /><span className="text-brand-primary">Tech Teams</span></> :
+                                                    idx === 3 ? <>For Strategic <br /><span className="text-brand-primary">Decision Makers</span></> :
                                                         choice.title}
                                     </h3>
                                 </div>
@@ -188,7 +184,7 @@ const WhyChooseUs = () => {
                                     {choice.description}
                                 </p>
 
-                                <div className="flex flex-wrap items-center gap-3 md:gap-6 mt-1 md:mt-2">
+                                <div className="flex flex-wrap items-center gap-3 md:gap-6 mt-1 md:mt-2 opacity-0 pointer-events-none">
                                     <button className="bg-[#d9f99d] text-black px-3 md:px-6 py-1.5 md:py-2.5 rounded-full font-bold text-[10px] md:text-sm tracking-tight transition-transform duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-[#d9f99d]/10">
                                         {choice.cta}
                                     </button>

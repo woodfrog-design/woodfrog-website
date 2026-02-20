@@ -9,12 +9,12 @@ import { cn } from '@/lib/utils';
 const SERVICES = [
     {
         title: "Data Visualization",
-        description: "Microsoft Power BI Experts | Design-driven",
+        description: "Enterprise Data Visualization Experts | Design-driven",
         href: "/data-visualization",
     },
     {
         title: "Data Engineering",
-        description: "Azure Experts & Microsoft Fabric",
+        description: "Cloud Infrastructure & Data Platform Experts",
         href: "/data-engineering",
     },
     {
@@ -24,7 +24,7 @@ const SERVICES = [
     },
     {
         title: "Applications and Automations",
-        description: "Microsoft Power Platform Experts",
+        description: "Enterprise Automation Experts",
         href: "/applications-and-automations",
     },
     // {
@@ -39,7 +39,7 @@ const SERVICES = [
     },
     // {
     //     title: "AI Agents",
-    //     description: "Copilot Studio and Fabric AI Agents Experts",
+    //     description: "Custom AI Agents & Intelligent Automation Experts",
     //     href: "/ai-agents",
     // },
     {
@@ -278,24 +278,24 @@ const Navbar = () => {
                         <button
                             onClick={() => setIsServicesOpen(!isServicesOpen)}
                             className={cn(
-                                "flex items-center space-x-1 px-5 py-2 font-semibold text-base transition-all rounded-full text-[#E6EAF0]/90 hover:text-[#E6EAF0] cursor-pointer",
-                                isServicesOpen && "text-white"
+                                "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
+                                isServicesOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
                             )}
                         >
                             <span>services</span>
-                            <ChevronDown className={cn("w-4 h-4 transition-transform duration-300 opacity-50", isServicesOpen && "rotate-180 opacity-100")} />
+                            <ChevronDown className={cn("w-4 h-4 transition-all duration-300 opacity-50", isServicesOpen && "rotate-180 opacity-100 text-black")} />
                         </button>
 
                         <AnimatePresence>
                             {isServicesOpen && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    initial={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
+                                    animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                                    exit={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
                                     transition={{ duration: 0.2 }}
-                                    className="absolute top-full left-0 mt-4 w-[650px] p-6 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] z-[100] overflow-hidden"
+                                    className="absolute top-full left-1/2 mt-4 w-[900px] p-8 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] z-[100] overflow-hidden"
                                 >
-                                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                                    <div className="grid grid-cols-3 gap-x-6 gap-y-6">
                                         {SERVICES.map((service, index) => (
                                             <Link key={service.title} href={service.href} onClick={() => setIsServicesOpen(false)}>
                                                 <motion.div
@@ -321,7 +321,7 @@ const Navbar = () => {
 
                     <Link
                         href="/products"
-                        className="flex items-center space-x-1 px-5 py-2 text-base font-semibold text-[#E6EAF0]/90 hover:text-[#E6EAF0] transition-all rounded-full cursor-pointer"
+                        className="flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-all duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90"
                         onClick={() => { setIsServicesOpen(false); setIsWoodfrogOpen(false); }}
                     >
                         <span>products</span>
@@ -331,22 +331,22 @@ const Navbar = () => {
                         <button
                             onClick={() => setIsWoodfrogOpen(!isWoodfrogOpen)}
                             className={cn(
-                                "flex items-center space-x-1 px-5 py-2 font-semibold text-base transition-all rounded-full text-[#E6EAF0]/90 hover:text-[#E6EAF0] cursor-pointer",
-                                isWoodfrogOpen && "text-[#E6EAF0]"
+                                "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
+                                isWoodfrogOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
                             )}
                         >
-                            <span>woodfrog</span>
-                            <ChevronDown className={cn("w-4 h-4 transition-transform duration-300 opacity-50", isWoodfrogOpen && "rotate-180 opacity-100")} />
+                            <span>explore</span>
+                            <ChevronDown className={cn("w-4 h-4 transition-all duration-300 opacity-50", isWoodfrogOpen && "rotate-180 opacity-100 text-black")} />
                         </button>
 
                         <AnimatePresence>
                             {isWoodfrogOpen && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    initial={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
+                                    animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                                    exit={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
                                     transition={{ duration: 0.2 }}
-                                    className="absolute top-full left-0 mt-4 w-[600px] p-6 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] z-[100] overflow-hidden"
+                                    className="absolute top-full left-1/2 mt-4 w-[600px] p-6 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] z-[100] overflow-hidden"
                                 >
                                     <div className="grid grid-cols-2 gap-x-8 gap-y-6">
                                         {WOODFROG_LINKS.map((link, index) => (
@@ -467,17 +467,17 @@ const Navbar = () => {
                                 </Link>
                             </div>
 
-                            {/* Woodfrog Accordion */}
+                            {/* Explore Accordion */}
                             <div className="border-b border-white/10 pb-4">
                                 <button
-                                    onClick={() => toggleMobileAccordion('woodfrog')}
+                                    onClick={() => toggleMobileAccordion('explore')}
                                     className="w-full flex items-center justify-between py-2"
                                 >
-                                    <span className="text-2xl font-bold text-white">woodfrog</span>
-                                    <ChevronDown className={cn("w-6 h-6 text-brand-primary transition-transform duration-300", mobileAccordion === 'woodfrog' && "rotate-180")} />
+                                    <span className="text-2xl font-bold text-white">explore</span>
+                                    <ChevronDown className={cn("w-6 h-6 text-brand-primary transition-transform duration-300", mobileAccordion === 'explore' && "rotate-180")} />
                                 </button>
                                 <AnimatePresence>
-                                    {mobileAccordion === 'woodfrog' && (
+                                    {mobileAccordion === 'explore' && (
                                         <motion.div
                                             initial={{ height: 0, opacity: 0 }}
                                             animate={{ height: "auto", opacity: 1 }}

@@ -33,7 +33,7 @@ const SERVICES = [
     id: 'automation',
     title: 'Implementing automated processes to capture and retrieve data efficiently',
     description:
-      'Using data integration and orchestration tools such as Microsoft Fabric and Fivetran, we automate and standardize the extraction, transformation, and loading of your data, regardless of the source. We also automate various data retrieval processes through the implementation of RPA (Robotic Process Automation) solutions, using advanced scripts or Microsoft Power Automate, as well as through the development of custom applications with Microsoft Power Apps.',
+      'Using modern data integration and orchestration platforms, we automate and standardize the extraction, transformation, and loading of your data, regardless of the source. We also automate various data retrieval processes through the implementation of RPA (Robotic Process Automation) solutions, using advanced scripting tools and workflow automation platforms, as well as through the development of custom business applications.',
   },
   {
     id: 'modeling',
@@ -55,9 +55,9 @@ const SERVICES = [
   },
   {
     id: 'migration',
-    title: 'Migrating your Synapse environment to Microsoft Fabric',
+    title: 'Migrating your analytics environment to modern data platforms',
     description:
-      'Leverage our expertise to seamlessly migrate your Azure Synapse Analytics workloads to Microsoft Fabric. We handle the complete migration lifecycle — assessment, planning, execution, and validation — minimizing downtime and ensuring data integrity throughout the process.',
+      'Leverage our expertise to seamlessly migrate your existing analytics workloads to modern data platforms. We handle the complete migration lifecycle - assessment, planning, execution, and validation - minimizing downtime and ensuring data integrity throughout the process.',
   },
   {
     id: 'cost',
@@ -68,16 +68,16 @@ const SERVICES = [
 ];
 
 const TOOLS = [
-  { name: 'Microsoft Fabric', abbr: 'F', color: '#E25D3E' },
-  { name: 'Azure DevOps', abbr: 'A', color: '#0078D4' },
-  { name: 'Power BI', abbr: 'PB', color: '#F2C811' },
-  { name: 'Fivetran', abbr: 'Fv', color: '#0073FF' },
-  { name: 'Power Automate', abbr: 'PA', color: '#0066FF' },
-  { name: 'Azure Data Factory', abbr: 'DF', color: '#0078D4' },
-  { name: 'Databricks', abbr: 'Db', color: '#FF3621' },
-  { name: 'SQL Server', abbr: 'SQL', color: '#CC2927' },
-  { name: 'Power Apps', abbr: 'Pp', color: '#742774' },
-  { name: 'OneLake', abbr: 'OL', color: '#E25D3E' },
+  { name: 'Data Platform', abbr: 'D', color: '#E25D3E' },
+  { name: 'DevOps Platform', abbr: 'A', color: '#0078D4' },
+  { name: 'Analytics Tool', abbr: 'PB', color: '#F2C811' },
+  { name: 'Data Integration', abbr: 'Fv', color: '#0073FF' },
+  { name: 'Workflow Automation', abbr: 'PA', color: '#0066FF' },
+  { name: 'Data Orchestration', abbr: 'DF', color: '#0078D4' },
+  { name: 'Compute Platform', abbr: 'Db', color: '#FF3621' },
+  { name: 'Database System', abbr: 'SQL', color: '#CC2927' },
+  { name: 'Application Platform', abbr: 'Pp', color: '#742774' },
+  { name: 'Storage Layer', abbr: 'SL', color: '#E25D3E' },
 ];
 
 /* ─────────────────────── COMPONENTS ─────────────────────── */
@@ -88,14 +88,14 @@ const ArchitectureDiagram = () => (
     <svg viewBox="0 0 620 700" fill="none" className="w-full max-w-[580px]" xmlns="http://www.w3.org/2000/svg">
       {/* Microsoft Azure Box */}
       <rect x="140" y="10" width="230" height="140" rx="6" stroke="var(--brand-primary)" strokeWidth="1.5" fill="none" />
-      <text x="260" y="38" textAnchor="middle" className="text-[13px] font-bold" fill="var(--brand-primary)">Microsoft Azure</text>
+      <text x="260" y="38" textAnchor="middle" className="text-[13px] font-bold" fill="var(--brand-primary)">Cloud Platform</text>
       <text x="260" y="62" textAnchor="middle" className="text-[11px]" fill="#999">Landing zone</text>
       {/* Storage cylinder */}
       <ellipse cx="260" cy="82" rx="22" ry="8" fill="#E25D3E" opacity="0.8" />
       <rect x="238" y="82" width="44" height="30" fill="#E25D3E" opacity="0.7" />
       <ellipse cx="260" cy="112" rx="22" ry="8" fill="#E25D3E" opacity="0.9" />
       <ellipse cx="260" cy="82" rx="22" ry="8" fill="#E25D3E" />
-      <text x="260" y="138" textAnchor="middle" className="text-[9px]" fill="#777">Azure Data Lake Storage</text>
+      <text x="260" y="138" textAnchor="middle" className="text-[9px]" fill="#777">Cloud Storage Service</text>
 
       {/* Source icons left */}
       <rect x="20" y="55" width="55" height="42" rx="4" stroke="#444" strokeWidth="1" fill="#1a1a1a" />
@@ -119,7 +119,7 @@ const ArchitectureDiagram = () => (
           <img src="/logos/tools17.svg" alt="Fabric" className="w-full h-full object-contain" />
         </div>
       </foreignObject>
-      <text x="85" y="240" className="text-[13px] font-bold" fill="var(--brand-primary)">Microsoft Fabric</text>
+      <text x="85" y="240" className="text-[13px] font-bold" fill="var(--brand-primary)">Data Experience</text>
 
       {/* Pipeline: Data Factory */}
       <g>
@@ -129,8 +129,8 @@ const ArchitectureDiagram = () => (
             <img src="/logos/image12.svg" alt="Data Factory" className="w-full h-full object-contain" />
           </div>
         </foreignObject>
-        <text x="82" y="335" textAnchor="middle" className="text-[8px]" fill="#777">Data Factory |</text>
-        <text x="82" y="346" textAnchor="middle" className="text-[8px]" fill="#777">Copy Activity</text>
+        <text x="82" y="335" textAnchor="middle" className="text-[8px]" fill="#777">Data Integration |</text>
+        <text x="82" y="346" textAnchor="middle" className="text-[8px]" fill="#777">Processing Activity</text>
       </g>
 
       {/* Arrow */}

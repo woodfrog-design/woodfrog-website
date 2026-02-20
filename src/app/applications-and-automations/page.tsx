@@ -19,7 +19,7 @@ const SERVICE_ITEMS = [
     {
         id: 'custom-apps',
         title: 'Custom-built business applications',
-        description: 'From smart forms to powerful management systems, we build Power Apps that align seamlessly with the way your teams work.',
+        description: 'From smart forms to powerful management systems, we build custom applications that align seamlessly with the way your teams work.',
     },
     {
         id: 'ux-ui',
@@ -28,18 +28,18 @@ const SERVICE_ITEMS = [
     },
     {
         id: 'azure',
-        title: 'Secure and scalable Azure-hosted backend',
-        description: 'Our solutions leverage Azure\'s enterprise-grade infrastructure for reliability, security, and seamless scalability.',
+        title: 'Secure and scalable cloud-hosted backend',
+        description: 'Our solutions leverage enterprise-grade cloud infrastructure for reliability, security, and seamless scalability.',
     },
     {
         id: 'automation',
         title: 'Smart automation',
-        description: 'We build intelligent Power Automate flows that eliminate repetitive tasks and keep your processes running smoothly.',
+        description: 'We build intelligent workflow automation that eliminates repetitive tasks and keeps your processes running smoothly.',
     },
     {
         id: 'integrations',
         title: 'Seamless integrations',
-        description: 'Connect your apps with Microsoft 365, Teams, SharePoint, and third-party services for a unified digital workspace.',
+        description: 'Connect your applications with collaboration tools, document platforms, and third-party services for a unified digital workspace.',
     },
     {
         id: 'security',
@@ -54,12 +54,12 @@ const SERVICE_ITEMS = [
 ];
 
 const TECHNOLOGIES = [
-    { name: 'Microsoft Power Apps', desc: 'Creation of custom applications accessible on all devices.', color: '#742774', icon: 'powerapps' },
-    { name: 'Azure-based application backend', desc: 'APIs, databases, and cloud services that deliver performance and scalability.', color: '#0078D4', icon: 'azure' },
-    { name: 'Microsoft Power Automate', desc: 'Intelligent workflow automation and cross-application integrations.', color: '#0066FF', icon: 'automate' },
-    { name: 'Microsoft Dataverse', desc: 'Used when it is the option best suited to your needs.', color: '#00A651', icon: 'dataverse' },
-    { name: 'Microsoft Teams', desc: 'Real-time collaboration and notifications.', color: '#6264A7', icon: 'teams' },
-    { name: 'Power BI', desc: 'Powerful data visualization and analytics.', color: '#F2C811', icon: 'powerbi' },
+    { name: 'Application Platform', desc: 'Custom application development accessible on all devices.', color: '#742774', icon: 'powerapps' },
+    { name: 'Cloud Infrastructure', desc: 'Application backend services: APIs, databases, and cloud services that deliver performance and scalability.', color: '#0078D4', icon: 'azure' },
+    { name: 'Workflow Automation Platform', desc: 'Intelligent process automation and cross-application integrations.', color: '#0066FF', icon: 'automate' },
+    { name: 'Enterprise Data Platform', desc: 'Used when it best aligns with your data architecture needs.', color: '#00A651', icon: 'dataverse' },
+    { name: 'Collaboration Platform', desc: 'Real-time collaboration and notifications.', color: '#6264A7', icon: 'teams' },
+    { name: 'Analytics Platform', desc: 'Powerful data visualization and analytics.', color: '#F2C811', icon: 'powerbi' },
 ];
 
 const PROFESSIONALS = [
@@ -519,43 +519,43 @@ function AgentChatIllustration({ variant }: { variant: 'inventory' | 'chart' | '
 
 function PowerAppsIcon({ size = 40 }: { size?: number }) {
     return (
-        <img src="/logos/tools25.svg" width={size} height={size} alt="Power Apps" className="object-contain" />
+        <img src="/logos/tools25.svg" width={size} height={size} alt="Application Platform" className="object-contain" />
     );
 }
 
 function AzureIcon({ size = 40 }: { size?: number }) {
     return (
-        <img src="/logos/tools29.svg" width={size} height={size} alt="Azure" className="object-contain" />
+        <img src="/logos/tools29.svg" width={size} height={size} alt="Cloud Platform" className="object-contain" />
     );
 }
 
 function PowerAutomateIcon({ size = 40 }: { size?: number }) {
     return (
-        <img src="/logos/tools20.svg" width={size} height={size} alt="Power Automate" className="object-contain" />
+        <img src="/logos/tools20.svg" width={size} height={size} alt="Workflow Engine" className="object-contain" />
     );
 }
 
 function TeamsIcon({ size = 40 }: { size?: number }) {
     return (
-        <img src="/logos/tools26.svg" width={size} height={size} alt="Teams" className="object-contain" />
+        <img src="/logos/tools26.svg" width={size} height={size} alt="Collaboration Platform" className="object-contain" />
     );
 }
 
 function SharePointIcon({ size = 40 }: { size?: number }) {
     return (
-        <img src="/logos/tools27.svg" width={size} height={size} alt="SharePoint" className="object-contain" />
+        <img src="/logos/tools27.svg" width={size} height={size} alt="Document Platform" className="object-contain" />
     );
 }
 
 function PowerBIIcon({ size = 40 }: { size?: number }) {
     return (
-        <img src="/logos/image7.svg" width={size} height={size} alt="Power BI" className="object-contain" />
+        <img src="/logos/image7.svg" width={size} height={size} alt="Analytics Platform" className="object-contain" />
     );
 }
 
 function DataverseIcon({ size = 40 }: { size?: number }) {
     return (
-        <img src="/logos/tools28.svg" width={size} height={size} alt="Dataverse" className="object-contain" />
+        <img src="/logos/tools28.svg" width={size} height={size} alt="Enterprise Data Platform" className="object-contain" />
     );
 }
 
@@ -812,9 +812,9 @@ function AzureIllustration() {
 
     const services = [
         { label: 'App Service', sublabel: 'Web API', color: '#0078D4', load: 78 },
-        { label: 'Azure SQL', sublabel: 'Database', color: '#00A651', load: 62 },
+        { label: 'Cloud Database', sublabel: 'Database', color: '#00A651', load: 62 },
         { label: 'Blob Storage', sublabel: 'Files & Media', color: '#F2C811', load: 45 },
-        { label: 'Azure Functions', sublabel: 'Serverless', color: '#742774', load: 88 },
+        { label: 'Serverless Functions', sublabel: 'Serverless', color: '#742774', load: 88 },
     ];
 
     return (
@@ -829,7 +829,7 @@ function AzureIllustration() {
                     <AzureIcon size={28} />
                 </div>
                 <div>
-                    <div className="text-xs font-bold text-gray-800">Microsoft Azure</div>
+                    <div className="text-xs font-bold text-gray-800">Cloud Platform</div>
                     <div className="text-[10px] text-gray-400">Enterprise Cloud Infrastructure</div>
                 </div>
                 <motion.div
@@ -920,7 +920,7 @@ function AutomationIllustration() {
     }, [inView]);
 
     const flowSteps = [
-        { label: 'Flow Power Automate', sub: 'When a new email with an order arrives.', icon: <PowerAutomateIcon size={44} />, isHeader: true },
+        { label: 'Automation Flow', sub: 'When a new email with an order arrives.', icon: <PowerAutomateIcon size={44} />, isHeader: true },
         { label: 'Email processing', sub: 'Parse order details from inbox', icon: null },
         { label: 'Recording in the ERP', sub: 'Create record in business system', icon: null },
     ];
@@ -1023,10 +1023,10 @@ function IntegrationsIllustration() {
     }, [inView]);
 
     const spokes = [
-        { label: 'Power BI', Icon: PowerBIIcon, angle: -130, dist: 120 },
-        { label: 'Teams', Icon: TeamsIcon, angle: -50, dist: 120 },
-        { label: 'SharePoint', Icon: SharePointIcon, angle: 130, dist: 120 },
-        { label: 'Dataverse', Icon: DataverseIcon, angle: 50, dist: 120 },
+        { label: 'Analytics', Icon: PowerBIIcon, angle: -130, dist: 120 },
+        { label: 'Collaboration', Icon: TeamsIcon, angle: -50, dist: 120 },
+        { label: 'Document Platform', Icon: SharePointIcon, angle: 130, dist: 120 },
+        { label: 'Data Platform', Icon: DataverseIcon, angle: 50, dist: 120 },
     ];
 
     return (
@@ -1122,10 +1122,10 @@ function SecurityIllustration() {
     }, [inView]);
 
     const tools = [
-        { label: 'Power Apps', Icon: PowerAppsIcon, color: '#742774' },
-        { label: 'Fivetran', Icon: () => <img src="/logos/tools18.svg" width={28} height={28} alt="Fivetran" className="object-contain" />, color: '#F03E1B' },
-        { label: 'Azure', Icon: AzureIcon, color: '#0078D4' },
-        { label: 'Power BI', Icon: PowerBIIcon, color: '#F2C811' },
+        { label: 'Application Platform', Icon: PowerAppsIcon, color: '#742774' },
+        { label: 'Data Integration', Icon: () => <img src="/logos/tools18.svg" width={28} height={28} alt="Data Integration" className="object-contain" />, color: '#F03E1B' },
+        { label: 'Cloud Platform', Icon: AzureIcon, color: '#0078D4' },
+        { label: 'Analytics', Icon: PowerBIIcon, color: '#F2C811' },
     ];
 
     return (
@@ -1314,12 +1314,12 @@ function ServiceIllustration({ variant }: { variant: string }) {
 
 function TechIcon({ icon, color }: { icon: string; color: string }) {
     const iconMap: Record<string, React.ReactNode> = {
-        powerapps: <img src="/logos/tools25.svg" width={24} height={24} alt="Power Apps" className="object-contain" />,
-        azure: <img src="/logos/tools29.svg" width={24} height={24} alt="Azure" className="object-contain" />,
-        automate: <img src="/logos/tools20.svg" width={24} height={24} alt="Power Automate" className="object-contain" />,
-        dataverse: <img src="/logos/tools28.svg" width={24} height={24} alt="Dataverse" className="object-contain" />,
-        teams: <img src="/logos/tools26.svg" width={24} height={24} alt="Teams" className="object-contain" />,
-        powerbi: <img src="/logos/image7.svg" width={24} height={24} alt="Power BI" className="object-contain" />,
+        powerapps: <img src="/logos/tools25.svg" width={24} height={24} alt="Application Platform" className="object-contain" />,
+        azure: <img src="/logos/tools29.svg" width={24} height={24} alt="Cloud Platform" className="object-contain" />,
+        automate: <img src="/logos/tools20.svg" width={24} height={24} alt="Workflow Engine" className="object-contain" />,
+        dataverse: <img src="/logos/tools28.svg" width={24} height={24} alt="Enterprise Data Platform" className="object-contain" />,
+        teams: <img src="/logos/tools26.svg" width={24} height={24} alt="Collaboration Platform" className="object-contain" />,
+        powerbi: <img src="/logos/image7.svg" width={24} height={24} alt="Analytics Platform" className="object-contain" />,
     };
     return <>{iconMap[icon] || null}</>;
 }
@@ -1448,7 +1448,7 @@ export default function ApplicationsAndAutomationsPage() {
                                 You need to move fast. Manual tasks and outdated processes are no longer an option.
                             </h3>
                             <p className="text-gray-400 text-lg leading-relaxed">
-                                Our experts blend deep technical knowledge with user-focused design to build Power Apps and Power Automate solutions that fit perfectly into your Microsoft 365 ecosystem, supported by a powerful Azure backend.
+                                Our experts blend deep technical knowledge with user-focused design to build custom application and automation solutions that integrate seamlessly into your digital ecosystem, supported by a secure and scalable cloud backend.
                             </p>
                         </div>
                     </div>
@@ -1558,7 +1558,7 @@ export default function ApplicationsAndAutomationsPage() {
                 <div className="w-full px-8 md:px-24 lg:px-32 py-24">
                     <h2 className="text-[2.5rem] md:text-[3.5rem] font-bold text-white text-center mb-4 tracking-tighter">Technologies</h2>
                     <p className="text-gray-400 text-center text-lg mb-16 max-w-[700px] mx-auto">
-                        We build on the strength of Microsoft and Azure to deliver high-performance, secure, and future-ready solutions:
+                        We build on the strength of modern cloud and application platforms to deliver high-performance, secure, and future-ready solutions:
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1583,7 +1583,7 @@ export default function ApplicationsAndAutomationsPage() {
                 <div className="w-full px-8 md:px-24 lg:px-32 py-28">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
-                           <span className="text-brand-primary font-semibold text-sm tracking-wider">
+                            <span className="text-brand-primary font-semibold text-sm tracking-wider">
                                 Let&apos;s create value
                             </span>
                         </div>

@@ -8,13 +8,13 @@ import { AnalyticsDashboardDemo } from '@/components/animations/analytics-dashbo
 
 const CAPABILITIES = [
   { num: '01', text: 'Platform best practice recommendations' },
-  { num: '02', text: 'Power BI licensing guidance' },
+  { num: '02', text: 'Analytics platform licensing guidance' },
   { num: '03', text: 'Report sharing strategy implementation' },
   { num: '04', text: 'Governance processes and certification of reports and datasets' },
-  { num: '05', text: 'Power BI report optimization and support' },
+  { num: '05', text: 'Dashboard optimization and support' },
   { num: '06', text: 'Organizational development process implementation' },
-  { num: '07', text: 'Experts in DAX and Power Query (M), the core languages powering Power BI' },
-  { num: '08', text: 'Power BI Desktop and Service training' },
+  { num: '07', text: 'Experts in advanced data modeling and transformation techniques' },
+  { num: '08', text: 'Analytics platform training and enablement' },
   { num: '09', text: 'Designing and developing tailored data visuals' },
 ];
 
@@ -40,22 +40,22 @@ const FAQS = [
   {
     num: '01',
     question: 'What data visualization tools do you use?',
-    answer: '95% of the projects we carry out are developed using Microsoft Power BI. However, we also have strong expertise in the development of personalized mapping using libraries available in several programming languages (Python, R). In addition, our experts are very familiar with all the other tools on the market such as Tableau, QlikView, Grafana, SAP BusinessObjects, Cognos, Google Data Studio and Looker.',
+    answer: '95% of the projects we carry out are developed using modern analytics platforms. However, we also have strong expertise in the development of personalized mapping using libraries available in several programming languages (Python, R). In addition, our experts are very familiar with all the other tools on the market such as Tableau, QlikView, Grafana, SAP BusinessObjects, Cognos, Google Data Studio and Looker.',
   },
   {
     num: '02',
-    question: 'Are your experts certified in Microsoft Power BI?',
-    answer: 'Yes, our team holds multiple Microsoft certifications including PL-300 (Power BI Data Analyst), DP-600 (Fabric Analytics Engineer), and DP-500 (Azure Enterprise Data Analyst). We maintain our certifications through continuous professional development.',
+    question: 'Are your experts certified in leading analytics platforms?',
+    answer: 'Yes, our team holds multiple industry certifications including analytics engineering and enterprise data analysis. We maintain our certifications through continuous professional development.',
   },
   {
     num: '03',
-    question: 'Are you able to develop custom visuals in Power BI?',
-    answer: 'Absolutely. We have extensive experience developing custom Power BI visuals using TypeScript and the Power BI Visuals SDK. This allows us to create highly tailored visualizations that go beyond the standard library to meet unique business requirements.',
+    question: 'Are you able to develop custom visuals for analytics platforms?',
+    answer: 'Absolutely. We have extensive experience developing custom visuals using modern SDKs. This allows us to create highly tailored visualizations that go beyond the standard library to meet unique business requirements.',
   },
   {
     num: '04',
-    question: 'Did you invent the Power BI Design System concept?',
-    answer: 'We pioneered the Power BI Design System methodology, establishing a comprehensive framework for creating consistent, governed, and user-friendly analytical reports across organizations. This approach has been adopted by numerous enterprises to standardize their BI reporting.',
+    question: 'Did you develop your own Analytics Design System concept?',
+    answer: 'We pioneered the Analytics Design System methodology, establishing a comprehensive framework for creating consistent, governed, and user-friendly analytical reports across organizations. This approach has been adopted by numerous enterprises to standardize their reporting.',
   },
 ];
 
@@ -63,7 +63,7 @@ const SHOWCASE_ITEMS = [
   {
     title: 'Weekly Dashboard | Detailed Summary',
     subtitle: 'Quality & Health and Safety',
-    description: 'Comprehensive weekly reporting with KPIs covering quality metrics, delivery performance, and operational costs — all in one unified view.',
+    description: 'Comprehensive weekly reporting with KPIs covering quality metrics, delivery performance, and operational costs - all in one unified view.',
     metrics: [
       { label: 'Services', sublabel: 'External non-quality', value: '0.9%', highlight: true },
       { label: 'Recovery', sublabel: 'External non-quality', value: '3.0%', highlight: false },
@@ -82,9 +82,9 @@ const SHOWCASE_ITEMS = [
     ],
   },
   {
-    title: 'Implementation of a Power BI Design System',
+    title: 'Implementation of an Analytics Design System',
     subtitle: 'Tourist activities in Quebec',
-    description: 'We develop Power BI Design Systems to establish a consistent standard for analytical reporting across your organization. A Power BI Design System provides governance over internally developed content, enhancing the overall user experience.',
+    description: 'We develop Analytics Design Systems to establish consistent standards for reporting across your organization. An Analytics Design System provides governance over internally developed content, enhancing the overall user experience.',
     metrics: [
       { label: 'Visits', sublabel: '', value: '4 076 346', highlight: false },
       { label: 'Excursionists', sublabel: '', value: '4 076 346', highlight: false },
@@ -121,12 +121,12 @@ const WHY_ITEMS = [
   {
     id: 'truth',
     title: 'We design interfaces that reveal the truth behind your data',
-    description: 'Through the integration of robust data storytelling within the interfaces we design, we ensure your dashboards and reports highlight the patterns, trends, and anomalies that matter most — turning complex datasets into clear, actionable narratives.',
+    description: 'Through the integration of robust data storytelling within the interfaces we design, we ensure your dashboards and reports highlight the patterns, trends, and anomalies that matter most - turning complex datasets into clear, actionable narratives.',
   },
   {
     id: 'tools',
     title: 'We push the visualization tools we use beyond their standard capabilities',
-    description: 'Our team continuously explores and extends the boundaries of tools like Power BI, creating custom visuals, advanced DAX calculations, and innovative report layouts that go far beyond out-of-the-box functionality.',
+    description: 'Our team continuously explores and extends the boundaries of modern analytics platforms, creating custom visuals, advanced calculations, and innovative report layouts that go far beyond out-of-the-box functionality.',
   },
   {
     id: 'involvement',
@@ -356,14 +356,14 @@ function WhyIllustration({ id }: { id: string }) {
                 <span key={h} className="text-[9px] font-semibold text-gray-400 uppercase tracking-wide">{h}</span>
               ))}
             </div>
-            {/* Mobile column headers — up to Status only */}
+            {/* Mobile column headers - up to Status only */}
             <div className="grid md:hidden px-4 py-2 border-b border-gray-100" style={{ gridTemplateColumns: '1fr 46px 46px 64px' }}>
               {['Product', 'Stock', 'ROP', 'Status'].map((h) => (
                 <span key={h} className="text-[9px] font-semibold text-gray-400 uppercase tracking-wide">{h}</span>
               ))}
             </div>
 
-            {/* Rows — Desktop (full) */}
+            {/* Rows - Desktop (full) */}
             <div className="hidden md:block flex-1 divide-y divide-gray-50">
               {rows.map((row, i) => (
                 <div
@@ -401,7 +401,7 @@ function WhyIllustration({ id }: { id: string }) {
                 </div>
               ))}
             </div>
-            {/* Rows — Mobile (simplified: Product, Stock, ROP, Status) */}
+            {/* Rows - Mobile (simplified: Product, Stock, ROP, Status) */}
             <div className="md:hidden flex-1 divide-y divide-gray-50">
               {rows.map((row, i) => (
                 <div
@@ -443,7 +443,7 @@ function WhyIllustration({ id }: { id: string }) {
         { name: 'Mathieu Leblanc', amount: '$650.35', cat: 'Formation', date: '2024/05/10', desc: 'Formation', status: 'Approved', statusColor: 'text-blue-700 bg-blue-100' },
         { name: 'Michaël Sauget', amount: '$500.38', cat: 'Accommodation', date: '2024/05/10', desc: 'Hotel Québec', status: 'Approved', statusColor: 'text-blue-700 bg-blue-100' },
         { name: 'Catalina Moreno', amount: '$121.16', cat: 'Travel', date: '2024/05/10', desc: 'Travel MH', status: 'In treatment', statusColor: 'text-amber-700 bg-amber-100' },
-        { name: 'Catalina Moreno', amount: '$100.00', cat: 'Formation', date: '2024/05/10', desc: 'Power BI', status: 'N/A', statusColor: 'text-gray-500 bg-gray-100' },
+        { name: 'Catalina Moreno', amount: '$100.00', cat: 'Formation', date: '2024/05/10', desc: 'Analytics Tool', status: 'N/A', statusColor: 'text-gray-500 bg-gray-100' },
       ];
       const monthBars = [18, 14, 22, 28, 36, 42, 38, 44, 52, 60, 68, 72];
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -662,9 +662,9 @@ function WhyIllustration({ id }: { id: string }) {
                         ))}
                         {/* Area fill */}
                         <path d={areaPath} fill="url(#engGrad)" clipPath="url(#engClip)" />
-                        {/* Main line — thin + smooth */}
+                        {/* Main line - thin + smooth */}
                         <path d={linePath} fill="none" stroke="#f97316" strokeWidth="1" strokeLinejoin="round" strokeLinecap="round" clipPath="url(#engClip)" />
-                        {/* Highlight segment — slightly thicker */}
+                        {/* Highlight segment - slightly thicker */}
                         <path d={highlightPath} fill="none" stroke="#f97316" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" clipPath="url(#engClip)" />
                         {/* Data point dots */}
                         {chartPoints.map(([x, y], i) => (
@@ -890,7 +890,7 @@ export default function DataVisualizationPage() {
             </div>
 
 
-            {/* Right — Hero Dashboard Mockup */}
+            {/* Right - Hero Dashboard Mockup */}
             <div className="bg-white rounded-2xl lg:rounded-l-2xl lg:rounded-r-none overflow-hidden border border-white/10 lg:border-y lg:border-l aspect-[1/2] lg:aspect-auto lg:h-[700px] shadow-2xl relative">
               <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu">
                 <AnalyticsDashboardDemo />
@@ -1018,7 +1018,7 @@ export default function DataVisualizationPage() {
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-            {/* Left — Sticky Nav */}
+            {/* Left - Sticky Nav */}
             <div className="hidden lg:block">
               <nav className="sticky top-28 space-y-0">
                 {WHY_ITEMS.map((s, idx) => (
@@ -1043,7 +1043,7 @@ export default function DataVisualizationPage() {
               </nav>
             </div>
 
-            {/* Right — Scrolling Content */}
+            {/* Right - Scrolling Content */}
             <div className="space-y-0">
               {WHY_ITEMS.map((s, idx) => (
                 <div
@@ -1086,7 +1086,7 @@ export default function DataVisualizationPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            {/* Card 1 — Emerald green, KPI mockup */}
+            {/* Card 1 - Emerald green, KPI mockup */}
             <div className="rounded-2xl overflow-hidden min-h-[440px] flex flex-col relative" style={{ backgroundColor: '#10B981' }}>
               {/* Subtle texture overlay */}
               <div className="absolute inset-0 opacity-10"
@@ -1140,7 +1140,7 @@ export default function DataVisualizationPage() {
               </div>
             </div>
 
-            {/* Card 2 — Dark teal */}
+            {/* Card 2 - Dark teal */}
             <div className="rounded-2xl overflow-hidden min-h-[440px] flex flex-col relative" style={{ backgroundColor: '#1a3a3a' }}>
               {/* Gradient glow top-right */}
               <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20"
@@ -1215,7 +1215,7 @@ export default function DataVisualizationPage() {
               </div>
             </div>
 
-            {/* Card 3 — Warm beige */}
+            {/* Card 3 - Warm beige */}
             <div className="rounded-2xl overflow-hidden min-h-[440px] flex flex-col relative" style={{ backgroundColor: '#f5f0e8' }}>
 
               {/* Top: stacked floating cards */}
