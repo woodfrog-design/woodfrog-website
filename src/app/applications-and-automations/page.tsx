@@ -1583,7 +1583,7 @@ export default function ApplicationsAndAutomationsPage() {
                 <div className="w-full px-8 md:px-24 lg:px-32 py-28">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
-                            <span className="text-brand-primary font-semibold text-sm tracking-wider">
+                           <span className="text-brand-primary font-semibold text-sm tracking-wider">
                                 Let&apos;s create value
                             </span>
                         </div>

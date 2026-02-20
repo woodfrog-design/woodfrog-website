@@ -18,11 +18,11 @@ const FooterSection = () => {
             { name: "Helpdesk", href: "/helpdesk" },
         ],
         products: [
-            { name: "Glimvia", href: "/product/glimvia" },
-            { name: "Antvia", href: "/product/antvia" },
-            { name: "LetMeKnow", href: "/product/letmeknow" },
-            { name: "Pre-Deployment AI Assurance", href: "/product/pre-deployment-ai-assurance" },
-            { name: "Post-Deployment AI Governance", href: "/product/post-deployment-ai-governance" },
+            { name: "Glimvia", href: "/products/glimvia" },
+            { name: "Antvia", href: "/products/antvia" },
+            { name: "LetMeKnow", href: "/products/letmeknow" },
+            { name: "Pre-Deployment AI Assurance", href: "/products/pre-deployment-ai-assurance" },
+            { name: "Post-Deployment AI Governance", href: "/products/post-deployment-ai-governance" },
         ],
         woodfrog: [
             { name: "About", href: "/about" },

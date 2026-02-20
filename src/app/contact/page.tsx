@@ -6,8 +6,8 @@ import { Check, Mail, Linkedin, MapPin, Loader2 } from 'lucide-react';
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
-        lastName: '',
         firstName: '',
+        lastName: '',
         email: '',
         phone: '',
         organization: '',
@@ -41,8 +41,8 @@ const ContactPage = () => {
 
             setStatus('success');
             setFormData({
-                lastName: '',
                 firstName: '',
+                lastName: '',
                 email: '',
                 phone: '',
                 organization: '',
@@ -95,42 +95,61 @@ const ContactPage = () => {
                             </motion.h1>
                         </div>
 
-                        <div className="flex flex-wrap gap-10 text-zinc-400">
-                            <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                                    <MapPin className="w-5 h-5 text-white" />
-                                </div>
-                                <div>
-                                    <p className="text-white font-semibold">Pune, India</p>
-                                    <p className="text-xs uppercase tracking-wider">Office</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-4">
+                        <div className="space-y-8">
                             {[
+                                { icon: MapPin, label: 'Pune, India', subLabel: 'Office' },
                                 { icon: Mail, label: 'hello@woodfrog.tech', href: 'mailto:hello@woodfrog.tech' },
                                 { icon: Linkedin, label: 'Linkedin', href: 'https://www.linkedin.com/company/woodfrogtech/' },
-                            ].map((item, idx) => (
-                                <motion.a
-                                    key={idx}
-                                    href={item.href}
-                                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.2 + (idx * 0.1) }}
-                                    className="flex items-center space-x-4 text-xl font-medium hover:text-[#4DA3FF] transition-colors group"
-                                >
-                                    <item.icon className="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity" />
-                                    <span className="border-b border-white/10 group-hover:border-[#4DA3FF] transition-colors">{item.label}</span>
-                                </motion.a>
-                            ))}
+                            ].map((item, idx) => {
+                                const Content = (
+                                    <div className="flex items-center space-x-4 group">
+                                        <item.icon className="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity shrink-0" />
+                                        <div className="flex flex-col">
+                                            <span className={`text-xl font-medium ${item.href ? 'border-b border-white/10 group-hover:border-[#4DA3FF]' : ''} transition-colors`}>
+                                                {item.label}
+                                            </span>
+                                            {item.subLabel && (
+                                                <span className="text-xs uppercase tracking-wider opacity-50">
+                                                    {item.subLabel}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+
+                                if (item.href) {
+                                    return (
+                                        <motion.a
+                                            key={idx}
+                                            href={item.href}
+                                            target={item.href.startsWith('http') ? '_blank' : undefined}
+                                            rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.2 + (idx * 0.1) }}
+                                            className="block hover:text-[#4DA3FF] transition-colors"
+                                        >
+                                            {Content}
+                                        </motion.a>
+                                    );
+                                }
+
+                                return (
+                                    <motion.div
+                                        key={idx}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.2 + (idx * 0.1) }}
+                                    >
+                                        {Content}
+                                    </motion.div>
+                                );
+                            })}
                         </div>
 
                         <div className="space-y-6 pt-6">
                             {[
-                                'Partnering with over 80 growing companies',
+                                'Partnering with over 20 growing companies',
                                 'A team of 20+ data experts',
                                 'Business Intelligence & Artificial Intelligence',
                             ].map((text, idx) => (
@@ -171,12 +190,32 @@ const ContactPage = () => {
 
                             <form className="space-y-10" onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
-                                    <InputField label="Last name*" value={formData.lastName} onChange={(v) => handleChange('lastName', v)} />
                                     <InputField label="First name*" value={formData.firstName} onChange={(v) => handleChange('firstName', v)} />
+                                    <InputField label="Last name*" value={formData.lastName} onChange={(v) => handleChange('lastName', v)} />
                                     <InputField label="Email" value={formData.email} onChange={(v) => handleChange('email', v)} />
                                     <InputField label="Phone" value={formData.phone} onChange={(v) => handleChange('phone', v)} />
-                                    <InputField label="Organization" value={formData.organization} onChange={(v) => handleChange('organization', v)} />
-                                    <InputField label="I'm looking for*" value={formData.lookingFor} onChange={(v) => handleChange('lookingFor', v)} />
+                                    <InputField
+                                        label="Organization"
+                                        value={formData.organization}
+                                        onChange={(v) => handleChange('organization', v)}
+                                        className="col-span-1 md:col-span-2"
+                                    />
+                                    <MultiSelectField
+                                        label="I'm looking for*"
+                                        value={formData.lookingFor ? formData.lookingFor.split(', ') : []}
+                                        options={[
+                                            'AI & ML Strategy Development',
+                                            'Product Development',
+                                            'Enterprise Data Management',
+                                            'Advanced Analytics',
+                                            'Custom LLM Solutions',
+                                            'Automation & Scaling',
+                                            'Intelligent Agents',
+                                            'Benchmarking and Evaluation',
+                                            'None of the above / Other'
+                                        ]}
+                                        onChange={(v) => handleChange('lookingFor', v.join(', '))}
+                                    />
                                 </div>
                                 <InputField label="Message" isTextArea value={formData.message} onChange={(v) => handleChange('message', v)} />
 
@@ -247,14 +286,16 @@ const InputField = ({
     isTextArea = false,
     value,
     onChange,
+    className = "col-span-1",
 }: {
     label: string;
     isTextArea?: boolean;
     value: string;
     onChange: (v: string) => void;
+    className?: string;
 }) => {
     return (
-        <div className="relative space-y-2 group">
+        <div className={`relative space-y-2 group ${className}`}>
             {isTextArea ? (
                 <textarea
                     className="w-full bg-transparent border-b border-white/10 py-2 focus:border-[#4DA3FF] outline-none transition-colors peer min-h-[100px] resize-none"
@@ -276,6 +317,134 @@ const InputField = ({
                 peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-zinc-500 peer-[:not(:placeholder-shown)]:text-xs">
                 {label}
             </label>
+        </div>
+    );
+};
+
+const MultiSelectField = ({
+    label,
+    value,
+    options,
+    onChange,
+}: {
+    label: string;
+    value: string[];
+    options: string[];
+    onChange: (v: string[]) => void;
+}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const colors: { [key: string]: string } = {
+        'AI & ML Strategy Development': 'bg-[#E6F6F4] text-[#006D5B] border-[#006D5B]/10',
+        'Product Development': 'bg-[#EBF5FF] text-[#0055D4] border-[#0055D4]/10',
+        'Enterprise Data Management': 'bg-[#F3EFFB] text-[#5B21B6] border-[#5B21B6]/10',
+        'Advanced Analytics': 'bg-[#FFF1F2] text-[#BE123C] border-[#BE123C]/10',
+        'Custom LLM Solutions': 'bg-[#FFF2EB] text-[#C2410C] border-[#C2410C]/10',
+        'Automation & Scaling': 'bg-[#FFFBEB] text-[#B45309] border-[#B45309]/10',
+        'Intelligent Agents': 'bg-[#F0FDF4] text-[#15803D] border-[#15803D]/10',
+        'Benchmarking and Evaluation': 'bg-[#F1F5F9] text-[#334155] border-[#334155]/10',
+        'None of the above / Other': 'bg-[#F0FDFA] text-[#0F766E] border-[#0F766E]/10',
+    };
+
+    const toggleOption = (option: string) => {
+        const newValue = value.includes(option)
+            ? value.filter((v) => v !== option)
+            : [...value, option];
+        onChange(newValue);
+    };
+
+    React.useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        const handleEscKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape' || event.code === 'Escape') {
+                setIsOpen(false);
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('keydown', handleEscKey);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleEscKey);
+        };
+    }, [isOpen]);
+
+    return (
+        <div className="relative space-y-4 group col-span-1 md:col-span-2" ref={containerRef}>
+            <div
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full bg-transparent border-b border-white/10 py-2 focus:border-[#4DA3FF] outline-none transition-colors cursor-pointer min-h-[50px]"
+            >
+                <div className="flex flex-wrap gap-2 pr-8">
+                    {value.length > 0 &&
+                        value.map((item) => (
+                            <motion.span
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                key={item}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleOption(item);
+                                }}
+                                className={`px-3 py-1.5 rounded-full text-sm font-semibold border flex items-center gap-2 group/tag transition-all hover:brightness-95 ${colors[item] || 'bg-white/5 text-white/70'}`}
+                            >
+                                {item}
+                                <span className="text-lg leading-none opacity-60 group-hover/tag:opacity-100">×</span>
+                            </motion.span>
+                        ))
+                    }
+                </div>
+                <div className="absolute right-0 top-1/2 -translate-y-1/2">
+                    <svg
+                        className={`w-4 h-4 text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+            </div>
+
+            <label className={`absolute left-0 text-base font-medium transition-all duration-300 pointer-events-none uppercase tracking-wider
+                ${(isOpen || value.length > 0) ? '-top-6 text-xs' : 'top-2 text-zinc-500'} 
+                ${isOpen ? 'text-brand-primary' : (value.length > 0 ? 'text-zinc-500' : 'text-zinc-500')}`}>
+                {label}
+            </label>
+
+            {isOpen && (
+                <div className="absolute z-50 w-full mt-1 bg-[#1A1D1F] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                    <div className="max-h-[300px] overflow-y-auto custom-scrollbar p-2 grid grid-cols-1 sm:grid-cols-2 gap-1">
+                        {options.map((option) => (
+                            <div
+                                key={option}
+                                className={`px-4 py-3 text-sm cursor-pointer transition-all rounded-xl flex items-center justify-between border border-transparent
+                                    ${value.includes(option)
+                                        ? 'bg-[#4DA3FF]/10 text-[#4DA3FF] border-[#4DA3FF]/20 font-semibold'
+                                        : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}
+                                onClick={() => toggleOption(option)}
+                            >
+                                <span>{option}</span>
+                                {value.includes(option) ? (
+                                    <div className="w-5 h-5 rounded-full bg-[#4DA3FF] flex items-center justify-center">
+                                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                            <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+                                ) : (
+                                    <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-zinc-600">+</div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

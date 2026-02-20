@@ -1579,7 +1579,7 @@ export default function AIGovernancePage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
                             <span className="text-brand-primary font-semibold text-sm tracking-wider">
-                                Let&apos;s build trust
+                                Let&apos;s create value
                             </span>
                         </div>
                         <div className="space-y-6">

@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Woodfrog Website",
   description: "A premium web experience.",
+  icons: {
+    icon: "/logos/woodfrog-logo.svg",
+  },
 };
 
 export default function RootLayout({
