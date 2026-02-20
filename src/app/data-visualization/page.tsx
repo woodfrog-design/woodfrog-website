@@ -873,13 +873,7 @@ export default function DataVisualizationPage() {
                 responsible leaders to make informed decisions.
               </p>
 
-              {/* Power BI badge */}
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 md:w-8 md:h-8 rounded bg-white border border-white/10 flex items-center justify-center p-1.5 shadow-sm">
-                  <img src="/logos/image7.svg" alt="Power BI" className="w-full h-full object-contain" />
-                </div>
-                <span className="text-xs md:text-sm font-medium text-gray-300">Power BI</span>
-              </div>
+
 
               <Link
                 href="/contact"

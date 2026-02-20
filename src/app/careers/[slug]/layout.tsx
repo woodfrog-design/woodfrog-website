@@ -1,4 +1,4 @@
-import { Metadata } from 'next";
+import { Metadata } from 'next';
 import { getJobBySlug } from "@/lib/jobs";
 
 interface Props {

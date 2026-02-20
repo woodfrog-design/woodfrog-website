@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, X } from 'lucide-react';
 
@@ -94,33 +95,35 @@ const FAQSection = () => {
                             </p>
 
                             {/* AI Avatar Support CTA - visible on desktop only in this position */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.5, duration: 0.8 }}
-                                className="hidden lg:flex items-center gap-5 p-4 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm w-fit group cursor-pointer hover:bg-white/[0.06] transition-all duration-300"
-                            >
-                                <div className="relative">
-                                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200&h=200"
-                                            alt="AI Assistant"
-                                            className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500"
-                                        />
+                            <Link href="/contact" className="block w-fit">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5, duration: 0.8 }}
+                                    className="hidden lg:flex items-center gap-5 p-4 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm w-fit group cursor-pointer hover:bg-white/[0.06] transition-all duration-300"
+                                >
+                                    <div className="relative">
+                                        <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                                            <img
+                                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200&h=200"
+                                                alt="AI Assistant"
+                                                className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500"
+                                            />
+                                        </div>
+                                        <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-black rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
                                     </div>
-                                    <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-black rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[#8891A5] text-sm font-medium">More question?</span>
-                                    <span className="text-[#E6EAF0] font-bold group-hover:text-brand-primary transition-colors">Contact us now</span>
-                                </div>
-                                <div className="ml-2 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-primary transition-all duration-300">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white group-hover:text-black transition-colors">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                            </motion.div>
+                                    <div className="flex flex-col">
+                                        <span className="text-[#8891A5] text-sm font-medium">More question?</span>
+                                        <span className="text-[#E6EAF0] font-bold group-hover:text-brand-primary transition-colors">Contact us now</span>
+                                    </div>
+                                    <div className="ml-2 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-primary transition-all duration-300">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white group-hover:text-black transition-colors">
+                                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+                                </motion.div>
+                            </Link>
                         </motion.div>
                     </div>
 
@@ -145,7 +148,7 @@ const FAQSection = () => {
                     </div>
 
                     {/* Mobile-only Contact CTA - appears below questions */}
-                    <div className="lg:hidden order-3 w-full">
+                    <Link href="/contact" className="lg:hidden block w-fit">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +176,7 @@ const FAQSection = () => {
                                 </svg>
                             </div>
                         </motion.div>
-                    </div>
+                    </Link>
 
                 </div>
             </div>
