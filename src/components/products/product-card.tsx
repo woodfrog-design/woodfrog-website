@@ -32,11 +32,10 @@ const ProductCard = ({ product, className, isHero = false }: ProductCardProps) =
                     "relative overflow-hidden rounded-[2.5rem] bg-[#1A1A1A] border border-white/5 aspect-[16/10]"
                 )}>
                     {product.coverImage ? (
-                        <Image
+                        <img
                             src={product.coverImage}
                             alt={product.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                     ) : (
                         <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, MapPin, Briefcase, Clock, Send, CheckCircle, Linkedin, Twitter, Facebook, Globe, Upload, AlertCircle, Loader2 } from 'lucide-react';
 import { Job, getJobBySlug, incrementJobViewCount } from '@/lib/jobs';
 import { cn } from '@/lib/utils';
+import { ShareButtons } from '@/components/ui/share-buttons';
 
 export default function JobDetailPage() {
     const { slug } = useParams();
@@ -320,16 +321,19 @@ export default function JobDetailPage() {
                                         <Globe className="w-4 h-4 text-zinc-600 shrink-0" />
                                         <input
                                             readOnly
-                                            value={`https://woodfrog.com/careers/${job.slug}`}
+                                            value={typeof window !== 'undefined' ? `${window.location.origin}/careers/${job.slug}` : `https://woodfrog.com/careers/${job.slug}`}
                                             className="bg-transparent text-[11px] font-bold text-zinc-400 outline-none w-full"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="flex items-center justify-center gap-6 pt-6 border-t border-white/5 text-zinc-500">
-                                    <Linkedin className="w-6 h-6 hover:text-[#ff6b3d] transition-colors cursor-pointer" />
-                                    <Twitter className="w-6 h-6 hover:text-[#ff6b3d] transition-colors cursor-pointer" />
-                                    <Facebook className="w-6 h-6 hover:text-[#ff6b3d] transition-colors cursor-pointer" />
+                                <div className="flex items-center justify-center pt-6 border-t border-white/5">
+                                    <ShareButtons
+                                        title={`Join Woodfrog as ${job.title}`}
+                                        path={`/careers/${job.slug}`}
+                                        buttonClassName="border-none hover:bg-white/10"
+                                        iconClassName="w-6 h-6"
+                                    />
                                 </div>
                             </div>
                             <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff6b3d]/10 blur-[60px] rounded-full -mr-16 -mt-16 group-hover:bg-[#ff6b3d]/20 transition-all duration-700" />

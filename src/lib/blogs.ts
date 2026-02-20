@@ -29,6 +29,7 @@ export interface Blog {
     author: Author;
     categories: string[];
     isFeatured: boolean;
+    isActive: boolean;
     content: BlogContent[];
     subtitle?: string;
     caseStudy?: string;
@@ -49,6 +50,7 @@ const mapBlogFromDb = (row: any): Blog => ({
     },
     categories: row.categories || [],
     isFeatured: row.is_featured,
+    isActive: row.is_active ?? true,
     content: row.content as BlogContent[],
     subtitle: row.subtitle,
     caseStudy: row.case_study,
@@ -59,6 +61,7 @@ export async function getBlogs(): Promise<Blog[]> {
     const { data, error } = await supabase
         .from('blogs')
         .select('*')
+        .eq('is_active', true)
         .order('date', { ascending: false });
 
     if (error) {
@@ -91,6 +94,7 @@ export async function getFeaturedBlogs(): Promise<Blog[]> {
         .from('blogs')
         .select('*')
         .eq('is_featured', true)
+        .eq('is_active', true)
         .order('date', { ascending: false });
 
     if (error) {
@@ -105,6 +109,7 @@ export async function getRecentBlogs(limit: number = 3): Promise<Blog[]> {
     const { data, error } = await supabase
         .from('blogs')
         .select('*')
+        .eq('is_active', true)
         .order('date', { ascending: false })
         .limit(limit);
 
@@ -122,4 +127,31 @@ export async function incrementBlogViewCount(id: string): Promise<void> {
     if (current) {
         await supabase.from('blogs').update({ view_count: (current.view_count || 0) + 1 }).eq('id', id);
     }
+}
+
+export async function updateBlogStatus(id: string, isActive: boolean): Promise<boolean> {
+    const { error } = await supabase
+        .from('blogs')
+        .update({ is_active: isActive })
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error updating blog status:', error);
+        return false;
+    }
+    return true;
+}
+
+export async function getAllBlogsAdmin(): Promise<Blog[]> {
+    const { data, error } = await supabase
+        .from('blogs')
+        .select('*')
+        .order('date', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching all blogs for admin:', error);
+        return [];
+    }
+
+    return data.map(mapBlogFromDb);
 }

@@ -18,6 +18,7 @@ export async function POST(request: Request) {
             author_avatar: blog.author.avatar,
             categories: blog.categories,
             is_featured: blog.isFeatured,
+            is_active: blog.isActive ?? true,
             content: blog.content,
             subtitle: blog.subtitle,
             case_study: blog.caseStudy
@@ -39,9 +40,38 @@ export async function POST(request: Request) {
     }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
     try {
-        const blogs = await getBlogs();
+        const { searchParams } = new URL(request.url);
+        const isAdmin = searchParams.get('admin') === 'true';
+
+        let blogs;
+        if (isAdmin) {
+            const { data, error } = await supabase
+                .from('blogs')
+                .select('*')
+                .order('date', { ascending: false });
+
+            if (error) throw error;
+            blogs = data.map((row: any) => ({
+                id: row.id,
+                title: row.title,
+                slug: row.slug,
+                excerpt: row.excerpt,
+                coverImage: row.cover_image,
+                date: row.date,
+                author: { name: row.author_name, avatar: row.author_avatar },
+                categories: row.categories || [],
+                isFeatured: row.is_featured,
+                isActive: row.is_active ?? true,
+                content: row.content,
+                subtitle: row.subtitle,
+                caseStudy: row.case_study,
+                viewCount: row.view_count || 0
+            }));
+        } else {
+            blogs = await getBlogs();
+        }
         return NextResponse.json(blogs);
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });

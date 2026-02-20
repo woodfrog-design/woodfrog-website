@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from 'next/link';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -267,12 +268,12 @@ const DemoOne = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.3 }}
                         >
-                            <button className="flex-1 bg-white text-slate-900 font-bold py-3 rounded-full text-sm shadow-xl active:scale-95 transition-transform">
+                            <Link href="/about" className="flex-1 bg-white text-slate-900 font-bold py-3 rounded-full text-sm shadow-xl active:scale-95 transition-transform flex items-center justify-center">
                                 About Us
-                            </button>
-                            <button className="flex-1 bg-transparent border-2 border-white/20 text-white font-bold py-3 rounded-full text-sm shadow-lg active:scale-95 transition-transform">
+                            </Link>
+                            <Link href="/contact" className="flex-1 bg-transparent border-2 border-white/20 text-white font-bold py-3 rounded-full text-sm shadow-lg active:scale-95 transition-transform flex items-center justify-center">
                                 Contact Us
-                            </button>
+                            </Link>
                         </motion.div>
                     </div>
 

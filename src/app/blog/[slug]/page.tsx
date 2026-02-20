@@ -6,6 +6,7 @@ import { Facebook, Linkedin, Twitter, Mail, Link as LinkIcon, ArrowLeft } from '
 import Link from 'next/link';
 import BlogCard from '@/components/blog/blog-card';
 import ViewTracker from '@/components/analytics/view-tracker';
+import { ShareButtons } from '@/components/ui/share-buttons';
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -156,13 +157,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
 
                     <div className="flex items-center gap-4">
                         <span className="text-zinc-500 text-sm font-bold uppercase tracking-widest">Share</span>
-                        <div className="flex items-center gap-3">
-                            {[Facebook, Linkedin, Twitter, Mail, LinkIcon].map((Icon, i) => (
-                                <button key={i} className="p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-white transition-all">
-                                    <Icon className="w-4 h-4" />
-                                </button>
-                            ))}
-                        </div>
+                        <ShareButtons title={blog.title} path={`/blog/${blog.slug}`} />
                     </div>
                 </div>
 

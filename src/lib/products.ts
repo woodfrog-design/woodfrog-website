@@ -1,12 +1,15 @@
 'use server';
 
 export interface ProductContent {
-    type: 'paragraph' | 'heading' | 'list' | 'image';
+    type: 'paragraph' | 'heading' | 'list' | 'image' | 'image-text-left' | 'image-text-right' | 'image-labeling' | 'table' | 'charts' | 'text';
     title?: string;
     content?: string;
     items?: string[];
     src?: string;
     alt?: string;
+    labels?: { x: number; y: number; text: string; color?: string }[];
+    tableData?: { headers: string[]; rows: string[][] };
+    chartData?: { type: 'area' | 'bar' | 'pie' | 'line'; data: any[] };
 }
 
 export interface Product {
@@ -27,7 +30,7 @@ const PRODUCTS_DATA: Product[] = [
         id: 'glimvia',
         title: 'Glimvia',
         slug: 'glimvia',
-        tagline: 'Mobile-first Analytics Alerting',
+        tagline: 'Mobile-First KPI Alerting Built on Superset',
         coverImage: '/images/products/glimvia.png',
         date: '2024-02-17',
         categories: ['Analytics', 'Real-time Alerts'],
@@ -98,7 +101,7 @@ const PRODUCTS_DATA: Product[] = [
         title: 'LetMeKnow',
         slug: 'letmeknow',
         tagline: 'Intelligent Monitoring Platform',
-        coverImage: '/images/products/letmeknow.png',
+        coverImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
         date: '2024-02-17',
         categories: ['Monitoring', 'Notifications'],
         isFeatured: false,
@@ -137,7 +140,7 @@ const PRODUCTS_DATA: Product[] = [
         title: 'Pre-Deployment AI Assurance',
         slug: 'pre-deployment-ai-assurance',
         tagline: 'Evaluate & Benchmark AI',
-        coverImage: '/images/products/ai-governance.png',
+        coverImage: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=2000',
         date: '2024-02-17',
         categories: ['AI Governance', 'Quality Assurance'],
         isFeatured: false,
@@ -170,7 +173,7 @@ const PRODUCTS_DATA: Product[] = [
         title: 'Post-Deployment AI Governance',
         slug: 'post-deployment-ai-governance',
         tagline: 'Control & Policy Enforcement',
-        coverImage: '/images/products/ai-governance.png',
+        coverImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000',
         date: '2024-02-17',
         categories: ['AI Governance', 'Policy Control'],
         isFeatured: false,
@@ -201,14 +204,65 @@ const PRODUCTS_DATA: Product[] = [
     }
 ];
 
+import { supabase } from './supabase';
+
+const mapProductFromDb = (row: any): Product => ({
+    id: row.id,
+    title: row.title,
+    slug: row.slug,
+    tagline: row.tagline,
+    coverImage: row.cover_image,
+    date: row.created_at,
+    categories: row.categories || [],
+    isFeatured: row.is_featured || false,
+    blocks: row.blocks || [],
+    capabilities: row.capabilities || []
+});
+
 export async function getProducts(): Promise<Product[]> {
-    return PRODUCTS_DATA;
+    const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching products:', error);
+        return PRODUCTS_DATA; // Fallback to hardcoded data if table doesn't exist yet
+    }
+
+    return data.map(mapProductFromDb);
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
-    return PRODUCTS_DATA.find(p => p.slug === slug);
+    const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+
+    if (error) {
+        if (error.code !== 'PGRST116') {
+            console.error('Error fetching product by slug:', error);
+        }
+        return PRODUCTS_DATA.find(p => p.slug === slug);
+    }
+
+    return mapProductFromDb(data);
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-    return PRODUCTS_DATA.filter(p => p.isFeatured);
+    const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('is_featured', true)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching featured products:', error);
+        return PRODUCTS_DATA.filter(p => p.isFeatured);
+    }
+
+    return data.map(mapProductFromDb);
+} function getProductsFallback(): Product[] {
+    return PRODUCTS_DATA;
 }

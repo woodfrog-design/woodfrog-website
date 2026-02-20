@@ -19,6 +19,7 @@ export default function BlockEditor({ blog }: { blog?: Blog }) {
     const [coverImage, setCoverImage] = useState(blog?.coverImage || '');
     const [categories, setCategories] = useState<string[]>(blog?.categories || ['Design']);
     const [isFeatured, setIsFeatured] = useState(blog?.isFeatured || false);
+    const [isActive, setIsActive] = useState(blog?.isActive ?? true);
     const [blocks, setBlocks] = useState<Block[]>((blog?.content as Block[]) || [
         { id: '1', type: 'heading', level: 1, content: 'Introduction' },
         { id: '2', type: 'paragraph', content: 'Start writing your amazing story...' }
@@ -35,6 +36,7 @@ export default function BlockEditor({ blog }: { blog?: Blog }) {
             setCoverImage(blog.coverImage);
             setCategories(blog.categories);
             setIsFeatured(blog.isFeatured || false);
+            setIsActive(blog.isActive ?? true);
             setBlocks(blog.content as Block[]);
             setIsDirty(false);
             setLastSaved(new Date(blog.date));
@@ -52,7 +54,7 @@ export default function BlockEditor({ blog }: { blog?: Blog }) {
     // Tracking changes to set dirty state
     React.useEffect(() => {
         setIsDirty(true);
-    }, [blocks, title, excerpt, authorName, authorAvatar, coverImage, categories, isFeatured]);
+    }, [blocks, title, excerpt, authorName, authorAvatar, coverImage, categories, isFeatured, isActive]);
 
     const addBlock = (type: Block['type']) => {
         const newBlock: Block = {
@@ -99,6 +101,7 @@ export default function BlockEditor({ blog }: { blog?: Blog }) {
             },
             categories,
             isFeatured,
+            isActive,
             content: blocks
         };
 
@@ -342,17 +345,32 @@ export default function BlockEditor({ blog }: { blog?: Blog }) {
                         <section className="space-y-3">
                             <label className="text-xs font-bold text-zinc-500">Post Settings</label>
                             <div className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl">
-                                <span className="text-xs font-semibold">Featured Story</span>
+                                <span className="text-xs font-semibold text-zinc-400">Featured Story</span>
                                 <button
                                     onClick={() => setIsFeatured(!isFeatured)}
                                     className={cn(
-                                        "w-12 h-6 rounded-full transition-all relative flex items-center px-1",
+                                        "w-10 h-5 rounded-full transition-all relative flex items-center px-1",
                                         isFeatured ? "bg-[#B59560]" : "bg-zinc-800"
                                     )}
                                 >
                                     <div className={cn(
-                                        "w-4 h-4 bg-white rounded-full transition-all",
-                                        isFeatured ? "translate-x-6" : "translate-x-0"
+                                        "w-3 h-3 bg-white rounded-full transition-all",
+                                        isFeatured ? "translate-x-5" : "translate-x-0"
+                                    )} />
+                                </button>
+                            </div>
+                            <div className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl">
+                                <span className="text-xs font-semibold text-zinc-400">Active / Published</span>
+                                <button
+                                    onClick={() => setIsActive(!isActive)}
+                                    className={cn(
+                                        "w-10 h-5 rounded-full transition-all relative flex items-center px-1",
+                                        isActive ? "bg-green-600" : "bg-zinc-800"
+                                    )}
+                                >
+                                    <div className={cn(
+                                        "w-3 h-3 bg-white rounded-full transition-all",
+                                        isActive ? "translate-x-5" : "translate-x-0"
                                     )} />
                                 </button>
                             </div>

@@ -1,0 +1,88 @@
+'use client';
+
+import React, { useState } from 'react';
+import { Facebook, Linkedin, Twitter, Mail, Link as LinkIcon, Check } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+interface ShareButtonsProps {
+    title: string;
+    path: string;
+    className?: string;
+    buttonClassName?: string;
+    iconClassName?: string;
+}
+
+export const ShareButtons = ({ title, path, className, buttonClassName, iconClassName }: ShareButtonsProps) => {
+    const [copied, setCopied] = useState(false);
+
+    const getFullUrl = () => {
+        if (typeof window === 'undefined') return '';
+        const origin = window.location.origin;
+        return `${origin}${path}`;
+    };
+
+    const shareLinks = {
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getFullUrl())}`,
+        twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(getFullUrl())}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getFullUrl())}`,
+        email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(getFullUrl())}`
+    };
+
+    const handleCopyLink = async () => {
+        try {
+            await navigator.clipboard.writeText(getFullUrl());
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy link:', err);
+        }
+    };
+
+    const handleShare = (platform: keyof typeof shareLinks) => {
+        window.open(shareLinks[platform], '_blank', 'noopener,noreferrer');
+    };
+
+    return (
+        <div className={cn("flex items-center gap-3", className)}>
+            <button
+                onClick={() => handleShare('facebook')}
+                className={cn("p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-white transition-all", buttonClassName)}
+                title="Share on Facebook"
+            >
+                <Facebook className={cn("w-4 h-4", iconClassName)} />
+            </button>
+            <button
+                onClick={() => handleShare('linkedin')}
+                className={cn("p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-white transition-all", buttonClassName)}
+                title="Share on LinkedIn"
+            >
+                <Linkedin className={cn("w-4 h-4", iconClassName)} />
+            </button>
+            <button
+                onClick={() => handleShare('twitter')}
+                className={cn("p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-white transition-all", buttonClassName)}
+                title="Share on Twitter"
+            >
+                <Twitter className={cn("w-4 h-4", iconClassName)} />
+            </button>
+            <button
+                onClick={() => handleShare('email')}
+                className={cn("p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-white transition-all", buttonClassName)}
+                title="Share via Email"
+            >
+                <Mail className={cn("w-4 h-4", iconClassName)} />
+            </button>
+            <button
+                onClick={handleCopyLink}
+                className={cn("p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-white transition-all relative", buttonClassName)}
+                title="Copy Link"
+            >
+                {copied ? (
+                    <Check className={cn("w-4 h-4 text-green-500", iconClassName)} />
+                ) : (
+                    <LinkIcon className={cn("w-4 h-4", iconClassName)} />
+                )}
+            </button>
+        </div>
+    );
+};

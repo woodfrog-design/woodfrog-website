@@ -108,16 +108,26 @@ const ProductsSection = () => {
                                             {product.tagline}
                                         </p>
 
-                                        <Link href={`/product/${product.slug}`} className="flex items-center gap-4 group/btn cursor-pointer w-fit">
-                                            <span className="text-brand-primary font-black uppercase text-[10px] tracking-[0.2em] relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-primary group-hover/btn:after:w-full after:transition-all after:duration-500">
-                                                Explore Ecosystem
-                                            </span>
-                                        </Link>
+                                        <div className="flex flex-wrap items-center gap-6">
+                                            <Link href={`/products/${product.slug}`} className="flex items-center gap-4 group/btn cursor-pointer w-fit">
+                                                <span className="text-brand-primary font-black uppercase text-[10px] tracking-[0.2em] relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-primary group-hover/btn:after:w-full after:transition-all after:duration-500">
+                                                    View product details
+                                                </span>
+                                            </Link>
+
+                                            {product.slug === 'glimvia' && (
+                                                <a href="https://www.glimvia.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group/btn cursor-pointer w-fit">
+                                                    <span className="text-[#B59560] font-black uppercase text-[10px] tracking-[0.2em] relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#B59560] group-hover/btn:after:w-full after:transition-all after:duration-500">
+                                                        Visit the product
+                                                    </span>
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
 
                                     {/* Right Column: Media Content */}
                                     <div className="flex-1 flex items-center justify-center">
-                                        <Link href={`/product/${product.slug}`} className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-white/5 bg-zinc-900 group-hover:border-brand-primary/40 transition-all duration-500 shadow-xl block">
+                                        <Link href={`/products/${product.slug}`} className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-white/5 bg-zinc-900 group-hover:border-brand-primary/40 transition-all duration-500 shadow-xl block">
                                             <img
                                                 src={product.coverImage}
                                                 alt={product.title}

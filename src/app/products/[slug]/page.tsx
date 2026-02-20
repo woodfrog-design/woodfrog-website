@@ -9,6 +9,9 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { DetailAnimations } from '@/app/products/detail-animations';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
@@ -37,6 +40,8 @@ export async function generateStaticParams() {
     }));
 }
 
+import { RichText, ImageTextImage, ImageLabeling, ProductTable, ProductChart } from '@/components/products/product-blocks';
+
 const RenderBlock = (block: ProductContent) => {
     switch (block.type) {
         case 'heading':
@@ -47,6 +52,8 @@ const RenderBlock = (block: ProductContent) => {
             );
         case 'paragraph':
             return <p className="text-zinc-400 text-lg leading-relaxed mb-6">{block.content}</p>;
+        case 'text':
+            return <RichText content={block.content || ''} />;
         case 'list':
             return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
@@ -59,11 +66,28 @@ const RenderBlock = (block: ProductContent) => {
             );
         case 'image':
             return (
-                <div className="my-12">
-                    <div className="relative rounded-[2.5rem] overflow-hidden bg-[#0A0A0A] border border-white/5 shadow-2xl">
-                        {block.src && <img src={block.src} alt={block.alt} className="w-full h-auto object-cover" />}
+                <div className="my-12 flex flex-col items-center">
+                    <div className="relative rounded-[2.5rem] overflow-hidden bg-[#0A0A0A] border border-white/5 shadow-2xl max-w-[260px] md:max-w-[320px] aspect-[9/19.5]">
+                        {block.src && <img src={block.src} alt={block.alt} className="w-full h-full object-cover" />}
                     </div>
                     {block.alt && <p className="text-zinc-500 text-sm mt-6 text-center italic font-medium">{block.alt}</p>}
+                </div>
+            );
+        case 'image-text-left':
+            return <ImageTextImage src={block.src || ''} alt={block.alt || ''} title={block.title} content={block.content} reverse />;
+        case 'image-text-right':
+            return <ImageTextImage src={block.src || ''} alt={block.alt || ''} title={block.title} content={block.content} />;
+        case 'image-labeling':
+            return <ImageLabeling src={block.src || ''} alt={block.alt || ''} labels={block.labels || []} />;
+        case 'table':
+            return <ProductTable title={block.title} data={block.tableData || { headers: [], rows: [] }} />;
+        case 'charts':
+            return (
+                <div className="my-12">
+                    {block.title && <h3 className="text-xl font-bold text-white mb-8 underline decoration-[#B59560]/30">{block.title}</h3>}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {block.chartData && <ProductChart title={`${block.chartData.type.toUpperCase()} View`} chart={block.chartData} />}
+                    </div>
                 </div>
             );
         default:
@@ -83,16 +107,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
     return (
         <main className="min-h-screen bg-transparent text-white">
             <DetailAnimations>
-                <article className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+                <article className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
                     {/* Breadcrumbs */}
-                    <div className="flex items-center gap-2 text-zinc-500 text-sm mb-12">
-                        <Link href="/products" className="hover:text-white flex items-center gap-1 transition-colors">
-                            <ArrowLeft className="w-3 h-3" />
-                            <span>All Products</span>
-                        </Link>
-                        <span>/</span>
-                        <span className="text-zinc-400">{product.categories[0]}</span>
-                    </div>
+                    <nav className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+                        <Link href="/products" className="text-zinc-500 hover:text-white transition-colors">Products</Link>
+                        <span className="text-zinc-800">/</span>
+                        <span className="text-brand-primary">{product.title}</span>
+                    </nav>
 
                     {/* Hero Content */}
                     <div className="mb-16">
@@ -110,46 +131,22 @@ export default async function ProductDetailPage({ params }: PageProps) {
                             {product.tagline}
                         </p>
 
-                        <div className="relative rounded-[2.5rem] overflow-hidden bg-[#1A1A1A] border border-white/5 aspect-[16/10] shadow-2xl mb-20">
-                            <Image
+                        <div className="relative rounded-[2.5rem] overflow-hidden bg-[#1A1A1A] border border-white/5 aspect-[21/10] shadow-2xl mb-20 max-w-4xl mx-auto">
+                            <img
                                 src={product.coverImage}
                                 alt={product.title}
-                                fill
-                                className="object-cover"
-                                priority
+                                className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         </div>
                     </div>
 
-                    {/* Main Content & Sidebar Grid */}
-                    <div className="flex flex-col lg:flex-row gap-16">
+                    {/* Main Content */}
+                    <div className="flex flex-col gap-16">
                         {/* Content Column */}
-                        <div className="flex-1 min-w-0">
+                        <div className="w-full max-w-4xl mx-auto">
                             <div className="prose prose-invert max-w-none">
                                 {product.blocks.map((block, i) => <RenderBlock key={i} {...block} />)}
-                            </div>
-                        </div>
-
-                        {/* Sidebar Column */}
-                        <div className="lg:w-80 shrink-0">
-                            <div className="sticky top-32 p-8 bg-white/[0.03] border border-white/10 rounded-[2.5rem] backdrop-blur-xl">
-                                <h3 className="text-xl font-bold text-white mb-8 border-b border-white/10 pb-4">Key Capabilities</h3>
-                                <ul className="space-y-6">
-                                    {product.capabilities.map((cap, i) => (
-                                        <li key={i} className="flex items-start gap-4">
-                                            <CheckCircle2 className="w-5 h-5 text-[#B59560] shrink-0 mt-1" />
-                                            <span className="text-zinc-300 text-sm leading-relaxed font-medium">{cap}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <Link
-                                    href="/contact"
-                                    className="mt-12 w-full py-4 bg-white text-black text-center font-bold rounded-2xl block hover:bg-zinc-200 transition-all active:scale-95 shadow-xl"
-                                >
-                                    Request Demo
-                                </Link>
                             </div>
                         </div>
                     </div>

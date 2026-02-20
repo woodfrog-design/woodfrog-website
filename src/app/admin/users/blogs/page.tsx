@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Settings, LogOut, ChevronLeft, Calendar, User, Tag, Edit3, Eye } from 'lucide-react';
 import BlockEditor from '@/components/admin/editor/block-editor';
-import { Blog } from '@/lib/blogs';
+import { Blog, updateBlogStatus } from '@/lib/blogs';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 
@@ -28,7 +27,7 @@ export default function AdminBlogsPage() {
 
     const fetchBlogs = async () => {
         try {
-            const res = await fetch('/api/blogs');
+            const res = await fetch('/api/blogs?admin=true');
             const data = await res.json();
             setBlogs(data);
         } catch (error) {
@@ -52,6 +51,13 @@ export default function AdminBlogsPage() {
         setIsEditing(false);
         setSelectedBlog(undefined);
         fetchBlogs(); // Refresh list
+    };
+
+    const handleToggleStatus = async (blog: Blog) => {
+        const success = await updateBlogStatus(blog.id, !blog.isActive);
+        if (success) {
+            fetchBlogs();
+        }
     };
 
     if (!isAuthenticated) return null;
@@ -146,10 +152,26 @@ export default function AdminBlogsPage() {
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
                                     <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                                        <div className="flex gap-2 mb-4 overflow-hidden">
-                                            {blog.categories.slice(0, 2).map(cat => (
-                                                <span key={cat} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[8px] uppercase font-bold tracking-widest text-white border border-white/10">{cat}</span>
-                                            ))}
+                                        <div className="flex justify-between items-start mb-4">
+                                            <div className="flex gap-2 overflow-hidden">
+                                                {blog.categories.slice(0, 2).map(cat => (
+                                                    <span key={cat} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[8px] uppercase font-bold tracking-widest text-white border border-white/10">{cat}</span>
+                                                ))}
+                                            </div>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleToggleStatus(blog);
+                                                }}
+                                                className={cn(
+                                                    "px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider rounded border transition-all",
+                                                    blog.isActive
+                                                        ? "bg-green-500/10 text-green-400 border-green-500/20 hover:bg-green-500/20"
+                                                        : "bg-zinc-500/10 text-zinc-400 border-zinc-500/20 hover:bg-zinc-500/20"
+                                                )}
+                                            >
+                                                {blog.isActive ? 'Active' : 'Inactive'}
+                                            </button>
                                         </div>
                                         <h3 className="text-xl font-bold mb-6 line-clamp-2 group-hover:text-[#B59560] transition-colors leading-tight">{blog.title}</h3>
 
