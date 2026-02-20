@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { LandingAnimations } from '@/app/products/landing-animations';
 
 export const metadata: Metadata = {
-    title: 'Woodfrog Website',
+    title: 'Products',
     description: 'Transforming data into proactive intelligence with our suite of AI and analytics products including Glimvia, Antvia, and LetMeKnow.',
 };
 

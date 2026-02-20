@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     if (!product) return { title: 'Product Not Found' };
 
     return {
-        title: `Woodfrog Website | ${product.title}`,
+        title: product.title,
         description: product.tagline,
         openGraph: {
             title: product.title,

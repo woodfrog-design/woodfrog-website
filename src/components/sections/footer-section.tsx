@@ -121,7 +121,7 @@ const FooterSection = () => {
                                     >
                                         <div className="flex flex-col gap-4 pb-6 md:pb-0">
                                             {footerLinks.services.map((link) => (
-                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-[#39D6E3] transition-colors text-base font-medium">
+                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
                                                     {link.name}
                                                 </a>
                                             ))}
@@ -153,7 +153,7 @@ const FooterSection = () => {
                                     >
                                         <div className="flex flex-col gap-4 pb-6 md:pb-0">
                                             {footerLinks.products.map((link) => (
-                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-[#39D6E3] transition-colors text-base font-medium">
+                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
                                                     {link.name}
                                                 </a>
                                             ))}
@@ -185,7 +185,7 @@ const FooterSection = () => {
                                     >
                                         <div className="flex flex-col gap-4 pb-6 md:pb-0">
                                             {footerLinks.woodfrog.map((link) => (
-                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-[#39D6E3] transition-colors text-base font-medium">
+                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
                                                     {link.name}
                                                 </a>
                                             ))}
@@ -202,9 +202,9 @@ const FooterSection = () => {
                             © woodfrog 2026
                         </div>
                         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#8891A5]/60 text-sm font-medium">
-                            <a href="#" className="hover:text-[#39D6E3] transition-colors whitespace-nowrap">Cookies preferences</a>
-                            <a href="#" className="hover:text-[#39D6E3] transition-colors whitespace-nowrap">Privacy Policy</a>
-                            <a href="#" className="hover:text-[#39D6E3] transition-colors whitespace-nowrap">Credits</a>
+                            <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Cookies preferences</a>
+                            <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Privacy Policy</a>
+                            <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Credits</a>
                         </div>
                     </div>
                 </div>

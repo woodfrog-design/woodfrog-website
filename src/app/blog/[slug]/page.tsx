@@ -7,6 +7,16 @@ import Link from 'next/link';
 import BlogCard from '@/components/blog/blog-card';
 import ViewTracker from '@/components/analytics/view-tracker';
 import { ShareButtons } from '@/components/ui/share-buttons';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const blog = await getBlogBySlug(slug);
+
+    return {
+        title: blog?.title || 'Blog Post',
+    };
+}
 
 interface PageProps {
     params: Promise<{ slug: string }>;

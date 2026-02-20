@@ -16,10 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Woodfrog Website",
+  title: {
+    default: "WoodFrog",
+    template: "%s | WoodFrog",
+  },
   description: "A premium web experience.",
   icons: {
-    icon: "/logos/woodfrog-logo.svg",
+    icon: "/logos/woodfrog-logo2.svg",
   },
 };
 

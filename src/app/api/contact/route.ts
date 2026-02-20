@@ -2,31 +2,38 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export async function POST(req: NextRequest) {
-    try {
-        const body = await req.json();
-        const { lastName, firstName, email, phone, organization, lookingFor, message } = body;
+  try {
+    const body = await req.json();
+    const { lastName, firstName, email, phone, organization, lookingFor, message, specifyService } = body;
 
-        // Validate required fields
-        if (!lastName || !firstName || !lookingFor) {
-            return NextResponse.json(
-                { error: 'Please fill in all required fields.' },
-                { status: 400 }
-            );
-        }
+    // Validate required fields
+    if (!lastName || !firstName || !lookingFor) {
+      return NextResponse.json(
+        { error: 'Please fill in all required fields.' },
+        { status: 400 }
+      );
+    }
 
-        const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT) || 587,
-            secure: Number(process.env.SMTP_PORT) === 465,
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS,
-            },
-        });
+    if (lookingFor.includes('None of the above / Other') && !specifyService) {
+      return NextResponse.json(
+        { error: 'Please mention the service.' },
+        { status: 400 }
+      );
+    }
 
-        const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'hello@woodfrog.tech';
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT) || 587,
+      secure: Number(process.env.SMTP_PORT) === 465,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
 
-        const htmlBody = `
+    const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'hello@woodfrog.tech';
+
+    const htmlBody = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <h2 style="color: #1a1a1a; border-bottom: 2px solid #E8501A; padding-bottom: 10px;">
           New Contact Form Submission
@@ -50,7 +57,10 @@ export async function POST(req: NextRequest) {
           </tr>
           <tr>
             <td style="padding: 10px; font-weight: bold; color: #555; vertical-align: top;">Looking for</td>
-            <td style="padding: 10px; color: #1a1a1a;">${lookingFor}</td>
+            <td style="padding: 10px; color: #1a1a1a;">
+              ${lookingFor}
+              ${specifyService ? `<br/><span style="color: #666; font-size: 0.9em;">Specified: ${specifyService}</span>` : ''}
+            </td>
           </tr>
           <tr style="background-color: #f9f9f9;">
             <td style="padding: 10px; font-weight: bold; color: #555; vertical-align: top;">Message</td>
@@ -63,20 +73,20 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-        await transporter.sendMail({
-            from: `"Woodfrog Contact Form" <${process.env.SMTP_USER}>`,
-            to: recipientEmail,
-            subject: `New Contact: ${firstName} ${lastName} — ${lookingFor}`,
-            html: htmlBody,
-            replyTo: email || undefined,
-        });
+    await transporter.sendMail({
+      from: `"Woodfrog Contact Form" <${process.env.SMTP_USER}>`,
+      to: recipientEmail,
+      subject: `New Contact: ${firstName} ${lastName} — ${lookingFor}`,
+      html: htmlBody,
+      replyTo: email || undefined,
+    });
 
-        return NextResponse.json({ success: true });
-    } catch (error) {
-        console.error('Contact form email error:', error);
-        return NextResponse.json(
-            { error: 'Failed to send message. Please try again later.' },
-            { status: 500 }
-        );
-    }
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Contact form email error:', error);
+    return NextResponse.json(
+      { error: 'Failed to send message. Please try again later.' },
+      { status: 500 }
+    );
+  }
 }

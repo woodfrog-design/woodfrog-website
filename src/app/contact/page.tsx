@@ -13,6 +13,7 @@ const ContactPage = () => {
         organization: '',
         lookingFor: '',
         message: '',
+        specifyService: '',
     });
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
     const [errorMsg, setErrorMsg] = useState('');
@@ -23,6 +24,11 @@ const ContactPage = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        if (formData.lookingFor.includes('None of the above / Other') && !formData.specifyService) {
+            setErrorMsg('Please mention the service.');
+            return;
+        }
+
         setStatus('sending');
         setErrorMsg('');
 
@@ -48,6 +54,7 @@ const ContactPage = () => {
                 organization: '',
                 lookingFor: '',
                 message: '',
+                specifyService: '',
             });
         } catch (err: unknown) {
             setStatus('error');
@@ -215,7 +222,21 @@ const ContactPage = () => {
                                             'None of the above / Other'
                                         ]}
                                         onChange={(v) => handleChange('lookingFor', v.join(', '))}
+                                        disabled={formData.lookingFor.includes('None of the above / Other')}
                                     />
+                                    {formData.lookingFor.includes('None of the above / Other') && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: 'auto' }}
+                                            className="col-span-1 md:col-span-2"
+                                        >
+                                            <InputField
+                                                label="Mention the service*"
+                                                value={formData.specifyService}
+                                                onChange={(v) => handleChange('specifyService', v)}
+                                            />
+                                        </motion.div>
+                                    )}
                                 </div>
                                 <InputField label="Message" isTextArea value={formData.message} onChange={(v) => handleChange('message', v)} />
 
@@ -326,11 +347,13 @@ const MultiSelectField = ({
     value,
     options,
     onChange,
+    disabled,
 }: {
     label: string;
     value: string[];
     options: string[];
     onChange: (v: string[]) => void;
+    disabled?: boolean;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -351,6 +374,12 @@ const MultiSelectField = ({
         const newValue = value.includes(option)
             ? value.filter((v) => v !== option)
             : [...value, option];
+
+        // Instantly close dropdown if "None of the above" is selected
+        if (option === 'None of the above / Other' && !value.includes(option)) {
+            setIsOpen(false);
+        }
+
         onChange(newValue);
     };
 
@@ -378,10 +407,10 @@ const MultiSelectField = ({
     }, [isOpen]);
 
     return (
-        <div className="relative space-y-4 group col-span-1 md:col-span-2" ref={containerRef}>
+        <div className={`relative space-y-4 group col-span-1 md:col-span-2 ${disabled ? 'opacity-70 pointer-events-auto' : ''}`} ref={containerRef}>
             <div
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full bg-transparent border-b border-white/10 py-2 focus:border-[#4DA3FF] outline-none transition-colors cursor-pointer min-h-[50px]"
+                onClick={() => !disabled && setIsOpen(!isOpen)}
+                className={`w-full bg-transparent border-b border-white/10 py-2 focus:border-[#4DA3FF] outline-none transition-colors min-h-[50px] ${disabled ? 'cursor-default' : 'cursor-pointer'}`}
             >
                 <div className="flex flex-wrap gap-2 pr-8">
                     {value.length > 0 &&
@@ -403,12 +432,14 @@ const MultiSelectField = ({
                     }
                 </div>
                 <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                    <svg
-                        className={`w-4 h-4 text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    {!disabled && (
+                        <svg
+                            className={`w-4 h-4 text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                    )}
                 </div>
             </div>
 
@@ -421,27 +452,34 @@ const MultiSelectField = ({
             {isOpen && (
                 <div className="absolute z-50 w-full mt-1 bg-[#1A1D1F] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
                     <div className="max-h-[300px] overflow-y-auto custom-scrollbar p-2 grid grid-cols-1 sm:grid-cols-2 gap-1">
-                        {options.map((option) => (
-                            <div
-                                key={option}
-                                className={`px-4 py-3 text-sm cursor-pointer transition-all rounded-xl flex items-center justify-between border border-transparent
-                                    ${value.includes(option)
-                                        ? 'bg-[#4DA3FF]/10 text-[#4DA3FF] border-[#4DA3FF]/20 font-semibold'
-                                        : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}
-                                onClick={() => toggleOption(option)}
-                            >
-                                <span>{option}</span>
-                                {value.includes(option) ? (
-                                    <div className="w-5 h-5 rounded-full bg-[#4DA3FF] flex items-center justify-center">
-                                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                            <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </div>
-                                ) : (
-                                    <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-zinc-600">+</div>
-                                )}
-                            </div>
-                        ))}
+                        {options.map((option) => {
+                            // Only show 'None of the above' if no other services are selected
+                            if (option === 'None of the above / Other' && value.length > 0 && !value.includes(option)) {
+                                return null;
+                            }
+
+                            return (
+                                <div
+                                    key={option}
+                                    className={`px-4 py-3 text-sm cursor-pointer transition-all rounded-xl flex items-center justify-between border border-transparent
+                                        ${value.includes(option)
+                                            ? 'bg-[#4DA3FF]/10 text-[#4DA3FF] border-[#4DA3FF]/20 font-semibold'
+                                            : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}
+                                    onClick={() => toggleOption(option)}
+                                >
+                                    <span>{option}</span>
+                                    {value.includes(option) ? (
+                                        <div className="w-5 h-5 rounded-full bg-[#4DA3FF] flex items-center justify-center">
+                                            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </div>
+                                    ) : (
+                                        <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-zinc-600">+</div>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             )}
