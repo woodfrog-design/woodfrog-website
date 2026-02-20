@@ -1574,29 +1574,29 @@ export default function AIGovernancePage() {
 
 
             {/* ───── CTA SECTION ───── */}
-            <section className="bg-transparent border-t border-white/10">
-                <div className="w-full px-8 md:px-24 lg:px-32 py-28">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <span className="text-brand-primary font-semibold text-sm tracking-wider">
-                                Let&apos;s create value
-                            </span>
-                        </div>
-                        <div className="space-y-6">
-                            <h2 className="text-[2rem] md:text-[2.4rem] font-bold leading-tight text-white">
-                                To help you deploy AI with<br />
-                                <span className="text-gray-600">confidence and total security.</span>
-                            </h2>
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-colors"
-                            >
-                                Contact us
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
+             <section className="bg-transparent">
+               <div className="w-full px-8 md:px-24 lg:px-32 py-28">
+                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                   <div>
+                     <span className="text-brand-primary font-semibold text-sm tracking-wider">
+                       Let&apos;s create value
+                     </span>
+                   </div>
+                   <div className="space-y-6">
+                     <h2 className="text-[2rem] md:text-[2.4rem] font-bold leading-tight text-white">
+                       To help you make the<br />
+                       <span className="text-brand-primary">right decisions</span> at the <span className="text-brand-primary">right moment</span>.
+                     </h2>
+                     <Link
+                       href="/contact"
+                       className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-colors"
+                     >
+                       Contact us
+                     </Link>
+                   </div>
+                 </div>
+               </div>
+             </section>
         </main>
     );
 }
