@@ -386,6 +386,7 @@ const PhoneInputField = ({
     onCountryCodeChange: (v: string) => void;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isCustomMode, setIsCustomMode] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const countries = [
@@ -398,6 +399,21 @@ const PhoneInputField = ({
         { code: '+33', flag: '🇫🇷', name: 'France' },
         { code: '+971', flag: '🇦🇪', name: 'UAE' },
         { code: '+65', flag: '🇸🇬', name: 'Singapore' },
+        { code: '+1', flag: '🇨🇦', name: 'Canada' },
+        { code: '+49', flag: '🇩🇪', name: 'Germany' },
+        { code: '+39', flag: '🇮🇹', name: 'Italy' },
+        { code: '+34', flag: '🇪🇸', name: 'Spain' },
+        { code: '+31', flag: '🇳🇱', name: 'Netherlands' },
+        { code: '+41', flag: '🇨🇭', name: 'Switzerland' },
+        { code: '+46', flag: '🇸🇪', name: 'Sweden' },
+        { code: '+47', flag: '🇳🇴', name: 'Norway' },
+        { code: '+45', flag: '🇩🇰', name: 'Denmark' },
+        { code: '+353', flag: '🇮🇪', name: 'Ireland' },
+        { code: '+64', flag: '🇳🇿', name: 'New Zealand' },
+        { code: '+82', flag: '🇰🇷', name: 'South Korea' },
+        { code: '+86', flag: '🇨🇳', name: 'China' },
+        { code: '+55', flag: '🇧🇷', name: 'Brazil' },
+        { code: '+27', flag: '🇿🇦', name: 'South Africa' },
     ];
 
     useEffect(() => {
@@ -410,38 +426,79 @@ const PhoneInputField = ({
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    const selectedCountry = countries.find(c => c.code === countryCode);
+
     return (
         <div className="relative col-span-1 space-y-2 group">
             <div className="flex items-end space-x-2 border-b border-white/10 focus-within:border-[#4DA3FF] transition-colors pb-2">
                 <div className="relative" ref={dropdownRef}>
-                    <button
-                        type="button"
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="flex items-center space-x-1.5 text-zinc-300 font-medium hover:text-white transition-colors pb-0.5"
-                    >
-                        <span className="text-lg">{countries.find(c => c.code === countryCode)?.flag}</span>
-                        <span className="text-base">{countryCode}</span>
-                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} opacity-50`} />
-                    </button>
+                    {!isCustomMode ? (
+                        <button
+                            type="button"
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="flex items-center space-x-1.5 text-zinc-300 font-medium hover:text-white transition-colors pb-0.5"
+                        >
+                            <span className="text-lg">{selectedCountry?.flag || '🌐'}</span>
+                            <span className="text-base">{countryCode || '+'}</span>
+                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} opacity-50`} />
+                        </button>
+                    ) : (
+                        <div className="flex items-center space-x-1 pb-0.5">
+                            <span className="text-lg">🌐</span>
+                            <input
+                                type="text"
+                                className="w-16 bg-transparent outline-none text-base font-medium text-brand-primary border-b border-brand-primary/30 focus:border-brand-primary transition-colors py-0"
+                                value={countryCode}
+                                autoFocus
+                                onChange={(e) => {
+                                    let v = e.target.value;
+                                    if (!v.startsWith('+')) v = '+' + v.replace(/\D/g, '');
+                                    else v = '+' + v.slice(1).replace(/\D/g, '');
+                                    onCountryCodeChange(v);
+                                }}
+                            />
+                            <button
+                                onClick={() => setIsCustomMode(false)}
+                                className="text-[10px] uppercase font-bold text-white/30 hover:text-white transition-colors ml-1"
+                            >
+                                Done
+                            </button>
+                        </div>
+                    )}
 
                     {isOpen && (
-                        <div className="absolute z-[100] left-0 mt-4 w-48 bg-[#1A1D1F] border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden py-1 animate-in fade-in slide-in-from-top-2 duration-200">
-                            <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
-                                {countries.map((c) => (
+                        <div className="absolute z-[100] left-0 mt-4 w-56 bg-[#1A1D1F] border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden py-1 animate-in fade-in slide-in-from-top-2 duration-200">
+                            <div className="max-h-[250px] overflow-y-auto custom-scrollbar">
+                                {countries.map((c, idx) => (
                                     <button
-                                        key={c.code}
+                                        key={`${c.code}-${idx}`}
                                         type="button"
-                                        className={`w-full text-left px-4 py-2.5 text-sm hover:bg-white/5 transition-colors flex items-center space-x-3 ${countryCode === c.code ? 'text-brand-primary font-bold bg-white/[0.02]' : 'text-zinc-400'}`}
+                                        className={`w-full text-left px-4 py-2.5 text-sm hover:bg-white/5 transition-colors flex items-center space-x-3 ${countryCode === c.code && !isCustomMode ? 'text-brand-primary font-bold bg-white/[0.02]' : 'text-zinc-400'}`}
                                         onClick={() => {
                                             onCountryCodeChange(c.code);
+                                            setIsCustomMode(false);
                                             setIsOpen(false);
                                         }}
                                     >
                                         <span className="text-base">{c.flag}</span>
-                                        <span>{c.name}</span>
-                                        <span className="ml-auto opacity-50 font-medium">{c.code}</span>
+                                        <span className="truncate max-w-[100px]">{c.name}</span>
+                                        <span className="ml-auto opacity-50 font-medium shrink-0">{c.code}</span>
                                     </button>
                                 ))}
+                                <div className="border-t border-white/5 mt-1 pt-1">
+                                    <button
+                                        type="button"
+                                        className="w-full text-left px-4 py-3 text-sm hover:bg-white/5 transition-colors flex items-center space-x-3 text-brand-primary font-bold"
+                                        onClick={() => {
+                                            setIsCustomMode(true);
+                                            setIsOpen(false);
+                                        }}
+                                    >
+                                        <span className="text-base">🌐</span>
+                                        <span>Other / Custom</span>
+                                        <span className="ml-auto opacity-50">+...</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     )}
