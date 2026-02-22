@@ -60,7 +60,7 @@ export function CookieConsent() {
     const Toggle = ({ active, onToggle }: { active: boolean; onToggle: () => void }) => (
         <button
             onClick={onToggle}
-            className={`relative w-12 h-6 rounded-full transition-colors duration-300 flex items-center px-1 ${active ? 'bg-brand-primary' : 'bg-white/10'}`}
+            className={`relative w-12 h-6 rounded-full cursor-pointer transition-colors duration-300 flex items-center px-1 ${active ? 'bg-brand-primary' : 'bg-white/10'}`}
         >
             <motion.div
                 animate={{ x: active ? 24 : 0 }}
@@ -100,7 +100,7 @@ export function CookieConsent() {
                                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                                         <button
                                             onClick={() => setView('personalize')}
-                                            className="text-xs md:text-sm font-bold text-white/40 hover:text-white transition-colors flex items-center group/btn"
+                                            className="text-xs md:text-sm font-bold text-white/40 hover:text-white cursor-pointer transition-colors flex items-center group/btn"
                                         >
                                             Personalize
                                             <svg
@@ -114,13 +114,13 @@ export function CookieConsent() {
                                         <div className="flex items-center gap-4 w-full sm:w-auto">
                                             <button
                                                 onClick={() => saveSettings('rejected')}
-                                                className="flex-1 sm:flex-none text-xs md:text-sm font-bold text-white/60 hover:text-white transition-colors py-2"
+                                                className="flex-1 sm:flex-none text-xs md:text-sm font-bold text-white/60 hover:text-white cursor-pointer transition-colors py-2"
                                             >
                                                 Reject & close
                                             </button>
                                             <button
                                                 onClick={() => saveSettings('accepted')}
-                                                className="flex-1 sm:flex-none px-6 py-2.5 bg-white text-black text-xs md:text-sm font-bold rounded-full hover:bg-brand-primary transition-all active:scale-95 whitespace-nowrap"
+                                                className="flex-1 sm:flex-none px-6 py-2.5 bg-white text-black text-xs md:text-sm font-bold rounded-full cursor-pointer hover:bg-brand-primary transition-all active:scale-95 whitespace-nowrap"
                                             >
                                                 Allow all
                                             </button>
@@ -160,7 +160,7 @@ export function CookieConsent() {
                                     <div className="flex items-center justify-between gap-6 pt-4">
                                         <button
                                             onClick={() => setView('main')}
-                                            className="text-white/60 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold"
+                                            className="text-white/60 hover:text-white cursor-pointer transition-colors flex items-center gap-2 text-sm font-bold"
                                         >
                                             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="rotate-180">
                                                 <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -169,7 +169,7 @@ export function CookieConsent() {
                                         </button>
                                         <button
                                             onClick={() => saveSettings('custom', preferences)}
-                                            className="px-8 py-3 bg-white text-black text-sm font-bold rounded-full hover:bg-brand-primary transition-all active:scale-95"
+                                            className="px-8 py-3 bg-white text-black text-sm font-bold rounded-full cursor-pointer hover:bg-brand-primary transition-all active:scale-95"
                                         >
                                             Save & close
                                         </button>
