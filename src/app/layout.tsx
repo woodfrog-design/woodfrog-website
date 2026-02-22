@@ -5,6 +5,7 @@ import { Navbar } from "@/components/ui/navbar";
 import { FooterSection } from "@/components/sections/footer-section";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { PageTransitionIndicator } from "@/components/PageTransitionIndicator";
+import { CookieConsent } from "@/components/CookieConsent";
 import { Suspense } from "react";
 
 const geistSans = Geist({
@@ -45,6 +46,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <FooterSection />
+          <CookieConsent />
         </SmoothScroll>
       </body>
     </html>

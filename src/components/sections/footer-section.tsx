@@ -203,7 +203,12 @@ const FooterSection = () => {
                             © woodfrog 2026
                         </div>
                         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#8891A5]/60 text-sm font-medium">
-                            <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Cookies preferences</a>
+                            <button
+                                onClick={() => window.dispatchEvent(new CustomEvent('show-cookie-consent'))}
+                                className="hover:text-brand-primary transition-colors whitespace-nowrap cursor-pointer"
+                            >
+                                Cookies preferences
+                            </button>
                             <Link href="/privacy-policy" className="hover:text-brand-primary transition-colors whitespace-nowrap">Privacy Policy</Link>
                             <Link href="/terms-and-conditions" className="hover:text-brand-primary transition-colors whitespace-nowrap">Terms & Conditions (T&C)</Link>
                         </div>
