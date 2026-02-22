@@ -274,14 +274,14 @@ const Navbar = () => {
 
                 {/* Navigation Links - Subtle Glass Capsule */}
                 <div className="hidden md:flex items-center space-x-1 bg-white/[0.03] backdrop-blur-md p-1.5 rounded-full border border-white/10 shadow-lg">
-                      <div className="relative" ref={servicesRef} onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
-                          <button
-                              onClick={() => setIsServicesOpen(!isServicesOpen)}
-                              className={cn(
-                                  "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
-                                  isServicesOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
-                              )}
-                          >
+                    <div className="relative" ref={servicesRef} onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
+                        <button
+                            onClick={() => setIsServicesOpen(!isServicesOpen)}
+                            className={cn(
+                                "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
+                                isServicesOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
+                            )}
+                        >
                             <span>services</span>
                             <ChevronDown className={cn("w-4 h-4 transition-all duration-300 opacity-50", isServicesOpen && "rotate-180 opacity-100 text-black")} />
                         </button>
@@ -293,26 +293,28 @@ const Navbar = () => {
                                     animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
                                     exit={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
                                     transition={{ duration: 0.2 }}
-                                    className="absolute top-full left-1/2 mt-4 w-[900px] p-8 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] z-[100] overflow-hidden"
+                                    className="absolute top-full left-1/2 pt-4 w-[900px] z-[100]"
                                 >
-                                    <div className="grid grid-cols-3 gap-x-6 gap-y-6">
-                                        {SERVICES.map((service, index) => (
-                                            <Link key={service.title} href={service.href} onClick={() => setIsServicesOpen(false)}>
-                                                <motion.div
-                                                    initial={{ opacity: 0, y: 10 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    whileHover="hover"
-                                                    transition={{ delay: index * 0.05 }}
-                                                    className="group flex items-center space-x-4 p-3 rounded-2xl transition-all hover:bg-white/[0.03] cursor-pointer"
-                                                >
-                                                    <ServiceIcon title={service.title} />
-                                                    <div className="flex flex-col space-y-0.5">
-                                                        <h3 className="text-[#E6EAF0] font-bold text-[15px] group-hover:text-brand-primary transition-colors">{service.title}</h3>
-                                                        <p className="text-zinc-500 text-[11px] leading-tight font-medium">{service.description}</p>
-                                                    </div>
-                                                </motion.div>
-                                            </Link>
-                                        ))}
+                                    <div className="p-8 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden">
+                                        <div className="grid grid-cols-3 gap-x-6 gap-y-6">
+                                            {SERVICES.map((service, index) => (
+                                                <Link key={service.title} href={service.href} onClick={() => setIsServicesOpen(false)}>
+                                                    <motion.div
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        whileHover="hover"
+                                                        transition={{ delay: index * 0.05 }}
+                                                        className="group flex items-center space-x-4 p-3 rounded-2xl transition-all hover:bg-white/[0.03] cursor-pointer"
+                                                    >
+                                                        <ServiceIcon title={service.title} />
+                                                        <div className="flex flex-col space-y-0.5">
+                                                            <h3 className="text-[#E6EAF0] font-bold text-[15px] group-hover:text-brand-primary transition-colors">{service.title}</h3>
+                                                            <p className="text-zinc-500 text-[11px] leading-tight font-medium">{service.description}</p>
+                                                        </div>
+                                                    </motion.div>
+                                                </Link>
+                                            ))}
+                                        </div>
                                     </div>
                                 </motion.div>
                             )}
@@ -327,9 +329,9 @@ const Navbar = () => {
                         <span>products</span>
                     </Link>
 
-                      <div className="relative" ref={woodfrogRef} onMouseEnter={() => setIsWoodfrogOpen(true)} onMouseLeave={() => setIsWoodfrogOpen(false)}>
-                          <button
-                              onClick={() => setIsWoodfrogOpen(!isWoodfrogOpen)}
+                    <div className="relative" ref={woodfrogRef} onMouseEnter={() => setIsWoodfrogOpen(true)} onMouseLeave={() => setIsWoodfrogOpen(false)}>
+                        <button
+                            onClick={() => setIsWoodfrogOpen(!isWoodfrogOpen)}
                             className={cn(
                                 "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
                                 isWoodfrogOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
@@ -346,23 +348,25 @@ const Navbar = () => {
                                     animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
                                     exit={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
                                     transition={{ duration: 0.2 }}
-                                    className="absolute top-full left-1/2 mt-4 w-[600px] p-6 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] z-[100] overflow-hidden"
+                                    className="absolute top-full left-1/2 pt-4 w-[600px] z-[100]"
                                 >
-                                    <div className="grid grid-cols-2 gap-x-8 gap-y-6">
-                                        {WOODFROG_LINKS.map((link, index) => (
-                                            <Link
-                                                key={link.title}
-                                                href={link.href}
-                                                className="group flex flex-col space-y-1 p-3 rounded-2xl transition-all hover:bg-white/[0.03] cursor-pointer"
-                                                onClick={() => setIsWoodfrogOpen(false)}
-                                            >
-                                                <div className="flex items-center justify-between">
-                                                    <h3 className="text-[#E6EAF0] font-bold text-[17px] group-hover:text-brand-primary transition-colors">{link.title}</h3>
-                                                    <ArrowRight className="w-4 h-4 text-brand-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                                                </div>
-                                                <p className="text-zinc-500 text-[13px] leading-tight font-medium">{link.description}</p>
-                                            </Link>
-                                        ))}
+                                    <div className="p-6 bg-[#141618] border border-white/10 rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden">
+                                        <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+                                            {WOODFROG_LINKS.map((link, index) => (
+                                                <Link
+                                                    key={link.title}
+                                                    href={link.href}
+                                                    className="group flex flex-col space-y-1 p-3 rounded-2xl transition-all hover:bg-white/[0.03] cursor-pointer"
+                                                    onClick={() => setIsWoodfrogOpen(false)}
+                                                >
+                                                    <div className="flex items-center justify-between">
+                                                        <h3 className="text-[#E6EAF0] font-bold text-[17px] group-hover:text-brand-primary transition-colors">{link.title}</h3>
+                                                        <ArrowRight className="w-4 h-4 text-brand-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                                    </div>
+                                                    <p className="text-zinc-500 text-[13px] leading-tight font-medium">{link.description}</p>
+                                                </Link>
+                                            ))}
+                                        </div>
                                     </div>
                                 </motion.div>
                             )}
