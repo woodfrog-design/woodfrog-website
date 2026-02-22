@@ -104,7 +104,7 @@ const ContactPage = () => {
 
                         <div className="space-y-8">
                             {[
-                                { icon: MapPin, label: 'Pune, India', subLabel: 'Office' },
+                                { icon: MapPin, label: 'Pune, India', subLabel: 'Office', href: 'https://maps.app.goo.gl/cwh2md1Gq4asiFku6' },
                                 { icon: Mail, label: 'hello@woodfrog.tech', href: 'mailto:hello@woodfrog.tech' },
                                 { icon: Linkedin, label: 'Linkedin', href: 'https://www.linkedin.com/company/woodfrogtech/' },
                             ].map((item, idx) => {
