@@ -1,15 +1,17 @@
 'use client';
 
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useRef, useEffect, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Mail, Linkedin, MapPin, Loader2 } from 'lucide-react';
+import { Check, Mail, Linkedin, MapPin, Loader2, ChevronDown } from 'lucide-react';
 
 const ContactPage = () => {
+    const [mounted, setMounted] = React.useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
         phone: '',
+        countryCode: '+91',
         organization: '',
         lookingFor: '',
         message: '',
@@ -18,14 +20,40 @@ const ContactPage = () => {
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
     const [errorMsg, setErrorMsg] = useState('');
 
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const handleChange = (field: string, value: string) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
 
+    const validatePhone = () => {
+        if (!formData.phone) return true; // Optional field
+
+        if (formData.countryCode === '+91') {
+            const digits = formData.phone.replace(/\D/g, '');
+            return digits.length === 10;
+        }
+        return formData.phone.length >= 7; // Basic validation for others
+    };
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+
+        if (!formData.firstName || !formData.lastName || !formData.lookingFor) {
+            setErrorMsg('Please fill in all required fields.');
+            return;
+        }
+
         if (formData.lookingFor.includes('None of the above / Other') && !formData.specifyService) {
             setErrorMsg('Please mention the service.');
+            return;
+        }
+
+        if (!validatePhone()) {
+            setStatus('error');
+            setErrorMsg(formData.countryCode === '+91' ? 'Please enter a valid 10-digit phone number.' : 'Please enter a valid phone number.');
             return;
         }
 
@@ -36,7 +64,10 @@ const ContactPage = () => {
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    phone: formData.phone ? `${formData.countryCode} ${formData.phone}` : ''
+                }),
             });
 
             const data = await res.json();
@@ -51,6 +82,7 @@ const ContactPage = () => {
                 lastName: '',
                 email: '',
                 phone: '',
+                countryCode: '+91',
                 organization: '',
                 lookingFor: '',
                 message: '',
@@ -62,23 +94,16 @@ const ContactPage = () => {
         }
     };
 
+    if (!mounted) return null;
+
     return (
         <main className="min-h-screen bg-transparent text-white selection:bg-brand-primary/30">
-
+            {/* Same as before but with Phone Field update */}
             <div className="w-full px-8 md:px-24 lg:px-32 pt-24 md:pt-32 pb-12 md:pb-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-start">
-
-                    {/* Left Column: Information */}
+                    {/* Left Column: Information (Same) */}
                     <div className="space-y-8 md:space-y-12">
                         <div className="space-y-6">
-                            <motion.span
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="text-brand-primary font-bold tracking-widest uppercase text-xs md:text-sm"
-                            >
-                                
-                            </motion.span>
-
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -200,7 +225,13 @@ const ContactPage = () => {
                                     <InputField label="First name*" value={formData.firstName} onChange={(v) => handleChange('firstName', v)} />
                                     <InputField label="Last name*" value={formData.lastName} onChange={(v) => handleChange('lastName', v)} />
                                     <InputField label="Email" value={formData.email} onChange={(v) => handleChange('email', v)} />
-                                    <InputField label="Phone" value={formData.phone} onChange={(v) => handleChange('phone', v)} />
+                                    <PhoneInputField
+                                        label="Phone"
+                                        value={formData.phone}
+                                        countryCode={formData.countryCode}
+                                        onPhoneChange={(v) => handleChange('phone', v)}
+                                        onCountryCodeChange={(v) => handleChange('countryCode', v)}
+                                    />
                                     <InputField
                                         label="Organization"
                                         value={formData.organization}
@@ -295,7 +326,6 @@ const ContactPage = () => {
                             </form>
                         </div>
                     </motion.div>
-
                 </div>
             </div>
         </main>
@@ -336,6 +366,96 @@ const InputField = ({
             <label className="absolute left-0 top-0 text-zinc-500 text-base font-medium transition-all duration-300 pointer-events-none 
                 peer-focus:-top-6 peer-focus:text-brand-primary peer-focus:text-xs uppercase tracking-wider
                 peer-[:not(:placeholder-shown)]:-top-6 peer-[:not(:placeholder-shown)]:text-zinc-500 peer-[:not(:placeholder-shown)]:text-xs">
+                {label}
+            </label>
+        </div>
+    );
+};
+
+const PhoneInputField = ({
+    label,
+    value,
+    countryCode,
+    onPhoneChange,
+    onCountryCodeChange,
+}: {
+    label: string;
+    value: string;
+    countryCode: string;
+    onPhoneChange: (v: string) => void;
+    onCountryCodeChange: (v: string) => void;
+}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const countries = [
+        { code: '+91', flag: '🇮🇳', name: 'India' },
+        { code: '+1', flag: '🇺🇸', name: 'USA' },
+        { code: '+44', flag: '🇬🇧', name: 'UK' },
+        { code: '+61', flag: '🇦🇺', name: 'Australia' },
+        { code: '+81', flag: '🇯🇵', name: 'Japan' },
+        { code: '+49', flag: '🇩🇪', name: 'Germany' },
+        { code: '+33', flag: '🇫🇷', name: 'France' },
+        { code: '+971', flag: '🇦🇪', name: 'UAE' },
+        { code: '+65', flag: '🇸🇬', name: 'Singapore' },
+    ];
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    return (
+        <div className="relative col-span-1 space-y-2 group">
+            <div className="flex items-end space-x-2 border-b border-white/10 focus-within:border-[#4DA3FF] transition-colors pb-2">
+                <div className="relative" ref={dropdownRef}>
+                    <button
+                        type="button"
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="flex items-center space-x-1.5 text-zinc-300 font-medium hover:text-white transition-colors pb-0.5"
+                    >
+                        <span className="text-lg">{countries.find(c => c.code === countryCode)?.flag}</span>
+                        <span className="text-base">{countryCode}</span>
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} opacity-50`} />
+                    </button>
+
+                    {isOpen && (
+                        <div className="absolute z-[100] left-0 mt-4 w-48 bg-[#1A1D1F] border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden py-1 animate-in fade-in slide-in-from-top-2 duration-200">
+                            <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
+                                {countries.map((c) => (
+                                    <button
+                                        key={c.code}
+                                        type="button"
+                                        className={`w-full text-left px-4 py-2.5 text-sm hover:bg-white/5 transition-colors flex items-center space-x-3 ${countryCode === c.code ? 'text-brand-primary font-bold bg-white/[0.02]' : 'text-zinc-400'}`}
+                                        onClick={() => {
+                                            onCountryCodeChange(c.code);
+                                            setIsOpen(false);
+                                        }}
+                                    >
+                                        <span className="text-base">{c.flag}</span>
+                                        <span>{c.name}</span>
+                                        <span className="ml-auto opacity-50 font-medium">{c.code}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                <input
+                    type="tel"
+                    className="w-full bg-transparent outline-none transition-colors peer text-base py-0.5"
+                    placeholder=" "
+                    value={value}
+                    onChange={(e) => onPhoneChange(e.target.value.replace(/\D/g, ''))}
+                />
+            </div>
+            <label className="absolute left-0 -top-6 text-zinc-500 text-xs uppercase tracking-wider pointer-events-none transition-all duration-300 group-focus-within:text-brand-primary">
                 {label}
             </label>
         </div>

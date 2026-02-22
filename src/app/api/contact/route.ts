@@ -33,6 +33,13 @@ export async function POST(req: NextRequest) {
 
     const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'hello@woodfrog.tech';
 
+    console.log('Attempting to send contact form email...', {
+      to: recipientEmail,
+      from: firstName + ' ' + lastName,
+      email: email,
+      lookingFor: lookingFor
+    });
+
     const htmlBody = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <h2 style="color: #1a1a1a; border-bottom: 2px solid #E8501A; padding-bottom: 10px;">
