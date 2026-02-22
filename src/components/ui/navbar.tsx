@@ -274,14 +274,14 @@ const Navbar = () => {
 
                 {/* Navigation Links - Subtle Glass Capsule */}
                 <div className="hidden md:flex items-center space-x-1 bg-white/[0.03] backdrop-blur-md p-1.5 rounded-full border border-white/10 shadow-lg">
-                    <div className="relative" ref={servicesRef}>
-                        <button
-                            onClick={() => setIsServicesOpen(!isServicesOpen)}
-                            className={cn(
-                                "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
-                                isServicesOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
-                            )}
-                        >
+                      <div className="relative" ref={servicesRef} onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
+                          <button
+                              onClick={() => setIsServicesOpen(!isServicesOpen)}
+                              className={cn(
+                                  "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
+                                  isServicesOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
+                              )}
+                          >
                             <span>services</span>
                             <ChevronDown className={cn("w-4 h-4 transition-all duration-300 opacity-50", isServicesOpen && "rotate-180 opacity-100 text-black")} />
                         </button>
@@ -327,9 +327,9 @@ const Navbar = () => {
                         <span>products</span>
                     </Link>
 
-                    <div className="relative" ref={woodfrogRef}>
-                        <button
-                            onClick={() => setIsWoodfrogOpen(!isWoodfrogOpen)}
+                      <div className="relative" ref={woodfrogRef} onMouseEnter={() => setIsWoodfrogOpen(true)} onMouseLeave={() => setIsWoodfrogOpen(false)}>
+                          <button
+                              onClick={() => setIsWoodfrogOpen(!isWoodfrogOpen)}
                             className={cn(
                                 "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
                                 isWoodfrogOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"

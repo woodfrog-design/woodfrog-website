@@ -24,7 +24,7 @@ const FooterSection = () => {
             { name: "Pre-Deployment AI Assurance", href: "/products/pre-deployment-ai-assurance" },
             { name: "Post-Deployment AI Governance", href: "/products/post-deployment-ai-governance" },
         ],
-        woodfrog: [
+        explore: [
             { name: "About", href: "/about" },
             // { name: "Team", href: "/team" },
             { name: "Careers", href: "/careers" },
@@ -166,17 +166,17 @@ const FooterSection = () => {
                         {/* Column 3: Woodfrog Section */}
                         <div className="flex flex-col md:gap-6">
                             <button
-                                onClick={() => toggleMobileItem('woodfrog')}
+                                onClick={() => toggleMobileItem('explore')}
                                 className="flex items-center justify-between w-full py-6 md:py-0 md:cursor-default group"
                             >
-                                <h4 className="text-[#E6EAF0] font-bold text-lg uppercase tracking-wider">woodfrog</h4>
+                                <h4 className="text-[#E6EAF0] font-bold text-lg uppercase tracking-wider">explore</h4>
                                 <ChevronDown
-                                    className={`w-5 h-5 text-[#8891A5] transition-transform duration-300 md:hidden ${openMobileItem === 'woodfrog' ? 'rotate-180' : ''}`}
+                                    className={`w-5 h-5 text-[#8891A5] transition-transform duration-300 md:hidden ${openMobileItem === 'explore' ? 'rotate-180' : ''}`}
                                 />
                             </button>
 
                             <AnimatePresence>
-                                {(openMobileItem === 'woodfrog' || typeof window !== 'undefined' && window.innerWidth >= 768) && (
+                                {(openMobileItem === 'explore' || typeof window !== 'undefined' && window.innerWidth >= 768) && (
                                     <motion.div
                                         initial={typeof window !== 'undefined' && window.innerWidth < 768 ? { height: 0, opacity: 0 } : false}
                                         animate={{ height: 'auto', opacity: 1 }}
@@ -184,7 +184,7 @@ const FooterSection = () => {
                                         className="overflow-hidden md:!h-auto md:!opacity-100"
                                     >
                                         <div className="flex flex-col gap-4 pb-6 md:pb-0">
-                                            {footerLinks.woodfrog.map((link) => (
+                                            {footerLinks.explore.map((link) => (
                                                 <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
                                                     {link.name}
                                                 </a>

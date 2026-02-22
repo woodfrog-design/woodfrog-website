@@ -641,7 +641,7 @@ export default function AIAgentsPage() {
                 <div
                   key={s.id}
                   ref={(el) => { sectionRefs.current[idx] = el; }}
-                  className="scroll-mt-28 pb-16 mb-0 border-b border-white/10 last:border-b-0 last:pb-0"
+                    className="scroll-mt-28 pt-8 pb-8 mb-0 border-b border-white/10 last:border-b-0 last:pb-0"
                 >
                   {/* Title */}
                   <div className="flex items-start gap-3 mb-5">

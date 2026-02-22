@@ -244,10 +244,10 @@ const DemoOne = () => {
                             transition={{ duration: 0.8, delay: 0.1 }}
                             className="flex flex-col text-5xl md:text-[6rem] lg:text-[8.5rem] font-black tracking-tighter leading-[0.95] text-white"
                         >
-                            <span>All on One</span>
+                            <span> End to End</span>
 
                             <span className="text-white italic tracking-tighter pb-2">
-                                Platform.
+                                Services.
                             </span>
                         </motion.h1>
 
@@ -258,7 +258,7 @@ const DemoOne = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            Optimize your data today to power tomorrow’s AI—business intelligence is where real growth begins.
+                            We partner with you to streamline your data, strengthen analytics, and build AI capabilities that drive measurable growth.
                         </motion.p>
 
                         {/* Mobile-only Buttons */}

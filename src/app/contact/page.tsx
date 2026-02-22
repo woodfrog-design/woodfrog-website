@@ -76,7 +76,7 @@ const ContactPage = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="text-brand-primary font-bold tracking-widest uppercase text-xs md:text-sm"
                             >
-                                Contact
+                                
                             </motion.span>
 
                             <motion.h1
@@ -85,7 +85,7 @@ const ContactPage = () => {
                                 transition={{ delay: 0.1 }}
                                 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight"
                             >
-                                Let's develop your business intelligence <span className="relative">
+                                Let’s create clarity, intelligence, and impact <span className="relative">
                                     <span className="text-brand-primary">together</span>
                                     <svg className="absolute -bottom-2 left-0 w-full" width="100%" height="8" viewBox="0 0 100 8" fill="none">
                                         <motion.path

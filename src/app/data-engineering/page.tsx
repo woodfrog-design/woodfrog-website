@@ -27,7 +27,7 @@ const SERVICES = [
     id: 'architectures',
     title: 'Design and recommendation of analytical architectures and infrastructures',
     description:
-      'Aligned with your current and future analytical objectives, our experts recommend innovative, scalable solutions tailored to your business and functional needs. We ensure that the proposed architecture and infrastructure are both cost-effective and strategically aligned with your short-, mid-, and long-term goals. Whether for a redesign, a migration, or an ongoing optimization process, our team will provide the guidance you need.',
+      'Aligned with your current and future analytical objectives, our experts recommend innovative, scalable solutions tailored to your business and functional needs. We ensure that the proposed architecture and infrastructure are both cost-effective and strategically aligned with your short, mid, and long-term goals. Whether for a redesign, a migration, or an ongoing optimization process, our team will provide the guidance you need.',
   },
   {
     id: 'automation',
@@ -399,7 +399,7 @@ export default function DataEngineeringPage() {
                 <div
                   key={s.id}
                   ref={(el) => { sectionRefs.current[idx] = el; }}
-                  className="scroll-mt-28 pb-16 mb-0 border-b border-white/10 last:border-b-0 last:pb-0"
+                    className="scroll-mt-28 pt-8 pb-8 mb-0 border-b border-white/10 last:border-b-0 last:pb-0"
                 >
                   {/* Service Title */}
                   <div className="flex items-start gap-3 mb-5">

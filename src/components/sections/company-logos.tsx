@@ -45,7 +45,7 @@ const CompanyLogos = () => {
 
             <div className={`mx-auto ${isMobile ? 'px-6 mb-8 text-center' : 'px-12 md:px-32 mb-16'}`}>
                 <p className="text-[#8891A5] text-sm font-bold uppercase tracking-[0.4em]">
-                    Trusted partner of
+                    Trusted by
                 </p>
             </div>
 
