@@ -21,6 +21,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 1. Validate Environment Variables
+    const missingVars = [];
+    if (!process.env.SMTP_HOST) missingVars.push('SMTP_HOST');
+    if (!process.env.SMTP_USER) missingVars.push('SMTP_USER');
+    if (!process.env.SMTP_PASS) missingVars.push('SMTP_PASS');
+
+    if (missingVars.length > 0) {
+      console.error('Missing SMTP environment variables:', missingVars.join(', '));
+      return NextResponse.json(
+        { error: `Server configuration error: Missing [${missingVars.join(', ')}]. Please check Netlify environment variables.` },
+        { status: 500 }
+      );
+    }
+
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT) || 587,
@@ -30,6 +44,17 @@ export async function POST(req: NextRequest) {
         pass: process.env.SMTP_PASS,
       },
     });
+
+    // 2. Verify connection
+    try {
+      await transporter.verify();
+    } catch (verifyError) {
+      console.error('SMTP Connection Verify Error:', verifyError);
+      return NextResponse.json(
+        { error: `Failed to connect to email server: ${verifyError instanceof Error ? verifyError.message : 'Unknown error'}` },
+        { status: 500 }
+      );
+    }
 
     const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'hello@woodfrog.tech';
 

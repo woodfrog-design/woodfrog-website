@@ -204,7 +204,7 @@ const FooterSection = () => {
                         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-[#8891A5]/60 text-sm font-medium">
                             <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Cookies preferences</a>
                             <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Privacy Policy</a>
-                            <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Credits</a>
+                            <a href="#" className="hover:text-brand-primary transition-colors whitespace-nowrap">Terms & Conditions (T&C)</a>
                         </div>
                     </div>
                 </div>
