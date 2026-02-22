@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
 import { FooterSection } from "@/components/sections/footer-section";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { PageTransitionIndicator } from "@/components/PageTransitionIndicator";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +39,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SmoothScroll>
+          <Suspense fallback={null}>
+            <PageTransitionIndicator />
+          </Suspense>
           <Navbar />
           {children}
           <FooterSection />
