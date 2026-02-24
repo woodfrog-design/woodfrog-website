@@ -212,7 +212,6 @@ body {
 
   body {
     background-image: var(--bg-dark);
-    background-attachment: fixed;
     background-size: cover;
     @apply text-foreground;
   }

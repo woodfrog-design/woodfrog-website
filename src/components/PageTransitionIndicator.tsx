@@ -14,9 +14,12 @@ export function PageTransitionIndicator() {
     useEffect(() => {
         const currentPath = pathname + searchParams.toString();
 
-        // If we were navigating and the path has changed, fade out
-        if (isNavigating && currentPath !== lastPathname.current) {
+        // Fade out overlay whenever path changes (covers all navigation scenarios)
+        if (currentPath !== lastPathname.current) {
+            lastPathname.current = currentPath;
             if (overlayRef.current) {
+                gsap.killTweensOf(overlayRef.current);
+                overlayRef.current.style.display = "block";
                 gsap.to(overlayRef.current, {
                     opacity: 0,
                     duration: 0.6,
@@ -29,9 +32,8 @@ export function PageTransitionIndicator() {
                     },
                 });
             }
-            lastPathname.current = currentPath;
         }
-    }, [pathname, searchParams, isNavigating]);
+    }, [pathname, searchParams]);
 
     useEffect(() => {
         const handleNavigationStart = (e: MouseEvent) => {
