@@ -1118,3 +1118,182 @@ https://react.dev/link/hydration-mismatch
        please check the style of container, or the props width(100%) and height(100%),
        or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
        height and width.
+2026-02-24T10:45:57.580Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.614Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.615Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.932Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.933Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.214Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.246Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.247Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.248Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.251Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.289Z [console][error] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.328Z [console][log] __ORCHIDS_NAVIGATE__ http://localhost:3000/
+2026-02-24T10:45:58.479Z [console][error] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SmoothScroll>
+      <Suspense>
+      <Suspense>
+      <Navbar>
+      ...
+        <ScrollStack>
+          <div ref={{current:null}} className="w-full bg-...">
+            <div ref={{current:null}} className="relative h...">
+              <div>
+              <div>
+              <div className="scroll-car..." style={{zIndex:4, ...}}>
+                <div>
+                <div>
+                <div className="flex-[1.2]...">
+                  <div className="absolute i...">
+                    <AIGovernanceDemo isActive={false}>
+                      <div className="relative w..." style={{...}}>
+                        <div className="absolute i...">
+                          <svg viewBox="0 0 800 500" className="w-full h-full">
+                            <defs>
+                            <line>
+                            <line>
+                            <text>
+                            <text>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <g>
+                            <motion.circle r={2.541719718888372} fill="#10B981" fillOpacity="0.3" initial={{...}} ...>
+                              <circle
++                               r={2.541719718888372}
+-                               r="1.169389205184335"
+                                fill="#10B981"
+                                fillOpacity="0.3"
++                               cx={291.71464346160764}
+-                               cx="569.7858894939154"
++                               cy={369.25160084169545}
+-                               cy="337.5817093142915"
+                                style={{}}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <motion.circle r={2.342393876854169} fill="#10B981" fillOpacity="0.3" initial={{...}} ...>
+                              <circle
++                               r={2.342393876854169}
+-                               r="1.203747561389974"
+                                fill="#10B981"
+                                fillOpacity="0.3"
++                               cx={691.9734236726604}
+-                               cx="252.65076104041194"
++                               cy={137.71298408016827}
+-                               cy="286.0093273540389"
+                                style={{}}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <motion.circle r={2.370657162561187} fill="#10B981" fillOpacity="0.3" initial={{...}} ...>
+                              <circle
++                               r={2.370657162561187}
+-                               r="1.99691477994548"
+                                fill="#10B981"
+                                fillOpacity="0.3"
++                               cx={663.3087658825501}
+-                               cx="342.9398493167115"
++                               cy={194.14646842014776}
+-                               cy="154.3462829242095"
+                                style={{}}
+           ... [truncated]
+2026-02-24T10:45:59.297Z [console][error] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-24T10:46:54.493Z [console][warn] Cookie settings saved: rejected [object Object]
+2026-02-24T10:45:57.207Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.578Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.580Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.614Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:57.932Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.214Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.246Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.247Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.251Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.288Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.289Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-24T10:45:58.328Z [console][debug] __ORCHIDS_NAVIGATE__ http://localhost:3000/
+2026-02-24T10:45:59.296Z [console][warn] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-24T10:45:59.297Z [console][warn] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-24T10:46:54.492Z [console][log] Cookie settings saved: rejected {"analytical":false,"marketing":false}

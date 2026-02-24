@@ -9,6 +9,22 @@ import {
 } from 'lucide-react';
 import { ANIMATION_THEME } from '@/lib/colors';
 
+// Stable seeded values to avoid SSR/client hydration mismatch
+const PARTICLE_DATA = [
+    { r: 2.54, cx: 412, cy: 287, xOffset: 7, duration: 7.2, delay: 3.1 },
+    { r: 1.83, cx: 178, cy: 203, xOffset: -4, duration: 5.8, delay: 0.7 },
+    { r: 2.91, cx: 634, cy: 341, xOffset: 9, duration: 8.4, delay: 4.2 },
+    { r: 1.42, cx: 521, cy: 156, xOffset: -8, duration: 6.1, delay: 1.5 },
+    { r: 2.17, cx: 289, cy: 278, xOffset: 3, duration: 7.9, delay: 2.8 },
+    { r: 1.68, cx: 703, cy: 198, xOffset: -6, duration: 5.3, delay: 0.3 },
+    { r: 2.45, cx: 367, cy: 387, xOffset: 10, duration: 8.7, delay: 4.9 },
+    { r: 1.94, cx: 145, cy: 312, xOffset: -3, duration: 6.6, delay: 1.1 },
+    { r: 2.72, cx: 578, cy: 243, xOffset: 5, duration: 7.4, delay: 3.6 },
+    { r: 1.31, cx: 456, cy: 167, xOffset: -9, duration: 5.9, delay: 0.9 },
+    { r: 2.88, cx: 234, cy: 349, xOffset: 7, duration: 8.1, delay: 2.4 },
+    { r: 1.57, cx: 689, cy: 271, xOffset: -5, duration: 6.8, delay: 4.6 },
+];
+
 export const AIGovernanceDemo = ({ isActive = true }: { isActive?: boolean }) => {
     return (
         <div className="relative w-full h-full min-h-[400px] flex items-center justify-center perspective-1000" style={{ backgroundColor: ANIMATION_THEME.background }}>
@@ -79,26 +95,26 @@ export const AIGovernanceDemo = ({ isActive = true }: { isActive?: boolean }) =>
                     })}
 
                     {/* Data Particles (Floating Dots) */}
-                    {[...Array(12)].map((_, i) => (
+                    {PARTICLE_DATA.map((p, i) => (
                         <motion.circle
                             key={i}
-                            r={Math.random() * 2 + 1}
+                            r={p.r}
                             fill={ANIMATION_THEME.primary}
                             fillOpacity="0.3"
                             initial={{
-                                cx: 100 + Math.random() * 600,
-                                cy: 100 + Math.random() * 300
+                                cx: p.cx,
+                                cy: p.cy
                             }}
                             animate={isActive ? {
                                 y: [0, -40, 0],
-                                x: [0, Math.random() * 20 - 10, 0],
+                                x: [0, p.xOffset, 0],
                                 opacity: [0.2, 0.5, 0.2]
                             } : { opacity: 0 }}
                             transition={{
-                                duration: 4 + Math.random() * 5,
+                                duration: p.duration,
                                 repeat: Infinity,
                                 ease: "easeInOut",
-                                delay: Math.random() * 5
+                                delay: p.delay
                             }}
                         />
                     ))}
