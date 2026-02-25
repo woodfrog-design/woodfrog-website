@@ -8,6 +8,11 @@ import { cn } from '@/lib/utils';
 
 const SERVICES = [
     {
+        title: "Superset Analytics",
+        description: "Apache Superset Customization, Embedding & Optimization",
+        href: "/superset-analytics",
+    },
+    {
         title: "Data Visualization",
         description: "Enterprise Data Visualization Experts | Design-driven",
         href: "/data-visualization",
@@ -176,6 +181,17 @@ const ServiceIcon = ({ title }: { title: string }) => {
             <svg className={iconBaseClass} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <rect width="64" height="64" rx="12" fill="#1F1F1F" />
                 <polygon points="22,22 46,28 28,46" fill="#10B981" />
+            </svg>
+        );
+    }
+
+    // Superset Analytics
+    if (title === "Superset Analytics") {
+        return (
+            <svg className={iconBaseClass} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <rect width="64" height="64" rx="12" fill="#1F1F1F" />
+                <rect x="12" y="20" width="40" height="24" rx="3" stroke="#E8501A" strokeWidth="2" fill="none" />
+                <path d="M18 36 L24 29 L30 33 L36 26 L46 31" stroke="#E8501A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
             </svg>
         );
     }

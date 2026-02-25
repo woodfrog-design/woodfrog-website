@@ -24,6 +24,15 @@ const ScrollStack = () => {
     const cards = [
         {
             id: 1,
+            label: "Unlock the full power of Apache Superset",
+            title: "Superset Analytics",
+            description1: "Tailoring Apache Superset to fit your business needs - from custom chart plugins and embedded dashboards to performance tuning and LLM-powered text-to-SQL.",
+            description2: "High-performance, deeply integrated Superset implementations for enterprise BI and startup analytics, backed by real hands-on experience.",
+            bg: "var(--brand-card-bg)",
+            link: "/superset-analytics"
+        },
+        {
+            id: 2,
             label: "Enterprise Data Visualization Experts | Design-driven",
             title: "Data Visualization",
             description1: "Creating intuitive and interactive dashboards that transform complex data into clear, actionable business stories.",
@@ -32,7 +41,7 @@ const ScrollStack = () => {
             link: "/data-visualization"
         },
         {
-            id: 2,
+            id: 3,
             label: "Cloud & Modern Data Platform Experts",
             title: "Data Engineering",
             description1: "Building robust and scalable data foundations using modern cloud and data platforms to power your organization's analytics",
@@ -41,7 +50,7 @@ const ScrollStack = () => {
             link: "/data-engineering"
         },
         {
-            id: 3,
+            id: 4,
             label: "Governance, Ethics & Compliance Experts",
             title: "AI Governance",
             description1: "Navigating the complexities of AI ethics and compliance with expert guidance and proven safety frameworks.",
@@ -50,7 +59,7 @@ const ScrollStack = () => {
             link: "/ai-governance"
         },
         {
-            id: 4,
+            id: 5,
             label: "Enterprise Automation Experts",
             title: "Applications and Automations",
             description1: "We automate your key processes to increase efficiency, reduce errors, and speed up your operations.",
@@ -59,7 +68,7 @@ const ScrollStack = () => {
             link: "/applications-and-automations"
         },
         {
-            id: 5,
+            id: 6,
             label: "Intelligent Data Agents for Automated Insights",
             title: "Data Agents",
             description1: "Developing intelligent autonomous agents that navigate your data landscape to provide real-time, automated insights.",
@@ -67,17 +76,6 @@ const ScrollStack = () => {
             bg: "var(--brand-card-bg)",
             link: "/data-agents"
         },
-        /*
-                {
-                    id: 6,
-                    label: "Copilot Studio and Fabric AI Agents Experts",
-                    title: "AI Agents",
-                    description1: "Specialized implementation of Copilot Studio and Fabric AI Agents to enhance productivity and user experience.",
-                    description2: "We create custom AI agents that understand your unique business context and assist users in complex tasks with natural language interfaces.",
-                    bg: "var(--brand-card-bg)",
-                    link: "/ai-agents"
-                },
-        */
         {
             id: 7,
             label: "Specialized Assistance for Your Analytics Solutions",
@@ -217,7 +215,7 @@ const ScrollStack = () => {
                         </div>
 
                         {/* RIGHT COLUMN: MEDIA PLACEHOLDER */}
-                        <div className={`flex-[1.2] md:flex-1 flex items-center justify-center relative overflow-hidden ${card.title === "Data Engineering" || card.title === "Helpdesk" || card.title === "Data Visualization" || card.title === "Data Agents" || card.title === "AI Governance" ? "bg-white" : "bg-zinc-900/30"}`}>
+                        <div className={`flex-[1.2] md:flex-1 flex items-center justify-center relative overflow-hidden ${card.title === "Data Engineering" || card.title === "Helpdesk" || card.title === "Data Visualization" || card.title === "Data Agents" || card.title === "AI Governance" || card.title === "Superset Analytics" ? "bg-white" : "bg-zinc-900/30"}`}>
                             <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu">
                                 {card.title === "Data Engineering" ? (
                                     <DataEngineeringDemo isActive={i === activeIndex} />
@@ -231,6 +229,22 @@ const ScrollStack = () => {
                                     <AIGovernanceDemo isActive={i === activeIndex} />
                                 ) : card.title === "Applications and Automations" ? (
                                     <ApplicationsAutomationsDemo isActive={i === activeIndex} />
+                                ) : card.title === "Superset Analytics" ? (
+                                    <div className="w-full h-full flex items-center justify-center p-12">
+                                        <div className="w-full h-full rounded-2xl bg-[#f7f5f2] border border-gray-100 flex flex-col items-center justify-center gap-4 relative">
+                                            <div className="w-14 h-14 rounded-2xl bg-[#E8501A]/10 border border-[#E8501A]/20 flex items-center justify-center">
+                                                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                                                    <rect x="4" y="8" width="24" height="16" rx="2" stroke="#E8501A" strokeWidth="1.5" fill="none" />
+                                                    <path d="M8 18 L12 13 L16 16 L20 11 L24 14" stroke="#E8501A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                                                </svg>
+                                            </div>
+                                            <p className="text-[12px] font-semibold text-gray-400 tracking-wide">Apache Superset</p>
+                                            <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-[#E8501A]/20" />
+                                            <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-[#E8501A]/20" />
+                                            <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-[#E8501A]/20" />
+                                            <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-[#E8501A]/20" />
+                                        </div>
+                                    </div>
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center p-12">
                                         {/* Inner Glass Container for Media */}
