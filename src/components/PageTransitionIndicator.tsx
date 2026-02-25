@@ -11,29 +11,58 @@ export function PageTransitionIndicator() {
     const [isNavigating, setIsNavigating] = useState(false);
     const lastPathname = useRef(pathname + searchParams.toString());
 
+    const hideOverlay = () => {
+        if (overlayRef.current) {
+            gsap.killTweensOf(overlayRef.current);
+            gsap.to(overlayRef.current, {
+                opacity: 0,
+                duration: 0.4,
+                ease: "power2.out",
+                onComplete: () => {
+                    setIsNavigating(false);
+                    if (overlayRef.current) {
+                        overlayRef.current.style.display = "none";
+                    }
+                },
+            });
+        }
+    };
+
     useEffect(() => {
         const currentPath = pathname + searchParams.toString();
 
-        // Fade out overlay whenever path changes (covers all navigation scenarios)
-        if (currentPath !== lastPathname.current) {
-            lastPathname.current = currentPath;
-            if (overlayRef.current) {
-                gsap.killTweensOf(overlayRef.current);
-                overlayRef.current.style.display = "block";
-                gsap.to(overlayRef.current, {
-                    opacity: 0,
-                    duration: 0.6,
-                    ease: "power2.out",
-                    onComplete: () => {
-                        setIsNavigating(false);
-                        if (overlayRef.current) {
-                            overlayRef.current.style.display = "none";
-                        }
-                    },
-                });
-            }
+        // Always fade out the overlay on any path change (including back/forward navigation)
+        lastPathname.current = currentPath;
+        if (overlayRef.current) {
+            gsap.killTweensOf(overlayRef.current);
+            overlayRef.current.style.display = "block";
+            gsap.to(overlayRef.current, {
+                opacity: 0,
+                duration: 0.6,
+                ease: "power2.out",
+                onComplete: () => {
+                    setIsNavigating(false);
+                    if (overlayRef.current) {
+                        overlayRef.current.style.display = "none";
+                    }
+                },
+            });
         }
     }, [pathname, searchParams]);
+
+    // Handle browser back/forward button navigation explicitly
+    useEffect(() => {
+        const handlePopState = () => {
+            // Reset the lastPathname tracking so that the path-change effect always fires
+            lastPathname.current = "";
+            setIsNavigating(false);
+            hideOverlay();
+        };
+
+        window.addEventListener("popstate", handlePopState);
+        return () => window.removeEventListener("popstate", handlePopState);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         const handleNavigationStart = (e: MouseEvent) => {
