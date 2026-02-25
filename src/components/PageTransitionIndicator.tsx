@@ -11,6 +11,15 @@ export function PageTransitionIndicator() {
     const [isNavigating, setIsNavigating] = useState(false);
     const lastPathname = useRef(pathname + searchParams.toString());
 
+    const forceHideOverlay = () => {
+        if (overlayRef.current) {
+            gsap.killTweensOf(overlayRef.current);
+            overlayRef.current.style.opacity = "0";
+            overlayRef.current.style.display = "none";
+        }
+        setIsNavigating(false);
+    };
+
     const hideOverlay = () => {
         if (overlayRef.current) {
             gsap.killTweensOf(overlayRef.current);
@@ -27,6 +36,43 @@ export function PageTransitionIndicator() {
             });
         }
     };
+
+    // Always hide overlay on component mount (handles fresh page loads)
+    useEffect(() => {
+        forceHideOverlay();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Handle bfcache (Back-Forward Cache) page restores.
+    // On production builds, browsers freeze the page with the overlay visible.
+    // When the user presses back, the frozen page is restored WITHOUT re-running
+    // React effects. The `pageshow` event fires in this case with `persisted: true`.
+    useEffect(() => {
+        const handlePageShow = (e: PageTransitionEvent) => {
+            if (e.persisted) {
+                // Page was restored from bfcache — force-hide the overlay immediately
+                forceHideOverlay();
+                lastPathname.current = "";
+            }
+        };
+
+        window.addEventListener("pageshow", handlePageShow);
+        return () => window.removeEventListener("pageshow", handlePageShow);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Handle browser back/forward button navigation explicitly
+    useEffect(() => {
+        const handlePopState = () => {
+            lastPathname.current = "";
+            setIsNavigating(false);
+            hideOverlay();
+        };
+
+        window.addEventListener("popstate", handlePopState);
+        return () => window.removeEventListener("popstate", handlePopState);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         const currentPath = pathname + searchParams.toString();
