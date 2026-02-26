@@ -2,6 +2,17 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+    AreaChart,
+    Area,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer,
+    ReferenceLine,
+    Dot,
+} from 'recharts';
 
 /* ═══════════════════════════════════════════════════════
    SHARED UTILITIES
@@ -1297,186 +1308,279 @@ export function CustomAlertsFeatureIllustration() {
 }
 
 export function WhaleChartIllustration() {
+    const [data, setData] = useState<{ x: number; absoluteProfit: number; percentageProfit: number }[]>([]);
+
+    useEffect(() => {
+        const total = 50;
+        const result = [];
+        let cumProfit = 0;
+
+        // Generate whale shape
+        for (let i = 0; i <= total; i++) {
+            const x = i / total;
+            let profit = 0;
+            if (x < 0.25) {
+                // Head: high profit
+                profit = 5000 * Math.exp(-2 * x);
+            } else if (x < 0.75) {
+                // Back: low profit / break-even
+                profit = 500 * (1 - (x - 0.25) / 0.5);
+            } else {
+                // Tail: negative profit
+                profit = -2500 * ((x - 0.75) / 0.25);
+            }
+            cumProfit += profit;
+            result.push({
+                x: Math.round(x * 100),
+                absoluteProfit: Math.round(cumProfit),
+            });
+        }
+
+        // The final profit is the 100% mark for the right axis scale
+        const finalProfit = result[result.length - 1].absoluteProfit;
+        
+        const finalData = result.map(d => ({
+            ...d,
+            percentageProfit: Math.round((d.absoluteProfit / finalProfit) * 100)
+        }));
+
+        setData(finalData);
+    }, []);
+
+    const peak = data.reduce((max, p) => p.absoluteProfit > max.absoluteProfit ? p : max, { absoluteProfit: 0, x: 0, percentageProfit: 0 });
+
     return (
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col shadow-sm" style={{ height: 340 }}>
-            <div className="bg-gray-50 border-b border-gray-100 px-4 py-3">
+            <div className="bg-gray-50 border-b border-gray-100 px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-orange-500" />
                     <span className="text-[11px] font-bold text-gray-700 uppercase tracking-widest">Cumulative Profitability (Whale Chart)</span>
                 </div>
+                <div className="flex gap-2">
+                    <span className="text-[9px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">Net Profit: 100%</span>
+                </div>
             </div>
 
-            <div className="flex-1 p-8 flex flex-col">
-                <div className="flex-1 relative">
-                    {/* Y-Axis Label */}
-                    <div className="absolute -left-10 top-1/2 -rotate-90 text-[7px] text-gray-400 font-bold uppercase tracking-widest">
-                        Cumulative Profit (%)
-                    </div>
-
-                    {/* Grid lines */}
-                    <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
-                        {[0, 20, 40, 60, 80, 100].map(i => (
-                            <div key={i} className="border-t border-gray-50 w-full flex items-center">
-                                <span className="text-[7px] text-gray-300 font-mono -ml-6">{100-i}%</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Whale Curve SVG */}
-                    <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="whaleGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor={SUPERSET_ORANGE} stopOpacity="0.25" />
-                                <stop offset="70%" stopColor={SUPERSET_ORANGE} stopOpacity="0.05" />
-                                <stop offset="100%" stopColor={SUPERSET_ORANGE} stopOpacity="0" />
-                            </linearGradient>
-                        </defs>
-                        
-                        {/* Shaded Area */}
-                        <motion.path
-                            d="M 0 100 C 5 80, 15 10, 35 5 C 55 0, 75 70, 100 85 L 100 100 L 0 100"
-                            fill="url(#whaleGradient)"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1.2 }}
-                        />
-
-                        {/* Peak Line */}
-                        <motion.line 
-                            x1="35" y1="5" x2="35" y2="100"
-                            stroke="#e5e7eb" strokeDasharray="2 2"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1.5 }}
-                        />
-
-                        {/* The Curve */}
-                        <motion.path
-                            d="M 0 100 C 5 80, 15 10, 35 5 C 55 0, 75 70, 100 85"
-                            fill="none"
-                            stroke={SUPERSET_ORANGE}
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: 1 }}
-                            transition={{ duration: 2.5, ease: "easeInOut" }}
-                        />
-
-                        {/* Peak Point */}
-                        <motion.circle
-                            cx="35" cy="5" r="3"
-                            fill="#fff"
-                            stroke={SUPERSET_ORANGE}
-                            strokeWidth="2"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 2, type: 'spring' }}
-                        />
-                    </svg>
-
-                    {/* Annotations */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 2.2 }}
-                        className="absolute top-2 left-[40%] bg-white rounded-lg p-2.5 shadow-lg border border-gray-100 z-10 max-w-[130px]"
-                    >
-                        <div className="text-[9px] text-orange-600 font-bold mb-0.5 uppercase tracking-tighter">Profit Peak</div>
-                        <div className="text-[8px] text-gray-500 font-medium leading-tight">
-                            Maximum cumulative profit reached at top 35% of customers.
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 2.8 }}
-                        className="absolute bottom-12 right-0 text-right"
-                    >
-                        <div className="text-[9px] text-red-500 font-bold uppercase tracking-tighter italic">Erosion Zone</div>
-                        <div className="text-[8px] text-gray-400 font-medium leading-snug">
-                            Unprofitable segments<br/>eroding total margin by 15%
-                        </div>
-                    </motion.div>
+            <div className="flex-1 p-4 pb-2 flex flex-col">
+                <div className="flex-1 w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart data={data} margin={{ top: 20, right: 5, left: 5, bottom: 20 }}>
+                            <defs>
+                                <linearGradient id="whaleGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor={SUPERSET_ORANGE} stopOpacity={0.3} />
+                                    <stop offset="95%" stopColor={SUPERSET_ORANGE} stopOpacity={0} />
+                                </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                            <XAxis
+                                dataKey="x"
+                                tick={{ fontSize: 9, fill: '#94a3b8' }}
+                                tickFormatter={(val) => `${val}%`}
+                                axisLine={{ stroke: '#f1f5f9' }}
+                                tickLine={false}
+                                label={{ value: 'Customers (%)', position: 'insideBottom', offset: -10, fontSize: 10, fill: '#64748b', fontWeight: 'bold' }}
+                            />
+                            <YAxis
+                                yAxisId="left"
+                                tick={{ fontSize: 9, fill: '#94a3b8' }}
+                                tickFormatter={(val) => `₹${(val / 1000).toFixed(1)}k`}
+                                axisLine={false}
+                                tickLine={false}
+                                label={{ value: 'Abs. Profit', angle: -90, position: 'insideLeft', fontSize: 10, fill: '#64748b', fontWeight: 'bold', offset: 10 }}
+                            />
+                            <YAxis
+                                yAxisId="right"
+                                orientation="right"
+                                tick={{ fontSize: 9, fill: '#94a3b8' }}
+                                tickFormatter={(val) => `${val}%`}
+                                axisLine={false}
+                                tickLine={false}
+                                label={{ value: 'Profit %', angle: 90, position: 'insideRight', fontSize: 10, fill: '#64748b', fontWeight: 'bold', offset: 10 }}
+                            />
+                            <Tooltip
+                                content={({ active, payload }) => {
+                                    if (active && payload && payload.length) {
+                                        const d = payload[0].payload;
+                                        return (
+                                            <div className="bg-white border border-gray-100 shadow-xl rounded-lg p-3">
+                                                <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Top {d.x}% Customers</p>
+                                                <p className="text-[14px] font-black text-gray-900">
+                                                    ₹{d.absoluteProfit.toLocaleString()}
+                                                </p>
+                                                <p className="text-[10px] text-gray-500">
+                                                    {d.percentageProfit}% of Net Profit
+                                                </p>
+                                            </div>
+                                        );
+                                    }
+                                    return null;
+                                }}
+                            />
+                            <ReferenceLine yAxisId="right" y={100} stroke="#cbd5e1" strokeDasharray="3 3" label={{ position: 'right', value: '100%', fill: '#94a3b8', fontSize: 10, fontWeight: 'bold' }} />
+                            <Area
+                                yAxisId="left"
+                                type="monotone"
+                                dataKey="absoluteProfit"
+                                stroke={SUPERSET_ORANGE}
+                                strokeWidth={3}
+                                fillOpacity={1}
+                                fill="url(#whaleGradient)"
+                                animationDuration={2000}
+                            />
+                            <Area
+                                yAxisId="right"
+                                type="monotone"
+                                dataKey="percentageProfit"
+                                stroke="transparent"
+                                fill="transparent"
+                            />
+                            {peak.x > 0 && (
+                                <ReferenceLine yAxisId="left" x={peak.x} stroke="#e2e8f0" strokeDasharray="2 2" />
+                            )}
+                        </AreaChart>
+                    </ResponsiveContainer>
                 </div>
 
-                {/* X-Axis */}
-                <div className="h-8 border-t border-gray-100 mt-6 flex justify-between items-center text-[8px] text-gray-400 font-bold px-2">
+                {/* Annotations Layer */}
+                <div className="relative h-12 flex justify-between items-start px-2">
                     <div className="flex flex-col">
-                        <span>Most Profitable</span>
-                        <span className="text-[7px] opacity-60 font-normal">Customer Ranking</span>
+                        <span className="text-[9px] font-bold text-gray-900 uppercase">Profitable Head</span>
+                        <span className="text-[8px] text-gray-400 leading-tight">20% of clients = 180% profit</span>
                     </div>
-                    <div className="h-1.5 w-32 bg-gray-50 rounded-full relative overflow-hidden">
-                        <motion.div 
-                            initial={{ width: 0 }}
-                            animate={{ width: '100%' }}
-                            transition={{ duration: 2.5 }}
-                            className="absolute inset-0 bg-gradient-to-r from-orange-500 via-orange-400 to-red-400 opacity-20" 
-                        />
+
+                    <div className="flex flex-col items-center">
+                        <div className="px-2 py-0.5 rounded bg-orange-50 border border-orange-100 text-[8px] font-bold text-orange-600 uppercase">
+                            Peak: {peak.percentageProfit}%
+                        </div>
                     </div>
-                    <span>Least Profitable</span>
+
+                    <div className="flex flex-col items-end text-right">
+                        <span className="text-[9px] font-bold text-red-500 uppercase">Erosion Tail</span>
+                        <span className="text-[8px] text-gray-400 leading-tight">Unprofitable segments</span>
+                    </div>
+                </div>
+
+                {/* X-Axis Labels */}
+                <div className="h-6 border-t border-gray-100 flex justify-between items-center px-2">
+                    <span className="text-[8px] font-bold text-gray-400 uppercase">Most Profitable</span>
+                    <div className="flex gap-1">
+                        {[...Array(10)].map((_, i) => (
+                            <div key={i} className="w-4 h-1 rounded-full bg-gray-100" />
+                        ))}
+                    </div>
+                    <span className="text-[8px] font-bold text-gray-400 uppercase">Least Profitable</span>
                 </div>
             </div>
         </div>
     );
 }
 
+
 export function FinancialReportIllustration() {
+    const [cycle, setCycle] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCycle(c => c + 1);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const rows = [
+        { name: 'Operating Revenue', q4: '$4.2M', q5: '$5.1M', delta: '+21.4%', bold: true, indent: 0 },
+        { name: 'Product Sales', q4: '$2.8M', q5: '$3.5M', delta: '+25.0%', bold: false, indent: 12 },
+        { name: 'Service Contracts', q4: '$1.4M', q5: '$1.6M', delta: '+14.3%', bold: false, indent: 12 },
+        { name: 'Cost of Goods Sold', q4: '($1.2M)', q5: '($1.5M)', delta: '+25.0%', bold: false, indent: 0 },
+        { name: 'Gross Margin', q4: '$3.0M', q5: '$3.6M', delta: '+20.0%', bold: true, indent: 0, highlight: true },
+        { name: 'Operating Expenses', q4: '($1.8M)', q5: '($2.0M)', delta: '+11.1%', bold: false, indent: 0 },
+        { name: 'EBITDA', q4: '$1.2M', q5: '$1.6M', delta: '+33.3%', bold: true, indent: 0 }
+    ];
+
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col shadow-sm" style={{ height: 340 }}>
-            <div className="bg-gray-50 border-b border-gray-100 px-4 py-3">
+        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col shadow-sm w-full" style={{ height: 340 }}>
+            {/* Header */}
+            <div className="bg-gray-50 border-b border-gray-100 px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-orange-500" />
                     <span className="text-[11px] font-bold text-gray-700 uppercase tracking-widest">Financial Reporting View</span>
                 </div>
+                <div className="flex gap-2">
+                    <span className="text-[9px] font-bold text-gray-400">PDF EXPORT</span>
+                    <motion.span 
+                        animate={{ opacity: [1, 0.5, 1] }} 
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="text-[9px] font-bold text-green-500"
+                    >
+                        READY
+                    </motion.span>
+                </div>
             </div>
 
-            <div className="flex-1 p-4 overflow-hidden">
+            {/* Table Body */}
+            <div className="flex-1 p-4 overflow-hidden flex flex-col justify-center">
                 <table className="w-full text-left border-collapse">
                     <thead>
                         <tr className="border-b border-gray-100">
-                            <th className="py-2 text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Line Item</th>
-                            <th className="py-2 text-[10px] font-bold text-gray-400 uppercase tracking-tighter text-right">Q4 2024</th>
-                            <th className="py-2 text-[10px] font-bold text-gray-400 uppercase tracking-tighter text-right">Q4 2025</th>
-                            <th className="py-2 text-[10px] font-bold text-gray-400 uppercase tracking-tighter text-right">% Δ</th>
+                            <th className="py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Line Item</th>
+                            <th className="py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-tighter text-right">Q4 2024</th>
+                            <th className="py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-tighter text-right">Q4 2025</th>
+                            <th className="py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-tighter text-right">% Δ</th>
                         </tr>
                     </thead>
                     <tbody className="text-[11px]">
-                        {[
-                            { name: 'Operating Revenue', q4: '$4.2M', q5: '$5.1M', delta: '+21.4%', bold: true, indent: 0 },
-                            { name: 'Product Sales', q4: '$2.8M', q5: '$3.5M', delta: '+25.0%', bold: false, indent: 4 },
-                            { name: 'Service Contracts', q4: '$1.4M', q5: '$1.6M', delta: '+14.3%', bold: false, indent: 4 },
-                            { name: 'Cost of Goods Sold', q4: '($1.2M)', q5: '($1.5M)', delta: '+25.0%', bold: false, indent: 0 },
-                            { name: 'Gross Margin', q4: '$3.0M', q5: '$3.6M', delta: '+20.0%', bold: true, indent: 0, highlight: true },
-                            { name: 'Operating Expenses', q4: '($1.8M)', q5: '($2.0M)', delta: '+11.1%', bold: false, indent: 0 },
-                            { name: 'EBITDA', q4: '$1.2M', q5: '$1.6M', delta: '+33.3%', bold: true, indent: 0 }
-                        ].map((row, i) => (
-                            <motion.tr
-                                key={i}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.1 }}
-                                className={`border-b border-gray-50 last:border-0 ${row.highlight ? 'bg-orange-50/30' : ''}`}
-                            >
-                                <td className={`py-2 ${row.bold ? 'font-black text-gray-900' : 'text-gray-600'}`} style={{ paddingLeft: row.indent }}>
-                                    {row.name}
-                                </td>
-                                <td className="py-2 text-right font-medium text-gray-700">{row.q4}</td>
-                                <td className="py-2 text-right font-medium text-gray-700">{row.q5}</td>
-                                <td className={`py-2 text-right font-bold ${row.delta.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
-                                    {row.delta}
-                                </td>
-                            </motion.tr>
-                        ))}
+                        <AnimatePresence mode="popLayout">
+                            {rows.map((row, i) => (
+                                <motion.tr
+                                    key={`${cycle}-${i}`}
+                                    initial={{ opacity: 0, y: 5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -5 }}
+                                    transition={{ delay: i * 0.08, duration: 0.3 }}
+                                    className={`border-b border-gray-50 last:border-0 ${row.highlight ? 'bg-orange-50/30' : ''}`}
+                                >
+                                    <td className={`py-1.5 pr-2 ${row.bold ? 'font-black text-gray-900' : 'text-gray-600'}`} style={{ paddingLeft: row.indent }}>
+                                        {row.name}
+                                    </td>
+                                    <td className="py-1.5 text-right font-medium text-gray-700">{row.q4}</td>
+                                    <td className="py-1.5 text-right font-medium text-gray-700">{row.q5}</td>
+                                    <td className={`py-1.5 text-right font-bold ${row.delta.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                                        {row.delta}
+                                    </td>
+                                </motion.tr>
+                            ))}
+                        </AnimatePresence>
                     </tbody>
                 </table>
             </div>
 
-            <div className="bg-gray-50 p-2 flex items-center justify-end gap-3 border-t border-gray-100">
-                <div className="flex gap-1">
-                    {[1, 2, 3].map(i => <div key={i} className="w-4 h-4 rounded bg-white shadow-sm border border-gray-200" />)}
+            {/* Sub-Footer with dynamic stats to "fill" the placeholder */}
+            <div className="mt-auto px-4 py-3 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between">
+                <div className="flex gap-4">
+                    <div className="flex flex-col gap-1">
+                        <span className="text-[8px] text-gray-400 font-bold uppercase">Trend (6M)</span>
+                        <div className="flex items-end gap-1 h-6">
+                            {[40, 60, 35, 80, 55, 90].map((h, i) => (
+                                <motion.div
+                                    key={i}
+                                    animate={{ height: [`${h}%`, `${Math.min(100, h + 15)}%`, `${h}%`] }}
+                                    transition={{ duration: 2 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
+                                    className="w-1.5 bg-orange-500/30 rounded-t-[1px]"
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <div className="text-[9px] font-bold text-gray-400">PDF EXPORT READY</div>
+                <div className="flex flex-col items-end gap-1">
+                    <div className="flex items-center gap-1.5">
+                        <motion.div 
+                            animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="w-1.5 h-1.5 rounded-full bg-green-500" 
+                        />
+                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-tighter">System Audit: OK</span>
+                    </div>
+                    <span className="text-[8px] font-mono text-gray-400">SYNCED: {new Date().toLocaleTimeString()}</span>
+                </div>
             </div>
         </div>
     );

@@ -1303,3 +1303,54 @@ https://react.dev/link/hydration-mismatch
 2026-02-26T07:53:27.939Z [console][log] [Fast Refresh] rebuilding
 2026-02-26T07:53:28.213Z [console][warn] [Fast Refresh] performing full reload because your application had an unrecoverable error
 2026-02-26T07:53:28.345Z [console][log] [Fast Refresh] done in 373ms
+2026-02-26T08:47:44.912Z [console][error] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
+2026-02-26T08:47:43.404Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:43.719Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:43.720Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:43.721Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:43.749Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:43.919Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:44.101Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:44.131Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:44.132Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:44.135Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:44.161Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:44.162Z [console][warn] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+2026-02-26T08:47:44.190Z [console][debug] __ORCHIDS_NAVIGATE__ http://localhost:3000/
+2026-02-26T08:47:44.911Z [console][warn] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
