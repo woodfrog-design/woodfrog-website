@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, animate } from 'framer-motion';
+import { motion, useMotionValue, animate, useInView } from 'framer-motion';
 import {
     BarChart, Bar, XAxis, YAxis, ResponsiveContainer,
     AreaChart, Area, PieChart, Pie, Cell
@@ -749,6 +749,7 @@ export const AnalyticsDashboardDemo: React.FC<{ isActive?: boolean }> = ({ isAct
     const [highlightedRegion, setHighlightedRegion] = useState<string | null>(null);
     const [isClicking, setIsClicking] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.3 });
     const cursorX = useMotionValue(0);
     const cursorY = useMotionValue(0);
 
@@ -761,6 +762,15 @@ export const AnalyticsDashboardDemo: React.FC<{ isActive?: boolean }> = ({ isAct
 
     useEffect(() => {
         let cancelled = false;
+
+        if (!isActive || !isInView) {
+            return () => { cancelled = true; };
+        }
+
+        // Immediate reset
+        setFilters({ currency: 'USD', year: '2024' });
+        setProductTab('Revenue');
+        setHighlightedRegion(null);
 
         const moveTo = async (x: number, y: number, duration = 1.2) => {
             if (cancelled) return;
@@ -779,7 +789,7 @@ export const AnalyticsDashboardDemo: React.FC<{ isActive?: boolean }> = ({ isAct
             const w = containerRef.current.offsetWidth;
             const h = containerRef.current.offsetHeight;
 
-            // Reset
+            // Loop Reset
             setFilters({ currency: 'USD', year: '2024' });
             setProductTab('Revenue');
             setHighlightedRegion(null);
@@ -848,13 +858,13 @@ export const AnalyticsDashboardDemo: React.FC<{ isActive?: boolean }> = ({ isAct
         };
 
         const timer = setTimeout(() => {
-            if (isActive) runSequence();
+            if (isActive && isInView) runSequence();
         }, 800);
         return () => {
             cancelled = true;
             clearTimeout(timer);
         };
-    }, [isActive, cursorX, cursorY]);
+    }, [isActive, isInView, cursorX, cursorY]);
 
     return (
         <div ref={containerRef} className="relative w-full h-full bg-white overflow-hidden">

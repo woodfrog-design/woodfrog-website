@@ -15,6 +15,7 @@ import { AnalyticsDashboardDemo } from "@/components/animations/analytics-dashbo
 import { AutomatedDemo } from "@/components/animations/automated-demo";
 import { AIGovernanceDemo } from "@/components/animations/ai-governance-demo";
 import { ApplicationsAutomationsDemo } from "@/components/animations/applications-automations-demo";
+import { SupersetAnalyticsDemo } from "@/components/animations/superset-analytics-demo";
 
 const ScrollStack = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -230,21 +231,7 @@ const ScrollStack = () => {
                                 ) : card.title === "Applications and Automations" ? (
                                     <ApplicationsAutomationsDemo isActive={i === activeIndex} />
                                 ) : card.title === "Superset Analytics" ? (
-                                    <div className="w-full h-full flex items-center justify-center p-12">
-                                        <div className="w-full h-full rounded-2xl bg-[#f7f5f2] border border-gray-100 flex flex-col items-center justify-center gap-4 relative">
-                                            <div className="w-14 h-14 rounded-2xl bg-[#E8501A]/10 border border-[#E8501A]/20 flex items-center justify-center">
-                                                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-                                                    <rect x="4" y="8" width="24" height="16" rx="2" stroke="#E8501A" strokeWidth="1.5" fill="none" />
-                                                    <path d="M8 18 L12 13 L16 16 L20 11 L24 14" stroke="#E8501A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                                                </svg>
-                                            </div>
-                                            <p className="text-[12px] font-semibold text-gray-400 tracking-wide">Apache Superset</p>
-                                            <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-[#E8501A]/20" />
-                                            <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-[#E8501A]/20" />
-                                            <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-[#E8501A]/20" />
-                                            <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-[#E8501A]/20" />
-                                        </div>
-                                    </div>
+                                    <SupersetAnalyticsDemo isActive={i === activeIndex} />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center p-12">
                                         {/* Inner Glass Container for Media */}

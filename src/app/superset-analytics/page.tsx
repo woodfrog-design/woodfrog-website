@@ -6,6 +6,7 @@ import {
     SupersetServiceIllustration,
     SupersetExperienceIllustration,
 } from '@/components/animations/superset-analytics-illustrations';
+import { SupersetAnalyticsDemo } from '@/components/animations/superset-analytics-demo';
 
 /* ─────────────────────── DATA ─────────────────────── */
 
@@ -207,24 +208,9 @@ export default function SupersetAnalyticsPage() {
                             </Link>
                         </div>
 
-                        {/* Right — Hero Placeholder */}
-                        <div className="bg-[#f7f5f2] rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:h-[500px] relative flex flex-col items-center justify-center gap-4">
-                            <div className="w-16 h-16 rounded-2xl bg-[#E8501A]/10 border border-[#E8501A]/20 flex items-center justify-center">
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                    <rect x="4" y="8" width="24" height="16" rx="2" stroke="#E8501A" strokeWidth="1.5" fill="none" />
-                                    <path d="M8 18 L12 13 L16 16 L20 11 L24 14" stroke="#E8501A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                                </svg>
-                            </div>
-                            <div className="text-center px-8 space-y-2">
-                                <p className="text-[14px] font-semibold text-gray-500">Apache Superset</p>
-                                <p className="text-[12px] text-gray-400 max-w-[280px] leading-relaxed">
-                                    Enterprise BI customization, embedding, and optimization — end to end.
-                                </p>
-                            </div>
-                            <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[#E8501A]/20 rounded-tl" />
-                            <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[#E8501A]/20 rounded-tr" />
-                            <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[#E8501A]/20 rounded-bl" />
-                            <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[#E8501A]/20 rounded-br" />
+                        {/* Right — Interactive Animation */}
+                        <div className="bg-[#f7f5f2] rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:h-[500px] relative shadow-2xl">
+                            <SupersetAnalyticsDemo isActive={true} />
                         </div>
                     </div>
                 </div>

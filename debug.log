@@ -1297,3 +1297,9 @@ https://react.dev/link/hydration-mismatch
 2026-02-24T10:45:59.296Z [console][warn] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
 2026-02-24T10:45:59.297Z [console][warn] You are trying to animate opacity from "undefined" to "0". "undefined" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable
 2026-02-24T10:46:54.492Z [console][log] Cookie settings saved: rejected {"analytical":false,"marketing":false}
+2026-02-26T07:53:27.940Z [console][warn] [Fast Refresh] rebuilding
+2026-02-26T07:53:28.213Z [console][error] [Fast Refresh] performing full reload because your application had an unrecoverable error
+2026-02-26T07:53:28.345Z [console][warn] [Fast Refresh] done in 373ms
+2026-02-26T07:53:27.939Z [console][log] [Fast Refresh] rebuilding
+2026-02-26T07:53:28.213Z [console][warn] [Fast Refresh] performing full reload because your application had an unrecoverable error
+2026-02-26T07:53:28.345Z [console][log] [Fast Refresh] done in 373ms

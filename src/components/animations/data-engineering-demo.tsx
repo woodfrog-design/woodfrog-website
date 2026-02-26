@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, useMotionValue, animate, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, animate, AnimatePresence, useInView } from 'framer-motion';
 import {
     Database, GitBranch, CheckCircle2, Layers,
     Cloud, Activity, ArrowRight, BarChart3, Zap
@@ -197,6 +197,7 @@ const KpiCard: React.FC<{
 export const DataEngineeringDemo: React.FC<{ isActive?: boolean }> = ({ isActive = true }) => {
     const [isClicking, setIsClicking] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.3 });
     const cursorX = useMotionValue(0);
     const cursorY = useMotionValue(0);
 
@@ -229,6 +230,15 @@ export const DataEngineeringDemo: React.FC<{ isActive?: boolean }> = ({ isActive
     useEffect(() => {
         let cancelled = false;
 
+        if (!isActive || !isInView) {
+            return () => { cancelled = true; };
+        }
+
+        // Immediate reset
+        setActiveStep(-1);
+        setSourceStatuses(['idle', 'idle', 'idle']);
+        setShowResult(false);
+
         const moveTo = async (x: number, y: number, duration = 1.2) => {
             if (cancelled) return;
             animate(cursorX, x, { duration, ease: [0.25, 0.1, 0.25, 1] });
@@ -250,6 +260,7 @@ export const DataEngineeringDemo: React.FC<{ isActive?: boolean }> = ({ isActive
         const runSequence = async () => {
             if (!containerRef.current || cancelled) return;
 
+            // Loop Reset
             setActiveStep(-1);
             setSourceStatuses(['idle', 'idle', 'idle']);
             setShowResult(false);
@@ -316,10 +327,10 @@ export const DataEngineeringDemo: React.FC<{ isActive?: boolean }> = ({ isActive
         };
 
         const timer = setTimeout(() => {
-            if (isActive) runSequence();
+            if (isActive && isInView) runSequence();
         }, 400);
         return () => { cancelled = true; clearTimeout(timer); };
-    }, [isActive, cursorX, cursorY, getElementCenter]);
+    }, [isActive, isInView, cursorX, cursorY, getElementCenter]);
 
     const steps = [
         { label: 'Ingest', icon: Cloud, detail: '3 sources' },
