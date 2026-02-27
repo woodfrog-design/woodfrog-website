@@ -93,53 +93,48 @@ const EXPERIENCES = [
         note: '',
         flip: true,
     },
+];
+
+const SHOWCASE_ITEMS = [
     {
         id: 'whale-chart',
         title: 'Whale Chart — Custom Visualization Plugin',
-        bullets: [
-            'Superset doesn\'t support whale charts natively, yet they\'re crucial for visualizing cumulative contribution.',
-            'Built for a finance-sector client to show how a small percentage of accounts drove disproportionate revenue.',
-            'Helps stakeholders instantly identify key contributors and long-tail segments in a single view.',
-            'Fully interactive and integrates seamlessly within Superset dashboards for richer decision-making.',
+        subtitle: 'Finance Sector',
+        description: 'Built for a finance-sector client to show how a small percentage of accounts drove disproportionate revenue. Helps stakeholders instantly identify key contributors and long-tail segments in a single view. Fully interactive and integrates seamlessly within Superset dashboards.',
+        metrics: [
+            { label: 'Net Profit', value: '100%', highlight: true },
+            { label: 'Top 20% clients', value: '180%', highlight: false },
         ],
-        note: '',
-        flip: false,
     },
     {
         id: 'financial-report',
         title: 'Financial Reporting — Advanced Custom Chart Plugin',
-        bullets: [
-            'Superset lacks native support for dense tabular reports with hierarchical headers and subtotals.',
-            'We built a custom plugin replicating 95% of advanced reporting features — nested headers, conditional formatting, dynamic groupings.',
-            'Supports CSS-driven indentation, multi-level metric groupings, and layout flexibility for executive reviews.',
-            'Helped our client eliminate Excel exports and consolidate financial reporting within their Superset BI environment.',
+        subtitle: 'Enterprise Reporting',
+        description: 'We built a custom plugin replicating 95% of advanced reporting features — nested headers, conditional formatting, dynamic groupings. Supports CSS-driven indentation and multi-level metric groupings.',
+        metrics: [
+            { label: 'Feature parity', value: '95%', highlight: true },
+            { label: 'Excel removal', value: '100%', highlight: false },
         ],
-        note: '',
-        flip: true,
     },
     {
         id: 'mekko-chart',
         title: 'Mekko Chart — Multi-Dimensional Custom Visualization',
-        bullets: [
-            'Standard bar charts can\'t represent both category share and relative size in a single view.',
-            'We added a custom Mekko chart to Superset with variable-width bars for richer segmentation analysis.',
-            'Ideal for market share, product mix, and multi-dimensional business insights within compact dashboard space.',
-            'Built to deliver executive-level clarity without requiring additional BI tools or exports.',
+        subtitle: 'Market Analysis',
+        description: 'Custom Mekko chart with variable-width bars for richer segmentation analysis. Ideal for market share, product mix, and multi-dimensional business insights within compact dashboard space.',
+        metrics: [
+            { label: 'Dimensions', value: 'Multi', highlight: true },
+            { label: 'Executive level', value: 'Clarity', highlight: false },
         ],
-        note: '',
-        flip: false,
     },
     {
         id: 'defect-fixes',
         title: 'Open-Source Contributions & Defect Fixes',
-        bullets: [
-            'Resolved incorrect legend color mappings in charts after the Superset 4.1.2 update (Issue #32841) — preserving consistent colors across Explore and Dashboard views.',
-            'Enhanced the Waterfall chart with horizontal orientation, axis label word-wrap, sorting support, and cross-filtering capability (PR #33146).',
-            'Added option to use the first value as a subtotal with bold formatting in the Waterfall model.',
-            'These contributions are merged upstream — benefiting the global Superset community.',
+        subtitle: 'Apache Superset OSS',
+        description: 'Resolved legend color mappings, enhanced Waterfall chart with horizontal orientation, and added subtotal bold formatting. Contributions merged upstream to the global Superset community.',
+        metrics: [
+            { label: 'Merged upstream', value: 'Yes', highlight: true },
+            { label: 'Issue fixes', value: 'Critical', highlight: false },
         ],
-        note: '',
-        flip: true,
     },
 ];
 
@@ -148,6 +143,8 @@ const EXPERIENCES = [
 export default function SupersetAnalyticsPage() {
     const [activeItem, setActiveItem] = useState(0);
     const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const horizontalScrollRef = useRef<HTMLDivElement>(null);
+    const horizontalSectionRef = useRef<HTMLDivElement>(null);
 
     /* Scroll-driven active detection */
     useEffect(() => {
@@ -167,12 +164,47 @@ export default function SupersetAnalyticsPage() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    /* Horizontal scroll driven by vertical scroll */
+    useEffect(() => {
+        const section = horizontalSectionRef.current;
+        const container = horizontalScrollRef.current;
+        if (!section || !container) return;
+
+        const handleScroll = () => {
+            const rect = section.getBoundingClientRect();
+            const sectionHeight = section.offsetHeight;
+            const viewportHeight = window.innerHeight;
+
+            // Calculate progress through the section
+            const totalScroll = sectionHeight - viewportHeight;
+            if (totalScroll <= 0) return;
+
+            // Progress is 0 when the top of the section hits the top of the viewport
+            // Progress is 1 when the bottom of the section hits the bottom of the viewport
+            const scrolled = -rect.top;
+            const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
+
+            // Calculate the maximum scroll distance
+            const scrollWidth = container.scrollWidth - container.clientWidth;
+            container.scrollLeft = progress * scrollWidth;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
+        };
+    }, []);
+
     const scrollToItem = (idx: number) => {
         sectionRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     return (
-        <main className="min-h-screen bg-transparent text-white selection:bg-brand-primary/20" style={{ overflowX: 'clip' }}>
+        <main className="min-h-screen bg-transparent text-white selection:bg-brand-primary/20">
 
             {/* ───── HERO ───── */}
             <section className="relative bg-transparent overflow-hidden">
@@ -218,7 +250,7 @@ export default function SupersetAnalyticsPage() {
 
             {/* ───── PAST EXPERIENCES (alternating left-right) ───── */}
             <section className="bg-transparent">
-                <div className="w-full px-8 md:px-24 lg:px-32 py-24">
+                <div className="w-full px-8 md:px-24 lg:px-32 py-24 pb-12">
                     <h2 className="text-[2rem] md:text-[2.4rem] font-bold leading-tight max-w-2xl mb-16 text-white">
                         Built on <span className="text-brand-primary">real delivery</span> experience
                     </h2>
@@ -257,6 +289,58 @@ export default function SupersetAnalyticsPage() {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ───── HORIZONTAL SCROLL SHOWCASE ───── */}
+            <section
+                ref={horizontalSectionRef}
+                className="relative bg-transparent z-10"
+                style={{ height: `${SHOWCASE_ITEMS.length * 100}vh` }}
+            >
+                <div className="sticky top-0 h-screen overflow-hidden">
+                    <div className="h-full flex items-center">
+                        <div
+                            ref={horizontalScrollRef}
+                            className="flex gap-12 px-8 md:px-24 lg:px-32 overflow-hidden w-full"
+                        >
+                            {SHOWCASE_ITEMS.map((item, index) => (
+                                <div key={index} className="flex-shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center h-full">
+                                        {/* Animation side */}
+                                        <div className="overflow-hidden">
+                                            <div className="origin-top-left scale-[0.72] md:scale-100 -mr-[38%] md:mr-0">
+                                                <SupersetExperienceIllustration id={item.id} />
+                                            </div>
+                                        </div>
+
+                                        {/* Text side */}
+                                        <div className="space-y-5">
+                                            <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-gray-400 text-[15px] leading-[1.8]">
+                                                {item.description}
+                                            </p>
+
+                                            {/* Metrics grid */}
+                                            <div className="grid grid-cols-2 gap-3 mt-4">
+                                                {item.metrics.map((m, i) => (
+                                                    <div
+                                                        key={i}
+                                                        className={`rounded-xl p-4 ${m.highlight ? 'bg-brand-primary/10 border border-brand-primary/20' : 'bg-white/5 border border-white/10'}`}
+                                                    >
+                                                        {m.value && <p className={`text-lg font-bold ${m.highlight ? 'text-brand-primary' : 'text-white'}`}>{m.value}</p>}
+                                                        <p className="text-xs text-gray-500 font-medium">{m.label}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
