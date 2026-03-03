@@ -7,6 +7,13 @@ import {
     SupersetExperienceIllustration,
 } from '@/components/animations/superset-analytics-illustrations';
 import { SupersetAnalyticsDemo } from '@/components/animations/superset-analytics-demo';
+import Image from 'next/image';
+
+// Images for horizontal scroll showcase
+import whaleChartImg from './images/Whale Curve Chart.png';
+import mekkoChartImg from './images/image12.png';
+import financialReportImg from './images/image5.png';
+import defectFixesImg from './images/waterfall chart.png';
 
 /* ─────────────────────── DATA ─────────────────────── */
 
@@ -105,6 +112,8 @@ const SHOWCASE_ITEMS = [
             { label: 'Net Profit', value: '100%', highlight: true },
             { label: 'Top 20% clients', value: '180%', highlight: false },
         ],
+        image: whaleChartImg,
+        contain: true,
     },
     {
         id: 'financial-report',
@@ -115,6 +124,8 @@ const SHOWCASE_ITEMS = [
             { label: 'Feature parity', value: '95%', highlight: true },
             { label: 'Excel removal', value: '100%', highlight: false },
         ],
+        image: financialReportImg,
+        contain: true,
     },
     {
         id: 'mekko-chart',
@@ -125,6 +136,8 @@ const SHOWCASE_ITEMS = [
             { label: 'Dimensions', value: 'Multi', highlight: true },
             { label: 'Executive level', value: 'Clarity', highlight: false },
         ],
+        image: mekkoChartImg,
+        contain: true,
     },
     {
         id: 'defect-fixes',
@@ -135,6 +148,7 @@ const SHOWCASE_ITEMS = [
             { label: 'Merged upstream', value: 'Yes', highlight: true },
             { label: 'Issue fixes', value: 'Critical', highlight: false },
         ],
+        image: defectFixesImg,
     },
 ];
 
@@ -308,11 +322,14 @@ export default function SupersetAnalyticsPage() {
                             {SHOWCASE_ITEMS.map((item, index) => (
                                 <div key={index} className="flex-shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]">
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center h-full">
-                                        {/* Animation side */}
-                                        <div className="overflow-hidden">
-                                            <div className="origin-top-left scale-[0.72] md:scale-100 -mr-[38%] md:mr-0">
-                                                <SupersetExperienceIllustration id={item.id} />
-                                            </div>
+                                        {/* Animation side replaced with Image */}
+                                        <div className={`relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/10 shadow-lg ${item.contain ? 'bg-white p-6' : ''}`}>
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className={item.contain ? 'object-contain' : 'object-cover'}
+                                            />
                                         </div>
 
                                         {/* Text side */}
