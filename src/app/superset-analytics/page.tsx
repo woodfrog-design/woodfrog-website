@@ -240,7 +240,9 @@ export default function SupersetAnalyticsPage() {
 
                         {/* Right — Interactive Animation */}
                         <div className="bg-[#f7f5f2] rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:h-[500px] relative shadow-2xl">
-                            <SupersetAnalyticsDemo isActive={true} />
+                            <div className="absolute top-0 left-0 w-[154%] h-[154%] origin-top-left scale-[0.65] sm:w-[125%] sm:h-[125%] sm:scale-[0.8] lg:w-full lg:h-full lg:scale-100">
+                                <SupersetAnalyticsDemo isActive={true} />
+                            </div>
                         </div>
                     </div>
                 </div>
