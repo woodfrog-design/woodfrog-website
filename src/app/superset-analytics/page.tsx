@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
     SupersetServiceIllustration,
-    SupersetExperienceIllustration,
 } from '@/components/animations/superset-analytics-illustrations';
 import { SupersetAnalyticsDemo } from '@/components/animations/superset-analytics-demo';
 import Image from 'next/image';
@@ -14,6 +13,9 @@ import whaleChartImg from './images/Whale Curve Chart.png';
 import mekkoChartImg from './images/image12.png';
 import financialReportImg from './images/image5.png';
 import defectFixesImg from './images/waterfall chart.png';
+import filterChartsImg from './images/filter-charts.png';
+import handlebarsChartImg from './images/handlebars-chart.png';
+import eventVisibilityImg from './images/event-visibility.png';
 
 /* ─────────────────────── DATA ─────────────────────── */
 
@@ -74,81 +76,63 @@ const SERVICES = [
     },
 ];
 
-/* Six real delivery examples — alternating layout */
-const EXPERIENCES = [
-    {
-        id: 'text-to-sql',
-        title: 'Text-to-SQL in Superset using LLM Integration',
-        bullets: [
-            'Traditional dashboards rely on fixed KPIs and can\'t adapt to every role\'s evolving questions.',
-            'LLMs enable natural language queries — users explore data freely, without writing SQL.',
-            'The model understands intent, generates accurate queries, and adapts to business context.',
-            'Non-technical teams gain self-serve analytics without depending on the data engineering backlog.',
-        ],
-        note: '',
-        flip: false,
-    },
-    {
-        id: 'custom-alerts',
-        title: 'Custom Event Visibility Feature on Superset',
-        bullets: [
-            'Superset\'s built-in alerts are limited to email/Slack — no in-platform visibility.',
-            'We built a custom feature allowing users to view triggered alerts and event logs directly in the Superset UI.',
-            'Status changes, threshold breaches, and audit events are surfaced in one central panel.',
-            'Implemented for a client to improve transparency and enable broader team engagement in operational monitoring.',
-        ],
-        note: '',
-        flip: true,
-    },
-];
+/* Data for horizontal scroll showcase */
 
 const SHOWCASE_ITEMS = [
     {
         id: 'whale-chart',
-        title: 'Whale Chart — Custom Visualization Plugin',
-        subtitle: 'Finance Sector',
-        description: 'Built for a finance-sector client to show how a small percentage of accounts drove disproportionate revenue. Helps stakeholders instantly identify key contributors and long-tail segments in a single view. Fully interactive and integrates seamlessly within Superset dashboards.',
-        metrics: [
-            { label: 'Net Profit', value: '100%', highlight: true },
-            { label: 'Top 20% clients', value: '180%', highlight: false },
-        ],
+        title: 'Solving Profitability Gaps — Custom Whale Chart',
+        subtitle: 'Advanced Profitability',
+        description: 'Built to bridge the cumulative profit depth missing in standard BI. This custom visualization solves the "hidden loss" problem, allowing executives to see exactly which 20% of accounts drive growth while identifying resource-draining outliers.',
         image: whaleChartImg,
         contain: true,
     },
     {
         id: 'financial-report',
-        title: 'Financial Reporting — Advanced Custom Chart Plugin',
+        title: 'Advanced P&L Reporting — Ending the Excel Trap',
         subtitle: 'Enterprise Reporting',
-        description: 'We built a custom plugin replicating 95% of advanced reporting features — nested headers, conditional formatting, dynamic groupings. Supports CSS-driven indentation and multi-level metric groupings.',
-        metrics: [
-            { label: 'Feature parity', value: '95%', highlight: true },
-            { label: 'Excel removal', value: '100%', highlight: false },
-        ],
+        description: 'Dashboards often fail at rigid financial structures. We developed advanced reporting with nested headers and conditional formatting to deliver pixel-perfect Profit & Loss statements natively, eliminating toxic manual Excel exports.',
         image: financialReportImg,
         contain: true,
     },
     {
         id: 'mekko-chart',
-        title: 'Mekko Chart — Multi-Dimensional Custom Visualization',
+        title: 'Multi-Dimensional Market Depth — Custom Mekko Chart',
         subtitle: 'Market Analysis',
-        description: 'Custom Mekko chart with variable-width bars for richer segmentation analysis. Ideal for market share, product mix, and multi-dimensional business insights within compact dashboard space.',
-        metrics: [
-            { label: 'Dimensions', value: 'Multi', highlight: true },
-            { label: 'Executive level', value: 'Clarity', highlight: false },
-        ],
+        description: 'Solving the "missing dimension" problem in standard charts. This custom Mekko implementation captures market scale, segment performance, and relative profitability simultaneously in a single, high-density executive view.',
         image: mekkoChartImg,
         contain: true,
     },
     {
         id: 'defect-fixes',
-        title: 'Open-Source Contributions & Defect Fixes',
-        subtitle: 'Apache Superset OSS',
-        description: 'Resolved legend color mappings, enhanced Waterfall chart with horizontal orientation, and added subtotal bold formatting. Contributions merged upstream to the global Superset community.',
-        metrics: [
-            { label: 'Merged upstream', value: 'Yes', highlight: true },
-            { label: 'Issue fixes', value: 'Critical', highlight: false },
-        ],
+        title: 'Core Contributions — Fixing Upstream Limitations',
+        subtitle: 'OSS Contributions',
+        description: 'When platform defaults fall short, we contribute to the source. From horizontal waterfall charts to color themes, we optimize the base code to ensure a robust, feature-rich foundation for enterprise analytics.',
         image: defectFixesImg,
+    },
+    {
+        id: 'filter-charts',
+        title: 'Side-by-Side Filtering — Solving Comparison Friction',
+        subtitle: 'Data Exploration',
+        description: 'Comparing complex hierarchies is a major friction point. We solved this with a dual-column filter architecture that enables seamless side-by-side comparison, removing context-switching hurdles in deep data dives.',
+        image: filterChartsImg,
+        contain: true,
+    },
+    {
+        id: 'handlebars-reporting',
+        title: 'Executive Health Cards — Solving Operational Noise',
+        subtitle: 'Operational Intelligence',
+        description: 'Complex charts are often too noisy for rapid feedback. We solved the visibility gap with custom-designed operational health cards that translate raw data into color-coded status assessments for instant executive action.',
+        image: handlebarsChartImg,
+        contain: true,
+    },
+    {
+        id: 'custom-alerts',
+        title: 'Unified Operational Monitoring — Integrated Event Visibility',
+        subtitle: 'Alerting & Automation',
+        description: 'Fragmented operations lead to delayed responses. We unified these silos by embedding real-time event monitoring and audit logs directly into the UI, closing the gap between observation and action.',
+        image: eventVisibilityImg,
+        contain: true,
     },
 ];
 
@@ -222,7 +206,7 @@ export default function SupersetAnalyticsPage() {
 
             {/* ───── HERO ───── */}
             <section className="relative bg-transparent overflow-hidden">
-                <div className="w-full px-8 md:px-24 lg:px-32 pt-24 md:pt-32 pb-12 md:pb-20">
+                <div className="w-full px-8 md:px-24 lg:px-32 pt-24 md:pt-32 pb-0">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
                         {/* Left */}
                         <div className="space-y-5 md:space-y-8 pt-4 md:pt-8">
@@ -262,50 +246,12 @@ export default function SupersetAnalyticsPage() {
                 </div>
             </section>
 
-            {/* ───── PAST EXPERIENCES (alternating left-right) ───── */}
-            <section className="bg-transparent">
-                <div className="w-full px-8 md:px-24 lg:px-32 py-24 pb-12">
-                    <h2 className="text-[2rem] md:text-[2.4rem] font-bold leading-tight max-w-2xl mb-16 text-white">
-                        Built on <span className="text-brand-primary">real delivery</span> experience
-                    </h2>
-
-                    <div className="space-y-24 md:space-y-32">
-                        {EXPERIENCES.map((exp) => (
-                            <div
-                                key={exp.id}
-                                className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start ${exp.flip ? 'lg:[&>*:first-child]:order-2' : ''}`}
-                            >
-                                {/* Animation side */}
-                                <div className="overflow-hidden">
-                                    <div className="origin-top-left scale-[0.72] md:scale-100 -mr-[38%] md:mr-0">
-                                        <SupersetExperienceIllustration id={exp.id} />
-                                    </div>
-                                </div>
-
-                                {/* Text side */}
-                                <div className="space-y-6">
-                                    <h3 className="text-xl md:text-2xl font-bold text-white leading-snug">
-                                        {exp.title}
-                                    </h3>
-                                    <ul className="space-y-4 text-gray-400 text-[15px] leading-relaxed">
-                                        {exp.bullets.map((b, i) => (
-                                            <li key={i} className="flex items-start gap-2">
-                                                <span className="text-brand-primary mt-1">&#8226;</span>
-                                                {b}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    {exp.note && (
-                                        <p className="text-gray-500 text-[14px] leading-relaxed italic mt-2">
-                                            {exp.note}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* ───── SHOWCASE HEADER ───── */}
+            <div className="w-full px-8 md:px-24 lg:px-32 pt-32 md:pt-48 pb-0 -mb-20 md:-mb-32">
+                <h2 className="text-[2rem] md:text-[2.4rem] font-bold leading-tight max-w-2xl text-white">
+                    Built on <span className="text-brand-primary">real delivery</span> experience
+                </h2>
+            </div>
 
             {/* ───── HORIZONTAL SCROLL SHOWCASE ───── */}
             <section
@@ -314,7 +260,7 @@ export default function SupersetAnalyticsPage() {
                 style={{ height: `${SHOWCASE_ITEMS.length * 100}vh` }}
             >
                 <div className="sticky top-0 h-screen overflow-hidden">
-                    <div className="h-full flex items-center">
+                    <div className="h-full flex items-start pt-32 md:pt-40">
                         <div
                             ref={horizontalScrollRef}
                             className="flex gap-12 px-8 md:px-24 lg:px-32 overflow-hidden w-full"
@@ -340,19 +286,6 @@ export default function SupersetAnalyticsPage() {
                                             <p className="text-gray-400 text-[15px] leading-[1.8]">
                                                 {item.description}
                                             </p>
-
-                                            {/* Metrics grid */}
-                                            <div className="grid grid-cols-2 gap-3 mt-4">
-                                                {item.metrics.map((m, i) => (
-                                                    <div
-                                                        key={i}
-                                                        className={`rounded-xl p-4 ${m.highlight ? 'bg-brand-primary/10 border border-brand-primary/20' : 'bg-white/5 border border-white/10'}`}
-                                                    >
-                                                        {m.value && <p className={`text-lg font-bold ${m.highlight ? 'text-brand-primary' : 'text-white'}`}>{m.value}</p>}
-                                                        <p className="text-xs text-gray-500 font-medium">{m.label}</p>
-                                                    </div>
-                                                ))}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

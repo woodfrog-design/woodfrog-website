@@ -188,10 +188,12 @@ const ServiceIcon = ({ title }: { title: string }) => {
     // Superset Analytics
     if (title === "Superset Analytics") {
         return (
-            <svg className={iconBaseClass} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <rect width="64" height="64" rx="12" fill="#1F1F1F" />
-                <rect x="12" y="20" width="40" height="24" rx="3" stroke="#E8501A" strokeWidth="2" fill="none" />
-                <path d="M18 36 L24 29 L30 33 L36 26 L46 31" stroke="#E8501A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            <svg className={iconBaseClass} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" rx="12" fill="#1F1F1F" />
+                <rect x="14" y="16" width="3" height="16" rx="1.5" fill="#10B981" />
+                <rect x="20" y="20" width="3" height="12" rx="1.5" fill="#10B981" />
+                <rect x="26" y="14" width="3" height="18" rx="1.5" fill="#10B981" />
+                <circle cx="36" cy="17" r="3" fill="#FBBF24" />
             </svg>
         );
     }
