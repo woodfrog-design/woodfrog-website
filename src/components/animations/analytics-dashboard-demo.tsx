@@ -858,7 +858,7 @@ export const AnalyticsDashboardDemo: React.FC<{ isActive?: boolean }> = ({ isAct
         };
 
         const timer = setTimeout(() => {
-            if (isActive && isInView) runSequence();
+            if (isActive || isInView) runSequence();
         }, 800);
         return () => {
             cancelled = true;

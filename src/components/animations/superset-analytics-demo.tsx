@@ -405,7 +405,7 @@ ORDER BY month ASC;`;
         };
 
         const timer = setTimeout(() => {
-            if (isActive && isInView) runSequence();
+            if (isActive || isInView) runSequence();
         }, 800);
         return () => { cancelled = true; clearTimeout(timer); };
     }, [isActive, isInView, cursorX, cursorY, targetPrompt, targetSql, getElementCenter]);
@@ -453,7 +453,7 @@ ORDER BY month ASC;`;
             </div>
 
             {/* Cursor */}
-            <div className="absolute inset-0 pointer-events-none z-[100]">
+            <div className="absolute inset-0 pointer-events-none z-[50]">
                 <CustomCursor x={cursorX} y={cursorY} isClicking={isClicking} />
             </div>
         </div>

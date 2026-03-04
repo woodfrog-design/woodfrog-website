@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, animate, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, animate, AnimatePresence, useInView } from 'framer-motion';
 import { WoodfrogDashboard } from './woodfrog-dashboard';
 import { DemoChat } from './demo-chat';
 import { HighlightBox, CustomCursor } from './automated-assets';
@@ -16,8 +16,8 @@ export const AutomatedDemo: React.FC<{ isActive?: boolean }> = ({ isActive = tru
     const [isClicking, setIsClicking] = useState(false);
     const [chartKey, setChartKey] = useState(0); // Key to restart chart animation
     const [showChatTrigger, setShowChatTrigger] = useState(false); // New state for delayed appearance
-
     const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.3 });
 
     const cursorX = useMotionValue(0);
     const cursorY = useMotionValue(0);
@@ -118,14 +118,14 @@ export const AutomatedDemo: React.FC<{ isActive?: boolean }> = ({ isActive = tru
         };
 
         const timer = setTimeout(() => {
-            if (isActive) runSequence();
+            if (isActive || isInView) runSequence();
         }, 500);
 
         return () => {
             cancelled = true;
             clearTimeout(timer);
         };
-    }, [isActive, cursorX, cursorY]);
+    }, [isActive, isInView, cursorX, cursorY]);
 
     return (
         <div ref={containerRef} className="relative w-full h-full bg-white overflow-hidden">

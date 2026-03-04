@@ -327,7 +327,7 @@ export const DataEngineeringDemo: React.FC<{ isActive?: boolean }> = ({ isActive
         };
 
         const timer = setTimeout(() => {
-            if (isActive && isInView) runSequence();
+            if (isActive || isInView) runSequence();
         }, 400);
         return () => { cancelled = true; clearTimeout(timer); };
     }, [isActive, isInView, cursorX, cursorY, getElementCenter]);

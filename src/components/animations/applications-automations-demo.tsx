@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Home, Calendar, Plus, FileText, Search, User, ChevronRight, Activity, CheckCircle2, Layout, Database, FileJson, Settings } from 'lucide-react';
 import { ANIMATION_THEME } from '@/lib/colors';
 
@@ -306,7 +306,11 @@ function MockupFileView() {
 }
 
 export const ApplicationsAutomationsDemo = ({ isActive = true }: { isActive?: boolean }) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.3 });
     const [activeSidebar, setActiveSidebar] = useState('calendar');
+
+    const active = isActive || isInView;
 
     const sidebarItems = [
         { id: 'home', icon: Home },
@@ -316,10 +320,25 @@ export const ApplicationsAutomationsDemo = ({ isActive = true }: { isActive?: bo
     ];
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center" style={{ backgroundColor: ANIMATION_THEME.background, maxHeight: '100%' }}>
+        <div ref={containerRef} className="relative w-full h-full flex items-center justify-center" style={{ backgroundColor: ANIMATION_THEME.background, maxHeight: '100%' }}>
+            {/* Interactive Badge */}
+            <AnimatePresence>
+                {active && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute bottom-6 right-6 z-[60] bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-100 shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex items-center gap-2 pointer-events-none"
+                    >
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="text-[9px] font-black text-slate-500 uppercase tracking-[0.15em]">This animation is interactive</span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <motion.div
                 initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 20 }}
+                animate={{ opacity: active ? 1 : 0, x: active ? 0 : 20 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="relative w-full h-full max-h-full bg-white rounded-[32px] overflow-hidden border shadow-[0_24px_80px_rgba(0,0,0,0.1)] flex"
                 style={{ borderColor: ANIMATION_THEME.border }}

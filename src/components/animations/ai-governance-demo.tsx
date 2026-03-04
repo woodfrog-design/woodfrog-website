@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import {
     BarChart3,
     ShieldCheck,
@@ -26,8 +26,12 @@ const PARTICLE_DATA = [
 ];
 
 export const AIGovernanceDemo = ({ isActive = true }: { isActive?: boolean }) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.3 });
+    const active = isActive || isInView;
+
     return (
-        <div className="relative w-full h-full min-h-[400px] flex items-center justify-center perspective-1000" style={{ backgroundColor: ANIMATION_THEME.background }}>
+        <div ref={containerRef} className="relative w-full h-full min-h-[400px] flex items-center justify-center perspective-1000" style={{ backgroundColor: ANIMATION_THEME.background }}>
             {/* Background Chart Container */}
             <div className="absolute inset-4 bg-slate-50/50 border border-slate-100 rounded-[2rem] overflow-hidden backdrop-blur-3xl shadow-sm">
                 <svg viewBox="0 0 800 500" className="w-full h-full">
@@ -105,7 +109,7 @@ export const AIGovernanceDemo = ({ isActive = true }: { isActive?: boolean }) =>
                                 cx: p.cx,
                                 cy: p.cy
                             }}
-                            animate={isActive ? {
+                            animate={active ? {
                                 y: [0, -40, 0],
                                 x: [0, p.xOffset, 0],
                                 opacity: [0.2, 0.5, 0.2]
@@ -128,7 +132,7 @@ export const AIGovernanceDemo = ({ isActive = true }: { isActive?: boolean }) =>
                         strokeWidth="3"
                         strokeLinecap="round"
                         initial={{ pathLength: 0 }}
-                        animate={{ pathLength: isActive ? 1 : 0 }}
+                        animate={{ pathLength: active ? 1 : 0 }}
                         transition={{ duration: 2, ease: "easeInOut" }}
                     />
 
@@ -141,7 +145,7 @@ export const AIGovernanceDemo = ({ isActive = true }: { isActive?: boolean }) =>
                         strokeDasharray="6,6"
                         strokeOpacity="0.4"
                         initial={{ pathLength: 0 }}
-                        animate={{ pathLength: isActive ? 1 : 0 }}
+                        animate={{ pathLength: active ? 1 : 0 }}
                         transition={{ duration: 2.5, ease: "easeInOut", delay: 0.5 }}
                     />
 

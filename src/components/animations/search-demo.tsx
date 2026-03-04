@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, useMotionValue, animate, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, animate, AnimatePresence, useInView } from 'framer-motion';
 import { Search as SearchIcon } from 'lucide-react';
 import { CustomCursor } from './automated-assets';
 import { ANIMATION_THEME } from '@/lib/colors';
@@ -255,6 +255,7 @@ export const SearchDemo: React.FC<{ isActive?: boolean }> = ({ isActive = true }
     const searchBarRef = useRef<HTMLDivElement>(null);
     const searchBtnRef = useRef<HTMLButtonElement>(null);
     const resultCardRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.3 });
     const cursorX = useMotionValue(0);
     const cursorY = useMotionValue(0);
 
@@ -362,13 +363,13 @@ export const SearchDemo: React.FC<{ isActive?: boolean }> = ({ isActive = true }
         };
 
         const timer = setTimeout(() => {
-            if (isActive) run();
+            if (isActive || isInView) run();
         }, 600);
         return () => {
             cancelled = true;
             clearTimeout(timer);
         };
-    }, [isActive, cursorX, cursorY, doClick]);
+    }, [isActive, isInView, cursorX, cursorY, doClick]);
 
     return (
         <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-white" style={{ fontFamily: 'var(--font-geist-sans)' }}>
