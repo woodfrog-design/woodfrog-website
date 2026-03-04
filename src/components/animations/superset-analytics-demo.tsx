@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useMotionValue, animate, AnimatePresence, useInView } from 'framer-motion';
 import {
-    Database, Terminal, Play, LayoutDashboard, 
+    Database, Terminal, Play, LayoutDashboard,
     BarChart3, Sparkles, Download, Share2
 } from 'lucide-react';
 import { CustomCursor } from './automated-assets';
@@ -37,10 +37,10 @@ const SQLLab: React.FC<{
         <div className="flex-1 p-4 flex flex-col gap-3 min-h-0">
             {/* AI Prompt Input */}
             <div ref={promptRef} className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
-                    <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center shrink-0">
-                        <Sparkles size={14} className="text-orange-500" />
+                    <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0">
+                        <Sparkles size={14} className="text-emerald-500" />
                     </div>
                     <div className="flex-1 overflow-hidden">
                         <div className="text-[9px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Natural Language Query</div>
@@ -69,7 +69,7 @@ const SQLLab: React.FC<{
                                     {line.split(' ').map((word, j) => {
                                         const isKeyword = ['SELECT', 'FROM', 'WHERE', 'GROUP', 'BY', 'ORDER', 'LIMIT', 'JOIN', 'ON'].includes(word.toUpperCase());
                                         return (
-                                            <span key={j} className={isKeyword ? 'text-orange-400 font-bold' : 'text-slate-300'}>
+                                            <span key={j} className={isKeyword ? 'text-emerald-400 font-bold' : 'text-slate-300'}>
                                                 {word}{' '}
                                             </span>
                                         );
@@ -80,31 +80,31 @@ const SQLLab: React.FC<{
                                 <motion.span
                                     animate={{ opacity: [1, 0, 1] }}
                                     transition={{ duration: 0.8, repeat: Infinity }}
-                                    className="inline-block w-1.5 h-3 bg-orange-400 align-middle ml-0.5"
+                                    className="inline-block w-1.5 h-3 bg-emerald-400 align-middle ml-0.5"
                                 />
                             )}
                         </motion.div>
                     </div>
                 </div>
-                
+
                 {/* Execution Progress Overlay */}
                 <AnimatePresence>
                     {isExecuting && progress > 0 && (
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
                             className="absolute bottom-4 inset-x-4 p-3 bg-slate-800/90 backdrop-blur-md rounded-lg border border-slate-700 flex items-center gap-3"
                         >
-                            <div className="w-6 h-6 rounded-full border-2 border-orange-500 border-t-transparent animate-spin shrink-0" />
+                            <div className="w-6 h-6 rounded-full border-2 border-emerald-500 border-t-transparent animate-spin shrink-0" />
                             <div className="flex-1">
                                 <div className="flex justify-between text-[9px] font-bold text-slate-300 mb-1">
                                     <span>Running Query...</span>
                                     <span>{Math.round(progress)}%</span>
                                 </div>
                                 <div className="h-1 bg-slate-700 rounded-full overflow-hidden">
-                                    <motion.div 
-                                        className="h-full bg-orange-500"
+                                    <motion.div
+                                        className="h-full bg-emerald-500"
                                         style={{ width: `${progress}%` }}
                                     />
                                 </div>
@@ -117,7 +117,7 @@ const SQLLab: React.FC<{
             {/* Actions */}
             <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center gap-2">
-                    <button ref={runBtnRef} className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg shadow-sm shadow-orange-200 transition-colors">
+                    <button ref={runBtnRef} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg shadow-sm shadow-emerald-200 transition-colors">
                         <Play size={12} fill="white" />
                         <span className="text-[10px] font-black uppercase tracking-tight">Run</span>
                     </button>
@@ -149,7 +149,7 @@ const Dashboard: React.FC<{
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-white/50 backdrop-blur-md sticky top-0 z-20">
                 <div className="flex items-center gap-3">
-                    <div ref={dashboardTabRef} className="w-8 h-8 rounded-xl bg-orange-500 flex items-center justify-center shadow-lg shadow-orange-200/50">
+                    <div ref={dashboardTabRef} className="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-200/50">
                         <BarChart3 size={16} className="text-white" />
                     </div>
                     <div>
@@ -171,7 +171,7 @@ const Dashboard: React.FC<{
                 {/* KPI row */}
                 <div className="col-span-12 grid grid-cols-3 gap-3">
                     {[
-                        { label: 'Total Revenue', value: '₹918.9 Cr', change: '+12.4%', color: 'text-orange-500' },
+                        { label: 'Total Revenue', value: '₹918.9 Cr', change: '+12.4%', color: 'text-emerald-500' },
                         { label: 'Active Users', value: '1.2M', change: '+5.2%', color: 'text-blue-500' },
                         { label: 'Conversion', value: '3.42%', change: '-0.8%', color: 'text-emerald-500' }
                     ].map((kpi, i) => (
@@ -192,7 +192,7 @@ const Dashboard: React.FC<{
                 <div className="col-span-8 bg-white border border-slate-100 rounded-xl p-4 shadow-sm flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                             <span className="text-[9px] font-black text-slate-800 uppercase tracking-widest">Growth Trajectory</span>
                         </div>
                     </div>
@@ -200,14 +200,14 @@ const Dashboard: React.FC<{
                         {barData.map((h, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center h-full justify-end">
                                 <motion.div
-                                    className="w-full bg-orange-100 rounded-t-md relative group"
+                                    className="w-full bg-emerald-100 rounded-t-md relative group"
                                     initial={{ height: 0 }}
                                     animate={{ height: `${h}%` }}
                                     transition={{ delay: 0.3 + (i * 0.05), duration: 0.8 }}
                                 >
-                                    <div className="absolute inset-0 bg-orange-500 opacity-0 group-hover:opacity-20 transition-opacity rounded-t-md" />
+                                    <div className="absolute inset-0 bg-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity rounded-t-md" />
                                     {i === barData.length - 1 && (
-                                        <div className="absolute inset-0 bg-gradient-to-t from-orange-500 to-orange-400 rounded-t-md shadow-[0_4px_12px_rgba(249,115,22,0.3)]" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-md shadow-[0_4px_12px_rgba(16,185,129,0.3)]" />
                                     )}
                                 </motion.div>
                             </div>
@@ -222,8 +222,8 @@ const Dashboard: React.FC<{
                         <div className="flex-1 flex items-center justify-center relative">
                             <svg className="w-20 h-20 -rotate-90">
                                 <circle cx="40" cy="40" r="34" fill="transparent" stroke="#f1f5f9" strokeWidth="8" />
-                                <motion.circle 
-                                    cx="40" cy="40" r="34" fill="transparent" stroke="rgb(249, 115, 22)" strokeWidth="8"
+                                <motion.circle
+                                    cx="40" cy="40" r="34" fill="transparent" stroke="rgb(16, 185, 129)" strokeWidth="8"
                                     strokeDasharray="213"
                                     initial={{ strokeDashoffset: 213 }}
                                     animate={{ strokeDashoffset: 213 * 0.35 }}
@@ -240,7 +240,7 @@ const Dashboard: React.FC<{
                         <span className="text-[8px] font-black text-slate-800 uppercase tracking-widest">Anomalies</span>
                         <div className="flex-1 flex items-center justify-center">
                             <div className="flex flex-col items-center gap-1">
-                                <motion.div 
+                                <motion.div
                                     animate={{ scale: [1, 1.1, 1] }}
                                     transition={{ duration: 2, repeat: Infinity }}
                                     className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center"
@@ -267,7 +267,7 @@ export const SupersetAnalyticsDemo: React.FC<{ isActive?: boolean }> = ({ isActi
     const runBtnRef = useRef<HTMLButtonElement>(null);
     const dashboardTabRef = useRef<HTMLDivElement>(null);
     const navToDashboardRef = useRef<HTMLDivElement>(null);
-    
+
     const cursorX = useMotionValue(0);
     const cursorY = useMotionValue(0);
 
@@ -381,7 +381,7 @@ ORDER BY month ASC;`;
             if (cancelled) return;
             await moveToEl(runBtnRef.current, 1.0);
             await doClick();
-            
+
             // 4. Execution progress
             if (cancelled) return;
             setIsExecuting(true);
@@ -413,7 +413,7 @@ ORDER BY month ASC;`;
     return (
         <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-white" style={{ fontFamily: 'var(--font-geist-sans)' }}>
             {/* Background Aesthetic */}
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] blur-[120px] rounded-full" style={{ backgroundColor: 'rgba(249, 115, 22, 0.08)' }} />
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] blur-[120px] rounded-full" style={{ backgroundColor: 'rgba(16, 185, 129, 0.08)' }} />
             <div className="absolute bottom-[-10%] right-[-10%] w-[35%] h-[35%] blur-[100px] rounded-full" style={{ backgroundColor: 'rgba(59, 130, 246, 0.05)' }} />
 
             <div className="relative z-10 w-full h-full p-6">
@@ -427,11 +427,11 @@ ORDER BY month ASC;`;
                             transition={{ duration: 0.5 }}
                             className="w-full h-full"
                         >
-                            <SQLLab 
-                                prompt={prompt} 
-                                sql={sql} 
-                                isExecuting={isExecuting} 
-                                progress={progress} 
+                            <SQLLab
+                                prompt={prompt}
+                                sql={sql}
+                                isExecuting={isExecuting}
+                                progress={progress}
                                 promptRef={promptRef}
                                 runBtnRef={runBtnRef}
                                 navToDashboardRef={navToDashboardRef}
