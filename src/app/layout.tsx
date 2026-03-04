@@ -39,15 +39,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SmoothScroll>
-          <Suspense fallback={null}>
-            <PageTransitionIndicator />
-          </Suspense>
-          <Navbar />
-          {children}
-          <FooterSection />
-          <CookieConsent />
-        </SmoothScroll>
+          <SmoothScroll>
+            <Suspense fallback={null}>
+              <PageTransitionIndicator />
+            </Suspense>
+              <Navbar />
+              {children}
+            <FooterSection />
+            <CookieConsent />
+          </SmoothScroll>
       </body>
     </html>
   );

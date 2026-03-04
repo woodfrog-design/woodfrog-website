@@ -271,7 +271,7 @@ const DemoOne = () => {
                             <Link href="/about" className="flex-1 bg-white text-slate-900 font-bold py-3 rounded-full text-sm shadow-xl active:scale-95 transition-transform flex items-center justify-center">
                                 About Us
                             </Link>
-                            <Link href="/contact" className="flex-1 bg-transparent border-2 border-white/20 text-white font-bold py-3 rounded-full text-sm shadow-lg active:scale-95 transition-transform flex items-center justify-center">
+                            <Link href="/contact" className="flex-1 bg-brand-primary text-black font-bold py-3 rounded-full text-sm shadow-lg active:scale-95 transition-transform flex items-center justify-center">
                                 Contact Us
                             </Link>
                         </motion.div>

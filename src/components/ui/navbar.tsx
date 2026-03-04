@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -204,6 +205,7 @@ const ServiceIcon = ({ title }: { title: string }) => {
 const MotionLink = motion(Link);
 
 const Navbar = () => {
+    const pathname = usePathname();
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const [isWoodfrogOpen, setIsWoodfrogOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -212,6 +214,10 @@ const Navbar = () => {
     const [lastScrollY, setLastScrollY] = useState(0);
     const servicesRef = useRef<HTMLDivElement>(null);
     const woodfrogRef = useRef<HTMLDivElement>(null);
+
+    const isServicesActive = SERVICES.some(service => pathname === service.href);
+    const isProductsActive = pathname === '/products' || pathname.startsWith('/products/');
+    const isExploreActive = WOODFROG_LINKS.some(link => pathname === link.href);
 
     const toggleMobileAccordion = (key: string) => {
         setMobileAccordion(mobileAccordion === key ? null : key);
@@ -297,7 +303,7 @@ const Navbar = () => {
                             onClick={() => setIsServicesOpen(!isServicesOpen)}
                             className={cn(
                                 "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
-                                isServicesOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
+                                (isServicesOpen || isServicesActive) ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
                             )}
                         >
                             <span>services</span>
@@ -325,8 +331,11 @@ const Navbar = () => {
                                                         className="group flex items-center space-x-4 p-3 rounded-2xl transition-all hover:bg-white/[0.03] cursor-pointer"
                                                     >
                                                         <ServiceIcon title={service.title} />
-                                                        <div className="flex flex-col space-y-0.5">
-                                                            <h3 className="text-[#E6EAF0] font-bold text-[15px] group-hover:text-brand-primary transition-colors">{service.title}</h3>
+                                                        <div className="flex-1 flex flex-col space-y-0.5">
+                                                            <div className="flex items-center justify-between">
+                                                                <h3 className="text-[#E6EAF0] font-bold text-[15px] group-hover:text-brand-primary transition-colors">{service.title}</h3>
+                                                                <ArrowRight className="w-4 h-4 text-brand-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                                            </div>
                                                             <p className="text-zinc-500 text-[11px] leading-tight font-medium">{service.description}</p>
                                                         </div>
                                                     </motion.div>
@@ -341,7 +350,10 @@ const Navbar = () => {
 
                     <Link
                         href="/products"
-                        className="flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-all duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90"
+                        className={cn(
+                            "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-all duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
+                            isProductsActive && "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]"
+                        )}
                         onClick={() => { setIsServicesOpen(false); setIsWoodfrogOpen(false); }}
                     >
                         <span>products</span>
@@ -352,7 +364,7 @@ const Navbar = () => {
                             onClick={() => setIsWoodfrogOpen(!isWoodfrogOpen)}
                             className={cn(
                                 "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
-                                isWoodfrogOpen ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
+                                (isWoodfrogOpen || isExploreActive) ? "text-black bg-brand-primary shadow-[0_8px_30px_rgba(249,220,102,0.25)]" : "transition-all duration-300"
                             )}
                         >
                             <span>explore</span>
@@ -392,22 +404,24 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Right Side Actions - Desktop */}
                 <div className="hidden md:flex flex-shrink-0 items-center space-x-6">
                     <Link
                         href="/contact"
-                        className="px-7 py-2.5 bg-white text-black text-[15px] font-bold rounded-full hover:bg-zinc-200 active:scale-95 transition-all shadow-xl cursor-pointer"
+                        className={cn(
+                            "px-7 py-2.5 text-[15px] font-bold rounded-full transition-all shadow-xl cursor-pointer active:scale-95 bg-brand-primary text-black hover:bg-brand-primary/90"
+                        )}
                         onClick={() => { setIsServicesOpen(false); setIsWoodfrogOpen(false); }}
                     >
                         Contact us
                     </Link>
                 </div>
 
-                {/* Mobile Menu Actions */}
                 <div className="flex md:hidden items-center space-x-3">
                     <Link
                         href="/contact"
-                        className="px-4 py-1.5 bg-white text-black text-[13px] font-bold rounded-full active:scale-95 transition-all shadow-lg cursor-pointer"
+                        className={cn(
+                            "px-4 py-1.5 text-[13px] font-bold rounded-full transition-all shadow-lg active:scale-95 bg-brand-primary text-black"
+                        )}
                         onClick={() => { setIsMobileMenuOpen(false); }}
                     >
                         Contact us
@@ -526,7 +540,7 @@ const Navbar = () => {
                             <Link
                                 href="/contact"
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="w-full py-4 bg-white text-black text-center font-bold rounded-2xl active:scale-95 transition-all mt-8"
+                                className="w-full py-4 bg-brand-primary text-black text-center font-bold rounded-2xl active:scale-95 transition-all mt-8"
                             >
                                 Contact us
                             </Link>

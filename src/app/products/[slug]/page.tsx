@@ -108,13 +108,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <main className="min-h-screen bg-transparent text-white">
             <DetailAnimations>
                 <article className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
-                    {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
-                        <Link href="/products" className="text-zinc-500 hover:text-white transition-colors">Products</Link>
-                        <span className="text-zinc-800">/</span>
-                        <span className="text-brand-primary">{product.title}</span>
-                    </nav>
-
                     {/* Hero Content */}
                     <div className="mb-16">
                         <div className="flex flex-wrap gap-2 mb-6">

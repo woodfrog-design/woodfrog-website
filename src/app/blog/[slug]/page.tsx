@@ -134,16 +134,6 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <ViewTracker id={blog.id} type="blog" incrementFn={incrementBlogViewCount} />
 
             <article className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
-                {/* Breadcrumbs */}
-                <div className="flex items-center gap-2 text-zinc-500 text-sm mb-12">
-                    <Link href="/blog" className="hover:text-white flex items-center gap-1">
-                        <ArrowLeft className="w-3 h-3" />
-                        <span>All Blogs</span>
-                    </Link>
-                    <span>/</span>
-                    <span className="text-zinc-400">{blog.categories[0]}</span>
-                </div>
-
                 {/* Title */}
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-12 leading-tight">
                     {blog.title}
