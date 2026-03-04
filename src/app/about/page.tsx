@@ -166,7 +166,7 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
             className="text-center"
         >
             <p className="text-3xl md:text-5xl font-bold text-brand-primary mb-2">{value}</p>
-            <p className="text-gray-400 text-sm md:text-base">{label}</p>
+            <p className="text-sm md:text-base">{label}</p>
         </motion.div>
     );
 }
@@ -185,7 +185,7 @@ export default function AboutPage() {
                 <div className="w-full px-8 md:px-24 lg:px-32 pt-32 md:pt-44 pb-20 md:pb-28 relative">
                     <div className="max-w-4xl mx-auto text-center space-y-8">
                         <AnimatedSection>
-                            <span className="text-xs md:text-sm font-medium tracking-widest text-brand-primary uppercase">
+                            <span className="text-sm md:text-sm font-medium tracking-widest text-brand-primary uppercase">
                                 About Us
                             </span>
                         </AnimatedSection>
@@ -240,10 +240,10 @@ export default function AboutPage() {
             {/* ───── OUR STORY ───── */}
             <section className="bg-transparent">
                 <div className="w-full px-8 md:px-24 lg:px-32 py-24 md:py-32">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center max-w-7xl mx-auto">
                         <AnimatedSection>
                             <div className="space-y-6">
-                                <span className="text-xs font-semibold tracking-widest text-brand-primary uppercase">Our Story</span>
+                                <span className="text-sm font-semibold tracking-widest text-brand-primary uppercase">Our Story</span>
                                 <h2 className="text-[1.8rem] md:text-[2.4rem] font-bold leading-tight text-white">
                                     From a bold idea to a{' '}
                                     <span className="text-brand-primary">rising star</span>
@@ -278,7 +278,7 @@ export default function AboutPage() {
                                                     {i < 4 && <div className="w-[1px] h-8 bg-white/10 mt-1" />}
                                                 </div>
                                                 <div className="flex-1 -mt-1">
-                                                    <span className={`text-xs font-bold ${item.active ? 'text-brand-primary' : 'text-gray-500'}`}>
+                                                    <span className={`text-sm font-bold ${item.active ? 'text-brand-primary' : 'text-gray-500'}`}>
                                                         {item.year}
                                                     </span>
                                                     <p className="text-sm text-gray-300 mt-0.5">{item.event}</p>
@@ -298,10 +298,10 @@ export default function AboutPage() {
             {/* ───── MISSION ───── */}
             <section className="bg-transparent">
                 <div className="w-full px-8 md:px-24 lg:px-32 py-24 md:py-32">
-                    <div className="max-w-6xl mx-auto">
+                    <div className="max-w-7xl mx-auto">
                         <AnimatedSection>
                             <div className="text-center mb-16">
-                                <span className="text-xs font-semibold tracking-widest text-brand-primary uppercase">Our Mission</span>
+                                <span className="text-sm font-semibold tracking-widest text-brand-primary uppercase">Our Mission</span>
                                 <h2 className="text-[1.8rem] md:text-[2.4rem] font-bold leading-tight text-white mt-4">
                                     To <span className="text-brand-primary">revolutionize</span> data analytics
                                 </h2>
@@ -311,14 +311,14 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {MISSION_POINTS.map((point, i) => (
                                 <AnimatedSection key={i} delay={i * 0.1}>
-                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-6 hover:border-brand-primary/30 transition-all duration-300 hover:bg-white/[0.05]">
+                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-8 hover:border-brand-primary/30 transition-all duration-300 hover:bg-white/[0.05]">
                                         <div className="flex items-start gap-4">
                                             <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-primary/20 transition-colors">
                                                 <span className="text-brand-primary font-bold text-sm">
                                                     {String(i + 1).padStart(2, '0')}
                                                 </span>
                                             </div>
-                                            <p className="text-gray-300 text-[15px] leading-relaxed pt-2">{point}</p>
+                                            <p className="text-gray-300 text-base leading-relaxed pt-2">{point}</p>
                                         </div>
                                     </div>
                                 </AnimatedSection>
@@ -331,10 +331,10 @@ export default function AboutPage() {
             {/* ───── VALUES ───── */}
             <section className="bg-transparent border-y border-white/5">
                 <div className="w-full px-8 md:px-24 lg:px-32 py-24 md:py-32">
-                    <div className="max-w-6xl mx-auto">
+                    <div className="max-w-7xl mx-auto">
                         <AnimatedSection>
                             <div className="text-center mb-16">
-                                <span className="text-xs font-semibold tracking-widest text-brand-primary uppercase">Our Values</span>
+                                <span className="text-sm font-semibold tracking-widest text-brand-primary uppercase">Our Values</span>
                                 <h2 className="text-[1.8rem] md:text-[2.4rem] font-bold leading-tight text-white mt-4">
                                     What <span className="text-brand-primary">drives</span> everything we do
                                 </h2>
@@ -344,7 +344,7 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {VALUES.map((value, i) => (
                                 <AnimatedSection key={value.title} delay={i * 0.1}>
-                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-6 text-center hover:border-brand-primary/30 transition-all duration-300 hover:bg-white/[0.05] h-full">
+                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-8 text-center hover:border-brand-primary/30 transition-all duration-300 hover:bg-white/[0.05] h-full">
                                         <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-brand-primary/20 group-hover:scale-110 transition-all duration-300">
                                             {value.icon}
                                         </div>
@@ -361,10 +361,10 @@ export default function AboutPage() {
             {/* ───── EXPERTISE ───── */}
             <section className="bg-transparent">
                 <div className="w-full px-8 md:px-24 lg:px-32 py-24 md:py-32">
-                    <div className="max-w-6xl mx-auto">
+                    <div className="max-w-7xl mx-auto">
                         <AnimatedSection>
                             <div className="mb-16">
-                                <span className="text-xs font-semibold tracking-widest text-brand-primary uppercase">Our Expertise</span>
+                                <span className="text-sm font-semibold tracking-widest text-brand-primary uppercase">Our Expertise</span>
                                 <h2 className="text-[1.8rem] md:text-[2.4rem] font-bold leading-tight text-white mt-4">
                                     Decades of collective{' '}
                                     <span className="text-brand-primary">experience</span>
@@ -379,15 +379,15 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {EXPERTISE.map((item, i) => (
                                 <AnimatedSection key={item.title} delay={i * 0.1}>
-                                    <div className="group relative overflow-hidden bg-white/[0.03] border border-white/10 rounded-2xl p-8 hover:border-brand-primary/30 transition-all duration-300">
+                                    <div className="group relative overflow-hidden bg-white/[0.03] border border-white/10 rounded-2xl p-10 hover:border-brand-primary/30 transition-all duration-300">
                                         <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${item.accent}`} />
                                         <div className="flex items-start gap-4">
                                             <span className="text-brand-primary/60 font-bold text-3xl leading-none">
                                                 {String(i + 1).padStart(2, '0')}
                                             </span>
                                             <div>
-                                                <h3 className="text-white font-bold text-lg mb-2">{item.title}</h3>
-                                                <p className="text-gray-400 text-[15px] leading-relaxed">{item.description}</p>
+                                                <h3 className="text-white font-bold text-xl mb-2">{item.title}</h3>
+                                                <p className="text-gray-400 text-base leading-relaxed">{item.description}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -401,10 +401,10 @@ export default function AboutPage() {
             {/* ───── APPROACH ───── */}
             <section className="bg-transparent border-y border-white/5">
                 <div className="w-full px-8 md:px-24 lg:px-32 py-24 md:py-32">
-                    <div className="max-w-6xl mx-auto">
+                    <div className="max-w-7xl mx-auto">
                         <AnimatedSection>
                             <div className="text-center mb-16">
-                                <span className="text-xs font-semibold tracking-widest text-brand-primary uppercase">Our Approach</span>
+                                <span className="text-sm font-semibold tracking-widest text-brand-primary uppercase">Our Approach</span>
                                 <h2 className="text-[1.8rem] md:text-[2.4rem] font-bold leading-tight text-white mt-4">
                                     Data should be{' '}
                                     <span className="text-brand-primary">accessible</span>,{' '}
@@ -421,7 +421,7 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
                             <AnimatedSection>
                                 <div className="space-y-4">
-                                    <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-3">
+                                    <h3 className="text-white font-bold text-xl mb-6 flex items-center gap-3">
                                         <span className="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center flex-shrink-0">
                                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                                                 <path d="M2 7h10M7 2v10" stroke="var(--brand-primary)" strokeWidth="1.5" />
@@ -431,7 +431,7 @@ export default function AboutPage() {
                                     </h3>
                                     {APPROACH_LEFT.map((item, i) => (
                                         <div key={i} className="flex items-start gap-3 pl-3 border-l-2 border-brand-primary/20">
-                                            <p className="text-gray-400 text-[15px] leading-relaxed">{item}</p>
+                                            <p className="text-gray-400 text-base leading-relaxed">{item}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -439,7 +439,7 @@ export default function AboutPage() {
 
                             <AnimatedSection delay={0.15}>
                                 <div className="space-y-4">
-                                    <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-3">
+                                    <h3 className="text-white font-bold text-xl mb-6 flex items-center gap-3">
                                         <span className="w-8 h-8 rounded-lg bg-brand-primary/20 flex items-center justify-center flex-shrink-0">
                                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                                                 <path d="M3 7l3 3 5-5" stroke="var(--brand-primary)" strokeWidth="1.5" />
@@ -449,7 +449,7 @@ export default function AboutPage() {
                                     </h3>
                                     {APPROACH_RIGHT.map((item, i) => (
                                         <div key={i} className="flex items-start gap-3 pl-3 border-l-2 border-brand-primary/20">
-                                            <p className="text-gray-400 text-[15px] leading-relaxed">{item}</p>
+                                            <p className="text-gray-400 text-base leading-relaxed">{item}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -462,10 +462,10 @@ export default function AboutPage() {
             {/* ───── WHY WOODFROG ───── */}
             <section className="bg-transparent">
                 <div className="w-full px-8 md:px-24 lg:px-32 py-24 md:py-32">
-                    <div className="max-w-6xl mx-auto">
+                    <div className="max-w-7xl mx-auto">
                         <AnimatedSection>
                             <div className="text-center mb-16">
-                                <span className="text-xs font-semibold tracking-widest text-brand-primary uppercase">Why Woodfrog</span>
+                                <span className="text-sm font-semibold tracking-widest text-brand-primary uppercase">Why Woodfrog</span>
                                 <h2 className="text-[1.8rem] md:text-[2.4rem] font-bold leading-tight text-white mt-4">
                                     Choose Woodfrog for <span className="text-brand-primary">impactful</span><br className="hidden md:block" />
                                     data-driven solutions
@@ -473,17 +473,17 @@ export default function AboutPage() {
                             </div>
                         </AnimatedSection>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             {WHY_CARDS.map((card, i) => (
                                 <AnimatedSection key={card.title} delay={i * 0.1}>
-                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300 h-full flex flex-col">
+                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-10 md:p-12 hover:border-white/20 transition-all duration-300 h-full flex flex-col">
                                         {/* Accent bar */}
                                         <div
                                             className="w-12 h-1 rounded-full mb-6"
                                             style={{ backgroundColor: card.color }}
                                         />
-                                        <h3 className="text-white font-bold text-xl mb-2">{card.title}</h3>
-                                        <p className="text-gray-500 text-sm mb-6">{card.subtitle}</p>
+                                        <h3 className="text-white font-bold text-2xl mb-2">{card.title}</h3>
+                                        <p className="text-gray-500 text-base mb-6">{card.subtitle}</p>
                                         <div className="space-y-3 flex-1">
                                             {card.points.map((point, j) => (
                                                 <div key={j} className="flex items-start gap-3">
@@ -491,7 +491,7 @@ export default function AboutPage() {
                                                         className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-2"
                                                         style={{ backgroundColor: card.color }}
                                                     />
-                                                    <p className="text-gray-400 text-[13px] leading-relaxed">{point}</p>
+                                                    <p className="text-gray-400 text-[15px] leading-relaxed">{point}</p>
                                                 </div>
                                             ))}
                                         </div>
@@ -508,7 +508,7 @@ export default function AboutPage() {
                 <div className="w-full px-8 md:px-24 lg:px-32 py-28 md:py-36">
                     <AnimatedSection>
                         <div className="max-w-3xl mx-auto text-center space-y-8">
-                            <span className="text-xs font-semibold tracking-widest text-brand-primary uppercase">
+                            <span className="text-sm font-semibold tracking-widest text-brand-primary uppercase">
                                 Join the Woodfrog Journey
                             </span>
                             <h2 className="text-[1.8rem] md:text-[2.8rem] font-bold leading-tight text-white">
