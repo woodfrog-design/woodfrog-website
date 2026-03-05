@@ -311,9 +311,9 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {MISSION_POINTS.map((point, i) => (
                                 <AnimatedSection key={i} delay={i * 0.1}>
-                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-8 hover:border-brand-primary/30 transition-all duration-300 hover:bg-white/[0.05]">
+                                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 transition-all duration-300">
                                         <div className="flex items-start gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-primary/20 transition-colors">
+                                            <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center flex-shrink-0 transition-colors">
                                                 <span className="text-brand-primary font-bold text-sm">
                                                     {String(i + 1).padStart(2, '0')}
                                                 </span>
@@ -344,8 +344,8 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {VALUES.map((value, i) => (
                                 <AnimatedSection key={value.title} delay={i * 0.1}>
-                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-8 text-center hover:border-brand-primary/30 transition-all duration-300 hover:bg-white/[0.05] h-full">
-                                        <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-brand-primary/20 group-hover:scale-110 transition-all duration-300">
+                                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 text-center transition-all duration-300 h-full">
+                                        <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-5 transition-all duration-300">
                                             {value.icon}
                                         </div>
                                         <h3 className="text-white font-bold text-base mb-2">{value.title}</h3>
@@ -379,7 +379,7 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {EXPERTISE.map((item, i) => (
                                 <AnimatedSection key={item.title} delay={i * 0.1}>
-                                    <div className="group relative overflow-hidden bg-white/[0.03] border border-white/10 rounded-2xl p-10 hover:border-brand-primary/30 transition-all duration-300">
+                                    <div className="relative overflow-hidden bg-white/[0.03] border border-white/10 rounded-2xl p-10 transition-all duration-300">
                                         <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${item.accent}`} />
                                         <div className="flex items-start gap-4">
                                             <span className="text-brand-primary/60 font-bold text-3xl leading-none">
@@ -476,7 +476,7 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             {WHY_CARDS.map((card, i) => (
                                 <AnimatedSection key={card.title} delay={i * 0.1}>
-                                    <div className="group bg-white/[0.03] border border-white/10 rounded-2xl p-10 md:p-12 hover:border-white/20 transition-all duration-300 h-full flex flex-col">
+                                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-10 md:p-12 transition-all duration-300 h-full flex flex-col">
                                         {/* Accent bar */}
                                         <div
                                             className="w-12 h-1 rounded-full mb-6"

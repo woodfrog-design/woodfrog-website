@@ -62,7 +62,7 @@ const BlogsSection = () => {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="w-full bg-transparent py-16 md:py-40 flex flex-col items-center justify-center overflow-hidden">
+        <section ref={sectionRef} className="w-full bg-transparent py-12 md:py-20 flex flex-col items-center justify-center overflow-hidden">
             {/* Section Heading */}
             <div className="w-full px-6 md:px-32 mb-10 md:mb-20 text-left">
                 <motion.div
