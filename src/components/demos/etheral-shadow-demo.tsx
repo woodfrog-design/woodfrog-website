@@ -217,7 +217,7 @@ const EnterpriseDashboard = () => {
 };
 
 
-const DemoOne = () => {
+const DemoOne = ({ initialProducts }: { initialProducts?: Product[] }) => {
     return (
         <div className="flex flex-col w-full min-h-screen bg-transparent overflow-x-hidden relative">
             {/* Global V-Lines Layer - Commented out as requested */}
@@ -310,7 +310,7 @@ const DemoOne = () => {
             <ScrollStack />
             <WhyChooseUs />
             <DataIntelligenceSection />
-            <ProductsSection />
+            <ProductsSection products={initialProducts} />
             <BlogsSection />
             <FAQSection />
         </div>

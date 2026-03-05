@@ -10,25 +10,23 @@ import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ProductsSection = () => {
+const ProductsSection = ({ products: initialProducts }: { products?: Product[] }) => {
     const sectionRef = useRef<HTMLElement>(null);
     const [products, setProducts] = useState<Product[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            const data = await getProducts();
+        if (initialProducts) {
             // Show 3 products, prioritizing featured ones
-            const sorted = [...data].sort((a, b) => {
+            const sorted = [...initialProducts].sort((a, b) => {
                 if (a.isFeatured && !b.isFeatured) return -1;
                 if (!a.isFeatured && b.isFeatured) return 1;
                 return 0;
             });
             setProducts(sorted.slice(0, 3));
-            setIsLoading(false);
-        };
-        fetchProducts();
-    }, []);
+        }
+    }, [initialProducts]);
+
+    const isLoading = products.length === 0 && !initialProducts;
 
     return (
         <section ref={sectionRef} className="w-full bg-transparent py-8 md:py-16 flex flex-col items-center justify-center overflow-hidden">
@@ -126,7 +124,7 @@ const ProductsSection = () => {
                         className="group/seeall flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-brand-primary/50 transition-all duration-300"
                     >
                         <span className="text-[#E6EAF0] font-bold text-sm tracking-tight group-hover/seeall:text-brand-primary transition-colors">
-                            Browse Portfolio
+                                    View all products
                         </span>
                         <div className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center group-hover:translate-x-1 transition-transform duration-300">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
