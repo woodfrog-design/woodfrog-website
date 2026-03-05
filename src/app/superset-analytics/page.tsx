@@ -141,8 +141,6 @@ const SHOWCASE_ITEMS = [
 export default function SupersetAnalyticsPage() {
     const [activeItem, setActiveItem] = useState(0);
     const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const horizontalScrollRef = useRef<HTMLDivElement>(null);
-    const horizontalSectionRef = useRef<HTMLDivElement>(null);
 
     /* Scroll-driven active detection */
     useEffect(() => {
@@ -162,40 +160,7 @@ export default function SupersetAnalyticsPage() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    /* Horizontal scroll driven by vertical scroll */
-    useEffect(() => {
-        const section = horizontalSectionRef.current;
-        const container = horizontalScrollRef.current;
-        if (!section || !container) return;
 
-        const handleScroll = () => {
-            const rect = section.getBoundingClientRect();
-            const sectionHeight = section.offsetHeight;
-            const viewportHeight = window.innerHeight;
-
-            // Calculate progress through the section
-            const totalScroll = sectionHeight - viewportHeight;
-            if (totalScroll <= 0) return;
-
-            // Progress is 0 when the top of the section hits the top of the viewport
-            // Progress is 1 when the bottom of the section hits the bottom of the viewport
-            const scrolled = -rect.top;
-            const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
-
-            // Calculate the maximum scroll distance
-            const scrollWidth = container.scrollWidth - container.clientWidth;
-            container.scrollLeft = progress * scrollWidth;
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener('resize', handleScroll);
-        handleScroll();
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('resize', handleScroll);
-        };
-    }, []);
 
     const scrollToItem = (idx: number) => {
         sectionRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -249,51 +214,52 @@ export default function SupersetAnalyticsPage() {
             </section>
 
             {/* ───── SHOWCASE HEADER ───── */}
-            <div className="w-full px-8 md:px-24 lg:px-32 pt-32 md:pt-48 pb-0 -mb-20 md:-mb-32">
+            <div className="w-full px-8 md:px-24 lg:px-32 pt-32 md:pt-48 pb-0">
                 <h2 className="text-[2rem] md:text-[2.4rem] font-bold leading-tight max-w-2xl text-white">
                     Built on <span className="text-brand-primary">real delivery</span> experience
                 </h2>
             </div>
 
-            {/* ───── HORIZONTAL SCROLL SHOWCASE ───── */}
-            <section
-                ref={horizontalSectionRef}
-                className="relative bg-transparent z-10"
-                style={{ height: `${SHOWCASE_ITEMS.length * 100}vh` }}
-            >
-                <div className="sticky top-0 h-screen overflow-hidden">
-                    <div className="h-full flex items-start pt-32 md:pt-40">
-                        <div
-                            ref={horizontalScrollRef}
-                            className="flex gap-12 px-8 md:px-24 lg:px-32 overflow-hidden w-full"
-                        >
-                            {SHOWCASE_ITEMS.map((item, index) => (
-                                <div key={index} className="flex-shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]">
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center h-full">
-                                        {/* Animation side replaced with Image */}
-                                        <div className={`relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/10 shadow-lg ${item.contain ? 'bg-white p-6' : ''}`}>
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                fill
-                                                className={item.contain ? 'object-contain' : 'object-cover'}
-                                            />
-                                        </div>
-
-                                        {/* Text side */}
-                                        <div className="space-y-5">
-                                            <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
-                                                {item.title}
-                                            </h3>
-                                            <p className="text-gray-400 text-[15px] leading-[1.8]">
-                                                {item.description}
-                                            </p>
-                                        </div>
-                                    </div>
+            {/* ───── ALTERNATING SHOWCASE ───── */}
+            <section className="relative bg-transparent z-10">
+                <div className="w-full px-8 md:px-24 lg:px-32 py-16 md:py-24 space-y-20 md:space-y-32">
+                    {SHOWCASE_ITEMS.map((item, index) => {
+                        const isEven = index % 2 === 0;
+                        return (
+                            <div
+                                key={item.id}
+                                className={`grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center`}
+                            >
+                                {/* Image */}
+                                <div
+                                    className={`relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/10 shadow-lg ${item.contain ? 'bg-white p-6' : ''
+                                        } ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
+                                >
+                                    <Image
+                                        src={item.image}
+                                        alt={item.title}
+                                        fill
+                                        className={item.contain ? 'object-contain' : 'object-cover'}
+                                    />
                                 </div>
-                            ))}
-                        </div>
-                    </div>
+
+                                {/* Text */}
+                                <div
+                                    className={`space-y-5 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+                                >
+                                    <span className="text-xs md:text-sm font-medium tracking-wide text-brand-primary">
+                                        {item.subtitle}
+                                    </span>
+                                    <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-gray-400 text-[15px] leading-[1.8]">
+                                        {item.description}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </section>
 
