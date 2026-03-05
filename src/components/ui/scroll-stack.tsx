@@ -185,10 +185,10 @@ const ScrollStack = () => {
                             </h3>
 
                             <div className="space-y-4 md:space-y-6 max-w-lg">
-                                <p className="text-[#E6EAF0] text-base md:text-xl leading-relaxed">
+                                <p className="body-prose">
                                     {card.description1}
                                 </p>
-                                <p className="hidden md:block text-[#E6EAF0] text-lg md:text-xl leading-relaxed">
+                                <p className="hidden md:block body-prose">
                                     {card.description2}
                                 </p>
                             </div>

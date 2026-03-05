@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {
     SupersetServiceIllustration,
 } from '@/components/animations/superset-analytics-illustrations';
-import { SupersetAnalyticsDemo } from '@/components/animations/superset-analytics-demo';
+import { SupersetHeroAnimation } from '@/components/animations/superset-hero-animation';
 import Image from 'next/image';
 
 // Images for horizontal scroll showcase
@@ -81,56 +81,99 @@ const SERVICES = [
 const SHOWCASE_ITEMS = [
     {
         id: 'whale-chart',
-        title: 'Solving Profitability Gaps — Custom Whale Chart',
+        title: 'Whale Chart — Custom Profitability Visualization',
         subtitle: 'Advanced Profitability',
-        description: 'Built to bridge the cumulative profit depth missing in standard BI. This custom visualization solves the "hidden loss" problem, allowing executives to see exactly which 20% of accounts drive growth while identifying resource-draining outliers.',
+        description: 'Whale charts are incredibly useful for visualizing cumulative contribution, especially in finance. We built a custom whale chart for a finance-sector client to show how a small percentage of accounts contributed disproportionately to total revenue.',
+        points: [
+            'Helps stakeholders quickly identify key contributors and long-tail segments',
+            'Shows exact cumulative profit contribution per account, ranked visually',
+            'Highlights resource-draining outliers that standard charts miss',
+            'Fully interactive and integrates seamlessly within Superset dashboards',
+        ],
         image: whaleChartImg,
         contain: true,
     },
     {
         id: 'financial-report',
-        title: 'Advanced P&L Reporting — Ending the Excel Trap',
+        title: 'Financial Reporting Format — Advanced Tabular Reports',
         subtitle: 'Enterprise Reporting',
-        description: 'Dashboards often fail at rigid financial structures. We developed advanced reporting with nested headers and conditional formatting to deliver pixel-perfect Profit & Loss statements natively, eliminating toxic manual Excel exports.',
+        description: 'Reports that combine hierarchical headers, mixed formatting (currency, percentages), subtotals, and multi-level metric groupings require more than standard table visuals. This becomes a significant need for finance, sales, or operations teams relying on structured KPIs for executive reviews.',
+        points: [
+            'Custom chart plugin that replicates 95% of advanced reporting features',
+            'Supports nested headers, custom cell formatting, and row/column subtotals',
+            'Dynamic metric grouping with indentation and conditional styling',
+            'Brings structured reporting into Superset — no need to export to Excel',
+        ],
         image: financialReportImg,
         contain: true,
     },
     {
         id: 'mekko-chart',
-        title: 'Multi-Dimensional Market Depth — Custom Mekko Chart',
+        title: 'Mekko Chart — Multi-Dimensional Market View',
         subtitle: 'Market Analysis',
-        description: 'Solving the "missing dimension" problem in standard charts. This custom Mekko implementation captures market scale, segment performance, and relative profitability simultaneously in a single, high-density executive view.',
+        description: 'We added a custom Mekko chart to Superset, enabling users to visualize data with both category share and relative size in a single view. Unlike standard bar charts, the Mekko chart displays variable-width bars, making it ideal for market share, product mix, or segmentation analysis.',
+        points: [
+            'Variable-width bars accurately represent relative market share',
+            'Captures scale, segment performance, and profitability in one compact view',
+            'Built to support multi-dimensional insights within tight dashboard space',
+            'Fully interactive with drill-down and cross-filter support',
+        ],
         image: mekkoChartImg,
         contain: true,
     },
     {
         id: 'defect-fixes',
-        title: 'Core Contributions — Fixing Upstream Limitations',
+        title: 'Fixing Existing Defects & Contributions',
         subtitle: 'OSS Contributions',
-        description: 'When platform defaults fall short, we contribute to the source. From horizontal waterfall charts to color themes, we optimize the base code to ensure a robust, feature-rich foundation for enterprise analytics.',
+        description: 'When platform defaults fall short, we contribute directly to the source. We actively identify issues, develop fixes, and upstream patches to ensure a robust foundation for enterprise analytics.',
+        points: [
+            'Horizontal waterfall chart support in addition to vertical',
+            'Axis label fixes to word-wrap longer labels instead of hiding them',
+            'Added sorting options and subtotal formatting for waterfall charts',
+            'Cross-filtering now feasible for waterfall charts',
+            'Resolved incorrect legend color mappings post Superset 4.1.2 update',
+        ],
         image: defectFixesImg,
     },
     {
         id: 'filter-charts',
-        title: 'Side-by-Side Filtering — Solving Comparison Friction',
+        title: 'Side-by-Side Filtering — Seamless Comparison',
         subtitle: 'Data Exploration',
-        description: 'Comparing complex hierarchies is a major friction point. We solved this with a dual-column filter architecture that enables seamless side-by-side comparison, removing context-switching hurdles in deep data dives.',
+        description: 'Comparing complex data hierarchies often means toggling filters back and forth, breaking the analytical flow. We solved this with a dual-column filter architecture that enables seamless side-by-side comparison across deep data dives.',
+        points: [
+            'Dual-column layout for comparing two filter states simultaneously',
+            'Nested tree filters with search, expand/collapse, and presets',
+            'Persistent comparison mode keeps both views locked while exploring',
+            'One-click filter presets eliminate repetitive setup for recurring analysis',
+        ],
         image: filterChartsImg,
         contain: true,
     },
     {
         id: 'handlebars-reporting',
-        title: 'Executive Health Cards — Solving Operational Noise',
+        title: 'Executive Health Cards — Operational Clarity',
         subtitle: 'Operational Intelligence',
-        description: 'Complex charts are often too noisy for rapid feedback. We solved the visibility gap with custom-designed operational health cards that translate raw data into color-coded status assessments for instant executive action.',
+        description: 'Complex charts are often too noisy for rapid executive feedback. We designed custom operational health cards that translate raw data into color-coded status assessments, enabling instant executive action without deep data exploration.',
+        points: [
+            'Color-coded status summaries (green/amber/red) for instant understanding',
+            'Consolidates scattered KPIs into a single-glance overview grid',
+            'Custom Handlebars extensions with conditional rendering and click-through',
+            'Designed for non-technical users who need clarity, not complexity',
+        ],
         image: handlebarsChartImg,
         contain: true,
     },
     {
         id: 'custom-alerts',
-        title: 'Unified Operational Monitoring — Integrated Event Visibility',
+        title: 'Event Visibility — Custom Alert Monitoring',
         subtitle: 'Alerting & Automation',
-        description: 'Fragmented operations lead to delayed responses. We unified these silos by embedding real-time event monitoring and audit logs directly into the UI, closing the gap between observation and action.',
+        description: 'While Superset supports basic alerts via email or Slack, teams often need event visibility directly within the platform. We developed a custom feature that allows users to view triggered alerts, status changes, and event logs directly in the Superset UI.',
+        points: [
+            'Broader team engagement with in-platform alert visibility',
+            'Real-time event feeds for operational monitoring dashboards',
+            'Full incident timeline with searchable logs and timestamps',
+            'Improves transparency and reduces the gap between observation and action',
+        ],
         image: eventVisibilityImg,
         contain: true,
     },
@@ -180,12 +223,12 @@ export default function SupersetAnalyticsPage() {
                             </span>
 
                             <h1 className="text-[2rem] md:text-[3.2rem] font-bold leading-[1.1] tracking-tight text-white">
-                                Together, we{' '}
+                                We help you{' '}
                                 <span className="relative inline-block">
-                                    <span className="text-brand-primary">tailor</span>
+                                    <span className="text-brand-primary">migrate</span>
                                     <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-brand-primary rounded-full" />
                                 </span>{' '}
-                                Apache Superset to your business
+                                to Apache Superset & eliminate license costs
                             </h1>
 
                             <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-[480px]">
@@ -204,10 +247,8 @@ export default function SupersetAnalyticsPage() {
                         </div>
 
                         {/* Right — Interactive Animation */}
-                        <div className="bg-[#f7f5f2] rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:h-[500px] relative shadow-2xl">
-                            <div className="absolute top-0 left-0 w-[154%] h-[154%] origin-top-left scale-[0.65] sm:w-[125%] sm:h-[125%] sm:scale-[0.8] lg:w-full lg:h-full lg:scale-100">
-                                <SupersetAnalyticsDemo isActive={true} />
-                            </div>
+                        <div className="rounded-2xl overflow-hidden border border-slate-200/60 aspect-[4/3] lg:aspect-auto lg:h-[500px] relative shadow-[0_4px_24px_rgba(0,0,0,0.06)]" style={{ background: '#ffffff' }}>
+                            <SupersetHeroAnimation isActive={true} />
                         </div>
                     </div>
                 </div>
@@ -245,7 +286,7 @@ export default function SupersetAnalyticsPage() {
 
                                 {/* Text */}
                                 <div
-                                    className={`space-y-5 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+                                    className={`space-y-4 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
                                 >
                                     <span className="text-xs md:text-sm font-medium tracking-wide text-brand-primary">
                                         {item.subtitle}
@@ -253,9 +294,17 @@ export default function SupersetAnalyticsPage() {
                                     <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
                                         {item.title}
                                     </h3>
-                                    <p className="text-gray-400 text-[15px] leading-[1.8]">
+                                    <p className="text-gray-400 text-[14px] leading-[1.8]">
                                         {item.description}
                                     </p>
+                                    <ul className="space-y-2 pt-1">
+                                        {item.points.map((point, pi) => (
+                                            <li key={pi} className="flex items-start gap-2.5">
+                                                <span className="flex-shrink-0 mt-[7px] w-1.5 h-1.5 rounded-full bg-brand-primary" />
+                                                <span className="text-gray-300 text-[13px] leading-[1.7]">{point}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </div>
                         );

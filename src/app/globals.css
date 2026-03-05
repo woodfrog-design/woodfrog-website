@@ -215,4 +215,8 @@ body {
     background-size: cover;
     @apply text-foreground;
   }
+
+  .body-prose {
+    @apply text-[#E6EAF0] text-base md:text-lg lg:text-xl leading-relaxed;
+  }
 }
