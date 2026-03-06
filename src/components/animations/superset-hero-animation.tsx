@@ -115,17 +115,6 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
 
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-        const resize = () => {
-            const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
-            const r = wrap.getBoundingClientRect();
-            W = r.width; H = r.height;
-            if (W === 0 || H === 0) return;
-            canvas.width = W * dpr; canvas.height = H * dpr;
-            canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        };
-        resize();
-        window.addEventListener('resize', resize);
 
         // Center of the animation - true center for equal spacing
         const cx = () => W * 0.50;
@@ -171,32 +160,50 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
 
         const resetAll = () => {
             s.t = 0;
-            s.tOp = [0, 0, 0, 0]; s.tSc = [0, 0, 0, 0]; s.tShake = [0, 0, 0, 0];
+            for (let i = 0; i < 4; i++) {
+                s.tOp[i] = 0;
+                s.tSc[i] = 0;
+                s.tShake[i] = 0;
+                s.advOp[i] = 0;
+            }
             s.vOp = 0; s.vSc = 0; s.vLabel = 0;
             s.dFlow = 0;
             s.wOp = 0; s.wPx = W + 80; s.wPy = cy(); s.wSc = 0.5;
             s.sOp = 0; s.sSc = 0;
             s.savFlow = 0;
             s.msgOp = 0; s.eOp = 0;
-            s.advOp = [0, 0, 0, 0];
             s.fade = 0;
             dollars.length = 0;
-            ringDots = makeRings();
+            const newRings = makeRings();
+            ringDots.length = 0;
+            ringDots.push(...newRings);
         };
 
         // ════════════════════════════════════════════════
         //  GSAP TIMELINE
         // ════════════════════════════════════════════════
-        const ctxGsap = gsap.context(() => {
-            const buildTL = () => {
-                if (tlRef.current) tlRef.current.kill();
+        // ════════════════════════════════════════════════
+        //  GSAP TIMELINE
+        // ════════════════════════════════════════════════
+        let ctxGsap: gsap.Context;
+
+        const buildTL = () => {
+            if (tlRef.current) {
+                tlRef.current.kill();
+                tlRef.current = null;
+            }
+
+            if (ctxGsap) ctxGsap.revert();
+
+            ctxGsap = gsap.context(() => {
                 resetAll();
 
                 const tl = gsap.timeline({
-                    onComplete() {
-                        gsap.to(s, { fade: 1, duration: 1, ease: 'power2.inOut', onComplete: buildTL });
-                    },
+                    repeat: -1,
+                    onRepeat: resetAll
                 });
+
+                tl.set(s, { fade: 0 });
 
                 // ── 1. BI tools appear around center ──────────────
                 TOOLS.forEach((_, i) => {
@@ -262,19 +269,20 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
                 // Stop savings flow
                 tl.to(s, { savFlow: 0, duration: 0.5 }, 17.0);
 
-                // Fade out
+                // Fade out (using internal fade instead of manual tween)
                 tl.to(s, {
                     msgOp: 0, eOp: 0, wOp: 0, sOp: 0,
                     duration: 1.2, ease: 'power2.inOut',
                 }, 17.5);
                 tl.to(s.advOp, { 0: 0, 1: 0, 2: 0, 3: 0, duration: 0.8 }, 17.5);
 
+                // Final white overlap at the very end of the loop
+                tl.to(s, { fade: 1, duration: 0.8 }, 18.2);
+
                 tlRef.current = tl;
                 if (!isVisible.current) tl.pause();
-            };
-
-            buildTL();
-        }, wrap);
+            }, wrap);
+        };
 
         // ════════════════════════════════════════════════
         //  DRAW HELPERS
@@ -669,6 +677,27 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
                 ctx.fillRect(0, 0, W, H);
             }
         };
+
+        const resize = () => {
+            const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+            const r = wrap.getBoundingClientRect();
+            const newW = r.width;
+            const newH = r.height;
+            if (newW === 0 || newH === 0) return;
+
+            // Update dims if changed
+            if (Math.abs(newW - W) > 2 || Math.abs(newH - H) > 2) {
+                W = newW; H = newH;
+                canvas.width = W * dpr; canvas.height = H * dpr;
+                canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                buildTL();
+            }
+        };
+        resize();
+        window.addEventListener('resize', resize);
+        // Initial build
+        buildTL();
 
         // ════════════════════════════════════════════════
         //  RENDER LOOP
