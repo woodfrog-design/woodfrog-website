@@ -12,13 +12,13 @@ const AGENT_NEW = { name: 'Agent - 03 - Woodfrog', color: '#E8501A' };
 
 /*
   Timeline:
-  0.6s  — show panel with 2 agents
-  1.4s  — cursor moves to "+ Add an agent"
-  2.2s  — cursor hovers (button highlights)
-  2.6s  — cursor clicks
-  3.0s  — 3rd agent row appears
-  3.4s  — cursor moves down to new row
-  6.0s  — reset and loop
+  0.6s  - show panel with 2 agents
+  1.4s  - cursor moves to "+ Add an agent"
+  2.2s  - cursor hovers (button highlights)
+  2.6s  - cursor clicks
+  3.0s  - 3rd agent row appears
+  3.4s  - cursor moves down to new row
+  6.0s  - reset and loop
 */
 
 export function CopilotStudioDemo() {
@@ -193,7 +193,7 @@ export function CopilotStudioDemo() {
           </div>
         ))}
 
-        {/* 3rd agent — animated in */}
+        {/* 3rd agent - animated in */}
         <AnimatePresence>
           {showThirdAgent && (
             <motion.div

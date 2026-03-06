@@ -1442,7 +1442,7 @@ export default function ApplicationsAndAutomationsPage() {
                 <div className="w-full px-8 md:px-24 lg:px-32 py-4 md:py-12">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-start">
 
-                        {/* Right — Description */}
+                        {/* Right - Description */}
                         <div className="space-y-8 pt-0 md:pt-8 lg:col-span-2 max-w-[900px]">
                             <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                                 You need to move fast. Manual tasks and outdated processes are no longer an option.
@@ -1494,7 +1494,7 @@ export default function ApplicationsAndAutomationsPage() {
                     <h2 className="text-[2rem] md:text-[2.4rem] font-bold mb-20 text-white">Our services</h2>
 
                     <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-                        {/* Left — Sticky Nav */}
+                        {/* Left - Sticky Nav */}
                         <div className="hidden lg:block">
                             <nav className="sticky top-28 space-y-0">
                                 {SERVICE_ITEMS.map((item, idx) => (
@@ -1519,7 +1519,7 @@ export default function ApplicationsAndAutomationsPage() {
                             </nav>
                         </div>
 
-                        {/* Right — Scrolling Content */}
+                        {/* Right - Scrolling Content */}
                         <div className="space-y-0">
                             {SERVICE_ITEMS.map((item, idx) => (
                                 <div

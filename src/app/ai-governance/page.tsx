@@ -29,7 +29,7 @@ const SERVICES = [
         id: 'risk',
         title: 'AI Risk Assessment & Classification',
         description:
-            'Our AI Risk Assessment as a Service gives you access to structured risk profiling without the need for a full internal governance team. Acting as an extension of your organization, we evaluate every AI model against regulatory thresholds, classify risk levels, and implement proportionate controls — building the certainty your leadership needs to deploy AI with confidence.',
+            'Our AI Risk Assessment as a Service gives you access to structured risk profiling without the need for a full internal governance team. Acting as an extension of your organization, we evaluate every AI model against regulatory thresholds, classify risk levels, and implement proportionate controls - building the certainty your leadership needs to deploy AI with confidence.',
     },
     {
         id: 'bias',
@@ -53,7 +53,7 @@ const SERVICES = [
         id: 'framework',
         title: 'Ethical AI Framework Design',
         description:
-            'Develop a custom ethical constitution for your AI. We help you define principles around transparency, accountability, and human oversight that align with your brand values — then translate them into enforceable technical policies and automated guardrails.',
+            'Develop a custom ethical constitution for your AI. We help you define principles around transparency, accountability, and human oversight that align with your brand values - then translate them into enforceable technical policies and automated guardrails.',
     },
     {
         id: 'privacy',
@@ -246,7 +246,7 @@ function ServiceIllustration({ id }: { id: string }) {
     const inView = useInView(ref, { once: true, margin: '-60px' });
 
     switch (id) {
-        /* ── 1. AI Risk Assessment — Intake → Classify → Report pipeline ── */
+        /* ── 1. AI Risk Assessment - Intake → Classify → Report pipeline ── */
         case 'risk':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -342,7 +342,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 </div>
             );
 
-        /* ── 2. Bias & Fairness Auditing — Parity chart + demographic breakdown ── */
+        /* ── 2. Bias & Fairness Auditing - Parity chart + demographic breakdown ── */
         case 'bias':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -360,7 +360,7 @@ function ServiceIllustration({ id }: { id: string }) {
 
                     {/* Demographic parity bars */}
                     <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200/60 mb-4">
-                        <div className="text-[10px] font-bold text-gray-500 mb-3 uppercase tracking-wider">Demographic Parity — Approval Rates</div>
+                        <div className="text-[10px] font-bold text-gray-500 mb-3 uppercase tracking-wider">Demographic Parity - Approval Rates</div>
                         <div className="space-y-3">
                             {[
                                 { group: 'Group A (Male, 25-34)', pct: 82 },
@@ -411,7 +411,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 </div>
             );
 
-        /* ── 3. Model Explainability (XAI) — SHAP + decision path ── */
+        /* ── 3. Model Explainability (XAI) - SHAP + decision path ── */
         case 'xai':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -493,7 +493,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 </div>
             );
 
-        /* ── 4. Regulatory Compliance Audit — EU AI Act + NIST checklist ── */
+        /* ── 4. Regulatory Compliance Audit - EU AI Act + NIST checklist ── */
         case 'compliance':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -571,7 +571,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 </div>
             );
 
-        /* ── 5. Ethical AI Framework — 3-layer constitution diagram ── */
+        /* ── 5. Ethical AI Framework - 3-layer constitution diagram ── */
         case 'framework':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -587,7 +587,7 @@ function ServiceIllustration({ id }: { id: string }) {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.1 }}
                         >
-                            <div className="text-[10px] font-black text-gray-700 uppercase tracking-widest mb-1">Layer 1 — Core Values</div>
+                            <div className="text-[10px] font-black text-gray-700 uppercase tracking-widest mb-1">Layer 1 - Core Values</div>
                             <div className="flex justify-center gap-4">
                                 {['Transparency', 'Accountability', 'Fairness', 'Human Oversight'].map((v, i) => (
                                     <motion.span
@@ -615,7 +615,7 @@ function ServiceIllustration({ id }: { id: string }) {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.35 }}
                         >
-                            <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Layer 2 — Governance Policies</div>
+                            <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Layer 2 - Governance Policies</div>
                             <div className="grid grid-cols-3 gap-2">
                                 {[
                                     { label: 'Model Card Policy', icon: '📄' },
@@ -648,7 +648,7 @@ function ServiceIllustration({ id }: { id: string }) {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.65 }}
                         >
-                            <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Layer 3 — Automated Guardrails</div>
+                            <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Layer 3 - Automated Guardrails</div>
                             <div className="grid grid-cols-2 gap-2">
                                 {[
                                     { label: 'CI/CD Bias Gate', icon: '🚦' },
@@ -673,7 +673,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 </div>
             );
 
-        /* ── 6. Data Privacy & Security — Tool cards with lock + PII scan ── */
+        /* ── 6. Data Privacy & Security - Tool cards with lock + PII scan ── */
         case 'privacy':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -689,7 +689,7 @@ function ServiceIllustration({ id }: { id: string }) {
                         </div>
                     </div>
 
-                    {/* Tool cards with lock overlays — matching ref screenshot */}
+                    {/* Tool cards with lock overlays - matching ref screenshot */}
                     <div className="flex items-center justify-center gap-4 mb-6">
                         {[
                             { icon: <FivetranIcon />, opacity: 1 },
@@ -765,7 +765,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 </div>
             );
 
-        /* ── 7. Continuous Model Monitoring — Live drift + alert flow ── */
+        /* ── 7. Continuous Model Monitoring - Live drift + alert flow ── */
         case 'oversight':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -856,7 +856,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 </div>
             );
 
-        /* ── 8. AI Governance Program Management — Gantt + Agile sprint ── */
+        /* ── 8. AI Governance Program Management - Gantt + Agile sprint ── */
         case 'program':
             return (
                 <div ref={ref} className="bg-[#f4f3f0] rounded-2xl p-7 overflow-hidden">
@@ -1479,7 +1479,7 @@ export default function AIGovernancePage() {
                             </Link>
                         </div>
 
-                        {/* Right — Hero Illustration */}
+                        {/* Right - Hero Illustration */}
                         <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] overflow-hidden">
                             <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu">
                                 <HeroIllustration />
@@ -1511,7 +1511,7 @@ export default function AIGovernancePage() {
                     <h2 className="text-[2rem] md:text-[2.4rem] font-bold mb-20 text-white">Our <span className="text-brand-primary">value-driven</span> services</h2>
 
                     <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-                        {/* Left — Sticky Nav */}
+                        {/* Left - Sticky Nav */}
                         <div className="hidden lg:block">
                             <nav className="sticky top-28 space-y-0">
                                 {SERVICES.map((s, idx) => (
@@ -1536,7 +1536,7 @@ export default function AIGovernancePage() {
                             </nav>
                         </div>
 
-                        {/* Right — Scrolling Content */}
+                        {/* Right - Scrolling Content */}
                         <div className="space-y-0">
                             {SERVICES.map((s, idx) => (
                                 <div

@@ -82,7 +82,7 @@ const TOOLS = [
 
 /* ─────────────────────── COMPONENTS ─────────────────────── */
 
-/** Architecture diagram — SVG matching the reference */
+/** Architecture diagram - SVG matching the reference */
 const ArchitectureDiagram = () => (
   <div className="relative w-full h-full min-h-[600px] flex items-start justify-center pt-4">
     <svg viewBox="0 0 620 700" fill="none" className="w-full max-w-[580px]" xmlns="http://www.w3.org/2000/svg">
@@ -334,7 +334,7 @@ export default function DataEngineeringPage() {
               </Link>
             </div>
 
-            {/* Right — Architecture Diagram */}
+            {/* Right - Architecture Diagram */}
             <div className="bg-white rounded-2xl overflow-hidden border border-white/10 mt-8 lg:mt-0 aspect-[4/3] lg:aspect-auto lg:h-[600px] relative">
               <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu">
                 <DataEngineeringDemo />
@@ -368,7 +368,7 @@ export default function DataEngineeringPage() {
           <h2 className="text-[2rem] md:text-[2.4rem] font-bold mb-20 text-white">Our value-driven services</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-            {/* Left — Sticky Nav */}
+            {/* Left - Sticky Nav */}
             <div className="hidden lg:block">
               <nav className="sticky top-28 space-y-0">
                 {SERVICES.map((s, idx) => (
@@ -393,7 +393,7 @@ export default function DataEngineeringPage() {
               </nav>
             </div>
 
-            {/* Right — Scrolling Content */}
+            {/* Right - Scrolling Content */}
             <div className="space-y-0">
               {SERVICES.map((s, idx) => (
                 <div

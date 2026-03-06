@@ -174,7 +174,7 @@ export const RevenueChartDemo: React.FC = () => {
                     {/* Vertical Nov reference line */}
                     <line x1={novX} y1={PAD.top} x2={novX} y2={PAD.top + ch} stroke="#cbd5e1" strokeWidth={1} strokeDasharray="3 3" />
 
-                    {/* Cross-fade between datasets — no SVG path morphing */}
+                    {/* Cross-fade between datasets - no SVG path morphing */}
                     {dataSets.map((vals, i) => {
                         const line = splinePath(toXY(vals, W, H));
                         const area = areaPath(vals, W, H);

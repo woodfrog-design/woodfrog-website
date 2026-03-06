@@ -144,7 +144,7 @@ export function DeploymentIllustration() {
 
 /* ═══════════════════════════════════════════════════════
    2. CUSTOM FEATURE DEVELOPMENT
-   Shows: Split code-editor + live chart preview — plugin being authored
+   Shows: Split code-editor + live chart preview - plugin being authored
    ═══════════════════════════════════════════════════════ */
 const CHART_TYPES = ['Waterfall', 'Pareto', 'Whale', 'Mekko', 'Heatmap'];
 
@@ -811,7 +811,7 @@ export function AlertsAutomationIllustration() {
 
 /* ═══════════════════════════════════════════════════════
    8. ANALYTICS & DASHBOARD DESIGN
-   Shows: Dashboard being assembled — KPI cards + charts appearing
+   Shows: Dashboard being assembled - KPI cards + charts appearing
    ═══════════════════════════════════════════════════════ */
 export function DashboardDesignIllustration() {
     const [assembling, setAssembling] = useState(true);
@@ -1767,7 +1767,7 @@ export function DefectFixesIllustration() {
     );
 }
 
-/* ─── Master switch — services ─── */
+/* ─── Master switch - services ─── */
 export function SupersetServiceIllustration({ id }: { id: string }) {
     switch (id) {
         case 'deployment': return <DeploymentIllustration />;
@@ -1783,7 +1783,7 @@ export function SupersetServiceIllustration({ id }: { id: string }) {
     }
 }
 
-/* ─── Master switch — experiences ─── */
+/* ─── Master switch - experiences ─── */
 export function SupersetExperienceIllustration({ id }: { id: string }) {
     switch (id) {
         case 'text-to-sql': return <TextToSQLIllustration />;

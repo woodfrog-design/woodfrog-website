@@ -230,7 +230,7 @@ export const FinanceSalesTrendsDemo: React.FC = () => {
                     </AreaChart>
                 </ResponsiveContainer>
 
-                {/* Tooltip overlay — uses live cursor position */}
+                {/* Tooltip overlay - uses live cursor position */}
                 <AnimatePresence>
                     {hoveredDataIndex !== null && dotPos && (() => {
                         return (
@@ -249,7 +249,7 @@ export const FinanceSalesTrendsDemo: React.FC = () => {
                                         backgroundColor: `${ANIMATION_THEME.text.secondary}40`,
                                     }}
                                 />
-                                {/* Price badge — above the dot */}
+                                {/* Price badge - above the dot */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 4 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -265,7 +265,7 @@ export const FinanceSalesTrendsDemo: React.FC = () => {
                                         ${salesData[hoveredDataIndex].primary.toLocaleString()}
                                     </div>
                                 </motion.div>
-                                {/* Data point dot — centered exactly on the line */}
+                                {/* Data point dot - centered exactly on the line */}
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.5 }}
                                     animate={{ opacity: 1, scale: 1 }}

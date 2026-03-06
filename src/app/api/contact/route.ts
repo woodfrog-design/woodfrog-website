@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: `"Woodfrog Contact Form" <${process.env.SMTP_USER}>`,
       to: recipientEmail,
-      subject: `New Contact: ${firstName} ${lastName} — ${lookingFor}`,
+      subject: `New Contact: ${firstName} ${lastName} - ${lookingFor}`,
       html: htmlBody,
       replyTo: email || undefined,
     });

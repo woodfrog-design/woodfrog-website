@@ -50,7 +50,7 @@ export function PageTransitionIndicator() {
     useEffect(() => {
         const handlePageShow = (e: PageTransitionEvent) => {
             if (e.persisted) {
-                // Page was restored from bfcache — force-hide the overlay immediately
+                // Page was restored from bfcache - force-hide the overlay immediately
                 forceHideOverlay();
                 lastPathname.current = "";
             }

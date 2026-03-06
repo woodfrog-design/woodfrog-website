@@ -4,16 +4,16 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 /* ═══════════════════════════════════════════════════════════════════
-   SUPERSET HERO ANIMATION  — v5
+   SUPERSET HERO ANIMATION  - v5
    ─────────────────────────────────────────────────────────────────
    Canvas + GSAP.  White bg.  Proper spatial layout.
    
    Story:
    1. Four BI tool cards appear arranged diagonally around a center
    2. Gold $ signs drain FROM the tools INTO a growing vortex
-   3. Vortex = "License Costs" — it keeps consuming money
+   3. Vortex = "License Costs" - it keeps consuming money
    4. Woodfrog core glides in, pushes toward vortex center
-   5. Woodfrog eradicates the vortex — it shrinks and dissolves
+   5. Woodfrog eradicates the vortex - it shrinks and dissolves
    6. Tools fade away
    7. Green $ signs flow OUTWARD from Woodfrog = savings / profit
    8. "License Costs Eliminated." message + mini dashboard
@@ -34,9 +34,9 @@ const C = {
     light: '#f1f5f9',
 };
 
-// BI Tools — positioned diagonally around center
+// BI Tools - positioned diagonally around center
 // Positions are OFFSETS from center as fraction of W, H
-// NW / NE / SW / SE — pushed further to corners
+// NW / NE / SW / SE - pushed further to corners
 //
 // SVG ICON REPLACEMENT:
 // Place SVG files in /public/logos/bi-tools/  with these exact names:
@@ -110,13 +110,16 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
             const img = new Image();
             img.src = t.svg;
             img.onload = () => { toolIcons[i] = img; };
-            // If SVG doesn't exist, onload won't fire — fallback to letter circle
+            // If SVG doesn't exist, onload won't fire - fallback to letter circle
         });
 
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
         const resize = () => {
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
             const r = wrap.getBoundingClientRect();
             W = r.width; H = r.height;
+            if (W === 0 || H === 0) return;
             canvas.width = W * dpr; canvas.height = H * dpr;
             canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -124,7 +127,7 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
         resize();
         window.addEventListener('resize', resize);
 
-        // Center of the animation — true center for equal spacing
+        // Center of the animation - true center for equal spacing
         const cx = () => W * 0.50;
         const cy = () => H * 0.50;
 
@@ -153,7 +156,8 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
 
         const makeRings = () => {
             const out: RingDot[] = [];
-            for (let i = 0; i < 60; i++) {
+            const dotCount = isMobile ? 30 : 60;
+            for (let i = 0; i < dotCount; i++) {
                 out.push({
                     angle: Math.random() * Math.PI * 2,
                     radius: 0.4 + Math.random() * 0.6,
@@ -183,92 +187,94 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
         // ════════════════════════════════════════════════
         //  GSAP TIMELINE
         // ════════════════════════════════════════════════
-        const buildTL = () => {
-            if (tlRef.current) tlRef.current.kill();
-            resetAll();
+        const ctxGsap = gsap.context(() => {
+            const buildTL = () => {
+                if (tlRef.current) tlRef.current.kill();
+                resetAll();
 
-            const tl = gsap.timeline({
-                onComplete() {
-                    gsap.to(s, { fade: 1, duration: 1, ease: 'power2.inOut', onComplete: buildTL });
-                },
-            });
+                const tl = gsap.timeline({
+                    onComplete() {
+                        gsap.to(s, { fade: 1, duration: 1, ease: 'power2.inOut', onComplete: buildTL });
+                    },
+                });
 
-            // ── 1. BI tools appear around center ──────────────
-            TOOLS.forEach((_, i) => {
-                tl.to(s.tOp, { [i]: 1, duration: 0.5, ease: 'power2.out' }, 0.3 + i * 0.15);
-                tl.to(s.tSc, { [i]: 1, duration: 0.6, ease: 'back.out(1.6)' }, 0.3 + i * 0.15);
-            });
+                // ── 1. BI tools appear around center ──────────────
+                TOOLS.forEach((_, i) => {
+                    tl.to(s.tOp, { [i]: 1, duration: 0.5, ease: 'power2.out' }, 0.3 + i * 0.15);
+                    tl.to(s.tSc, { [i]: 1, duration: 0.6, ease: 'back.out(1.6)' }, 0.3 + i * 0.15);
+                });
 
-            // ── 2. Vortex appears at center ───────────────────
-            tl.to(s, { vOp: 1, duration: 0.7, ease: 'power2.out' }, 1.3);
-            tl.to(s, { vSc: 1, duration: 1.0, ease: 'elastic.out(1, 0.8)' }, 1.3);
-            tl.to(s, { vLabel: 1, duration: 0.5 }, 1.8);
+                // ── 2. Vortex appears at center ───────────────────
+                tl.to(s, { vOp: 1, duration: 0.7, ease: 'power2.out' }, 1.3);
+                tl.to(s, { vSc: 1, duration: 1.0, ease: 'elastic.out(1, 0.8)' }, 1.3);
+                tl.to(s, { vLabel: 1, duration: 0.5 }, 1.8);
 
-            // ── 3. Dollar drain: tools → vortex ───────────────
-            tl.to(s, { dFlow: 1, duration: 0.4 }, 2.4);
-            tl.to(s, { vSc: 1.3, duration: 4, ease: 'power1.inOut' }, 2.8);
+                // ── 3. Dollar drain: tools → vortex ───────────────
+                tl.to(s, { dFlow: 1, duration: 0.4 }, 2.4);
+                tl.to(s, { vSc: 1.3, duration: 4, ease: 'power1.inOut' }, 2.8);
 
-            // Cards shake + dim
-            TOOLS.forEach((_, i) => {
-                tl.to(s.tShake, { [i]: 1, duration: 2.5, ease: 'power1.in' }, 3.2 + i * 0.1);
-                tl.to(s.tOp, { [i]: 0.4, duration: 2.5, ease: 'power1.in' }, 3.5);
-            });
+                // Cards shake + dim
+                TOOLS.forEach((_, i) => {
+                    tl.to(s.tShake, { [i]: 1, duration: 2.5, ease: 'power1.in' }, 3.2 + i * 0.1);
+                    tl.to(s.tOp, { [i]: 0.4, duration: 2.5, ease: 'power1.in' }, 3.5);
+                });
 
-            // ── 4. Woodfrog glides in from right toward center ─
-            tl.to(s, { dFlow: 0, duration: 0.5 }, 6.8);
-            tl.to(s, {
-                wOp: 1, wPx: cx(), wPy: cy(), wSc: 1,
-                duration: 1.6, ease: 'power3.out',
-            }, 7.0);
+                // ── 4. Woodfrog glides in from right toward center ─
+                tl.to(s, { dFlow: 0, duration: 0.5 }, 6.8);
+                tl.to(s, {
+                    wOp: 1, wPx: cx(), wPy: cy(), wSc: 1,
+                    duration: 1.6, ease: 'power3.out',
+                }, 7.0);
 
-            // ── 5. Shield expands — pushes back the vortex ────
-            tl.to(s, { sOp: 1, sSc: 1, duration: 0.8, ease: 'back.out(2.5)' }, 8.2);
+                // ── 5. Shield expands - pushes back the vortex ────
+                tl.to(s, { sOp: 1, sSc: 1, duration: 0.8, ease: 'back.out(2.5)' }, 8.2);
 
-            // Vortex shrinks and dies under the shield
-            tl.to(s, { vSc: 0, vOp: 0, duration: 1.8, ease: 'power3.in' }, 8.8);
-            tl.to(s, { vLabel: 0, duration: 0.4 }, 8.8);
+                // Vortex shrinks and dies under the shield
+                tl.to(s, { vSc: 0, vOp: 0, duration: 1.8, ease: 'power3.in' }, 8.8);
+                tl.to(s, { vLabel: 0, duration: 0.4 }, 8.8);
 
-            // Tools vanish
-            TOOLS.forEach((_, i) => {
-                tl.to(s.tOp, { [i]: 0, duration: 0.5 }, 9.5 + i * 0.08);
-                tl.to(s.tShake, { [i]: 0, duration: 0.3 }, 9.5);
-            });
+                // Tools vanish
+                TOOLS.forEach((_, i) => {
+                    tl.to(s.tOp, { [i]: 0, duration: 0.5 }, 9.5 + i * 0.08);
+                    tl.to(s.tShake, { [i]: 0, duration: 0.3 }, 9.5);
+                });
 
-            // ── 6. Woodfrog slides to the RIGHT side ──────────
-            tl.to(s, { wPx: W * 0.78, duration: 1.2, ease: 'power3.inOut' }, 10.2);
-            tl.to(s, { sSc: 1.2, sOp: 0.25, duration: 1.5, ease: 'power2.out' }, 10.5);
+                // ── 6. Woodfrog slides to the RIGHT side ──────────
+                tl.to(s, { wPx: W * 0.78, duration: 1.2, ease: 'power3.inOut' }, 10.2);
+                tl.to(s, { sSc: 1.2, sOp: 0.25, duration: 1.5, ease: 'power2.out' }, 10.5);
 
-            // ── 7. Savings: green $ flow OUTWARD ──────────────
-            tl.to(s, { savFlow: 1, duration: 0.5 }, 11.0);
-            tl.to(s, { eOp: 1, duration: 0.8 }, 11.2);
+                // ── 7. Savings: green $ flow OUTWARD ──────────────
+                tl.to(s, { savFlow: 1, duration: 0.5 }, 11.0);
+                tl.to(s, { eOp: 1, duration: 0.8 }, 11.2);
 
-            // ── 8. Victory message + advantages one by one ────
-            tl.to(s, { msgOp: 1, duration: 1.0, ease: 'power2.out' }, 11.5);
+                // ── 8. Victory message + advantages one by one ────
+                tl.to(s, { msgOp: 1, duration: 1.0, ease: 'power2.out' }, 11.5);
 
-            // Stagger the four advantages
-            tl.to(s.advOp, { 0: 1, duration: 0.5, ease: 'power2.out' }, 12.2);
-            tl.to(s.advOp, { 1: 1, duration: 0.5, ease: 'power2.out' }, 12.6);
-            tl.to(s.advOp, { 2: 1, duration: 0.5, ease: 'power2.out' }, 13.0);
-            tl.to(s.advOp, { 3: 1, duration: 0.5, ease: 'power2.out' }, 13.4);
+                // Stagger the four advantages
+                tl.to(s.advOp, { 0: 1, duration: 0.5, ease: 'power2.out' }, 12.2);
+                tl.to(s.advOp, { 1: 1, duration: 0.5, ease: 'power2.out' }, 12.6);
+                tl.to(s.advOp, { 2: 1, duration: 0.5, ease: 'power2.out' }, 13.0);
+                tl.to(s.advOp, { 3: 1, duration: 0.5, ease: 'power2.out' }, 13.4);
 
-            // Hold
-            tl.to({}, { duration: 3.5 }, 14.0);
+                // Hold
+                tl.to({}, { duration: 3.5 }, 14.0);
 
-            // Stop savings flow
-            tl.to(s, { savFlow: 0, duration: 0.5 }, 17.0);
+                // Stop savings flow
+                tl.to(s, { savFlow: 0, duration: 0.5 }, 17.0);
 
-            // Fade out
-            tl.to(s, {
-                msgOp: 0, eOp: 0, wOp: 0, sOp: 0,
-                duration: 1.2, ease: 'power2.inOut',
-            }, 17.5);
-            tl.to(s.advOp, { 0: 0, 1: 0, 2: 0, 3: 0, duration: 0.8 }, 17.5);
+                // Fade out
+                tl.to(s, {
+                    msgOp: 0, eOp: 0, wOp: 0, sOp: 0,
+                    duration: 1.2, ease: 'power2.inOut',
+                }, 17.5);
+                tl.to(s.advOp, { 0: 0, 1: 0, 2: 0, 3: 0, duration: 0.8 }, 17.5);
 
-            tlRef.current = tl;
-            if (!isVisible.current) tl.pause();
-        };
+                tlRef.current = tl;
+                if (!isVisible.current) tl.pause();
+            };
 
-        buildTL();
+            buildTL();
+        }, wrap);
 
         // ════════════════════════════════════════════════
         //  DRAW HELPERS
@@ -427,7 +433,8 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
             spawnAcc += dt;
 
             // DRAIN: Tools → vortex center  (gold $)
-            if (s.dFlow > 0.5 && spawnAcc > 0.16) {
+            const spawnFreq = isMobile ? 0.3 : 0.16;
+            if (s.dFlow > 0.5 && spawnAcc > spawnFreq) {
                 spawnAcc = 0;
                 TOOLS.forEach((t, i) => {
                     if (s.tOp[i] < 0.2 || Math.random() > 0.55) return;
@@ -442,7 +449,8 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
             }
 
             // SAVINGS: $ flow OUTWARD from Woodfrog (green $)
-            if (s.savFlow > 0.5 && spawnAcc > 0.2) {
+            const savFreq = isMobile ? 0.35 : 0.2;
+            if (s.savFlow > 0.5 && spawnAcc > savFreq) {
                 spawnAcc = 0;
                 for (let k = 0; k < 3; k++) {
                     const angle = Math.random() * Math.PI * 2;
@@ -668,7 +676,7 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
         let last = performance.now();
         const render = (now: number) => {
             frameId.current = requestAnimationFrame(render);
-            if (!isVisible.current) return;
+            if (!isVisible.current || W === 0 || H === 0) return;
 
             const dt = Math.min((now - last) / 1000, 0.05);
             last = now; s.t += dt;
@@ -686,7 +694,7 @@ export const SupersetHeroAnimation: React.FC<{ isActive?: boolean }> = ({ isActi
 
         return () => {
             cancelAnimationFrame(frameId.current);
-            if (tlRef.current) { tlRef.current.kill(); tlRef.current = null; }
+            ctxGsap.revert();
             window.removeEventListener('resize', resize);
         };
     }, [isActive]);

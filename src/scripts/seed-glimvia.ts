@@ -28,7 +28,7 @@ const GLIMVIA_CONTENT = {
         },
         {
             type: 'heading',
-            title: 'SECTION 2 — OVERVIEW'
+            title: 'SECTION 2 - OVERVIEW'
         },
         {
             type: 'text',

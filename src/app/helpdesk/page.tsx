@@ -559,7 +559,7 @@ function WhyIllustration({ id }: { id: string }) {
         <div className="flex items-start justify-between mb-5">
           <div>
             <p className="text-[15px] font-bold text-gray-900 mb-0.5">Motivation related to support tasks</p>
-            <p className="text-[11px] text-gray-400">2025 — woodfrog internal survey</p>
+            <p className="text-[11px] text-gray-400">2025 - woodfrog internal survey</p>
           </div>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }} animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
@@ -749,7 +749,7 @@ export default function HelpdeskPage() {
               </Link>
             </div>
 
-            {/* Right — Hero Illustration */}
+            {/* Right - Hero Illustration */}
             <div className="bg-white rounded-lg overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:h-[600px] relative">
               <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu">
                 <SearchDemo />
@@ -788,7 +788,7 @@ export default function HelpdeskPage() {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-            {/* Left — Sticky Nav */}
+            {/* Left - Sticky Nav */}
             <div className="hidden lg:block">
               <nav className="sticky top-28 space-y-0">
                 {WHY_ITEMS.map((s, idx) => (
@@ -813,7 +813,7 @@ export default function HelpdeskPage() {
               </nav>
             </div>
 
-            {/* Right — Scrolling Content */}
+            {/* Right - Scrolling Content */}
             <div className="space-y-0">
               {WHY_ITEMS.map((s, idx) => (
                 <div
@@ -985,12 +985,12 @@ export default function HelpdeskPage() {
                   className="flex-shrink-0 flex items-center gap-8"
                   style={{ width: '720px' }}
                 >
-                  {/* Left — Illustration/Card */}
+                  {/* Left - Illustration/Card */}
                   <div className="w-[360px] flex-shrink-0">
                     <PlatformIllustration type={card.hasIllustration} />
                   </div>
 
-                  {/* Right — Text */}
+                  {/* Right - Text */}
                   <div className="space-y-3 flex-1">
                     <h3 className="text-lg font-bold text-white">{card.title}</h3>
                     <p className="text-gray-400 text-[14px] leading-relaxed">{card.description}</p>
@@ -1253,7 +1253,7 @@ function PlatformIllustration({ type }: { type: string }) {
   /* ── RECURRING: woodfrog automation flow steps ── */
   if (type === 'recurring') {
     const steps = [
-      { label: 'Ticket received', sub: 'WUC-391 — Critical', icon: 'ticket', color: '#dc2626' },
+      { label: 'Ticket received', sub: 'WUC-391 - Critical', icon: 'ticket', color: '#dc2626' },
       { label: 'Auto-classified', sub: 'Category: Access issue', icon: 'classify', color: '#f97316' },
       { label: 'Routed to Dev 02', sub: 'SLA: 2h remaining', icon: 'route', color: '#8b7a3c' },
       { label: 'Response sent', sub: 'Template: password reset', icon: 'check', color: '#10b981' },

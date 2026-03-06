@@ -37,7 +37,7 @@
           "alt": "Gas turbine industrial facility",
           "src": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=2000",
           "type": "image-text",
-          "content": "Each turbine produced terabytes of sensor data, making it hard to extract actionable insights. Alerts were triggered too late — often after anomalies had already escalated into failures. Diverse operational environments (deserts, humid areas) further complicated anomaly detection due to localized conditions, resulting in millions of dollars lost annually in unplanned downtime and emergency repairs."
+          "content": "Each turbine produced terabytes of sensor data, making it hard to extract actionable insights. Alerts were triggered too late - often after anomalies had already escalated into failures. Diverse operational environments (deserts, humid areas) further complicated anomaly detection due to localized conditions, resulting in millions of dollars lost annually in unplanned downtime and emergency repairs."
         },
         {
           "id": "h3",
@@ -411,7 +411,7 @@
         {
           "id": "p-intro",
           "type": "paragraph",
-          "content": "In the healthcare industry, accurate demand forecasting for medical supplies is vital for maintaining efficiency, reducing costs, and ensuring patient satisfaction. Faced with unpredictable demand patterns and logistical challenges, our client — a leading healthcare provider — sought an innovative solution to optimize their supply chain, minimize losses, and improve patient outcomes."
+          "content": "In the healthcare industry, accurate demand forecasting for medical supplies is vital for maintaining efficiency, reducing costs, and ensuring patient satisfaction. Faced with unpredictable demand patterns and logistical challenges, our client - a leading healthcare provider - sought an innovative solution to optimize their supply chain, minimize losses, and improve patient outcomes."
         },
         {
           "id": "h2",
@@ -553,7 +553,7 @@
           "alt": "Pharmaceutical batch manufacturing water quality testing",
           "src": "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&q=80&w=2000",
           "type": "image-text",
-          "content": "Purified water undergoes daily chemical and microbiological analysis, but microbiological results are only available after several days, making early corrective actions impossible. Deviations in water quality — pH, conductivity, and TOC — signal potential microbial contamination risks. Increased conductivity occurs due to bacterial films releasing ammonium ions, while higher pH results from salts not removed during deionization or protein breakdown from dead bacteria."
+          "content": "Purified water undergoes daily chemical and microbiological analysis, but microbiological results are only available after several days, making early corrective actions impossible. Deviations in water quality - pH, conductivity, and TOC - signal potential microbial contamination risks. Increased conductivity occurs due to bacterial films releasing ammonium ions, while higher pH results from salts not removed during deionization or protein breakdown from dead bacteria."
         },
         {
           "id": "h3",
@@ -715,7 +715,7 @@
           "alt": "Churn prediction analytics dashboard",
           "src": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000",
           "type": "text-image",
-          "content": "Woodfrog's churn management solution offers high-accuracy predictive models with continuous improvement through feedback loops, customer segmentation based on churn drivers like price sensitivity and engagement patterns, customized offers designed to retain specific customer segments, dynamic dashboards for churn monitoring and ROI analysis, and cost optimization by focusing on high-risk customers — reducing retention costs by 30% while increasing offer acceptance rates."
+          "content": "Woodfrog's churn management solution offers high-accuracy predictive models with continuous improvement through feedback loops, customer segmentation based on churn drivers like price sensitivity and engagement patterns, customized offers designed to retain specific customer segments, dynamic dashboards for churn monitoring and ROI analysis, and cost optimization by focusing on high-risk customers - reducing retention costs by 30% while increasing offer acceptance rates."
         },
         {
           "id": "h5",
@@ -834,7 +834,7 @@
           "alt": "AI healthcare analytics dashboard",
           "src": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&q=80&w=2000",
           "type": "text-image",
-          "content": "Our solution consisted of the following high-level components: Data Extraction and Transformation — built a pipeline for extracting data from PDFs and converting it into structured JSON format for storage in a data lake, using Azure Computer Vision for OCR tasks, supporting multi-language and handwritten data extraction. Disease Risk Prediction — developed a diabetes risk prediction model leveraging features like blood glucose levels, lipid profiles, kidney health metrics, and more. AI/ML Infrastructure — deployed on Kubernetes for robust, scalable ML pipelines. Secure and Compliant Architecture — ensured GDPR compliance by anonymizing PII and implementing secure data handling protocols."
+          "content": "Our solution consisted of the following high-level components: Data Extraction and Transformation - built a pipeline for extracting data from PDFs and converting it into structured JSON format for storage in a data lake, using Azure Computer Vision for OCR tasks, supporting multi-language and handwritten data extraction. Disease Risk Prediction - developed a diabetes risk prediction model leveraging features like blood glucose levels, lipid profiles, kidney health metrics, and more. AI/ML Infrastructure - deployed on Kubernetes for robust, scalable ML pipelines. Secure and Compliant Architecture - ensured GDPR compliance by anonymizing PII and implementing secure data handling protocols."
         },
         {
           "id": "h4",
@@ -1228,7 +1228,7 @@
           "alt": "Manufacturing data analytics",
           "src": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&q=80&w=2000",
           "type": "image-text",
-          "content": "The manufacturing sector faced these persistent challenges: Over-Reliance on Data Analysts — teams depended on analysts for routine queries like production trends, sensor readings, and reject counts. Lack of Agility — insights often took hours or days, hindering real-time decision-making. Limited SQL Expertise — non-technical staff struggled with SQL-based systems to extract data independently."
+          "content": "The manufacturing sector faced these persistent challenges: Over-Reliance on Data Analysts - teams depended on analysts for routine queries like production trends, sensor readings, and reject counts. Lack of Agility - insights often took hours or days, hindering real-time decision-making. Limited SQL Expertise - non-technical staff struggled with SQL-based systems to extract data independently."
         },
         {
           "id": "list-challenges",

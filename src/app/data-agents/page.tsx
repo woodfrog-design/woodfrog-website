@@ -128,7 +128,7 @@ const SharePointIcon = ({ size = 32 }: { size?: number }) => (
   <img src="/logos/tools27.svg" width={size} height={size} alt="SharePoint" className="object-contain bg-white rounded-lg p-1" />
 );
 
-/* ── 1. Analysis on demand — animated chat conversation ── */
+/* ── 1. Analysis on demand - animated chat conversation ── */
 function AnalysisIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -236,7 +236,7 @@ function AnalysisIllustration() {
   );
 }
 
-/* ── 2. Open data exploration — Fivetran + line chart + Copilot ── */
+/* ── 2. Open data exploration - Fivetran + line chart + Copilot ── */
 function ExplorationIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -261,7 +261,7 @@ function ExplorationIllustration() {
   return (
     <div ref={ref} className="bg-[#f7f5f2] rounded-2xl overflow-hidden" style={{ height: 340 }}>
       <div className="h-full p-5 flex flex-col gap-3">
-        {/* Top row — tool icons */}
+        {/* Top row - tool icons */}
         <div className="flex items-center gap-3">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={step >= 1 ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.4 }}>
             <div className="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center">
@@ -343,7 +343,7 @@ function ExplorationIllustration() {
   );
 }
 
-/* ── 3. Reducing analytical debt — report-replacement flow ── */
+/* ── 3. Reducing analytical debt - report-replacement flow ── */
 function AnalyticalDebtIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -406,7 +406,7 @@ function AnalyticalDebtIllustration() {
           <AgentAvatar />
           <div>
             <p className="text-[12px] font-semibold text-gray-800">Agent delivers on-demand</p>
-            <p className="text-[11px] text-gray-500 mt-0.5">Right insight, right person, right time — no maintenance required.</p>
+            <p className="text-[11px] text-gray-500 mt-0.5">Right insight, right person, right time - no maintenance required.</p>
           </div>
         </motion.div>
 
@@ -430,7 +430,7 @@ function AnalyticalDebtIllustration() {
   );
 }
 
-/* ── 4. Action over reporting — agent triggers actions ── */
+/* ── 4. Action over reporting - agent triggers actions ── */
 function ActionIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -517,7 +517,7 @@ function ActionIllustration() {
   );
 }
 
-/* ── 5. Continuous, real-time insights — live monitoring dashboard ── */
+/* ── 5. Continuous, real-time insights - live monitoring dashboard ── */
 function ContinuousInsightsIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -626,14 +626,14 @@ function ContinuousInsightsIllustration() {
               <circle cx="7" cy="10" r="0.7" fill="#b8a060" />
             </svg>
           </motion.div>
-          <span className="text-[11px] text-gray-600">Agent flagged anomaly in Segment B — reviewing now</span>
+          <span className="text-[11px] text-gray-600">Agent flagged anomaly in Segment B - reviewing now</span>
         </motion.div>
       </div>
     </div>
   );
 }
 
-/* ── 6. Adaptive, real-time insights — roles & responsibilities table ── */
+/* ── 6. Adaptive, real-time insights - roles & responsibilities table ── */
 function AdaptiveIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -724,7 +724,7 @@ function AdaptiveIllustration() {
   );
 }
 
-/* ── 7. Breaking down silos — cross-team integration hub ── */
+/* ── 7. Breaking down silos - cross-team integration hub ── */
 function SilosIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -812,14 +812,14 @@ function SilosIllustration() {
           transition={{ duration: 0.4, delay: 0.6 }}
           className="text-[12px] text-gray-500 text-center max-w-[240px]"
         >
-          One shared data conversation — across all departments
+          One shared data conversation - across all departments
         </motion.p>
       </div>
     </div>
   );
 }
 
-/* ── 8. Rapid insights — fast pipeline, no engineering sprint ── */
+/* ── 8. Rapid insights - fast pipeline, no engineering sprint ── */
 function RapidInsightsIllustration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-80px' });
@@ -919,7 +919,7 @@ function RapidInsightsIllustration() {
           className="bg-green-50 rounded-xl px-4 py-2.5 flex items-center gap-2 border border-green-100"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 L5.5 10.5 L12 3" stroke="#22c55e" strokeWidth="1.8" strokeLinecap="round" /></svg>
-          <span className="text-[12px] text-green-700 font-medium">Insight delivered — zero engineering backlog required</span>
+          <span className="text-[12px] text-green-700 font-medium">Insight delivered - zero engineering backlog required</span>
         </motion.div>
       </div>
     </div>
@@ -1013,7 +1013,7 @@ export default function DataAgentsPage() {
               </Link>
             </div>
 
-            {/* Right — Hero Illustration */}
+            {/* Right - Hero Illustration */}
             <div className="bg-white rounded-lg overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:h-[600px] relative">
               <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu">
                 <AutomatedDemo />
@@ -1053,14 +1053,14 @@ export default function DataAgentsPage() {
       <section className="bg-transparent">
         <div className="w-full px-8 md:px-24 lg:px-32 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left — Animated Chat UI */}
+            {/* Left - Animated Chat UI */}
             <div className="rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:h-[560px] relative">
               <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu">
                 <AgentChatDemo />
               </div>
             </div>
 
-            {/* Right — Proactive agent text */}
+            {/* Right - Proactive agent text */}
             <div className="space-y-6 pt-8">
               <h3 className="text-xl md:text-2xl font-bold text-white">A data agent is proactive when:</h3>
               <ul className="space-y-4 text-gray-400 text-[15px] leading-relaxed">
@@ -1094,7 +1094,7 @@ export default function DataAgentsPage() {
       <section className="bg-transparent">
         <div className="w-full px-8 md:px-24 lg:px-32 py-12 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left — Text */}
+            {/* Left - Text */}
             <div className="space-y-6">
               <h2 className="text-xl md:text-2xl font-bold leading-tight text-white">
                 An intelligent agent is only as strong as the foundation it&apos;s built on
@@ -1116,7 +1116,7 @@ export default function DataAgentsPage() {
               </p>
             </div>
 
-            {/* Right — Copilot Studio animated illustration */}
+            {/* Right - Copilot Studio animated illustration */}
             <div className="overflow-hidden max-h-[280px] md:max-h-none -mb-4 md:mb-0">
               <div className="origin-top-left scale-[0.72] md:scale-100 -mr-[38%] md:mr-0">
                 <CopilotStudioDemo />
@@ -1132,7 +1132,7 @@ export default function DataAgentsPage() {
           <h2 className="text-[2rem] md:text-[2.4rem] font-bold mb-20 text-white">Why use a data agent?</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-            {/* Left — Sticky Nav */}
+            {/* Left - Sticky Nav */}
             <div className="hidden lg:block">
               <nav className="sticky top-28 space-y-0">
                 {WHY_ITEMS.map((item, idx) => (
@@ -1157,7 +1157,7 @@ export default function DataAgentsPage() {
               </nav>
             </div>
 
-            {/* Right — Scrolling Content */}
+            {/* Right - Scrolling Content */}
             <div className="space-y-0">
               {WHY_ITEMS.map((item, idx) => (
                 <div

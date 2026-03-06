@@ -25,13 +25,13 @@ const SERVICES = [
     id: 'exploration',
     title: 'Open data exploration',
     description:
-      'You no longer need to plan every chart ahead of time. The agent explores your data and uncovers answers to even the most unexpected questions — surfacing patterns you didn\'t know to look for.',
+      'You no longer need to plan every chart ahead of time. The agent explores your data and uncovers answers to even the most unexpected questions - surfacing patterns you didn\'t know to look for.',
   },
   {
     id: 'debt',
     title: 'Reducing analytical debt',
     description:
-      'Stop accumulating dashboards no one reads. An AI agent delivers the right insight, to the right person, at the right time — eliminating reporting overhead and keeping your analytics stack lean.',
+      'Stop accumulating dashboards no one reads. An AI agent delivers the right insight, to the right person, at the right time - eliminating reporting overhead and keeping your analytics stack lean.',
   },
   {
     id: 'action',
@@ -43,7 +43,7 @@ const SERVICES = [
     id: 'continuous',
     title: 'Continuous, real-time insights',
     description:
-      'Your agent never sleeps. It monitors your data continuously and flags anomalies, trends, and opportunities as they happen — ensuring you never miss a critical signal.',
+      'Your agent never sleeps. It monitors your data continuously and flags anomalies, trends, and opportunities as they happen - ensuring you never miss a critical signal.',
   },
   {
     id: 'adaptive',
@@ -61,7 +61,7 @@ const SERVICES = [
     id: 'rapid',
     title: 'Rapid insights without heavy engineering',
     description:
-      'Get answers fast without waiting for a data engineering sprint. The agent leverages existing data infrastructure to deliver value immediately — no new pipelines, no migration projects.',
+      'Get answers fast without waiting for a data engineering sprint. The agent leverages existing data infrastructure to deliver value immediately - no new pipelines, no migration projects.',
   },
 ];
 
@@ -136,9 +136,9 @@ function ServiceIllustration({ id }: { id: string }) {
                     <div key={i} className="flex-1 bg-[#10B981] rounded-t opacity-60" style={{ height: `${h}%` }} />
                   ))}
                 </div>
-                <p className="text-sm text-gray-400">Sales trend analysis — Q4 performance shows 23% growth across all segments</p>
+                <p className="text-sm text-gray-400">Sales trend analysis - Q4 performance shows 23% growth across all segments</p>
               </div>
-              <p className="text-xs text-gray-500">The agent generated this chart from a natural language question — no dashboard required.</p>
+              <p className="text-xs text-gray-500">The agent generated this chart from a natural language question - no dashboard required.</p>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ function ServiceIllustration({ id }: { id: string }) {
               { name: 'Sales Overview v3', status: 'Replaced by agent', color: 'text-green-400' },
               { name: 'Weekly KPI Tracker', status: 'Replaced by agent', color: 'text-green-400' },
               { name: 'Ops Report (legacy)', status: 'Deprecated', color: 'text-yellow-400' },
-              { name: 'Finance Monthly', status: 'Active — agent-assisted', color: 'text-brand-primary' },
+              { name: 'Finance Monthly', status: 'Active - agent-assisted', color: 'text-brand-primary' },
             ].map((d) => (
               <div key={d.name} className="flex items-center justify-between border-t border-white/10 py-2">
                 <span className="text-sm text-gray-400">{d.name}</span>
@@ -395,7 +395,7 @@ export default function AIAgentsPage() {
               </Link>
             </div>
 
-            {/* Right — Hero Illustration */}
+            {/* Right - Hero Illustration */}
             <div className="bg-white/[0.03] rounded-2xl overflow-hidden border border-white/10 mt-8 lg:mt-0 aspect-[4/3] lg:aspect-auto lg:h-auto relative">
               <div className="absolute inset-0 w-[200%] h-[200%] md:w-[133.33%] md:h-[133.33%] lg:w-full lg:h-full scale-[0.5] md:scale-[0.75] lg:scale-100 origin-top-left transform-gpu p-6 md:p-8 space-y-6">
                 {/* Stats card */}
@@ -519,7 +519,7 @@ export default function AIAgentsPage() {
       <section className="bg-transparent">
         <div className="w-full px-8 md:px-24 lg:px-32 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left — Text */}
+            {/* Left - Text */}
             <div className="space-y-6">
               <h2 className="text-xl md:text-2xl font-bold leading-tight text-white">
                 An intelligent agent is only as strong as the foundation it&apos;s built on
@@ -541,7 +541,7 @@ export default function AIAgentsPage() {
               </p>
             </div>
 
-            {/* Right — Copilot Studio illustration */}
+            {/* Right - Copilot Studio illustration */}
             <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 space-y-4">
               {/* Header bar */}
               <div className="flex items-center gap-3 mb-2">
@@ -610,7 +610,7 @@ export default function AIAgentsPage() {
           <h2 className="text-[2rem] md:text-[2.4rem] font-bold mb-20 text-white">Why use an AI agent?</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-            {/* Left — Sticky Nav */}
+            {/* Left - Sticky Nav */}
             <div className="hidden lg:block">
               <nav className="sticky top-28 space-y-0">
                 {SERVICES.map((s, idx) => (
@@ -635,7 +635,7 @@ export default function AIAgentsPage() {
               </nav>
             </div>
 
-            {/* Right — Scrolling Content */}
+            {/* Right - Scrolling Content */}
             <div className="space-y-0">
               {SERVICES.map((s, idx) => (
                 <div
@@ -710,7 +710,7 @@ export default function AIAgentsPage() {
           <div className="relative text-center max-w-lg mx-auto py-20 space-y-5">
             <h2 className="text-[2rem] md:text-[2.4rem] font-bold text-white">Powered by the best AI platforms</h2>
             <p className="text-gray-400 text-[15px] leading-relaxed">
-              From Copilot Studio and Azure OpenAI to LangChain and custom LLM orchestration, we choose the right platform for every agent — always optimizing for accuracy, security, and enterprise-grade performance.
+              From Copilot Studio and Azure OpenAI to LangChain and custom LLM orchestration, we choose the right platform for every agent - always optimizing for accuracy, security, and enterprise-grade performance.
             </p>
             <div className="pt-4">
               <Link

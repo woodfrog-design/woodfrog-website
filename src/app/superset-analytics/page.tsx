@@ -24,13 +24,13 @@ const SERVICES = [
         id: 'deployment',
         title: 'Deployment & Maintenance',
         description:
-            'We set up Superset for cloud or on-prem environments, ensuring it\'s production-ready with Docker or Kubernetes, secure networking, and full database integration. We also provide ongoing maintenance — upgrades, issue resolution, and monitoring. For example, we recently handled a multi-tenant Superset deployment for a manufacturing group with high availability and automated backups.',
+            'We set up Superset for cloud or on-prem environments, ensuring it\'s production-ready with Docker or Kubernetes, secure networking, and full database integration. We also provide ongoing maintenance - upgrades, issue resolution, and monitoring. For example, we recently handled a multi-tenant Superset deployment for a manufacturing group with high availability and automated backups.',
     },
     {
         id: 'custom',
         title: 'Custom Feature Development',
         description:
-            'We build unique features to enhance Superset — custom time filters, industry-specific chart plugins like waterfall or Pareto charts, and more. These additions help clients gain deeper, faster insights tailored to their specific business context and domain requirements.',
+            'We build unique features to enhance Superset - custom time filters, industry-specific chart plugins like waterfall or Pareto charts, and more. These additions help clients gain deeper, faster insights tailored to their specific business context and domain requirements.',
     },
     {
         id: 'performance',
@@ -54,25 +54,25 @@ const SERVICES = [
         id: 'security',
         title: 'Advanced Security & Role Management',
         description:
-            'We configure Superset for fine-grained access using RBAC, integrate with SSO (OAuth/SAML/LDAP), and ensure compliance through audits and access logs. For a healthcare client, we enabled role-based views scoped specifically for doctors, administrators, and analysts — each seeing only what they need.',
+            'We configure Superset for fine-grained access using RBAC, integrate with SSO (OAuth/SAML/LDAP), and ensure compliance through audits and access logs. For a healthcare client, we enabled role-based views scoped specifically for doctors, administrators, and analysts - each seeing only what they need.',
     },
     {
         id: 'alerts',
         title: 'Custom Alerts & Automation',
         description:
-            'We go beyond built-in alerts — setting up Slack notifications, scheduled PDF report emails, or integrating real-time ML-based alerts triggered by anomalies in your data. A manufacturing client now receives automated fault alerts directly from Superset, enabling faster response times.',
+            'We go beyond built-in alerts - setting up Slack notifications, scheduled PDF report emails, or integrating real-time ML-based alerts triggered by anomalies in your data. A manufacturing client now receives automated fault alerts directly from Superset, enabling faster response times.',
     },
     {
         id: 'dashboard',
         title: 'Analytics & Dashboard Design',
         description:
-            'We create dashboards that matter — from executive summaries to granular operational deep dives — helping you extract the right insights with clear visual storytelling. Every dashboard is designed with the end user in mind, ensuring data is both accessible and actionable.',
+            'We create dashboards that matter - from executive summaries to granular operational deep dives - helping you extract the right insights with clear visual storytelling. Every dashboard is designed with the end user in mind, ensuring data is both accessible and actionable.',
     },
     {
         id: 'workflow',
         title: 'Workflow Automation & LLM Integration',
         description:
-            'We enable text-to-SQL through LLMs like OpenAI, allowing non-technical users to ask questions in plain language and receive answers rendered as charts or tables. We also build custom triggers that automate downstream actions based on data thresholds — bridging the gap between insight and action.',
+            'We enable text-to-SQL through LLMs like OpenAI, allowing non-technical users to ask questions in plain language and receive answers rendered as charts or tables. We also build custom triggers that automate downstream actions based on data thresholds - bridging the gap between insight and action.',
     },
 ];
 
@@ -81,7 +81,7 @@ const SERVICES = [
 const SHOWCASE_ITEMS = [
     {
         id: 'whale-chart',
-        title: 'Whale Chart — Custom Profitability Visualization',
+        title: 'Whale Chart - Custom Profitability Visualization',
         subtitle: 'Advanced Profitability',
         description: 'Whale charts are incredibly useful for visualizing cumulative contribution, especially in finance. We built a custom whale chart for a finance-sector client to show how a small percentage of accounts contributed disproportionately to total revenue.',
         points: [
@@ -95,21 +95,21 @@ const SHOWCASE_ITEMS = [
     },
     {
         id: 'financial-report',
-        title: 'Financial Reporting Format — Advanced Tabular Reports',
+        title: 'Financial Reporting Format - Advanced Tabular Reports',
         subtitle: 'Enterprise Reporting',
         description: 'Reports that combine hierarchical headers, mixed formatting (currency, percentages), subtotals, and multi-level metric groupings require more than standard table visuals. This becomes a significant need for finance, sales, or operations teams relying on structured KPIs for executive reviews.',
         points: [
             'Custom chart plugin that replicates 95% of advanced reporting features',
             'Supports nested headers, custom cell formatting, and row/column subtotals',
             'Dynamic metric grouping with indentation and conditional styling',
-            'Brings structured reporting into Superset — no need to export to Excel',
+            'Brings structured reporting into Superset - no need to export to Excel',
         ],
         image: financialReportImg,
         contain: true,
     },
     {
         id: 'mekko-chart',
-        title: 'Mekko Chart — Multi-Dimensional Market View',
+        title: 'Mekko Chart - Multi-Dimensional Market View',
         subtitle: 'Market Analysis',
         description: 'We added a custom Mekko chart to Superset, enabling users to visualize data with both category share and relative size in a single view. Unlike standard bar charts, the Mekko chart displays variable-width bars, making it ideal for market share, product mix, or segmentation analysis.',
         points: [
@@ -137,7 +137,7 @@ const SHOWCASE_ITEMS = [
     },
     {
         id: 'filter-charts',
-        title: 'Side-by-Side Filtering — Seamless Comparison',
+        title: 'Side-by-Side Filtering - Seamless Comparison',
         subtitle: 'Data Exploration',
         description: 'Comparing complex data hierarchies often means toggling filters back and forth, breaking the analytical flow. We solved this with a dual-column filter architecture that enables seamless side-by-side comparison across deep data dives.',
         points: [
@@ -151,7 +151,7 @@ const SHOWCASE_ITEMS = [
     },
     {
         id: 'handlebars-reporting',
-        title: 'Executive Health Cards — Operational Clarity',
+        title: 'Executive Health Cards - Operational Clarity',
         subtitle: 'Operational Intelligence',
         description: 'Complex charts are often too noisy for rapid executive feedback. We designed custom operational health cards that translate raw data into color-coded status assessments, enabling instant executive action without deep data exploration.',
         points: [
@@ -165,7 +165,7 @@ const SHOWCASE_ITEMS = [
     },
     {
         id: 'custom-alerts',
-        title: 'Event Visibility — Custom Alert Monitoring',
+        title: 'Event Visibility - Custom Alert Monitoring',
         subtitle: 'Alerting & Automation',
         description: 'While Superset supports basic alerts via email or Slack, teams often need event visibility directly within the platform. We developed a custom feature that allows users to view triggered alerts, status changes, and event logs directly in the Superset UI.',
         points: [
@@ -228,11 +228,11 @@ export default function SupersetAnalyticsPage() {
                                     <span className="text-brand-primary">migrate</span>
                                     <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-brand-primary rounded-full" />
                                 </span>{' '}
-                                to Apache Superset & eliminate license costs
+                                to Apache Superset & Save thousands of dollars on license cost
                             </h1>
 
                             <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-[480px]">
-                                We specialize in tailoring Apache Superset to fit your business needs — whether
+                                We specialize in tailoring Apache Superset to fit your business needs - whether
                                 you&apos;re scaling enterprise BI or building a standout solution as a startup.
                                 We deliver high-performance, deeply integrated Superset implementations, backed
                                 by hands-on experience.
@@ -246,7 +246,7 @@ export default function SupersetAnalyticsPage() {
                             </Link>
                         </div>
 
-                        {/* Right — Interactive Animation */}
+                        {/* Right - Interactive Animation */}
                         <div className="rounded-2xl overflow-hidden border border-slate-200/60 aspect-[4/3] lg:aspect-auto lg:h-[500px] relative shadow-[0_4px_24px_rgba(0,0,0,0.06)]" style={{ background: '#ffffff' }}>
                             <SupersetHeroAnimation isActive={true} />
                         </div>
@@ -318,7 +318,7 @@ export default function SupersetAnalyticsPage() {
                     <h2 className="text-[2rem] md:text-[2.4rem] font-bold mb-20 text-white">Our value-driven services</h2>
 
                     <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-                        {/* Left — Sticky Nav */}
+                        {/* Left - Sticky Nav */}
                         <div className="hidden lg:block">
                             <nav className="sticky top-28 space-y-0">
                                 {SERVICES.map((item, idx) => (
@@ -342,7 +342,7 @@ export default function SupersetAnalyticsPage() {
                             </nav>
                         </div>
 
-                        {/* Right — Scrolling Content */}
+                        {/* Right - Scrolling Content */}
                         <div className="space-y-0">
                             {SERVICES.map((item, idx) => (
                                 <div

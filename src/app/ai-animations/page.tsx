@@ -25,7 +25,7 @@ const SERVICES = [
     id: 'storytelling',
     title: 'Animated data storytelling',
     description:
-      'Static charts tell facts. Animated stories create understanding. We craft narrative-driven animation sequences that walk stakeholders through key metrics, trends, and anomalies — turning quarterly reviews into compelling visual journeys.',
+      'Static charts tell facts. Animated stories create understanding. We craft narrative-driven animation sequences that walk stakeholders through key metrics, trends, and anomalies - turning quarterly reviews into compelling visual journeys.',
   },
   {
     id: 'realtime',
@@ -43,7 +43,7 @@ const SERVICES = [
     id: 'micro',
     title: 'Micro-interaction & transition systems',
     description:
-      'The details matter. We design cohesive animation systems — hover states, page transitions, loading sequences, and scroll-triggered reveals — that give your analytics platform a polished, premium feel while keeping users oriented.',
+      'The details matter. We design cohesive animation systems - hover states, page transitions, loading sequences, and scroll-triggered reveals - that give your analytics platform a polished, premium feel while keeping users oriented.',
   },
   {
     id: 'explainer',
@@ -55,28 +55,28 @@ const SERVICES = [
     id: 'dashboard',
     title: 'Animated dashboard components',
     description:
-      'Drop-in animated components for your existing dashboards. Smooth number counters, animated progress rings, morphing chart transitions, and live sparklines — all optimized for performance and designed to integrate seamlessly with Power BI, Fabric, or custom React apps.',
+      'Drop-in animated components for your existing dashboards. Smooth number counters, animated progress rings, morphing chart transitions, and live sparklines - all optimized for performance and designed to integrate seamlessly with Power BI, Fabric, or custom React apps.',
   },
   {
     id: 'brand',
     title: 'Brand-aligned motion identity',
     description:
-      'Your animations should feel like you. We develop a motion design system tied to your brand — defining easing curves, color transitions, timing standards, and animation tokens that ensure visual consistency across every data touchpoint.',
+      'Your animations should feel like you. We develop a motion design system tied to your brand - defining easing curves, color transitions, timing standards, and animation tokens that ensure visual consistency across every data touchpoint.',
   },
 ];
 
 const PROCESS_STEPS = [
   {
     bold: 'Data audit & motion mapping',
-    rest: ' — we analyze your datasets and map which metrics benefit most from animation',
+    rest: ' - we analyze your datasets and map which metrics benefit most from animation',
   },
   {
     bold: 'Design system integration',
-    rest: ' — animations follow your brand tokens, color palette, and interaction patterns',
+    rest: ' - animations follow your brand tokens, color palette, and interaction patterns',
   },
   {
     bold: 'Performance-first engineering',
-    rest: ' — GPU-accelerated rendering, lazy loading, and frame-budget optimization for 60fps',
+    rest: ' - GPU-accelerated rendering, lazy loading, and frame-budget optimization for 60fps',
   },
 ];
 
@@ -134,7 +134,7 @@ function ServiceIllustration({ id }: { id: string }) {
                 <div className="h-2 w-1/4 bg-white/30 rounded-full" />
               </div>
             </div>
-            <p className="text-sm text-gray-400 mt-2">Scene 2 of 3 — Revenue trend reveal</p>
+            <p className="text-sm text-gray-400 mt-2">Scene 2 of 3 - Revenue trend reveal</p>
           </div>
         </div>
       );
@@ -182,7 +182,7 @@ function ServiceIllustration({ id }: { id: string }) {
               <circle cx="45" cy="65" r="2" fill="#10B981" opacity="0.5" />
             </svg>
           </div>
-          <p className="text-xs text-gray-500 text-center mt-2">Interactive 3D scatter — drag to explore</p>
+          <p className="text-xs text-gray-500 text-center mt-2">Interactive 3D scatter - drag to explore</p>
         </div>
       );
 
@@ -261,7 +261,7 @@ function ServiceIllustration({ id }: { id: string }) {
               </svg>
             </div>
           </div>
-          <p className="text-[10px] text-gray-500 mt-3 text-center">Animated dashboard components — plug & play</p>
+          <p className="text-[10px] text-gray-500 mt-3 text-center">Animated dashboard components - plug & play</p>
         </div>
       );
 
@@ -376,7 +376,7 @@ export default function AIAnimationsPage() {
               </Link>
             </div>
 
-            {/* Right — Hero Illustration */}
+            {/* Right - Hero Illustration */}
             <div className="hidden lg:block bg-white/[0.03] rounded-lg overflow-hidden border border-white/10 p-8">
               <div className="space-y-6">
                 {/* Animated wave visualization */}
@@ -490,7 +490,7 @@ export default function AIAnimationsPage() {
             </div>
             <div className="space-y-6">
               <p className="text-gray-400 text-[15px] leading-[1.8]">
-                We combine expertise in motion design, WebGL rendering, and machine learning to create animations that are not just beautiful — they are functional. Every frame serves a purpose: guiding attention, revealing patterns, or confirming expectations. Our AI models learn from your data&apos;s structure to produce animations that feel natural and intuitive.
+                We combine expertise in motion design, WebGL rendering, and machine learning to create animations that are not just beautiful - they are functional. Every frame serves a purpose: guiding attention, revealing patterns, or confirming expectations. Our AI models learn from your data&apos;s structure to produce animations that feel natural and intuitive.
               </p>
               <p className="text-gray-400 text-[15px] leading-[1.8]">
                 From Power BI embedded animations to fully custom Three.js environments, we meet you where your data lives and make it move.
@@ -504,7 +504,7 @@ export default function AIAnimationsPage() {
       <section className="bg-transparent">
         <div className="w-full px-8 md:px-24 lg:px-32 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left — Text */}
+            {/* Left - Text */}
             <div className="space-y-6">
               <h2 className="text-xl md:text-2xl font-bold leading-tight text-white">
                 Great animations start with great engineering
@@ -526,7 +526,7 @@ export default function AIAnimationsPage() {
               </p>
             </div>
 
-            {/* Right — Tech stack illustration */}
+            {/* Right - Tech stack illustration */}
             <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 space-y-4">
               {/* Header */}
               <div className="flex items-center gap-3 mb-2">
@@ -575,7 +575,7 @@ export default function AIAnimationsPage() {
                     />
                   ))}
                 </div>
-                <p className="text-[10px] text-gray-500 mt-2 text-center">Preview — animated bar chart transition</p>
+                <p className="text-[10px] text-gray-500 mt-2 text-center">Preview - animated bar chart transition</p>
               </div>
             </div>
           </div>
@@ -588,7 +588,7 @@ export default function AIAnimationsPage() {
           <h2 className="text-[2rem] md:text-[2.4rem] font-bold mb-20 text-white">What we deliver</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24">
-            {/* Left — Sticky Nav */}
+            {/* Left - Sticky Nav */}
             <div className="hidden lg:block">
               <nav className="sticky top-28 space-y-0">
                 {SERVICES.map((s, idx) => (
@@ -613,7 +613,7 @@ export default function AIAnimationsPage() {
               </nav>
             </div>
 
-            {/* Right — Scrolling Content */}
+            {/* Right - Scrolling Content */}
             <div className="space-y-0">
               {SERVICES.map((s, idx) => (
                 <div
@@ -676,7 +676,7 @@ export default function AIAnimationsPage() {
           <div className="relative text-center max-w-lg mx-auto py-20 space-y-5">
             <h2 className="text-[2rem] md:text-[2.4rem] font-bold text-white">Powered by the best animation tools</h2>
             <p className="text-gray-400 text-[15px] leading-relaxed">
-              From D3.js and Three.js to Framer Motion and custom WebGL shaders, we choose the right tool for every animation challenge — always optimizing for performance and visual fidelity.
+              From D3.js and Three.js to Framer Motion and custom WebGL shaders, we choose the right tool for every animation challenge - always optimizing for performance and visual fidelity.
             </p>
             <div className="pt-4">
               <Link
