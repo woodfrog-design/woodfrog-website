@@ -14,7 +14,7 @@ export default function AdminLoginPage() {
     // Simple auth for demonstration
     if (username === 'admin' && password === 'woodfrog123') {
       localStorage.setItem('admin_token', 'logged_in');
-      router.push('/admin/users/blogs');
+      router.push('/admin/users');
     } else {
       setError('Invalid username or password');
     }

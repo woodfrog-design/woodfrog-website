@@ -25,28 +25,12 @@ export default function AdminCareersPage() {
     useEffect(() => {
         const token = localStorage.getItem('admin_token');
         if (token !== 'logged_in') {
-            router.push('/admin/login');
+            router.push('/admin/users/login');
         } else {
             setIsAuthenticated(true);
-            const gateToken = sessionStorage.getItem('career_gate_token');
-            if (gateToken === 'unlocked') {
-                setIsGateOpen(true);
-                fetchJobs();
-            }
+            fetchJobs();
         }
     }, [router]);
-
-    const handleGateSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Secondary gate password
-        if (gatePassword === 'woodfrog-careers-2026') {
-            sessionStorage.setItem('career_gate_token', 'unlocked');
-            setIsGateOpen(true);
-            fetchJobs();
-        } else {
-            setGateError('Incorrect careers management password');
-        }
-    };
 
     const fetchJobs = async () => {
         setIsLoading(true);
@@ -63,8 +47,7 @@ export default function AdminCareersPage() {
 
     const handleLogout = () => {
         localStorage.removeItem('admin_token');
-        sessionStorage.removeItem('career_gate_token');
-        router.push('/admin/login');
+        router.push('/admin/users/login');
     };
 
     const handleToggleStatus = async (job: Job) => {
@@ -75,42 +58,6 @@ export default function AdminCareersPage() {
     };
 
     if (!isAuthenticated) return null;
-
-    if (!isGateOpen) {
-        return (
-            <main className="min-h-screen bg-[#050505] text-white flex items-center justify-center p-6">
-                <div className="w-full max-w-md p-8 rounded-3xl bg-[#141618] border border-white/10 shadow-2xl text-center">
-                    <Briefcase className="w-12 h-12 text-[#ff6b3d] mx-auto mb-6" />
-                    <h1 className="text-2xl font-bold mb-2">Careers Management</h1>
-                    <p className="text-zinc-500 mb-8 text-sm">Please enter the secondary password to access career data and applications.</p>
-
-                    <form onSubmit={handleGateSubmit} className="space-y-6">
-                        <input
-                            type="password"
-                            value={gatePassword}
-                            onChange={(e) => setGatePassword(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-white/5 focus:border-[#ff6b3d] outline-none transition-all text-center"
-                            placeholder="Enter careers password"
-                            required
-                        />
-                        {gateError && <p className="text-red-400 text-xs">{gateError}</p>}
-                        <button
-                            type="submit"
-                            className="w-full py-4 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all"
-                        >
-                            Unlock Careers Section
-                        </button>
-                    </form>
-                    <button
-                        onClick={() => router.push('/admin/users/blogs')}
-                        className="mt-6 text-zinc-500 hover:text-white text-sm"
-                    >
-                        Back to Blogs Admin
-                    </button>
-                </div>
-            </main>
-        );
-    }
 
     return (
         <main className="min-h-screen bg-[#050505] text-white flex flex-col">

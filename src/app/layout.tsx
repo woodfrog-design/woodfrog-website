@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/ui/navbar";
-import { FooterSection } from "@/components/sections/footer-section";
+import AdminLayoutWrapper from "@/components/AdminLayoutWrapper";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { PageTransitionIndicator } from "@/components/PageTransitionIndicator";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Suspense } from "react";
 
-const geistSans = Geist({
+const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const robotoMono = Roboto_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -37,15 +36,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${robotoMono.variable} antialiased`}
       >
           <SmoothScroll>
             <Suspense fallback={null}>
               <PageTransitionIndicator />
             </Suspense>
-              <Navbar />
+            <AdminLayoutWrapper>
               {children}
-            <FooterSection />
+            </AdminLayoutWrapper>
             <CookieConsent />
           </SmoothScroll>
       </body>

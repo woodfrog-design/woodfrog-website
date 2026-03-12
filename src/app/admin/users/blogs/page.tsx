@@ -6,6 +6,7 @@ import BlockEditor from '@/components/admin/editor/block-editor';
 import { Blog, updateBlogStatus } from '@/lib/blogs';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
+import { Settings, LogOut, ChevronLeft, Plus, User, Calendar, Eye, Edit3 } from 'lucide-react';
 
 export default function AdminBlogsPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,7 +22,7 @@ export default function AdminBlogsPage() {
             setIsAuthenticated(true);
             fetchBlogs();
         } else {
-            router.push('/admin/login');
+            router.push('/admin/users/login');
         }
     }, [router]);
 
