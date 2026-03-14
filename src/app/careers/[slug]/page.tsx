@@ -7,6 +7,7 @@ import { ChevronLeft, MapPin, Briefcase, Clock, Send, CheckCircle, Linkedin, Twi
 import { Job, getJobBySlug, incrementJobViewCount } from '@/lib/jobs';
 import { cn } from '@/lib/utils';
 import { ShareButtons } from '@/components/ui/share-buttons';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function JobDetailPage() {
     const { slug } = useParams();
@@ -15,6 +16,11 @@ export default function JobDetailPage() {
     const [view, setView] = useState<'description' | 'form'>('description');
     const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLinkedInAuthenticated, setIsLinkedInAuthenticated] = useState(false);
+    const [isLinking, setIsLinking] = useState(false);
+
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
     const [formResponses, setFormResponses] = useState<Record<string, any>>({});
     const [candidateInfo, setCandidateInfo] = useState({
@@ -36,7 +42,51 @@ export default function JobDetailPage() {
             setIsLoading(false);
         };
         fetchJob();
-    }, [slug]);
+
+        // Check for LinkedIn data in URL
+        const linkedinData = searchParams.get('linkedin_data');
+        if (linkedinData) {
+            try {
+                const decoded = JSON.parse(atob(linkedinData));
+                setCandidateInfo(prev => ({
+                    ...prev,
+                    name: decoded.name || '',
+                    email: decoded.email || ''
+                }));
+                setIsLinkedInAuthenticated(true);
+                setView('form');
+                
+                // Clear the URL param without refreshing
+                const newUrl = window.location.pathname;
+                window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+            } catch (e) {
+                console.error('Failed to decode LinkedIn data', e);
+            }
+        }
+
+        const error = searchParams.get('error');
+        if (error === 'linkedin_denied') {
+            setErrorMessage('LinkedIn authentication was cancelled or denied.');
+            setTimeout(() => setErrorMessage(''), 5000);
+        } else if (error === 'linkedin_failed') {
+            setErrorMessage('LinkedIn authentication failed. Please try again.');
+            setTimeout(() => setErrorMessage(''), 5000);
+        }
+    }, [slug, searchParams]);
+
+    const handleLinkedInLogin = async () => {
+        setIsLinking(true);
+        try {
+            const res = await fetch(`/api/auth/linkedin/url?slug=${slug}`);
+            const data = await res.json();
+            if (data.url) {
+                window.location.href = data.url;
+            }
+        } catch (e) {
+            setErrorMessage('Failed to initiate LinkedIn login');
+            setIsLinking(false);
+        }
+    };
 
     const handleFileChange = (fieldId: string, file: File, maxSize: number = 5) => {
         if (file.type !== 'application/pdf') {
@@ -176,6 +226,33 @@ export default function JobDetailPage() {
                                             >
                                                 Back to Job Details
                                             </button>
+                                        </div>
+                                    ) : !isLinkedInAuthenticated ? (
+                                        <div className="text-center py-24 space-y-10">
+                                            <div className="w-24 h-24 bg-[#ff6b3d]/10 rounded-full flex items-center justify-center mx-auto ring-1 ring-[#ff6b3d]/20">
+                                                <Linkedin className="w-10 h-10 text-[#ff6b3d]" />
+                                            </div>
+                                            <div className="space-y-4">
+                                                <h2 className="text-4xl font-bold">Verify your Identity</h2>
+                                                <p className="text-zinc-500 max-w-sm mx-auto text-lg">To provide the most authentic responses and speed up your application, please connect with LinkedIn.</p>
+                                            </div>
+                                            
+                                            {errorMessage && (
+                                                <div className="max-w-md mx-auto p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center gap-3 text-red-400 text-sm">
+                                                    <AlertCircle className="w-4 h-4 shrink-0" />
+                                                    {errorMessage}
+                                                </div>
+                                            )}
+
+                                            <button
+                                                onClick={handleLinkedInLogin}
+                                                disabled={isLinking}
+                                                className="px-12 py-6 bg-white text-black font-black rounded-3xl hover:bg-zinc-200 transition-all flex items-center justify-center gap-4 mx-auto shadow-[0_20px_40px_rgba(255,255,255,0.05)] active:scale-95 disabled:opacity-50"
+                                            >
+                                                {isLinking ? <Loader2 className="w-6 h-6 animate-spin" /> : <Linkedin className="w-6 h-6 fill-current" />}
+                                                Apply with LinkedIn
+                                            </button>
+                                            <p className="text-zinc-600 text-xs">This verifies your professional identity and pre-fills your application form.</p>
                                         </div>
                                     ) : (
                                         <form onSubmit={handleSubmit} className="space-y-12">
