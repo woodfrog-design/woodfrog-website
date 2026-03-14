@@ -99,6 +99,19 @@ export async function getCandidateNotes(applicationId: string): Promise<Candidat
     return data.map(mapNoteFromDb);
 }
 
+export async function getAllCandidateNotes(): Promise<CandidateNote[]> {
+    const { data, error } = await supabase
+        .from('candidate_notes')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching all candidate notes:', error);
+        return [];
+    }
+    return data.map(mapNoteFromDb);
+}
+
 export async function saveCandidateNote(
     applicationId: string,
     noteType: CandidateNote['noteType'],

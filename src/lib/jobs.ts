@@ -94,6 +94,23 @@ export async function getJobs(): Promise<Job[]> {
     });
 }
 
+export async function getAllApplications(): Promise<(JobApplication & { jobTitle: string })[]> {
+    const { data, error } = await supabase
+        .from('job_applications')
+        .select('*, jobs(title)')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching all applications:', error);
+        return [];
+    }
+
+    return data.map(row => ({
+        ...mapApplicationFromDb(row),
+        jobTitle: row.jobs?.title || 'Unknown Job'
+    }));
+}
+
 export async function getActiveJobs(): Promise<Job[]> {
     const { data, error } = await supabase
         .from('jobs')

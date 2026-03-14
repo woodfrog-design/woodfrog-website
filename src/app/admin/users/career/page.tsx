@@ -2,18 +2,23 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, LogOut, ChevronLeft, Briefcase, Users, Edit3, Eye, GitBranch } from 'lucide-react';
-import { Job, getJobs, updateJobStatus } from '@/lib/jobs';
+import { Plus, LogOut, ChevronLeft, Briefcase, Users, Edit3, Eye, GitBranch, BarChart3 } from 'lucide-react';
+import { Job, getJobs, updateJobStatus, getAllApplications, JobApplication } from '@/lib/jobs';
 import { cn } from '@/lib/utils';
 import JobEditor from '@/components/admin/careers/job-editor';
 import ApplicantList from '@/components/admin/careers/applicant-list';
 import StageManager from '@/components/admin/careers/stage-manager';
+import CareersDashboard from '@/components/admin/careers/dashboard';
+import ApplicantTable from '@/components/admin/careers/applicant-table';
+import { CandidateNote, getAllCandidateNotes } from '@/lib/candidates';
 
 export default function AdminCareersPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [jobs, setJobs] = useState<Job[]>([]);
+    const [allApplications, setAllApplications] = useState<(JobApplication & { jobTitle: string })[]>([]);
+    const [allNotes, setAllNotes] = useState<CandidateNote[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [view, setView] = useState<'list' | 'editor' | 'applications' | 'stages'>('list');
+    const [view, setView] = useState<'list' | 'editor' | 'applications' | 'stages' | 'insights'>('list');
     const [selectedJob, setSelectedJob] = useState<Job | undefined>(undefined);
 
     const router = useRouter();
@@ -25,6 +30,7 @@ export default function AdminCareersPage() {
         } else {
             setIsAuthenticated(true);
             fetchJobs();
+            fetchGlobalData();
         }
     }, [router]);
 
@@ -38,6 +44,19 @@ export default function AdminCareersPage() {
             console.error('Failed to fetch jobs', error);
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const fetchGlobalData = async () => {
+        try {
+            const [apps, notes] = await Promise.all([
+                getAllApplications(),
+                getAllCandidateNotes()
+            ]);
+            setAllApplications(apps);
+            setAllNotes(notes);
+        } catch (error) {
+            console.error('Failed to fetch global data', error);
         }
     };
 
@@ -56,7 +75,7 @@ export default function AdminCareersPage() {
     if (!isAuthenticated) return null;
 
     // ── Full-bleed views: applicants and stages fill the entire viewport below navbar ──
-    const isFullBleed = view === 'applications' || view === 'stages' || view === 'editor';
+    const isFullBleed = view === 'applications' || view === 'stages' || view === 'editor' || view === 'insights';
 
     return (
         <main className="min-h-screen bg-[#050505] text-white flex flex-col">
@@ -94,22 +113,33 @@ export default function AdminCareersPage() {
                                             <span className="text-[#ff6b3d]">{selectedJob.title}</span>
                                         </>}
                                       </>
-                                    : 'Careers Admin'
+                                    : view === 'insights'
+                                        ? <span>Dashboard & Insights</span>
+                                        : 'Careers Admin'
                         }
                     </h1>
                 </div>
                 <div className="flex items-center gap-3">
-                    {!isFullBleed && (
-                        <button
-                            onClick={() => { setView('list'); setSelectedJob(undefined); }}
-                            className={cn(
-                                "px-4 py-2 rounded-lg text-sm font-medium transition-all",
-                                view === 'list' ? "bg-white/10 text-white" : "text-zinc-500 hover:text-white"
-                            )}
-                        >
-                            Job Openings
-                        </button>
-                    )}
+                    <button
+                        onClick={() => { setView('list'); setSelectedJob(undefined); }}
+                        className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
+                            view === 'list' ? "bg-white/10 text-white" : "text-zinc-500 hover:text-white"
+                        )}
+                    >
+                        <Briefcase className="w-4 h-4" />
+                        Job Openings
+                    </button>
+                    <button
+                        onClick={() => { setView('insights'); setSelectedJob(undefined); }}
+                        className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
+                            view === 'insights' ? "bg-white/10 text-white" : "text-zinc-500 hover:text-white"
+                        )}
+                    >
+                        <BarChart3 className="w-4 h-4" />
+                        Insights
+                    </button>
                     <button
                         onClick={handleLogout}
                         className="flex items-center gap-2 px-4 py-2 hover:bg-white/5 rounded-full text-zinc-500 hover:text-white transition-all text-sm font-medium"
@@ -247,6 +277,32 @@ export default function AdminCareersPage() {
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 h-[calc(100vh-160px)] flex flex-col">
                         <div className="flex-1 overflow-hidden">
                             <StageManager jobId={selectedJob.id} onClose={() => setView('list')} />
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* ── Insights: Dashboard and Applicant Table ── */}
+            {view === 'insights' && (
+                <div className="flex-1 flex flex-col overflow-hidden bg-[#050505]">
+                    <div className="flex-1 overflow-y-auto">
+                        <div className="max-w-7xl mx-auto w-full">
+                            <CareersDashboard jobs={jobs} applications={allApplications} />
+                            
+                            <div className="px-8 lg:px-12 pb-20">
+                                <div className="bg-[#0F1113] border border-white/5 rounded-[2.5rem] overflow-hidden min-h-[600px] flex flex-col">
+                                    <div className="p-8 border-b border-white/5 bg-gradient-to-r from-white/[0.02] to-transparent">
+                                        <h3 className="text-2xl font-black flex items-center gap-3">
+                                            <Users className="w-6 h-6 text-[#ff6b3d]" />
+                                            Applicant Ledger
+                                        </h3>
+                                        <p className="text-zinc-500 text-sm mt-1">Detailed candidate reviews and performance ratings.</p>
+                                    </div>
+                                    <div className="flex-1 overflow-hidden">
+                                        <ApplicantTable applications={allApplications} notes={allNotes} />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
