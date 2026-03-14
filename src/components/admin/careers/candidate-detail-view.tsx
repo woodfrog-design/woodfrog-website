@@ -11,6 +11,7 @@ import PipelineFeedback from './pipeline-feedback';
 interface CandidateDetailViewProps {
     application: JobApplication;
     jobId: string;
+    jobTitle: string;
     onStatusChange: (appId: string, newStatus: string) => void;
 }
 
@@ -53,7 +54,7 @@ function StarRow({ label, value }: { label: string; value: number }) {
     );
 }
 
-export default function CandidateDetailView({ application, jobId, onStatusChange }: CandidateDetailViewProps) {
+export default function CandidateDetailView({ application, jobId, jobTitle, onStatusChange }: CandidateDetailViewProps) {
     const [activeTab, setActiveTab] = useState<Tab>('info');
     const [currentStatus, setCurrentStatus] = useState(application.status);
     const [review, setReview] = useState<InitialReviewData | null>(null);
@@ -190,10 +191,12 @@ export default function CandidateDetailView({ application, jobId, onStatusChange
                             key={application.id}
                             applicationId={application.id}
                             jobId={jobId}
+                            jobTitle={jobTitle}
                             currentStatus={currentStatus}
                             candidateName={application.candidateName}
                             candidateEmail={application.candidateEmail}
-                            onStatusChange={handleStatusChange}
+                            resumeUrl={application.resumeUrl}
+                            onStatusChange={(status) => onStatusChange(application.id, status)}
                         />
                     </div>
                 )}

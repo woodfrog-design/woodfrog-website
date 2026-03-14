@@ -228,3 +228,40 @@ export async function updateApplicationStatus(applicationId: string, status: str
     }
     return true;
 }
+
+// ─── Interview Details (per-stage meet link, datetime, etc.) ───
+
+export interface StageInterviewDetails {
+    meetLink?: string;
+    dateTime?: string;
+    interviewerName?: string;
+    mailSent?: boolean;
+    mailPending?: boolean;
+}
+
+export async function getInterviewDetails(applicationId: string): Promise<Record<string, StageInterviewDetails>> {
+    const { data, error } = await supabase
+        .from('job_applications')
+        .select('interview_details')
+        .eq('id', applicationId)
+        .single();
+
+    if (error) {
+        console.error('Error fetching interview details:', error);
+        return {};
+    }
+    return data?.interview_details || {};
+}
+
+export async function saveInterviewDetails(applicationId: string, details: Record<string, StageInterviewDetails>): Promise<boolean> {
+    const { error } = await supabase
+        .from('job_applications')
+        .update({ interview_details: details })
+        .eq('id', applicationId);
+
+    if (error) {
+        console.error('Error saving interview details:', error);
+        return false;
+    }
+    return true;
+}

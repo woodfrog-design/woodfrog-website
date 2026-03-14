@@ -51,7 +51,7 @@ export default function JobEditor({ job, onSave, onCancel }: JobEditorProps) {
     };
 
     const addFormField = () => {
-        const newField = { id: `field_${Date.now()}`, label: 'New Field', type: 'text', required: false, options: [], maxSize: 5 };
+        const newField = { id: `field_${Date.now()}`, label: '', type: 'text', required: false, options: [], maxSize: 5 };
         setFormData(prev => ({ ...prev, formFields: [...(prev.formFields || []), newField] }));
     };
 
@@ -204,9 +204,8 @@ export default function JobEditor({ job, onSave, onCancel }: JobEditorProps) {
                                     <input type="text" value={field.label}
                                         onChange={e => {
                                             const newFields = [...(formData.formFields || [])];
-                                            newFields[idx].label = e.target.value;
-                                            newFields[idx].id = e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '_');
-                                            setFormData({ ...formData, formFields: newFields });
+                                            newFields[idx] = { ...newFields[idx], label: e.target.value };
+                                            setFormData(prev => ({ ...prev, formFields: newFields }));
                                         }}
                                         className="bg-transparent text-sm font-bold outline-none flex-1" placeholder="Field Label" />
                                     <select value={field.type}

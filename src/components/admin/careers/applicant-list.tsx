@@ -9,9 +9,10 @@ import CandidateDetailView from './candidate-detail-view';
 
 interface ApplicantListProps {
     jobId: string;
+    jobTitle: string;
 }
 
-export default function ApplicantList({ jobId }: ApplicantListProps) {
+export default function ApplicantList({ jobId, jobTitle }: ApplicantListProps) {
     const [applications, setApplications] = useState<JobApplication[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedApp, setSelectedApp] = useState<JobApplication | null>(null);
@@ -177,6 +178,7 @@ export default function ApplicantList({ jobId }: ApplicantListProps) {
                             key={selectedApp.id}
                             application={selectedApp}
                             jobId={jobId}
+                            jobTitle={jobTitle}
                             onStatusChange={handleStatusChange}
                         />
                     </div>

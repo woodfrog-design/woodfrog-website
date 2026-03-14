@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { to, subject, body: emailBody } = body;
+        const { to, subject, body: emailBody, attachmentUrl, attachmentName } = body;
 
         if (!to || !subject || !emailBody) {
             return NextResponse.json({ error: 'Missing fields: to, subject, body' }, { status: 400 });
@@ -32,12 +32,23 @@ export async function POST(req: NextRequest) {
 
         await transporter.verify();
 
-        await transporter.sendMail({
+        // Build mail options
+        const mailOptions: any = {
             from: `"Woodfrog Careers" <${process.env.SMTP_USER}>`,
             to,
             subject,
             html: emailBody,
-        });
+        };
+
+        // Attach resume if URL provided
+        if (attachmentUrl) {
+            mailOptions.attachments = [{
+                filename: attachmentName || 'Resume.pdf',
+                path: attachmentUrl,
+            }];
+        }
+
+        await transporter.sendMail(mailOptions);
 
         return NextResponse.json({ success: true });
     } catch (error) {
