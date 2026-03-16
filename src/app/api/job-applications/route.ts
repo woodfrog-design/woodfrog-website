@@ -16,6 +16,7 @@ export async function POST(request: Request) {
         const candidateEmail = formData.get('candidateEmail') as string;
         const candidatePhone = formData.get('candidatePhone') as string;
         const candidateAddress = formData.get('candidateAddress') as string;
+        const linkedinProfileUrl = formData.get('linkedinProfileUrl') as string || '';
         const responsesJson = formData.get('responses') as string;
         const responses = JSON.parse(responsesJson || '{}');
         
@@ -44,7 +45,8 @@ export async function POST(request: Request) {
             candidatePhone,
             candidateAddress,
             responses,
-            resumeUrl
+            resumeUrl,
+            linkedinProfileUrl
         });
 
         if (success) {

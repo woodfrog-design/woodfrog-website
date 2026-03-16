@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Download, Phone, MapPin, Calendar, FileText, ExternalLink, StickyNote, GitBranch, User, Star } from 'lucide-react';
+import { Download, Phone, MapPin, Calendar, FileText, ExternalLink, StickyNote, GitBranch, User, Star, Linkedin } from 'lucide-react';
 import { JobApplication } from '@/lib/jobs';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
@@ -109,12 +109,20 @@ export default function CandidateDetailView({ application, jobId, jobTitle, onSt
                     </div>
                 </div>
                 <div className="flex flex-col items-end gap-3">
-                    {application.resumeUrl && (
-                        <a href={application.resumeUrl} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-5 py-2.5 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all text-sm">
-                            <Download className="w-4 h-4" /> Resume
-                        </a>
-                    )}
+                    <div className="flex items-center gap-2">
+                        {application.linkedinProfileUrl && (
+                            <a href={application.linkedinProfileUrl} target="_blank" rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-5 py-2.5 bg-[#0A66C2] text-white font-bold rounded-xl hover:bg-[#004182] transition-all text-sm">
+                                <Linkedin className="w-4 h-4" /> LinkedIn Verified
+                            </a>
+                        )}
+                        {application.resumeUrl && (
+                            <a href={application.resumeUrl} target="_blank" rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-5 py-2.5 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all text-sm">
+                                <Download className="w-4 h-4" /> Resume
+                            </a>
+                        )}
+                    </div>
                     {/* Initial Review — Star Ratings */}
                     {review && (
                         <div className="bg-white/[0.02] border border-white/5 rounded-xl px-4 py-3 w-52">

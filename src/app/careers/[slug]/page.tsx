@@ -29,6 +29,7 @@ export default function JobDetailPage() {
         phone: '',
         address: ''
     });
+    const [linkedinProfileUrl, setLinkedinProfileUrl] = useState('');
     const [files, setFiles] = useState<Record<string, File>>({});
 
     useEffect(() => {
@@ -43,7 +44,7 @@ export default function JobDetailPage() {
         };
         fetchJob();
 
-        // Check for LinkedIn data in URL
+        // Check for LinkedIn data in URL (fresh login)
         const linkedinData = searchParams.get('linkedin_data');
         if (linkedinData) {
             try {
@@ -53,6 +54,7 @@ export default function JobDetailPage() {
                     name: decoded.name || '',
                     email: decoded.email || ''
                 }));
+                setLinkedinProfileUrl(decoded.linkedinProfileUrl || '');
                 setIsLinkedInAuthenticated(true);
                 setView('form');
                 
@@ -62,6 +64,22 @@ export default function JobDetailPage() {
             } catch (e) {
                 console.error('Failed to decode LinkedIn data', e);
             }
+        } else {
+            // No URL data — check for existing session cookie
+            fetch('/api/auth/linkedin/session')
+                .then(res => res.json())
+                .then(session => {
+                    if (session.authenticated) {
+                        setCandidateInfo(prev => ({
+                            ...prev,
+                            name: session.name || '',
+                            email: session.email || ''
+                        }));
+                        setLinkedinProfileUrl(session.linkedinProfileUrl || '');
+                        setIsLinkedInAuthenticated(true);
+                    }
+                })
+                .catch(() => { /* session check failed, user will login fresh */ });
         }
 
         const error = searchParams.get('error');
@@ -114,6 +132,7 @@ export default function JobDetailPage() {
             formData.append('candidateEmail', candidateInfo.email);
             formData.append('candidatePhone', candidateInfo.phone);
             formData.append('candidateAddress', candidateInfo.address);
+            formData.append('linkedinProfileUrl', linkedinProfileUrl);
             formData.append('responses', JSON.stringify(formResponses));
 
             // Append resume file

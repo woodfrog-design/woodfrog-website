@@ -6,6 +6,7 @@ export interface LinkedInProfile {
     picture: string;
     email: string;
     email_verified: boolean;
+    linkedinProfileUrl: string;
 }
 
 export class LinkedInAuth {
@@ -58,6 +59,16 @@ export class LinkedInAuth {
             throw new Error('Failed to fetch LinkedIn profile');
         }
 
-        return await response.json();
+        const profile = await response.json();
+
+        // LinkedIn OIDC Standard Tier does not expose vanity name or profile URL.
+        // The `sub` is a pairwise opaque ID and cannot be used to find the profile.
+        // Best we can do: construct a LinkedIn people search URL from the user's full name.
+        const nameQuery = encodeURIComponent(profile.name || '');
+        const linkedinProfileUrl = nameQuery
+            ? `https://www.linkedin.com/search/results/people/?keywords=${nameQuery}`
+            : '';
+
+        return { ...profile, linkedinProfileUrl };
     }
 }

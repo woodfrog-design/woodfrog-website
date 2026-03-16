@@ -38,6 +38,7 @@ export interface JobApplication {
     candidateAddress: string;
     responses: Record<string, any>;
     resumeUrl: string;
+    linkedinProfileUrl: string;
     status: string;
     createdAt: string;
 }
@@ -68,6 +69,7 @@ const mapApplicationFromDb = (row: any): JobApplication => ({
     candidateAddress: row.candidate_address,
     responses: row.responses || {},
     resumeUrl: row.resume_url,
+    linkedinProfileUrl: row.linkedin_profile_url || '',
     status: row.status,
     createdAt: row.created_at
 });
@@ -176,6 +178,7 @@ export async function submitApplication(app: Partial<JobApplication>): Promise<b
             candidate_address: app.candidateAddress,
             responses: app.responses,
             resume_url: app.resumeUrl,
+            linkedin_profile_url: app.linkedinProfileUrl || '',
             status: 'New'
         });
 

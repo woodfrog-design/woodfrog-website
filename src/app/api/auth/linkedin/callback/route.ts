@@ -20,19 +20,32 @@ export async function GET(request: Request) {
         const tokenData = await LinkedInAuth.getAccessToken(code);
         const profile = await LinkedInAuth.getProfile(tokenData.access_token);
 
-        // Encode profile data to pass back to the job page
-        // In a real app, you might use a session or temp database record
-        // For simplicity here, we use base64 encoded params
-        const profileData = Buffer.from(JSON.stringify({
+        const sessionPayload = {
             name: profile.name,
             email: profile.email,
-            id: profile.sub
-        })).toString('base64');
+            id: profile.sub,
+            linkedinProfileUrl: profile.linkedinProfileUrl,
+            picture: profile.picture || '',
+        };
+
+        // Encode profile data to pass back to the job page via URL
+        const profileData = Buffer.from(JSON.stringify(sessionPayload)).toString('base64');
 
         const redirectUrl = new URL(`/careers/${state}`, request.url);
         redirectUrl.searchParams.set('linkedin_data', profileData);
 
-        return NextResponse.redirect(redirectUrl);
+        const response = NextResponse.redirect(redirectUrl);
+
+        // Set a persistent HTTP-only cookie so user stays logged in for 30 days
+        response.cookies.set('linkedin_session', profileData, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 30 * 24 * 60 * 60, // 30 days
+            path: '/',
+        });
+
+        return response;
     } catch (err: any) {
         console.error('LinkedIn Callback Error:', err);
         return NextResponse.redirect(new URL(`/careers/${state}?error=linkedin_failed`, request.url));
