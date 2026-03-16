@@ -24,7 +24,7 @@ export class LinkedInAuth {
             scope: scopes.join(' '),
         });
 
-        return `${process.env.LINKEDIN_AUTH_URL}?${params.toString()}`;
+        return `https://www.linkedin.com/oauth/v2/authorization?${params.toString()}`;
     }
 
     static async getAccessToken(code: string) {
@@ -36,7 +36,7 @@ export class LinkedInAuth {
             redirect_uri: this.redirectUri || '',
         });
 
-        const response = await fetch(process.env.LINKEDIN_TOKEN_URL || 'https://www.linkedin.com/oauth/v2/accessToken', {
+        const response = await fetch('https://www.linkedin.com/oauth/v2/accessToken', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: params.toString(),
@@ -51,7 +51,7 @@ export class LinkedInAuth {
     }
 
     static async getProfile(accessToken: string): Promise<LinkedInProfile> {
-        const response = await fetch(process.env.LINKEDIN_USERINFO_URL || 'https://api.linkedin.com/v2/userinfo', {
+        const response = await fetch('https://api.linkedin.com/v2/userinfo', {
             headers: { 'Authorization': `Bearer ${accessToken}` },
         });
 
