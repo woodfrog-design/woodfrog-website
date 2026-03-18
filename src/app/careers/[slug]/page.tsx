@@ -383,6 +383,57 @@ export default function JobDetailPage() {
                                                                     <option key={opt} value={opt}>{opt}</option>
                                                                 ))}
                                                             </select>
+                                                        ) : field.type === 'radio' ? (
+                                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                {(field.options || []).map((opt: string) => (
+                                                                    <label key={opt} className={cn(
+                                                                        "flex items-center gap-4 bg-[#0F1113] border border-white/5 rounded-2xl p-5 cursor-pointer hover:border-[#ff6b3d]/30 transition-all",
+                                                                        formResponses[field.id] === opt ? "border-[#ff6b3d]/50 bg-[#ff6b3d]/5 text-white" : "text-zinc-500"
+                                                                    )}>
+                                                                        <div className="relative flex items-center justify-center">
+                                                                            <input
+                                                                                type="radio"
+                                                                                name={field.id}
+                                                                                required={field.required && !formResponses[field.id]}
+                                                                                checked={formResponses[field.id] === opt}
+                                                                                onChange={() => setFormResponses({ ...formResponses, [field.id]: opt })}
+                                                                                className="peer appearance-none w-5 h-5 rounded-full border border-white/10 checked:border-[#ff6b3d] transition-all cursor-pointer"
+                                                                            />
+                                                                            <div className="absolute w-2.5 h-2.5 rounded-full bg-[#ff6b3d] opacity-0 peer-checked:opacity-100 transition-all pointer-events-none" />
+                                                                        </div>
+                                                                        <span className="text-sm font-bold uppercase tracking-wider">{opt}</span>
+                                                                    </label>
+                                                                ))}
+                                                            </div>
+                                                        ) : field.type === 'checkbox' ? (
+                                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                {(field.options || []).map((opt: string) => {
+                                                                    const currentValues = Array.isArray(formResponses[field.id]) ? formResponses[field.id] : [];
+                                                                    const isChecked = currentValues.includes(opt);
+                                                                    return (
+                                                                        <label key={opt} className={cn(
+                                                                            "flex items-center gap-4 bg-[#0F1113] border border-white/5 rounded-2xl p-5 cursor-pointer hover:border-[#ff6b3d]/30 transition-all",
+                                                                            isChecked ? "border-[#ff6b3d]/50 bg-[#ff6b3d]/5 text-white" : "text-zinc-500"
+                                                                        )}>
+                                                                            <div className="relative flex items-center justify-center">
+                                                                                <input
+                                                                                    type="checkbox"
+                                                                                    checked={isChecked}
+                                                                                    onChange={(e) => {
+                                                                                        const newValues = e.target.checked
+                                                                                            ? [...currentValues, opt]
+                                                                                            : currentValues.filter((v: string) => v !== opt);
+                                                                                        setFormResponses({ ...formResponses, [field.id]: newValues });
+                                                                                    }}
+                                                                                    className="peer appearance-none w-5 h-5 rounded border border-white/10 checked:border-[#ff6b3d] transition-all cursor-pointer"
+                                                                                />
+                                                                                <CheckCircle className="absolute w-3.5 h-3.5 text-[#ff6b3d] opacity-0 peer-checked:opacity-100 transition-all pointer-events-none" />
+                                                                            </div>
+                                                                            <span className="text-sm font-bold uppercase tracking-wider">{opt}</span>
+                                                                        </label>
+                                                                    );
+                                                                })}
+                                                            </div>
                                                         ) : field.type === 'file' ? (
                                                             <div className="relative group/file">
                                                                 <input

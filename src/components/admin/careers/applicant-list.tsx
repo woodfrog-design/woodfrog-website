@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Clock, CheckCircle, XCircle, Users, Filter, Search } from 'lucide-react';
-import { JobApplication, getApplicationsForJob } from '@/lib/jobs';
+import { JobApplication, getApplicationsForJob, FormField } from '@/lib/jobs';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import CandidateDetailView from './candidate-detail-view';
@@ -10,9 +10,10 @@ import CandidateDetailView from './candidate-detail-view';
 interface ApplicantListProps {
     jobId: string;
     jobTitle: string;
+    formFields?: FormField[];
 }
 
-export default function ApplicantList({ jobId, jobTitle }: ApplicantListProps) {
+export default function ApplicantList({ jobId, jobTitle, formFields }: ApplicantListProps) {
     const [applications, setApplications] = useState<JobApplication[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedApp, setSelectedApp] = useState<JobApplication | null>(null);
@@ -179,6 +180,7 @@ export default function ApplicantList({ jobId, jobTitle }: ApplicantListProps) {
                             application={selectedApp}
                             jobId={jobId}
                             jobTitle={jobTitle}
+                            formFields={formFields}
                             onStatusChange={handleStatusChange}
                         />
                     </div>

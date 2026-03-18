@@ -267,7 +267,7 @@ export default function AdminCareersPage() {
             {/* ── Applicants: Full-bleed, fills everything below navbar ── */}
             {view === 'applications' && selectedJob && (
                 <div className="flex-1 overflow-hidden">
-                    <ApplicantList jobId={selectedJob.id} jobTitle={selectedJob.title} />
+                    <ApplicantList jobId={selectedJob.id} jobTitle={selectedJob.title} formFields={selectedJob.formFields} />
                 </div>
             )}
 

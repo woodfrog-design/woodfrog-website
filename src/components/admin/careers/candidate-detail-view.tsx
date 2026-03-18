@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Download, Phone, MapPin, Calendar, FileText, ExternalLink, StickyNote, GitBranch, User, Star, Linkedin } from 'lucide-react';
-import { JobApplication } from '@/lib/jobs';
+import { JobApplication, FormField } from '@/lib/jobs';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import CandidateNotes from './candidate-notes';
@@ -12,6 +12,7 @@ interface CandidateDetailViewProps {
     application: JobApplication;
     jobId: string;
     jobTitle: string;
+    formFields?: FormField[];
     onStatusChange: (appId: string, newStatus: string) => void;
 }
 
@@ -54,7 +55,7 @@ function StarRow({ label, value }: { label: string; value: number }) {
     );
 }
 
-export default function CandidateDetailView({ application, jobId, jobTitle, onStatusChange }: CandidateDetailViewProps) {
+export default function CandidateDetailView({ application, jobId, jobTitle, formFields, onStatusChange }: CandidateDetailViewProps) {
     const [activeTab, setActiveTab] = useState<Tab>('info');
     const [currentStatus, setCurrentStatus] = useState(application.status);
     const [review, setReview] = useState<InitialReviewData | null>(null);
@@ -175,18 +176,31 @@ export default function CandidateDetailView({ application, jobId, jobTitle, onSt
             <div>
                 {activeTab === 'info' && (
                     <div className="animate-in fade-in duration-300 space-y-6">
-                        {Object.entries(application.responses || {}).map(([key, value]: [string, any]) => (
-                            <div key={key} className="space-y-2 bg-white/[0.02] border border-white/5 p-5 rounded-xl">
-                                <label className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">{key.replace(/_/g, ' ')}</label>
-                                <div className="text-zinc-300 text-sm leading-relaxed">
-                                    {typeof value === 'string' && value.startsWith('http') ? (
-                                        <a href={value} target="_blank" rel="noopener noreferrer" className="text-[#ff6b3d] hover:underline flex items-center gap-2">
-                                            View Attachment <ExternalLink className="w-3 h-3" />
-                                        </a>
-                                    ) : (value || 'No response')}
+                        {Object.entries(application.responses || {}).map(([key, value]: [string, any]) => {
+                            const field = formFields?.find((f: FormField) => f.id === key);
+                            const label = field ? field.label : key.replace(/_/g, ' ');
+
+                            return (
+                                <div key={key} className="space-y-2 bg-white/[0.02] border border-white/5 p-5 rounded-xl">
+                                    <label className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">{label}</label>
+                                    <div className="text-zinc-300 text-sm leading-relaxed">
+                                        {typeof value === 'string' && value.startsWith('http') ? (
+                                            <a href={value} target="_blank" rel="noopener noreferrer" className="text-[#ff6b3d] hover:underline flex items-center gap-2">
+                                                View Attachment <ExternalLink className="w-3 h-3" />
+                                            </a>
+                                        ) : Array.isArray(value) ? (
+                                            <div className="flex flex-wrap gap-2 mt-1">
+                                                {value.map((v, i) => (
+                                                    <span key={i} className="px-2 py-1 bg-[#ff6b3d]/10 text-[#ff6b3d] border border-[#ff6b3d]/20 rounded-lg text-xs font-bold">
+                                                        {v}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        ) : (value || 'No response')}
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                         {(!application.responses || Object.keys(application.responses).length === 0) && (
                             <p className="text-zinc-700 italic text-sm">No additional responses for this applicant.</p>
                         )}
