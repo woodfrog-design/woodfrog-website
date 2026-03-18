@@ -557,6 +557,135 @@ function SelectionMailDialog({ candidateName, candidateEmail, nextStageName, job
     );
 }
 
+// ─── Rejection Choice Dialog ──────────────────────────────────
+
+function RejectionChoiceDialog({ onSendMail, onScheduleLater, onClose }: {
+    onSendMail: () => void;
+    onScheduleLater: () => void;
+    onClose: () => void;
+}) {
+    const overlayRef = useScrollLock();
+
+    return (
+        <div ref={overlayRef} className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={onClose} onWheel={e => e.stopPropagation()} onTouchMove={e => e.stopPropagation()}>
+            <div data-modal-content className="bg-[#0F1113] border border-white/10 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden" onClick={e => e.stopPropagation()}>
+                <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
+                    <h3 className="text-lg font-bold text-red-400">Reject Candidate</h3>
+                    <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-lg text-zinc-500"><X className="w-5 h-5" /></button>
+                </div>
+                <div className="p-6 space-y-3">
+                    <p className="text-sm text-zinc-500 mb-4">Would you like to notify the candidate about the rejection?</p>
+                    <button onClick={onSendMail}
+                        className="w-full flex items-center gap-4 p-4 bg-white/[0.03] border border-white/5 rounded-xl hover:border-red-500/30 hover:bg-red-500/5 transition-all text-left group">
+                        <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                            <Mail className="w-5 h-5 text-red-400" />
+                        </div>
+                        <div>
+                            <div className="font-bold text-sm group-hover:text-red-400 transition-colors">Send Rejection Mail</div>
+                            <div className="text-[10px] text-zinc-600">Compose and send a rejection email to the candidate</div>
+                        </div>
+                    </button>
+                    <button onClick={onScheduleLater}
+                        className="w-full flex items-center gap-4 p-4 bg-white/[0.03] border border-white/5 rounded-xl hover:border-zinc-500/30 hover:bg-zinc-500/5 transition-all text-left group">
+                        <div className="w-10 h-10 rounded-xl bg-zinc-500/10 flex items-center justify-center flex-shrink-0">
+                            <Clock className="w-5 h-5 text-zinc-400" />
+                        </div>
+                        <div>
+                            <div className="font-bold text-sm group-hover:text-zinc-400 transition-colors">Schedule Later</div>
+                            <div className="text-[10px] text-zinc-600">Reject now, send the rejection mail at a later time</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ─── Rejection Mail Dialog ────────────────────────────────────
+
+function RejectionMailDialog({ candidateName, candidateEmail, jobTitle, onSend, onClose }: {
+    candidateName: string;
+    candidateEmail: string;
+    jobTitle: string;
+    onSend: (subject: string, body: string) => Promise<void>;
+    onClose: () => void;
+}) {
+    const [subject, setSubject] = useState(`Application Update — ${jobTitle} | Woodfrog`);
+    const [body, setBody] = useState(
+        `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+<p>Dear ${candidateName},</p>
+<p>Thank you for taking the time to apply for the <strong>${jobTitle}</strong> position at Woodfrog. We truly appreciate your interest in joining our team and the effort you put into your application.</p>
+<p>After careful consideration, we regret to inform you that we have decided to move forward with other candidates whose profiles more closely align with the requirements of this role at this time.</p>
+<p>This decision does not reflect on your abilities or qualifications. We encourage you to apply for future openings that match your skills and experience, as we are always looking for talented individuals.</p>
+<p>We wish you the very best in your career journey and future endeavors.</p>
+<p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #eee;">Warm regards,<br/><strong>Hiring Team</strong><br/>Woodfrog</p>
+</div>`
+    );
+    const [isSending, setIsSending] = useState(false);
+    const [error, setError] = useState('');
+    const [showPreview, setShowPreview] = useState(false);
+
+    const overlayRef = useScrollLock();
+
+    const handleSend = async () => {
+        setIsSending(true);
+        setError('');
+        try { await onSend(subject, body); }
+        catch { setError('Failed to send email.'); }
+        finally { setIsSending(false); }
+    };
+
+    return (
+        <div ref={overlayRef} className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={onClose} onWheel={e => e.stopPropagation()} onTouchMove={e => e.stopPropagation()}>
+            <div data-modal-content className="bg-[#0F1113] border border-white/10 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
+                <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <Mail className="w-5 h-5 text-red-400" />
+                        <div>
+                            <h3 className="text-lg font-bold">Rejection Mail</h3>
+                            <p className="text-[10px] text-zinc-600">To: <span className="text-zinc-400">{candidateEmail}</span></p>
+                        </div>
+                    </div>
+                    <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-lg text-zinc-500"><X className="w-5 h-5" /></button>
+                </div>
+                <div className="flex-1 overflow-y-auto p-6 space-y-4" style={{ scrollbarWidth: 'none', overscrollBehaviorY: 'contain' }}>
+                    <div className="space-y-1.5">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Subject</label>
+                        <input type="text" value={subject} onChange={e => setSubject(e.target.value)}
+                            className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 text-sm outline-none focus:border-red-500/40 transition-all" />
+                    </div>
+                    <div className="space-y-1.5">
+                        <div className="flex items-center justify-between">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Email Body</label>
+                            <button onClick={() => setShowPreview(!showPreview)}
+                                className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-lg border transition-all"
+                                style={{ color: showPreview ? '#ff6b3d' : '#71717a', borderColor: showPreview ? 'rgba(255,107,61,0.2)' : 'rgba(255,255,255,0.05)', background: showPreview ? 'rgba(255,107,61,0.05)' : 'transparent' }}>
+                                {showPreview ? <><Edit3 className="w-3 h-3" /> Edit</> : <><Eye className="w-3 h-3" /> Preview</>}
+                            </button>
+                        </div>
+                        {showPreview ? (
+                            <div className="bg-white text-[#1a1a1a] rounded-xl p-6 max-h-[400px] overflow-y-auto" dangerouslySetInnerHTML={{ __html: body }} />
+                        ) : (
+                            <textarea value={body} onChange={e => setBody(e.target.value)} rows={12}
+                                className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 text-sm outline-none focus:border-red-500/40 transition-all resize-none font-mono text-xs leading-relaxed" />
+                        )}
+                    </div>
+                    {error && <p className="text-red-400 text-xs">{error}</p>}
+                </div>
+                <div className="px-6 py-4 border-t border-white/5 flex items-center justify-end">
+                    <button onClick={handleSend} disabled={isSending || !subject.trim()}
+                        className="px-6 py-2.5 bg-red-500 text-white font-bold rounded-xl hover:bg-red-600 transition-all disabled:opacity-50 flex items-center gap-2 shadow-[0_10px_20px_rgba(239,68,68,0.2)]">
+                        {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                        {isSending ? 'Sending...' : 'Send Rejection Mail'}
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // ─── Application Received: Initial Rating ─────────────────────
 
 function InitialRatingForm({ applicationId, onAdvance, onReject, isUpdating }: {
@@ -907,6 +1036,11 @@ export default function PipelineFeedback({ applicationId, jobId, jobTitle, curre
     const [showSelectionDialog, setShowSelectionDialog] = useState(false);
     const [pendingTarget, setPendingTarget] = useState<string | null>(null);
 
+    // Rejection dialog state
+    const [showRejectChoiceDialog, setShowRejectChoiceDialog] = useState(false);
+    const [showRejectMailDialog, setShowRejectMailDialog] = useState(false);
+    const [rejectionMailPending, setRejectionMailPending] = useState(false);
+
     // Per-stage mail/meet state
     const [mailSent, setMailSent] = useState<Record<string, boolean>>({});
     const [mailPending, setMailPending] = useState<Record<string, boolean>>({});
@@ -1125,7 +1259,34 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
         }
     };
 
-    const handleReject = () => updateStatus('Rejected');
+    const handleReject = () => {
+        setShowRejectChoiceDialog(true);
+    };
+
+    const handleRejectSendMail = () => {
+        setShowRejectChoiceDialog(false);
+        setShowRejectMailDialog(true);
+    };
+
+    const handleRejectScheduleLater = async () => {
+        setShowRejectChoiceDialog(false);
+        setRejectionMailPending(true);
+        await updateStatus('Rejected');
+    };
+
+    const handleRejectMailSend = async (subject: string, body: string) => {
+        const res = await fetch('/api/candidates/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ to: candidateEmail, subject, body }),
+        });
+        if (!res.ok) throw new Error('Failed to send email');
+        setShowRejectMailDialog(false);
+        setRejectionMailPending(false);
+        if (currentStatus !== 'Rejected') {
+            await updateStatus('Rejected');
+        }
+    };
 
     // For pending mail stages — send mail inline
     const handlePendingSend = async (stageName: string) => {
@@ -1189,7 +1350,14 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
                     {currentStatus==='Selected'?<Trophy className="w-12 h-12 text-green-400 mx-auto" />:<XCircle className="w-12 h-12 text-red-400 mx-auto" />}
                     <h4 className={cn("text-xl font-bold", currentStatus==='Selected'?"text-green-400":"text-red-400")}>Candidate {currentStatus}</h4>
                     <p className="text-zinc-600 text-sm">This candidate's pipeline has been finalized.</p>
-                    <button onClick={() => updateStatus('Application Received')} disabled={isUpdating} className="mt-4 px-4 py-2 bg-white/5 text-zinc-400 text-xs font-bold rounded-lg hover:bg-white/10 transition-all disabled:opacity-50">Reset Pipeline</button>
+                    <div className="flex items-center justify-center gap-3 mt-4">
+                        <button onClick={() => updateStatus('Application Received')} disabled={isUpdating} className="px-4 py-2 bg-white/5 text-zinc-400 text-xs font-bold rounded-lg hover:bg-white/10 transition-all disabled:opacity-50">Reset Pipeline</button>
+                        {currentStatus === 'Rejected' && rejectionMailPending && (
+                            <button onClick={() => setShowRejectMailDialog(true)} className="px-4 py-2 bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold rounded-lg hover:bg-red-500/20 transition-all flex items-center gap-1.5">
+                                <Mail className="w-3 h-3" /> Send Rejection Mail
+                            </button>
+                        )}
+                    </div>
                 </div>
             ) : currentStatus === 'New' ? (
                 /* New candidates auto-advance to Application Received above — show loading */
@@ -1255,6 +1423,22 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
             {showSelectionDialog && pendingTarget && (
                 <SelectionMailDialog candidateName={candidateName} candidateEmail={candidateEmail} nextStageName={pendingTarget} jobTitle={jobTitle}
                     onSend={handleSelectionSend} onScheduleLater={handleScheduleLater} onClose={() => { setShowSelectionDialog(false); setPendingTarget(null); }} />
+            )}
+            {showRejectChoiceDialog && (
+                <RejectionChoiceDialog
+                    onSendMail={handleRejectSendMail}
+                    onScheduleLater={handleRejectScheduleLater}
+                    onClose={() => setShowRejectChoiceDialog(false)}
+                />
+            )}
+            {showRejectMailDialog && (
+                <RejectionMailDialog
+                    candidateName={candidateName}
+                    candidateEmail={candidateEmail}
+                    jobTitle={jobTitle}
+                    onSend={handleRejectMailSend}
+                    onClose={() => setShowRejectMailDialog(false)}
+                />
             )}
         </div>
     );
