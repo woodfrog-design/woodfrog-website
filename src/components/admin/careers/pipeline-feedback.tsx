@@ -926,6 +926,13 @@ export default function PipelineFeedback({ applicationId, jobId, jobTitle, curre
         load();
     }, [jobId]);
 
+    // Auto-advance from 'New' to 'Application Received' when pipeline is opened
+    useEffect(() => {
+        if (!isLoading && currentStatus === 'New') {
+            updateStatus('Application Received');
+        }
+    }, [isLoading, currentStatus]);
+
     // Load persisted interview details on mount
     useEffect(() => {
         const loadDetails = async () => {
@@ -1052,14 +1059,18 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
             });
         } catch (e) { console.error('Failed to persist interview details:', e); }
 
+        // Close all dialogs first so the new stage form renders cleanly
         setShowScheduleDialog(false);
+        setShowChoiceDialog(false);
+        setShowSelectionDialog(false);
         // If already on the stage just update mail state, don't re-update status
         if (pendingTarget === currentStatus) {
             setMailPending(prev => { const n = {...prev}; delete n[pendingTarget!]; return n; });
             setPendingTarget(null);
         } else {
-            await updateStatus(pendingTarget!);
+            const target = pendingTarget!;
             setPendingTarget(null);
+            await updateStatus(target);
         }
     };
 
@@ -1076,13 +1087,17 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
             await fetch('/api/candidates/interview-details', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ applicationId, details: updated }) });
         } catch (e) { console.error('Failed to persist:', e); }
 
+        // Close all dialogs first so the new stage form renders cleanly
         setShowSelectionDialog(false);
+        setShowChoiceDialog(false);
+        setShowScheduleDialog(false);
         if (pendingTarget === currentStatus) {
             setMailPending(prev => { const n = {...prev}; delete n[pendingTarget!]; return n; });
             setPendingTarget(null);
         } else {
-            await updateStatus(pendingTarget!);
+            const target = pendingTarget!;
             setPendingTarget(null);
+            await updateStatus(target);
         }
     };
 
@@ -1094,6 +1109,7 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
             setShowScheduleDialog(false);
             setShowSelectionDialog(false);
             setShowChoiceDialog(false);
+            setPendingTarget(null);
 
             // Persist mailPending to DB
             try {
@@ -1104,7 +1120,6 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
             } catch (e) { console.error('Failed to persist:', e); }
 
             await updateStatus(target);
-            setPendingTarget(null);
         } catch (err) {
             console.error('Schedule later failed:', err);
         }
@@ -1176,7 +1191,12 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
                     <p className="text-zinc-600 text-sm">This candidate's pipeline has been finalized.</p>
                     <button onClick={() => updateStatus('Application Received')} disabled={isUpdating} className="mt-4 px-4 py-2 bg-white/5 text-zinc-400 text-xs font-bold rounded-lg hover:bg-white/10 transition-all disabled:opacity-50">Reset Pipeline</button>
                 </div>
-            ) : currentStatus === 'Application Received' || currentStatus === 'New' ? (
+            ) : currentStatus === 'New' ? (
+                /* New candidates auto-advance to Application Received above — show loading */
+                <div className="h-40 rounded-2xl bg-zinc-900 animate-pulse flex items-center justify-center">
+                    <Loader2 className="w-6 h-6 text-[#ff6b3d] animate-spin" />
+                </div>
+            ) : currentStatus === 'Application Received' ? (
                 <InitialRatingForm applicationId={applicationId} onAdvance={handleAdvanceClick} onReject={handleReject} isUpdating={isUpdating} />
             ) : currentStage ? (
                 <InlineStageFeedback key={currentStatus} stage={currentStage} applicationId={applicationId}

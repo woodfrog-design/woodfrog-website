@@ -204,7 +204,7 @@ export default function CandidateDetailView({ application, jobId, jobTitle, onSt
                             candidateName={application.candidateName}
                             candidateEmail={application.candidateEmail}
                             resumeUrl={application.resumeUrl}
-                            onStatusChange={(status) => onStatusChange(application.id, status)}
+                            onStatusChange={handleStatusChange}
                         />
                     </div>
                 )}
