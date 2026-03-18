@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Facebook, Linkedin, Twitter, Mail, Link as LinkIcon, Check } from 'lucide-react';
+import { Facebook, Linkedin, Twitter, Mail, Link as LinkIcon, Check, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ShareButtonsProps {
@@ -25,7 +25,7 @@ export const ShareButtons = ({ title, path, className, buttonClassName, iconClas
         facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getFullUrl())}`,
         twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(getFullUrl())}`,
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getFullUrl())}`,
-        email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(getFullUrl())}`
+        whatsapp: `https://wa.me/?text=${encodeURIComponent(`${title} — ${getFullUrl()}`)}`,
     };
 
     const handleCopyLink = async () => {
@@ -39,7 +39,11 @@ export const ShareButtons = ({ title, path, className, buttonClassName, iconClas
     };
 
     const handleShare = (platform: keyof typeof shareLinks) => {
-        window.open(shareLinks[platform], '_blank', 'noopener,noreferrer');
+        window.open(shareLinks[platform], '_blank', 'noopener,noreferrer,width=600,height=500');
+    };
+
+    const handleEmail = () => {
+        window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`Check out this job posting:\n\n${title}\n${getFullUrl()}`)}`;
     };
 
     return (
@@ -66,7 +70,14 @@ export const ShareButtons = ({ title, path, className, buttonClassName, iconClas
                 <Twitter className={cn("w-4 h-4", iconClassName)} />
             </button>
             <button
-                onClick={() => handleShare('email')}
+                onClick={() => handleShare('whatsapp')}
+                className={cn("p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-[#25D366] transition-all", buttonClassName)}
+                title="Share on WhatsApp"
+            >
+                <MessageCircle className={cn("w-4 h-4", iconClassName)} />
+            </button>
+            <button
+                onClick={handleEmail}
                 className={cn("p-2 rounded-full border border-white/5 hover:bg-white/5 text-zinc-400 hover:text-white transition-all", buttonClassName)}
                 title="Share via Email"
             >

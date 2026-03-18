@@ -14,7 +14,9 @@ export async function POST(request: Request) {
             department: job.department,
             employment_type: job.employmentType,
             experience_level: job.experienceLevel,
+            work_mode: job.workMode,
             description: job.description,
+            description_sections: job.descriptionSections,
             form_fields: job.formFields,
             is_active: job.isActive
         };

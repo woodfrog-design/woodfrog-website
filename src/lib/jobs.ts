@@ -20,7 +20,9 @@ export interface Job {
     department: string;
     employmentType: string;
     experienceLevel: string;
+    workMode: string;
     description: string;
+    descriptionSections?: { id: string, title: string, content: string }[];
     formFields: FormField[];
     isActive: boolean;
     viewCount: number;
@@ -51,7 +53,9 @@ const mapJobFromDb = (row: any): Job => ({
     department: row.department,
     employmentType: row.employment_type,
     experienceLevel: row.experience_level,
+    workMode: row.work_mode || 'Remote',
     description: row.description,
+    descriptionSections: row.description_sections || [],
     formFields: row.form_fields || [],
     isActive: row.is_active,
     viewCount: row.view_count || 0,

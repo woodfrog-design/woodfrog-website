@@ -211,13 +211,51 @@ export default function JobDetailPage() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="prose prose-invert prose-orange max-w-none"
+                                    className="space-y-12"
                                 >
-                                    {/* Render HTML description securely */}
-                                    <div
-                                        dangerouslySetInnerHTML={{ __html: job.description }}
-                                        className="text-zinc-400 text-lg leading-relaxed space-y-4 rich-text-content"
-                                    />
+                                    {/* Position Details Highlights */}
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-8 bg-white/[0.02] border border-white/5 rounded-3xl relative overflow-hidden group/details">
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">Position</span>
+                                            <p className="font-bold text-sm text-zinc-300 truncate" title={job.title}>{job.title}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">Location</span>
+                                            <p className="font-bold text-sm text-zinc-300">{job.location}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">Type</span>
+                                            <p className="font-bold text-sm text-zinc-300">{job.employmentType}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">Mode</span>
+                                            <p className="font-bold text-sm text-[#ff6b3d]">{job.workMode}</p>
+                                        </div>
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff6b3d]/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover/details:bg-[#ff6b3d]/10 transition-all duration-700" />
+                                    </div>
+
+                                    {/* Render Structured Sections or Legacy Description */}
+                                    <div className="space-y-16">
+                                        {job.descriptionSections && job.descriptionSections.length > 0 ? (
+                                            job.descriptionSections.map((section, idx) => (
+                                                <div key={section.id || idx} className="group/section">
+                                                    <div className="flex items-center gap-6 mb-8">
+                                                        <h2 className="text-3xl font-black text-white shrink-0">{section.title}</h2>
+                                                        <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent group-hover/section:from-[#ff6b3d]/30 transition-all duration-700" />
+                                                    </div>
+                                                    <div
+                                                        dangerouslySetInnerHTML={{ __html: section.content }}
+                                                        className="prose prose-invert prose-orange max-w-none text-zinc-400 text-lg leading-relaxed space-y-4 rich-text-content"
+                                                    />
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div
+                                                dangerouslySetInnerHTML={{ __html: job.description }}
+                                                className="prose prose-invert prose-orange max-w-none text-zinc-400 text-lg leading-relaxed space-y-4 rich-text-content"
+                                            />
+                                        )}
+                                    </div>
 
                                     <div className="mt-20 p-12 bg-white/[0.02] border border-white/5 rounded-[3rem] text-center space-y-8 relative overflow-hidden group">
                                         <div className="relative z-10">
@@ -455,6 +493,10 @@ export default function JobDetailPage() {
                                 <div className="flex items-center justify-between">
                                     <span className="text-zinc-500 font-bold uppercase text-[10px] tracking-widest">Department</span>
                                     <span className="font-bold">{job.department}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-zinc-500 font-bold uppercase text-[10px] tracking-widest flex items-center gap-2"><Globe className="w-3 h-3" /> Mode</span>
+                                    <span className="font-bold">{job.workMode}</span>
                                 </div>
                             </div>
                             <div className="space-y-6">
