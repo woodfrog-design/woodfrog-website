@@ -37,8 +37,19 @@ export default function JobDetailPage() {
             const data = await getJobBySlug(slug as string);
             if (data) {
                 setJob(data);
-                // Increment view count
-                incrementJobViewCount(data.id);
+                // Increment view count only once per visitor (unique views)
+                try {
+                    const viewedKey = 'viewed_jobs';
+                    const viewed: string[] = JSON.parse(localStorage.getItem(viewedKey) || '[]');
+                    if (!viewed.includes(data.id)) {
+                        incrementJobViewCount(data.id);
+                        viewed.push(data.id);
+                        localStorage.setItem(viewedKey, JSON.stringify(viewed));
+                    }
+                } catch {
+                    // localStorage unavailable (e.g. private browsing), increment anyway
+                    incrementJobViewCount(data.id);
+                }
             }
             setIsLoading(false);
         };
