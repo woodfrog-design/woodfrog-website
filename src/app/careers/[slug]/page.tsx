@@ -3,11 +3,121 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, MapPin, Briefcase, Clock, Send, CheckCircle, Linkedin, Twitter, Facebook, Globe, Upload, AlertCircle, Loader2 } from 'lucide-react';
+import { ChevronLeft, MapPin, Briefcase, Clock, Send, CheckCircle, Linkedin, Twitter, Facebook, Globe, Upload, AlertCircle, Loader2, Circle, ChevronRight, Trophy, XCircle } from 'lucide-react';
 import { Job, getJobBySlug, incrementJobViewCount } from '@/lib/jobs';
 import { cn } from '@/lib/utils';
 import { ShareButtons } from '@/components/ui/share-buttons';
 import { useRouter, useSearchParams } from 'next/navigation';
+
+// ─── Application Status Tracker (candidate-facing) ────────────
+function ApplicationStatusTracker({ status, appliedAt, jobTitle, onBack }: {
+    status: string;
+    appliedAt?: string;
+    jobTitle: string;
+    onBack: () => void;
+}) {
+    const stages = [
+        { key: 'New', label: 'Applied' },
+        { key: 'Application Received', label: 'Application Received' },
+        { key: 'Screening', label: 'Screening' },
+        { key: 'Technical Round', label: 'Technical Round' },
+        { key: 'Final Round', label: 'Final Round' },
+    ];
+
+    const isSelected = status === 'Selected';
+    const isRejected = status === 'Rejected';
+    const isTerminal = isSelected || isRejected;
+
+    // Map status to stage index
+    const currentIdx = stages.findIndex(s => s.key === status);
+    const effectiveIdx = isTerminal ? stages.length : currentIdx;
+
+    const getStatusMessage = () => {
+        if (isSelected) return 'Congratulations! You have been selected for this position. Our team will reach out to you shortly with next steps.';
+        if (isRejected) return 'Thank you for your interest. Unfortunately, we have decided to move forward with other candidates for this position.';
+        switch (status) {
+            case 'New':
+            case 'Application Received':
+                return 'Your application has been received and is being reviewed by our team. We appreciate your patience.';
+            case 'Screening':
+                return 'Your profile is currently being screened. Our hiring team is reviewing your qualifications.';
+            case 'Technical Round':
+                return 'You have advanced to the technical round! Please check your email for interview details.';
+            case 'Final Round':
+                return 'You are in the final round! Our team will be reaching out with final interview details.';
+            default:
+                return `Your application is currently at the "${status}" stage. Check back for updates.`;
+        }
+    };
+
+    return (
+        <div className="py-12 space-y-12">
+            {/* Header */}
+            <div className="text-center space-y-4">
+                <div className={cn(
+                    "w-20 h-20 rounded-full flex items-center justify-center mx-auto",
+                    isSelected ? "bg-green-500/10" : isRejected ? "bg-red-500/10" : "bg-[#ff6b3d]/10"
+                )}>
+                    {isSelected ? <Trophy className="w-10 h-10 text-green-400" /> :
+                     isRejected ? <XCircle className="w-10 h-10 text-red-400" /> :
+                     <CheckCircle className="w-10 h-10 text-[#ff6b3d]" />}
+                </div>
+                <h2 className="text-3xl font-bold">
+                    {isSelected ? 'Selected!' : isRejected ? 'Application Update' : 'Application Tracking'}
+                </h2>
+                <p className="text-zinc-500 max-w-md mx-auto">{getStatusMessage()}</p>
+                {appliedAt && (
+                    <p className="text-xs text-zinc-600">
+                        Applied on {new Date(appliedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    </p>
+                )}
+            </div>
+
+            {/* Visual Pipeline */}
+            <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 space-y-6">
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-500 text-center">Application Progress</h4>
+                <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2">
+                    {stages.slice(0, effectiveIdx + 1).map((stage, idx, slicedArr) => {
+                        const isCompleted = effectiveIdx > idx;
+                        const isCurrent = effectiveIdx === idx && !isTerminal;
+
+                        return (
+                            <React.Fragment key={stage.key}>
+                                <div className={cn(
+                                    "flex items-center gap-2 px-4 py-3 rounded-xl text-xs font-bold transition-all whitespace-nowrap",
+                                    isCurrent
+                                        ? "bg-[#ff6b3d] text-white shadow-[0_0_20px_rgba(255,107,61,0.25)]"
+                                        : isCompleted
+                                            ? "bg-green-500/10 text-green-400 border border-green-500/20"
+                                            : "bg-zinc-900/60 text-zinc-600 border border-white/5"
+                                )}>
+                                    {isCompleted ? <CheckCircle className="w-3.5 h-3.5" /> :
+                                     isCurrent ? (
+                                        <div className="w-3.5 h-3.5 rounded-full border-2 border-white flex items-center justify-center">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                                        </div>
+                                     ) : <Circle className="w-3.5 h-3.5" />}
+                                    {stage.label}
+                                </div>
+                                {idx < slicedArr.length - 1 && <ChevronRight className="w-3.5 h-3.5 text-zinc-800 flex-shrink-0" />}
+                            </React.Fragment>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* Actions */}
+            <div className="text-center">
+                <button
+                    onClick={onBack}
+                    className="text-[#ff6b3d] font-bold hover:underline py-4 px-8 rounded-full bg-white/5"
+                >
+                    Back to Job Details
+                </button>
+            </div>
+        </div>
+    );
+}
 
 export default function JobDetailPage() {
     const { slug } = useParams();
@@ -18,6 +128,9 @@ export default function JobDetailPage() {
     const [errorMessage, setErrorMessage] = useState('');
     const [isLinkedInAuthenticated, setIsLinkedInAuthenticated] = useState(false);
     const [isLinking, setIsLinking] = useState(false);
+    const [linkedinId, setLinkedinId] = useState('');
+    const [existingApplication, setExistingApplication] = useState<{ applied: boolean; status?: string; appliedAt?: string } | null>(null);
+    const [isCheckingApplication, setIsCheckingApplication] = useState(false);
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -70,10 +183,29 @@ export default function JobDetailPage() {
                         picture: session.picture || ''
                     }));
                     setLinkedinProfileUrl(session.linkedinProfileUrl || '');
+                    setLinkedinId(session.linkedinId || '');
                     setIsLinkedInAuthenticated(true);
                     
                     // If we just landed here and were authenticated, show the form
                     if (view === 'description') setView('form');
+
+                    // Check if user already applied to this job
+                    try {
+                        const jobData = await getJobBySlug(slug as string);
+                        if (jobData && session.email) {
+                            const checkRes = await fetch(`/api/job-applications/check?jobId=${jobData.id}&email=${encodeURIComponent(session.email)}`);
+                            const checkData = await checkRes.json();
+                            if (checkData.applied) {
+                                setExistingApplication({
+                                    applied: true,
+                                    status: checkData.status,
+                                    appliedAt: checkData.appliedAt,
+                                });
+                            }
+                        }
+                    } catch (checkErr) {
+                        console.error('Application check failed:', checkErr);
+                    }
                 }
             } catch (error) {
                 console.error('LinkedIn session check failed:', error);
@@ -134,6 +266,7 @@ export default function JobDetailPage() {
             formData.append('candidateAddress', candidateInfo.address);
             formData.append('linkedinProfileUrl', linkedinProfileUrl);
             formData.append('candidatePhoto', candidateInfo.picture);
+            formData.append('linkedinId', linkedinId);
             formData.append('responses', JSON.stringify(formResponses));
 
             // Append resume file
@@ -146,9 +279,18 @@ export default function JobDetailPage() {
                 body: formData // Fetch automatically sets content-type to multipart/form-data for FormData
             });
 
-            if (res.ok) setFormStatus('success');
-            else {
+            if (res.ok) {
+                setFormStatus('success');
+                // Update existing application state so revisiting shows tracker
+                setExistingApplication({ applied: true, status: 'New', appliedAt: new Date().toISOString() });
+            } else {
                 const errorData = await res.json();
+                if (res.status === 409) {
+                    // Already applied — show tracker instead
+                    setExistingApplication({ applied: true, status: 'Application Received' });
+                    setFormStatus('success');
+                    return;
+                }
                 throw new Error(errorData.error || 'Failed to save application');
             }
 
@@ -269,7 +411,14 @@ export default function JobDetailPage() {
                                     exit={{ opacity: 0, y: -20 }}
                                     className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] p-8 md:p-14 relative overflow-hidden"
                                 >
-                                    {formStatus === 'success' ? (
+                                    {existingApplication?.applied && formStatus !== 'success' ? (
+                                        <ApplicationStatusTracker
+                                            status={existingApplication.status || 'New'}
+                                            appliedAt={existingApplication.appliedAt}
+                                            jobTitle={job.title}
+                                            onBack={() => setView('description')}
+                                        />
+                                    ) : formStatus === 'success' ? (
                                         <div className="text-center py-24 space-y-8">
                                             <div className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center mx-auto">
                                                 <CheckCircle className="w-12 h-12 text-green-400" />

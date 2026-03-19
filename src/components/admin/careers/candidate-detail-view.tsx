@@ -110,31 +110,31 @@ export default function CandidateDetailView({ application, jobId, jobTitle, form
                     </div>
                 </div>
                 <div className="flex flex-col items-end gap-3">
-                    <div className="flex items-center gap-2">
-                        {application.linkedinProfileUrl && (
-                            <div className="flex flex-col items-center gap-3">
-                                <a href={application.linkedinProfileUrl} target="_blank" rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-5 py-2.5 bg-[#0A66C2] text-white font-bold rounded-xl hover:bg-[#004182] transition-all text-sm">
-                                    <Linkedin className="w-4 h-4" /> LinkedIn Verified
-                                </a>
-                                {application.candidatePhoto && (
-                                    <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-white/5 shadow-2xl">
-                                        <img 
-                                            src={application.candidatePhoto} 
-                                            alt={application.candidateName} 
-                                            className="w-full h-full object-cover"
-                                            referrerPolicy="no-referrer"
-                                        />
-                                    </div>
-                                )}
+                    <div className="flex items-center gap-6">
+                        {application.candidatePhoto && (
+                            <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-white/5 shadow-2xl shrink-0">
+                                <img 
+                                    src={application.candidatePhoto} 
+                                    alt={application.candidateName} 
+                                    className="w-full h-full object-cover"
+                                    referrerPolicy="no-referrer"
+                                />
                             </div>
                         )}
-                        {application.resumeUrl && (
-                            <a href={application.resumeUrl} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-5 py-2.5 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all text-sm">
-                                <Download className="w-4 h-4" /> Resume
-                            </a>
-                        )}
+                        <div className="flex flex-col gap-2.5 min-w-[180px]">
+                            {application.linkedinProfileUrl && (
+                                <a href={application.linkedinProfileUrl} target="_blank" rel="noopener noreferrer"
+                                    className="flex items-center gap-2 px-5 py-2.5 bg-[#0A66C2] text-white font-bold rounded-xl hover:bg-[#004182] transition-all text-sm justify-center">
+                                    <Linkedin className="w-4 h-4" /> LinkedIn Verified
+                                </a>
+                            )}
+                            {application.resumeUrl && (
+                                <a href={application.resumeUrl} target="_blank" rel="noopener noreferrer"
+                                    className="flex items-center gap-2 px-5 py-2.5 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all text-sm justify-center">
+                                    <Download className="w-4 h-4" /> Resume
+                                </a>
+                            )}
+                        </div>
                     </div>
                     {/* Initial Review — Star Ratings */}
                     {review && (

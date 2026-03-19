@@ -17,6 +17,7 @@ export async function GET() {
             email: decoded.email,
             linkedinProfileUrl: decoded.linkedinProfileUrl || '',
             picture: decoded.picture || '',
+            linkedinId: decoded.id || '',
         });
     } catch {
         return NextResponse.json({ authenticated: false });

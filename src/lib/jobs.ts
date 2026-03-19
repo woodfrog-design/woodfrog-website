@@ -183,6 +183,7 @@ export async function submitApplication(app: {
     resumeUrl: string;
     linkedinProfileUrl?: string;
     candidatePhoto?: string;
+    linkedinId?: string;
 }): Promise<boolean> {
     const { error } = await supabase
         .from('job_applications')
@@ -196,6 +197,7 @@ export async function submitApplication(app: {
             resume_url: app.resumeUrl,
             linkedin_profile_url: app.linkedinProfileUrl,
             candidate_photo: app.candidatePhoto,
+            linkedin_id: app.linkedinId || null,
             status: 'New'
         }]);
 

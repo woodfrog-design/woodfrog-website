@@ -1065,7 +1065,8 @@ export default function PipelineFeedback({ applicationId, jobId, jobTitle, curre
         if (!isLoading && currentStatus === 'New') {
             updateStatus('Application Received');
         }
-    }, [isLoading, currentStatus]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoading]);
 
     // Load persisted interview details on mount
     useEffect(() => {
@@ -1099,8 +1100,15 @@ export default function PipelineFeedback({ applicationId, jobId, jobTitle, curre
 
     const pipelineSteps = React.useMemo(() => {
         const steps: { key: string; label: string; stageId?: string }[] = [{ key: 'Application Received', label: 'Application Received' }];
-        if (stages.length > 0) stages.forEach(s => steps.push({ key: s.name, label: s.name, stageId: s.id }));
-        else { steps.push({ key: 'Screening', label: 'Screening' }, { key: 'Technical Round', label: 'Technical Round' }, { key: 'Final Round', label: 'Final Round' }); }
+        if (stages.length > 0) {
+            // Filter out custom stages that duplicate hardcoded stage names
+            const hardcodedNames = new Set(['Application Received', 'Selected', 'Rejected']);
+            stages
+                .filter(s => !hardcodedNames.has(s.name))
+                .forEach(s => steps.push({ key: s.name, label: s.name, stageId: s.id }));
+        } else {
+            steps.push({ key: 'Screening', label: 'Screening' }, { key: 'Technical Round', label: 'Technical Round' }, { key: 'Final Round', label: 'Final Round' });
+        }
         return steps;
     }, [stages]);
 

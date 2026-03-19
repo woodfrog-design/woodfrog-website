@@ -24,9 +24,13 @@ export default function InterviewPipeline({ applicationId, jobId, currentStatus,
         steps.push({ key: 'Application Received', label: 'Application Received' });
 
         if (stages.length > 0) {
-            stages.forEach(s => {
-                steps.push({ key: s.name, label: s.name, stageId: s.id });
-            });
+            // Filter out custom stages that duplicate hardcoded stage names
+            const hardcodedNames = new Set(['Application Received', 'Selected', 'Rejected']);
+            stages
+                .filter(s => !hardcodedNames.has(s.name))
+                .forEach(s => {
+                    steps.push({ key: s.name, label: s.name, stageId: s.id });
+                });
         } else {
             // Default stages if none configured
             steps.push({ key: 'Screening', label: 'Screening' });

@@ -18,6 +18,7 @@ export async function POST(request: Request) {
         const candidateAddress = formData.get('candidateAddress') as string;
         const linkedinProfileUrl = formData.get('linkedinProfileUrl') as string || '';
         const candidatePhoto = formData.get('candidatePhoto') as string || '';
+        const linkedinId = formData.get('linkedinId') as string || '';
         const responsesJson = formData.get('responses') as string;
         const responses = JSON.parse(responsesJson || '{}');
         
@@ -39,6 +40,23 @@ export async function POST(request: Request) {
             resumeUrl = uploadResult.webViewLink || '';
         }
 
+        // Duplicate application check (via LinkedIn-verified email)
+        if (candidateEmail) {
+            const { data: existing } = await supabase
+                .from('job_applications')
+                .select('id')
+                .eq('job_id', jobId)
+                .eq('candidate_email', candidateEmail)
+                .maybeSingle();
+
+            if (existing) {
+                return NextResponse.json(
+                    { success: false, error: 'You have already applied to this position.' },
+                    { status: 409 }
+                );
+            }
+        }
+
         const success = await submitApplication({
             jobId,
             candidateName,
@@ -48,7 +66,8 @@ export async function POST(request: Request) {
             responses,
             resumeUrl,
             linkedinProfileUrl,
-            candidatePhoto
+            candidatePhoto,
+            linkedinId,
         });
 
         if (success) {
