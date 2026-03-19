@@ -27,7 +27,8 @@ export default function JobDetailPage() {
         name: '',
         email: '',
         phone: '',
-        address: ''
+        address: '',
+        picture: ''
     });
     const [linkedinProfileUrl, setLinkedinProfileUrl] = useState('');
     const [files, setFiles] = useState<Record<string, File>>({});
@@ -55,43 +56,31 @@ export default function JobDetailPage() {
         };
         fetchJob();
 
-        // Check for LinkedIn data in URL (fresh login)
-        const linkedinData = searchParams.get('linkedin_data');
-        if (linkedinData) {
+        // Check for existing session cookie
+        const checkLinkedInSession = async () => {
             try {
-                const decoded = JSON.parse(atob(linkedinData));
-                setCandidateInfo(prev => ({
-                    ...prev,
-                    name: decoded.name || '',
-                    email: decoded.email || ''
-                }));
-                setLinkedinProfileUrl(decoded.linkedinProfileUrl || '');
-                setIsLinkedInAuthenticated(true);
-                setView('form');
+                const res = await fetch('/api/auth/linkedin/session');
+                const session = await res.json();
                 
-                // Clear the URL param without refreshing
-                const newUrl = window.location.pathname;
-                window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
-            } catch (e) {
-                console.error('Failed to decode LinkedIn data', e);
+                if (session.authenticated) {
+                    setCandidateInfo(prev => ({
+                        ...prev,
+                        name: session.name || '',
+                        email: session.email || '',
+                        picture: session.picture || ''
+                    }));
+                    setLinkedinProfileUrl(session.linkedinProfileUrl || '');
+                    setIsLinkedInAuthenticated(true);
+                    
+                    // If we just landed here and were authenticated, show the form
+                    if (view === 'description') setView('form');
+                }
+            } catch (error) {
+                console.error('LinkedIn session check failed:', error);
             }
-        } else {
-            // No URL data — check for existing session cookie
-            fetch('/api/auth/linkedin/session')
-                .then(res => res.json())
-                .then(session => {
-                    if (session.authenticated) {
-                        setCandidateInfo(prev => ({
-                            ...prev,
-                            name: session.name || '',
-                            email: session.email || ''
-                        }));
-                        setLinkedinProfileUrl(session.linkedinProfileUrl || '');
-                        setIsLinkedInAuthenticated(true);
-                    }
-                })
-                .catch(() => { /* session check failed, user will login fresh */ });
-        }
+        };
+
+        checkLinkedInSession();
 
         const error = searchParams.get('error');
         if (error === 'linkedin_denied') {
@@ -144,6 +133,7 @@ export default function JobDetailPage() {
             formData.append('candidatePhone', candidateInfo.phone);
             formData.append('candidateAddress', candidateInfo.address);
             formData.append('linkedinProfileUrl', linkedinProfileUrl);
+            formData.append('candidatePhoto', candidateInfo.picture);
             formData.append('responses', JSON.stringify(formResponses));
 
             // Append resume file

@@ -32,7 +32,6 @@ export async function GET(request: Request) {
         const profileData = Buffer.from(JSON.stringify(sessionPayload)).toString('base64');
 
         const redirectUrl = new URL(`/careers/${state}`, request.url);
-        redirectUrl.searchParams.set('linkedin_data', profileData);
 
         const response = NextResponse.redirect(redirectUrl);
 

@@ -41,6 +41,7 @@ export interface JobApplication {
     responses: Record<string, any>;
     resumeUrl: string;
     linkedinProfileUrl: string;
+    candidatePhoto: string;
     status: string;
     createdAt: string;
 }
@@ -74,6 +75,7 @@ const mapApplicationFromDb = (row: any): JobApplication => ({
     responses: row.responses || {},
     resumeUrl: row.resume_url,
     linkedinProfileUrl: row.linkedin_profile_url || '',
+    candidatePhoto: row.candidate_photo || '',
     status: row.status,
     createdAt: row.created_at
 });
@@ -171,10 +173,20 @@ export async function getApplicationsForJob(jobId: string): Promise<JobApplicati
     return data.map(mapApplicationFromDb);
 }
 
-export async function submitApplication(app: Partial<JobApplication>): Promise<boolean> {
+export async function submitApplication(app: {
+    jobId: string;
+    candidateName: string;
+    candidateEmail: string;
+    candidatePhone: string;
+    candidateAddress: string;
+    responses: Record<string, any>;
+    resumeUrl: string;
+    linkedinProfileUrl?: string;
+    candidatePhoto?: string;
+}): Promise<boolean> {
     const { error } = await supabase
         .from('job_applications')
-        .insert({
+        .insert([{
             job_id: app.jobId,
             candidate_name: app.candidateName,
             candidate_email: app.candidateEmail,
@@ -182,9 +194,10 @@ export async function submitApplication(app: Partial<JobApplication>): Promise<b
             candidate_address: app.candidateAddress,
             responses: app.responses,
             resume_url: app.resumeUrl,
-            linkedin_profile_url: app.linkedinProfileUrl || '',
+            linkedin_profile_url: app.linkedinProfileUrl,
+            candidate_photo: app.candidatePhoto,
             status: 'New'
-        });
+        }]);
 
     if (error) {
         console.error('Error submitting application:', error);
