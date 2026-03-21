@@ -20,7 +20,7 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://woodfrog.tech"),
   title: {
-    default: "Woodfrog | AI-Powered Data Analytics & Governance",
+    default: "Woodfrog",
     template: "%s | Woodfrog",
   },
   description: "Woodfrog is an innovative AI and Analytics firm in Pune, India, empowering businesses through data-driven insights and bespoke AI solutions.",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     icon: "/logos/woodfrog-logo2.svg",
   },
   openGraph: {
-    title: "Woodfrog | AI-Powered Data Analytics & Governance",
+    title: "Woodfrog",
     description: "Empowering decisions through data. Innovative AI and Analytics solutions for modern businesses.",
     url: "https://woodfrog.tech",
     siteName: "Woodfrog",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Woodfrog | AI-Powered Data Analytics & Governance",
+    title: "Woodfrog",
     description: "Empowering decisions through data. Innovative AI and Analytics solutions for modern businesses.",
     images: ["/logos/woodfrog-logo2.svg"],
   },
