@@ -40,7 +40,7 @@ export default function AdminBlogsPage() {
 
     const handleLogout = () => {
         localStorage.removeItem('admin_token');
-        router.push('/admin/login');
+        router.push('/admin/users/login');
     };
 
     const handleEdit = (blog?: Blog) => {

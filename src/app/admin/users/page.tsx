@@ -20,7 +20,7 @@ export default function AdminDashboardPage() {
     const handleLogout = () => {
         localStorage.removeItem('admin_token');
         sessionStorage.removeItem('career_gate_token');
-        router.push('/admin/login');
+        router.push('/admin/users/login');
     };
 
     if (!isAuthenticated) return null;

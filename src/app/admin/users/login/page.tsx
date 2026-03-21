@@ -12,7 +12,7 @@ export default function AdminLoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Simple auth for demonstration
-    if (username === 'admin' && password === 'woodfrog123') {
+    if (username === 'eiffel_tower' && password === 'Waqt8y5QZ6sG0C8OYj0QVhIbt') {
       localStorage.setItem('admin_token', 'logged_in');
       router.push('/admin/users');
     } else {
