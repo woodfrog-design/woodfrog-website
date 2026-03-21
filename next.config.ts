@@ -6,6 +6,21 @@ const nextConfig: NextConfig = {
   },
 
   reactCompiler: true,
+
+  async redirects() {
+    return [
+      {
+        source: "/services/ai-ml-strategy",
+        destination: "/ai-agents",
+        permanent: true,
+      },
+      {
+        source: "/services/:path*",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

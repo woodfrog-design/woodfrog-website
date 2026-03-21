@@ -18,13 +18,35 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://woodfrog.tech"),
   title: {
-    default: "WoodFrog",
-    template: "%s | WoodFrog",
+    default: "Woodfrog | AI-Powered Data Analytics & Governance",
+    template: "%s | Woodfrog",
   },
-  description: "A premium web experience.",
+  description: "Woodfrog is an innovative AI and Analytics firm in Pune, India, empowering businesses through data-driven insights and bespoke AI solutions.",
   icons: {
     icon: "/logos/woodfrog-logo2.svg",
+  },
+  openGraph: {
+    title: "Woodfrog | AI-Powered Data Analytics & Governance",
+    description: "Empowering decisions through data. Innovative AI and Analytics solutions for modern businesses.",
+    url: "https://woodfrog.tech",
+    siteName: "Woodfrog",
+    images: [
+      {
+        url: "/logos/woodfrog-logo2.svg",
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Woodfrog | AI-Powered Data Analytics & Governance",
+    description: "Empowering decisions through data. Innovative AI and Analytics solutions for modern businesses.",
+    images: ["/logos/woodfrog-logo2.svg"],
   },
   verification: {
     google: "lDlKmLT9LZNVW0ZZUfhxnLeM792MlKvyutkCj6Q97Ro",
