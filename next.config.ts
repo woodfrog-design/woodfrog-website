@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/services/ai-ml-strategy",
-        destination: "/ai-agents",
+        destination: "/data-agents",
         permanent: true,
       },
       {
