@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+
+# Host
+Host: https://woodfrog.tech
+
+# Sitemaps
+Sitemap: https://woodfrog.tech/sitemap.xml
