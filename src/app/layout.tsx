@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logos/woodfrog-logo2.svg",
   },
+  verification: {
+    google: "lDlKmLT9LZNVW0ZZUfhxnLeM792MlKvyutkCj6Q97Ro",
+  },
 };
 
 export default function RootLayout({
