@@ -104,7 +104,11 @@ const ScrollStack = () => {
                 // Reduced total scroll distance for faster progression
                 end: `+=${cards.length * 100}%`,
                 pin: true,
-                scrub: 0.5, // Faster catch-up
+                scrub: 0.5,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                fastScrollEnd: true,
+                preventOverlaps: true, // Faster catch-up
                 onUpdate: (self) => {
                     // Total duration of the timeline is cards.length - 1
                     // Each unit of time corresponds to one card transition

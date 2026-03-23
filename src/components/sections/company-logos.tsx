@@ -58,25 +58,30 @@ const CompanyLogos = () => {
                         willChange: 'transform',
                     }}
                 >
-                    {marqueeItems.map((src, idx) => (
-                        <div
-                            key={idx}
-                            className={`flex items-center justify-center ${isMobile ? 'min-w-[100px]' : 'min-w-[180px]'} opacity-50 hover:opacity-100 transition-opacity duration-500`}
-                        >
-                            {/* Using standard img tag so it's easier for the user to debug local file addition */}
-                            <Image
-                                src={src}
-                                alt={`Company ${idx % 8 + 1}`}
-                                width={180}
-                                height={48}
-                                className="object-contain brightness-0 invert"
-                                style={{
-                                    height: isMobile ? '1.75rem' : '3rem',
-                                    width: 'auto'
-                                }}
-                            />
-                        </div>
-                    ))}
+                    {marqueeItems.map((src, idx) => {
+                        // Priority for the first 4 items to solve LCP delay
+                        const isPriority = idx < 4;
+                        return (
+                            <div
+                                key={idx}
+                                className={`flex items-center justify-center ${isMobile ? 'min-w-[100px]' : 'min-w-[180px]'} opacity-50 hover:opacity-100 transition-opacity duration-500`}
+                            >
+                                <Image
+                                    src={src}
+                                    alt={`Company ${idx % 8 + 1}`}
+                                    width={180}
+                                    height={48}
+                                    priority={isPriority}
+                                    fetchPriority={idx === 0 ? "high" : undefined}
+                                    className="object-contain brightness-0 invert"
+                                    style={{
+                                        height: isMobile ? '1.75rem' : '3rem',
+                                        width: 'auto'
+                                    }}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
 
 

@@ -94,6 +94,19 @@ const ProductsSection = ({ products: initialProducts }: { products?: Product[] }
                                         <Link href={`/products/${product.slug}`} className="flex items-center gap-4 group/btn cursor-pointer w-fit">
                                             <span className="text-brand-primary font-black uppercase text-[10px] tracking-[0.2em] relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-primary group-hover/btn:after:w-full after:transition-all after:duration-500">
                                                 View product details
+                                                <span style={{
+                                                    position: 'absolute',
+                                                    width: '1px',
+                                                    height: '1px',
+                                                    padding: '0',
+                                                    margin: '-1px',
+                                                    overflow: 'hidden',
+                                                    clip: 'rect(0, 0, 0, 0)',
+                                                    whiteSpace: 'nowrap',
+                                                    borderWidth: '0'
+                                                }}>
+                                                    {" "}for {product.title}
+                                                </span>
                                             </span>
                                         </Link>
 
@@ -101,6 +114,19 @@ const ProductsSection = ({ products: initialProducts }: { products?: Product[] }
                                             <a href="https://www.glimvia.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group/btn cursor-pointer w-fit">
                                                 <span className="text-[#B59560] font-black uppercase text-[10px] tracking-[0.2em] relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#B59560] group-hover/btn:after:w-full after:transition-all after:duration-500">
                                                     Visit the product
+                                                    <span style={{
+                                                        position: 'absolute',
+                                                        width: '1px',
+                                                        height: '1px',
+                                                        padding: '0',
+                                                        margin: '-1px',
+                                                        overflow: 'hidden',
+                                                        clip: 'rect(0, 0, 0, 0)',
+                                                        whiteSpace: 'nowrap',
+                                                        borderWidth: '0'
+                                                    }}>
+                                                        {" "}Glimvia
+                                                    </span>
                                                 </span>
                                             </a>
                                         )}
