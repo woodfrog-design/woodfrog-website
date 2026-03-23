@@ -6,24 +6,27 @@ import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 
 gsap.registerPlugin(ScrollTrigger);
-import { CurvedLines } from "@/components/ui/curved-lines";
 import { RevenueChartDemo } from "@/components/animations/revenue-chart-demo";
 import { FinanceSalesTrendsDemo } from "@/components/animations/finance-sales-trends-demo";
 import { ProfitabilityDemo } from "@/components/animations/profitability-demo";
 
 import { ServicesSection } from "@/components/sections/services-section";
 import { CompanyLogos } from "@/components/sections/company-logos";
-import { BlogsSection } from "../sections/blogs-section";
-import { ProductsSection } from "../sections/products-section";
-import { FAQSection } from "../sections/faq-section";
-import { DataIntelligenceSection } from "@/components/sections/data-intelligence-section";
-import { WhyChooseUs } from "@/components/sections/why-choose-us";
-import { FooterSection } from "@/components/sections/footer-section";
-import { ScrollStack } from "@/components/ui/scroll-stack";
-import HeroSpeakSection from "@/components/sections/hero-speak-section";
+
+// Dynamic imports for below-fold sections — drastically reduces initial JS bundle
+const BlogsSection = dynamic(() => import("../sections/blogs-section").then(mod => ({ default: mod.BlogsSection })), { ssr: false });
+const ProductsSection = dynamic(() => import("../sections/products-section").then(mod => ({ default: mod.ProductsSection })), { ssr: false });
+const FAQSection = dynamic(() => import("../sections/faq-section").then(mod => ({ default: mod.FAQSection })), { ssr: false });
+const DataIntelligenceSection = dynamic(() => import("@/components/sections/data-intelligence-section").then(mod => ({ default: mod.DataIntelligenceSection })), { ssr: false });
+const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us").then(mod => ({ default: mod.WhyChooseUs })), { ssr: false });
+const FooterSection = dynamic(() => import("@/components/sections/footer-section").then(mod => ({ default: mod.FooterSection })), { ssr: false });
+const ScrollStack = dynamic(() => import("@/components/ui/scroll-stack").then(mod => ({ default: mod.ScrollStack })), { ssr: false });
+const HeroSpeakSection = dynamic(() => import("@/components/sections/hero-speak-section"), { ssr: false });
+
 // Enterprise Dashboard Components
 import { DashboardProvider, REGIONS, CATEGORIES, DASHBOARD_COLORS, useDashboard, useFilteredData } from "@/components/enterprise-dashboard/dashboard-context";
 import { KPICard } from "@/components/enterprise-dashboard/kpi-card";
@@ -136,11 +139,12 @@ const EnterpriseDashboard = () => {
             >
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-xl font-bold" style={{ color: DASHBOARD_COLORS.textPrimary }}>Regional Sales & Operations Intelligence</h1>
+                        <h2 className="text-xl font-bold" style={{ color: DASHBOARD_COLORS.textPrimary }}>Regional Sales & Operations Intelligence</h2>
                         <p className="text-sm" style={{ color: DASHBOARD_COLORS.textSecondary }}>FY 2024 Performance Dashboard • Last updated: Feb 7, 2026</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <button
+                            aria-label="Export dashboard as PDF"
                             className="px-3 py-1.5 text-xs font-medium border rounded-md transition-colors"
                             style={{
                                 color: DASHBOARD_COLORS.textSecondary,
@@ -151,6 +155,7 @@ const EnterpriseDashboard = () => {
                             Export PDF
                         </button>
                         <button
+                            aria-label="Reset all dashboard filters"
                             onClick={clearAllFilters}
                             className="px-3 py-1.5 text-xs font-medium text-white rounded-md hover:opacity-80 transition-opacity"
                             style={{ backgroundColor: DASHBOARD_COLORS.primary }}
@@ -230,15 +235,15 @@ const DemoOne = ({ initialProducts }: { initialProducts?: Product[] }) => {
                 <div className="flex flex-col-reverse lg:flex-row items-center justify-between w-full h-full mx-auto px-6 md:px-12 lg:px-32 select-none relative z-10 gap-0 lg:gap-12">
                     {/* Left Side: Text - Final Award-Winning Arrangement */}
                     <div className="flex-[1.6] flex flex-col items-center lg:items-start text-center lg:text-left gap-2 mb-0 lg:mb-0 -mt-[120px] lg:mt-0 relative z-20">
-                        <motion.h2
+                        <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                             className="text-xl md:text-3xl lg:text-[2.2rem] font-bold tracking-tight text-white mb-2 md:mb-4"
                         >
                             From Data to Analytics to AI
-                        </motion.h2>
-                        <motion.h1
+                        </motion.h1>
+                        <motion.h2
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.1 }}
@@ -249,7 +254,7 @@ const DemoOne = ({ initialProducts }: { initialProducts?: Product[] }) => {
                             <span className="text-white italic tracking-tighter pb-2">
                                 Services.
                             </span>
-                        </motion.h1>
+                        </motion.h2>
 
                         {/* Mobile-only subheading */}
                         <motion.p

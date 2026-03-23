@@ -104,6 +104,7 @@ const FooterSection = () => {
                         {/* Column 1: Services */}
                         <div className="flex flex-col md:gap-6 border-b border-white/5 md:border-0">
                             <button
+                                aria-label="Toggle services links"
                                 onClick={() => toggleMobileItem('services')}
                                 className="flex items-center justify-between w-full py-6 md:py-0 md:cursor-default group"
                             >
@@ -123,9 +124,9 @@ const FooterSection = () => {
                                     >
                                         <div className="flex flex-col gap-4 pb-6 md:pb-0">
                                             {footerLinks.services.map((link) => (
-                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
+                                                <Link key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
                                                     {link.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </motion.div>
@@ -136,6 +137,7 @@ const FooterSection = () => {
                         {/* Column 2: Products */}
                         <div className="flex flex-col md:gap-6 border-b border-white/5 md:border-0">
                             <button
+                                aria-label="Toggle products links"
                                 onClick={() => toggleMobileItem('products')}
                                 className="flex items-center justify-between w-full py-6 md:py-0 md:cursor-default group"
                             >
@@ -155,9 +157,9 @@ const FooterSection = () => {
                                     >
                                         <div className="flex flex-col gap-4 pb-6 md:pb-0">
                                             {footerLinks.products.map((link) => (
-                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
+                                                <Link key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
                                                     {link.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </motion.div>
@@ -168,6 +170,7 @@ const FooterSection = () => {
                         {/* Column 3: Woodfrog Section */}
                         <div className="flex flex-col md:gap-6">
                             <button
+                                aria-label="Toggle explore links"
                                 onClick={() => toggleMobileItem('explore')}
                                 className="flex items-center justify-between w-full py-6 md:py-0 md:cursor-default group"
                             >
@@ -187,9 +190,9 @@ const FooterSection = () => {
                                     >
                                         <div className="flex flex-col gap-4 pb-6 md:pb-0">
                                             {footerLinks.explore.map((link) => (
-                                                <a key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
+                                                <Link key={link.name} href={link.href} className="text-[#8891A5] hover:text-brand-primary transition-colors text-base font-medium">
                                                     {link.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </motion.div>

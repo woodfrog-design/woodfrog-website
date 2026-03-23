@@ -300,6 +300,7 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center space-x-1 bg-white/[0.03] backdrop-blur-md p-1.5 rounded-full border border-white/10 shadow-lg">
                     <div className="relative" ref={servicesRef} onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
                         <button
+                            aria-label="Services menu"
                             onClick={() => setIsServicesOpen(!isServicesOpen)}
                             className={cn(
                                 "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
@@ -361,6 +362,7 @@ const Navbar = () => {
 
                     <div className="relative" ref={woodfrogRef} onMouseEnter={() => setIsWoodfrogOpen(true)} onMouseLeave={() => setIsWoodfrogOpen(false)}>
                         <button
+                            aria-label="Explore menu"
                             onClick={() => setIsWoodfrogOpen(!isWoodfrogOpen)}
                             className={cn(
                                 "flex items-center space-x-1 px-5 py-2 font-semibold text-base rounded-full cursor-pointer transition-[background-color,box-shadow] duration-300 text-[#E6EAF0]/90 hover:text-black hover:bg-brand-primary/90",
@@ -427,6 +429,7 @@ const Navbar = () => {
                         Contact us
                     </Link>
                     <button
+                        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                         className="p-1 text-white cursor-pointer"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
@@ -449,7 +452,7 @@ const Navbar = () => {
                             <div className="flex items-center gap-1.5">
                                 <span className="text-2xl font-bold tracking-tight text-white">woodfrog</span>
                             </div>
-                            <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-white">
+                            <button aria-label="Close menu" onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-white">
                                 <X className="w-8 h-8" />
                             </button>
                         </div>

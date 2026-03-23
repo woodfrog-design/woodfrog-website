@@ -165,7 +165,9 @@ const ScrollStack = () => {
                         className="scroll-card absolute w-[92vw] md:w-[90vw] h-[85vh] md:h-[90vh] rounded-[2rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col md:flex-row"
                         style={{
                             zIndex: cards.length - i,
-                            backgroundColor: card.bg
+                            backgroundColor: card.bg,
+                            contain: 'content',
+                            willChange: 'transform, opacity',
                         }}
                     >
                         {/* Background subtle glow */}
@@ -196,7 +198,7 @@ const ScrollStack = () => {
                             <div className="mt-8 md:mt-12 group">
                                 <Link href={card.link} className="inline-flex items-center gap-3 cursor-pointer">
                                     <span className="text-[#f4e8df] text-lg font-bold border-b border-transparent group-hover:border-brand-primary/50 transition-all">
-                                        Learn more
+                                        Learn more about {card.title}
                                     </span>
                                     <svg
                                         width="18"

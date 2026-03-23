@@ -249,3 +249,21 @@ body {
   display: list-item !important;
   margin: 0.25rem 0 !important;
 }
+
+/* GPU-composited waveform animation (replaces non-composited height animation) */
+@keyframes waveBarScale {
+  0%, 100% { transform: scaleY(0.15); }
+  50% { transform: scaleY(1); }
+}
+
+.waveform-bar {
+  transform-origin: center;
+  will-change: transform;
+  animation: waveBarScale ease-in-out infinite alternate;
+}
+
+/* Marquee scroll - CSS-driven instead of JS for better performance */
+@keyframes marqueeScroll {
+  0% { transform: translateX(-33.33%); }
+  100% { transform: translateX(0%); }
+}

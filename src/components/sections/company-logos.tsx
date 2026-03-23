@@ -34,14 +34,6 @@ const CompanyLogos = () => {
 
     return (
         <section className={`w-full bg-transparent ${isMobile ? 'py-12' : 'py-24'} overflow-hidden`}>
-            {/* CSS keyframe for marquee - much lighter than Framer Motion's JS-driven animation loop */}
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                @keyframes marqueeScroll {
-                    0% { transform: translateX(-33.33%); }
-                    100% { transform: translateX(0%); }
-                }
-            `}} />
 
             <div className={`mx-auto ${isMobile ? 'px-6 mb-8 text-center' : 'px-12 md:px-32 mb-16'}`}>
                 <p className="text-[#8891A5] text-sm font-bold uppercase tracking-[0.4em]">
