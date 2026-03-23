@@ -233,43 +233,31 @@ const DemoOne = ({ initialProducts }: { initialProducts?: Product[] }) => {
                 <div className="flex flex-col-reverse lg:flex-row items-center justify-between w-full h-full mx-auto px-6 md:px-12 lg:px-32 select-none relative z-10 gap-0 lg:gap-12">
                     {/* Left Side: Text - Final Award-Winning Arrangement */}
                     <div className="flex-[1.6] flex flex-col items-center lg:items-start text-center lg:text-left gap-2 mb-0 lg:mb-0 -mt-[120px] lg:mt-0 relative z-20">
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="text-xl md:text-3xl lg:text-[2.2rem] font-bold tracking-tight text-white mb-2 md:mb-4"
+                        <h1
+                            className="hero-fade-in text-xl md:text-3xl lg:text-[2.2rem] font-bold tracking-tight text-white mb-2 md:mb-4"
                         >
                             From Data to Analytics to AI
-                        </motion.h1>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.1 }}
-                            className="flex flex-col text-5xl md:text-[6rem] lg:text-[8.5rem] font-black tracking-tighter leading-[0.95] text-white"
+                        </h1>
+                        <h2
+                            className="hero-fade-in hero-delay-1 flex flex-col text-5xl md:text-[6rem] lg:text-[8.5rem] font-black tracking-tighter leading-[0.95] text-white"
                         >
                             <span> End to End</span>
 
                             <span className="text-white italic tracking-tighter pb-2">
                                 Services.
                             </span>
-                        </motion.h2>
+                        </h2>
 
                         {/* Mobile-only subheading */}
-                        <motion.p
-                            className="lg:hidden text-[16px] text-slate-300 font-medium max-w-sm mb-6 px-4"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
+                        <p
+                            className="hero-fade-in hero-delay-2 lg:hidden text-[16px] text-slate-300 font-medium max-w-sm mb-6 px-4"
                         >
                             We partner with you to streamline your data, strengthen analytics, and build AI capabilities that drive measurable growth.
-                        </motion.p>
+                        </p>
 
                         {/* Mobile-only Buttons */}
-                        <motion.div
-                            className="lg:hidden flex flex-row items-center gap-3 w-full justify-center px-4"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.3 }}
+                        <div
+                            className="hero-fade-in hero-delay-3 lg:hidden flex flex-row items-center gap-3 w-full justify-center px-4"
                         >
                             <Link href="/about" className="flex-1 bg-white text-slate-900 font-bold py-3 rounded-full text-sm shadow-xl active:scale-95 transition-transform flex items-center justify-center">
                                 About Us
@@ -277,7 +265,7 @@ const DemoOne = ({ initialProducts }: { initialProducts?: Product[] }) => {
                             <Link href="/contact" className="flex-1 bg-brand-primary text-black font-bold py-3 rounded-full text-sm shadow-lg active:scale-95 transition-transform flex items-center justify-center">
                                 Contact Us
                             </Link>
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* Right Side Card Grid - Following fixed replica layout */}

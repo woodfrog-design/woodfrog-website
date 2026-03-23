@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 const companyImages = [
     '/company1.svg',
@@ -63,17 +64,15 @@ const CompanyLogos = () => {
                             className={`flex items-center justify-center ${isMobile ? 'min-w-[100px]' : 'min-w-[180px]'} opacity-50 hover:opacity-100 transition-opacity duration-500`}
                         >
                             {/* Using standard img tag so it's easier for the user to debug local file addition */}
-                            <img
+                            <Image
                                 src={src}
                                 alt={`Company ${idx % 8 + 1}`}
+                                width={180}
+                                height={48}
                                 className="object-contain brightness-0 invert"
                                 style={{
-                                    height: isMobile ? '1.75rem' : '3rem', // ~h-7 vs h-12
+                                    height: isMobile ? '1.75rem' : '3rem',
                                     width: 'auto'
-                                }}
-                                onError={(e) => {
-                                    // Fallback for missing images
-                                    e.currentTarget.style.display = 'none';
                                 }}
                             />
                         </div>

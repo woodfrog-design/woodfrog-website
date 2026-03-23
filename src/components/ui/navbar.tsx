@@ -461,6 +461,7 @@ const Navbar = () => {
                             {/* Services Accordion */}
                             <div className="border-b border-white/10 pb-4">
                                 <button
+                                    aria-label="Toggle services"
                                     onClick={() => toggleMobileAccordion('services')}
                                     className="w-full flex items-center justify-between py-2"
                                 >
@@ -508,6 +509,7 @@ const Navbar = () => {
                             {/* Explore Accordion */}
                             <div className="border-b border-white/10 pb-4">
                                 <button
+                                    aria-label="Toggle explore"
                                     onClick={() => toggleMobileAccordion('explore')}
                                     className="w-full flex items-center justify-between py-2"
                                 >

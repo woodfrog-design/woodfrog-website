@@ -185,7 +185,10 @@ const WhyChooseUs = () => {
                                 </p>
 
                                 <div className="flex flex-wrap items-center gap-3 md:gap-6 mt-1 md:mt-2 opacity-0 pointer-events-none">
-                                    <button className="bg-[#d9f99d] text-black px-3 md:px-6 py-1.5 md:py-2.5 rounded-full font-bold text-[10px] md:text-sm tracking-tight transition-transform duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-[#d9f99d]/10">
+                                    <button 
+                                        aria-label={choice.cta}
+                                        className="bg-[#d9f99d] text-black px-3 md:px-6 py-1.5 md:py-2.5 rounded-full font-bold text-[10px] md:text-sm tracking-tight transition-transform duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-[#d9f99d]/10"
+                                    >
                                         {choice.cta}
                                     </button>
                                     <div className="group flex items-center gap-1 md:gap-2 cursor-pointer">

@@ -201,6 +201,19 @@ const ScrollStack = () => {
                                 <Link href={card.link} aria-label={`Learn more about ${card.title}`} className="inline-flex items-center gap-3 cursor-pointer">
                                     <span className="text-[#f4e8df] text-lg font-bold border-b border-transparent group-hover:border-brand-primary/50 transition-all">
                                         Learn more
+                                        <span style={{
+                                            position: 'absolute',
+                                            width: '1px',
+                                            height: '1px',
+                                            padding: '0',
+                                            margin: '-1px',
+                                            overflow: 'hidden',
+                                            clip: 'rect(0, 0, 0, 0)',
+                                            whiteSpace: 'nowrap',
+                                            borderWidth: '0'
+                                        }}>
+                                            {" "}about {card.title}
+                                        </span>
                                     </span>
                                     <svg
                                         width="18"

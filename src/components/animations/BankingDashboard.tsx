@@ -134,7 +134,7 @@ export const BankingDashboard: React.FC = () => {
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <div>
-                        <h1 className="text-[14px] font-semibold tracking-tight text-slate-900">Core Services</h1>
+                        <h3 className="text-[14px] font-semibold tracking-tight text-slate-900">Core Services</h3>
                         <p className="text-[8px] text-slate-400 mt-0.5">Real-time platform intelligence across 24 regions</p>
                     </div>
                     <div className="flex items-center gap-1.5">

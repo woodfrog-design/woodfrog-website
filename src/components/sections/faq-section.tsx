@@ -28,6 +28,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }: { question: string, answ
     return (
         <div className="border border-white/10 rounded-2xl mb-4 overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
             <button
+                aria-label={`Toggle answer for: ${question}`}
                 onClick={onClick}
                 className="w-full p-6 md:p-8 flex items-center justify-between text-left group"
             >
