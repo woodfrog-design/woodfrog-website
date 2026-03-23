@@ -6,16 +6,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { DataEngineeringDemo } from "@/components/animations/data-engineering-demo";
-import { SearchDemo } from "@/components/animations/search-demo";
-import { AnalyticsDashboardDemo } from "@/components/animations/analytics-dashboard-demo";
-import { AutomatedDemo } from "@/components/animations/automated-demo";
-import { AIGovernanceDemo } from "@/components/animations/ai-governance-demo";
-import { ApplicationsAutomationsDemo } from "@/components/animations/applications-automations-demo";
-import { SupersetAnalyticsDemo } from "@/components/animations/superset-analytics-demo";
+// Dynamic imports for heavy animation demos (~200+ KB total)
+const DataEngineeringDemo = dynamic(() => import("@/components/animations/data-engineering-demo").then(mod => ({ default: mod.DataEngineeringDemo })));
+const SearchDemo = dynamic(() => import("@/components/animations/search-demo").then(mod => ({ default: mod.SearchDemo })));
+const AnalyticsDashboardDemo = dynamic(() => import("@/components/animations/analytics-dashboard-demo").then(mod => ({ default: mod.AnalyticsDashboardDemo })));
+const AutomatedDemo = dynamic(() => import("@/components/animations/automated-demo").then(mod => ({ default: mod.AutomatedDemo })));
+const AIGovernanceDemo = dynamic(() => import("@/components/animations/ai-governance-demo").then(mod => ({ default: mod.AIGovernanceDemo })));
+const ApplicationsAutomationsDemo = dynamic(() => import("@/components/animations/applications-automations-demo").then(mod => ({ default: mod.ApplicationsAutomationsDemo })));
+const SupersetAnalyticsDemo = dynamic(() => import("@/components/animations/superset-analytics-demo").then(mod => ({ default: mod.SupersetAnalyticsDemo })));
 
 const ScrollStack = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -196,9 +198,9 @@ const ScrollStack = () => {
                             </div>
 
                             <div className="mt-8 md:mt-12 group">
-                                <Link href={card.link} className="inline-flex items-center gap-3 cursor-pointer">
+                                <Link href={card.link} aria-label={`Learn more about ${card.title}`} className="inline-flex items-center gap-3 cursor-pointer">
                                     <span className="text-[#f4e8df] text-lg font-bold border-b border-transparent group-hover:border-brand-primary/50 transition-all">
-                                        Learn more about {card.title}
+                                        Learn more
                                     </span>
                                     <svg
                                         width="18"

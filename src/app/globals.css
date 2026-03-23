@@ -250,16 +250,10 @@ body {
   margin: 0.25rem 0 !important;
 }
 
-/* GPU-composited waveform animation (replaces non-composited height animation) */
-@keyframes waveBarScale {
-  0%, 100% { transform: scaleY(0.15); }
-  50% { transform: scaleY(1); }
-}
-
-.waveform-bar {
-  transform-origin: center;
-  will-change: transform;
-  animation: waveBarScale ease-in-out infinite alternate;
+/* Waveform bar animation */
+@keyframes waveBar {
+  0%, 100% { height: 4px; }
+  50% { height: var(--wave-h); }
 }
 
 /* Marquee scroll - CSS-driven instead of JS for better performance */

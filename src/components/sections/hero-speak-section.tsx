@@ -227,17 +227,17 @@ const HeroSpeakSection = () => {
                                     </div>
                                 </div>
 
-                                {/* Waveform Pill - GPU-composited scaleY animation */}
+                                {/* Waveform Pill - CSS-driven animations */}
                                 <div className={`bg-[#0D2D3E] border-2 border-white/20 rounded-full px-6 py-4 flex items-center justify-center ${waveGap} h-[90px] w-[250px] shadow-2xl overflow-hidden scale-90`}>
                                     {waveformBars.map((bar, i) => (
                                         <div
                                             key={i}
-                                            className="waveform-bar w-1.5 bg-white/80 rounded-full shrink-0"
+                                            className="w-1.5 bg-white/80 rounded-full shrink-0"
                                             style={{
-                                                height: `${bar.targetHeight}px`,
-                                                transform: 'scaleY(0.15)',
-                                                animationDuration: `${bar.duration}s`,
-                                                animationDelay: `${bar.delay}s`,
+                                                height: 4,
+                                                // @ts-ignore -- CSS custom property
+                                                '--wave-h': `${bar.targetHeight}px`,
+                                                animation: `waveBar ${bar.duration}s ease-in-out ${bar.delay}s infinite alternate`,
                                             } as React.CSSProperties}
                                         />
                                     ))}

@@ -17,26 +17,24 @@ import { ProfitabilityDemo } from "@/components/animations/profitability-demo";
 import { ServicesSection } from "@/components/sections/services-section";
 import { CompanyLogos } from "@/components/sections/company-logos";
 
-// Dynamic imports for below-fold sections — drastically reduces initial JS bundle
-const BlogsSection = dynamic(() => import("../sections/blogs-section").then(mod => ({ default: mod.BlogsSection })), { ssr: false });
-const ProductsSection = dynamic(() => import("../sections/products-section").then(mod => ({ default: mod.ProductsSection })), { ssr: false });
-const FAQSection = dynamic(() => import("../sections/faq-section").then(mod => ({ default: mod.FAQSection })), { ssr: false });
-const DataIntelligenceSection = dynamic(() => import("@/components/sections/data-intelligence-section").then(mod => ({ default: mod.DataIntelligenceSection })), { ssr: false });
-const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us").then(mod => ({ default: mod.WhyChooseUs })), { ssr: false });
-const FooterSection = dynamic(() => import("@/components/sections/footer-section").then(mod => ({ default: mod.FooterSection })), { ssr: false });
-const ScrollStack = dynamic(() => import("@/components/ui/scroll-stack").then(mod => ({ default: mod.ScrollStack })), { ssr: false });
-const HeroSpeakSection = dynamic(() => import("@/components/sections/hero-speak-section"), { ssr: false });
+// Dynamic imports for below-fold sections — code-split into separate JS chunks
+const BlogsSection = dynamic(() => import("../sections/blogs-section").then(mod => ({ default: mod.BlogsSection })));
+const ProductsSection = dynamic(() => import("../sections/products-section").then(mod => ({ default: mod.ProductsSection })));
+const FAQSection = dynamic(() => import("../sections/faq-section").then(mod => ({ default: mod.FAQSection })));
+const DataIntelligenceSection = dynamic(() => import("@/components/sections/data-intelligence-section").then(mod => ({ default: mod.DataIntelligenceSection })));
+const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us").then(mod => ({ default: mod.WhyChooseUs })));
+const ScrollStack = dynamic(() => import("@/components/ui/scroll-stack").then(mod => ({ default: mod.ScrollStack })));
+const HeroSpeakSection = dynamic(() => import("@/components/sections/hero-speak-section"));
 
-// Enterprise Dashboard Components
+// Enterprise Dashboard Components — context stays static (provides hooks), charts are dynamic (heavy Recharts)
 import { DashboardProvider, REGIONS, CATEGORIES, DASHBOARD_COLORS, useDashboard, useFilteredData } from "@/components/enterprise-dashboard/dashboard-context";
-import { KPICard } from "@/components/enterprise-dashboard/kpi-card";
-import { SlicerPanel } from "@/components/enterprise-dashboard/slicer-panel";
-import { RevenueWaterfall } from "@/components/enterprise-dashboard/revenue-waterfall";
-import { BulletChart } from "@/components/enterprise-dashboard/bullet-chart";
-import { TimeSeriesArea } from "@/components/enterprise-dashboard/time-series-area";
-import { FunnelChart } from "@/components/enterprise-dashboard/funnel-chart";
-import { RegionHeatmap } from "@/components/enterprise-dashboard/region-heatmap";
-import { ScatterQuadrant } from "@/components/enterprise-dashboard/scatter-quadrant";
+const KPICard = dynamic(() => import("@/components/enterprise-dashboard/kpi-card").then(mod => ({ default: mod.KPICard })));
+const SlicerPanel = dynamic(() => import("@/components/enterprise-dashboard/slicer-panel").then(mod => ({ default: mod.SlicerPanel })));
+const BulletChart = dynamic(() => import("@/components/enterprise-dashboard/bullet-chart").then(mod => ({ default: mod.BulletChart })));
+const TimeSeriesArea = dynamic(() => import("@/components/enterprise-dashboard/time-series-area").then(mod => ({ default: mod.TimeSeriesArea })));
+const FunnelChart = dynamic(() => import("@/components/enterprise-dashboard/funnel-chart").then(mod => ({ default: mod.FunnelChart })));
+const RegionHeatmap = dynamic(() => import("@/components/enterprise-dashboard/region-heatmap").then(mod => ({ default: mod.RegionHeatmap })));
+const ScatterQuadrant = dynamic(() => import("@/components/enterprise-dashboard/scatter-quadrant").then(mod => ({ default: mod.ScatterQuadrant })));
 
 // Enterprise Dashboard Component
 const EnterpriseDashboard = () => {

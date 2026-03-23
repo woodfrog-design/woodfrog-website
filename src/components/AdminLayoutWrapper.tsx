@@ -2,9 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Navbar } from "@/components/ui/navbar";
-import dynamic from 'next/dynamic';
-
-const FooterSection = dynamic(() => import("@/components/sections/footer-section").then(mod => ({ default: mod.FooterSection })), { ssr: false });
+import { FooterSection } from "@/components/sections/footer-section";
 
 export default function AdminLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
