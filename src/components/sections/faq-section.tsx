@@ -105,10 +105,12 @@ const FAQSection = () => {
                                     className="hidden lg:flex items-center gap-5 p-4 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm w-fit group cursor-pointer hover:bg-white/[0.06] transition-all duration-300"
                                 >
                                     <div className="relative">
-                                        <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                                        <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)] relative">
                                             <img
                                                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200&h=200"
                                                 alt="AI Assistant"
+                                                width={56}
+                                                height={56}
                                                 className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500"
                                             />
                                         </div>
@@ -158,10 +160,12 @@ const FAQSection = () => {
                             className="flex items-center gap-5 p-4 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm w-fit group cursor-pointer hover:bg-white/[0.06] transition-all duration-300"
                         >
                             <div className="relative">
-                                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)] relative">
                                     <img
                                         src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200&h=200"
                                         alt="AI Assistant"
+                                        width={56}
+                                        height={56}
                                         className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500"
                                     />
                                 </div>

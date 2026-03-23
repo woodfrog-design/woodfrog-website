@@ -3,26 +3,14 @@
 import React from "react";
 
 export const ServicesSection = () => {
-    const [isMobile, setIsMobile] = React.useState(false);
-
-    React.useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    const svgScale = isMobile ? 1.5 : 1;
-    const mobileMargin = isMobile ? "mt-12" : "mt-0";
+    // Use CSS for scaling instead of JS state where possible to reduce main-thread work
+    const mobileMargin = "mt-12 md:mt-0";
 
     return (
         <section className="w-full bg-transparent pt-0 pb-20 md:pb-32 px-6 md:px-32 relative overflow-hidden">
             <div className="max-w-[1400px] mx-auto w-full">
                 <div
-                    className={`relative w-full aspect-[1400/320] md:scale-110 lg:scale-125 origin-center transition-transform duration-500 ${mobileMargin}`}
-                    style={{ transform: isMobile ? `scale(${svgScale})` : undefined }}
+                    className={`relative w-full aspect-[1400/320] md:scale-110 lg:scale-125 origin-center transition-transform duration-500 ${mobileMargin} scale-150 md:scale-100`}
                 >
                     <svg
                         viewBox="0 0 1400 320"
@@ -85,7 +73,7 @@ export const ServicesSection = () => {
             </div>
 
             {/* Subtle Background Texture */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')]" />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/textures/dark-leather.png')]" />
         </section>
     );
 };

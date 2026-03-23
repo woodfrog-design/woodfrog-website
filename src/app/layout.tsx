@@ -51,6 +51,15 @@ export const metadata: Metadata = {
   verification: {
     google: "lDlKmLT9LZNVW0ZZUfhxnLeM792MlKvyutkCj6Q97Ro",
   },
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss.xml',
+    },
+  },
+  other: {
+    'preconnect': ['https://www.transparenttextures.com', 'https://images.unsplash.com'],
+    'dns-prefetch': ['https://www.transparenttextures.com', 'https://images.unsplash.com'],
+  }
 };
 
 export default function RootLayout({
