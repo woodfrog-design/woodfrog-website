@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, LogOut, ChevronLeft, Briefcase, Users, Edit3, Eye, GitBranch, BarChart3 } from 'lucide-react';
+import { Plus, LogOut, ChevronLeft, Briefcase, Users, Edit3, Eye, GitBranch, BarChart3, Settings, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { Job, getJobs, updateJobStatus, getAllApplications, JobApplication } from '@/lib/jobs';
 import { cn } from '@/lib/utils';
 import JobEditor from '@/components/admin/careers/job-editor';
@@ -18,8 +18,12 @@ export default function AdminCareersPage() {
     const [allApplications, setAllApplications] = useState<(JobApplication & { jobTitle: string })[]>([]);
     const [allNotes, setAllNotes] = useState<CandidateNote[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [view, setView] = useState<'list' | 'editor' | 'applications' | 'stages' | 'insights'>('list');
+    const [view, setView] = useState<'list' | 'editor' | 'applications' | 'stages' | 'insights' | 'settings'>('list');
     const [selectedJob, setSelectedJob] = useState<Job | undefined>(undefined);
+    const [smtpForm, setSmtpForm] = useState({ host: '', port: '587', user: '', pass: '', senderName: 'Woodfrog' });
+    const [smtpStatus, setSmtpStatus] = useState<{ type: 'success' | 'error' | ''; message: string }>({ type: '', message: '' });
+    const [smtpLoading, setSmtpLoading] = useState(false);
+    const [smtpTesting, setSmtpTesting] = useState(false);
 
     const router = useRouter();
 
@@ -75,7 +79,64 @@ export default function AdminCareersPage() {
     if (!isAuthenticated) return null;
 
     // ── Full-bleed views: applicants and stages fill the entire viewport below navbar ──
-    const isFullBleed = view === 'applications' || view === 'stages' || view === 'editor' || view === 'insights';
+    const isFullBleed = view === 'applications' || view === 'stages' || view === 'editor' || view === 'insights' || view === 'settings';
+
+    const loadSmtpSettings = async () => {
+        try {
+            const res = await fetch('/api/admin/settings');
+            const data = await res.json();
+            setSmtpForm({
+                host: data.host || '',
+                port: String(data.port || '587'),
+                user: data.user || '',
+                pass: data.hasPassword ? data.pass : '',
+                senderName: data.senderName || 'Woodfrog',
+            });
+        } catch (err) {
+            console.error('Failed to load SMTP settings', err);
+        }
+    };
+
+    const handleSmtpTest = async () => {
+        setSmtpTesting(true);
+        setSmtpStatus({ type: '', message: '' });
+        try {
+            const res = await fetch('/api/admin/settings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...smtpForm, port: Number(smtpForm.port), testConnection: true }),
+            });
+            const data = await res.json();
+            setSmtpStatus({ type: data.success ? 'success' : 'error', message: data.message });
+        } catch (err: any) {
+            setSmtpStatus({ type: 'error', message: err.message });
+        } finally {
+            setSmtpTesting(false);
+        }
+    };
+
+    const handleSmtpSave = async () => {
+        setSmtpLoading(true);
+        setSmtpStatus({ type: '', message: '' });
+        try {
+            const passToSend = smtpForm.pass === '••••••••' ? undefined : smtpForm.pass;
+            const res = await fetch('/api/admin/settings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...smtpForm, pass: passToSend, port: Number(smtpForm.port) }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                setSmtpStatus({ type: 'success', message: 'SMTP settings saved successfully!' });
+            } else {
+                setSmtpStatus({ type: 'error', message: data.error || 'Failed to save' });
+            }
+        } catch (err: any) {
+            setSmtpStatus({ type: 'error', message: err.message });
+        } finally {
+            setSmtpLoading(false);
+        }
+    };
 
     return (
         <main className="min-h-screen bg-[#050505] text-white flex flex-col">
@@ -139,6 +200,16 @@ export default function AdminCareersPage() {
                     >
                         <BarChart3 className="w-4 h-4" />
                         Insights
+                    </button>
+                    <button
+                        onClick={() => { setView('settings'); setSelectedJob(undefined); loadSmtpSettings(); }}
+                        className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
+                            view === 'settings' ? "bg-white/10 text-white" : "text-zinc-500 hover:text-white"
+                        )}
+                    >
+                        <Settings className="w-4 h-4" />
+                        Settings
                     </button>
                     <button
                         onClick={handleLogout}
@@ -303,6 +374,95 @@ export default function AdminCareersPage() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* ── Settings ── */}
+            {view === 'settings' && (
+                <div className="flex-1 p-8 lg:p-12 max-w-3xl mx-auto w-full">
+                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8">
+                        <div>
+                            <h2 className="text-3xl font-bold mb-2">SMTP Configuration</h2>
+                            <p className="text-zinc-500 text-sm">Configure the email server used for sending interview invitations and candidate communications.</p>
+                        </div>
+
+                        <div className="bg-[#0F1113] border border-white/5 rounded-2xl p-8 space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">SMTP Host</label>
+                                    <input type="text" value={smtpForm.host}
+                                        onChange={e => setSmtpForm({ ...smtpForm, host: e.target.value })}
+                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
+                                        placeholder="smtp.gmail.com" />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Port</label>
+                                    <input type="text" value={smtpForm.port}
+                                        onChange={e => setSmtpForm({ ...smtpForm, port: e.target.value })}
+                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
+                                        placeholder="587" />
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Username / Email</label>
+                                    <input type="text" value={smtpForm.user}
+                                        onChange={e => setSmtpForm({ ...smtpForm, user: e.target.value })}
+                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
+                                        placeholder="you@example.com" />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Password / App Password</label>
+                                    <input type="password" value={smtpForm.pass}
+                                        onFocus={e => { if (e.target.value === '••••••••') setSmtpForm({ ...smtpForm, pass: '' }); }}
+                                        onChange={e => setSmtpForm({ ...smtpForm, pass: e.target.value })}
+                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
+                                        placeholder="••••••••" />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Sender Name</label>
+                                <input type="text" value={smtpForm.senderName}
+                                    onChange={e => setSmtpForm({ ...smtpForm, senderName: e.target.value })}
+                                    className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm max-w-sm"
+                                    placeholder="Woodfrog" />
+                                <p className="text-[10px] text-zinc-700 ml-1">Appears as the sender name in emails, e.g. "Woodfrog Careers"</p>
+                            </div>
+
+                            {smtpStatus.message && (
+                                <div className={cn(
+                                    "p-4 rounded-xl flex items-center gap-3 text-sm",
+                                    smtpStatus.type === 'success' ? "bg-green-500/10 border border-green-500/20 text-green-400" : "bg-red-500/10 border border-red-500/20 text-red-400"
+                                )}>
+                                    {smtpStatus.type === 'success' ? <CheckCircle className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
+                                    {smtpStatus.message}
+                                </div>
+                            )}
+
+                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                                <button onClick={handleSmtpTest} disabled={smtpTesting || !smtpForm.host || !smtpForm.user}
+                                    className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all disabled:opacity-40 text-sm">
+                                    {smtpTesting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                                    Test Connection
+                                </button>
+                                <button onClick={handleSmtpSave} disabled={smtpLoading || !smtpForm.host || !smtpForm.user}
+                                    className="flex items-center gap-2 px-6 py-3 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all disabled:opacity-40 shadow-[0_10px_20px_rgba(255,107,61,0.2)] text-sm">
+                                    {smtpLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                                    Save SMTP Settings
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 space-y-3">
+                            <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-500">How It Works</h4>
+                            <ul className="space-y-2 text-xs text-zinc-500">
+                                <li>• SMTP settings saved here will be used for all outgoing emails (interview invitations, contact form, etc.)</li>
+                                <li>• If no settings are configured here, the system falls back to environment variables</li>
+                                <li>• For Gmail: use your Gmail address and an <span className="text-zinc-300 font-bold">App Password</span> (not your Gmail password)</li>
+                                <li>• Common ports: <span className="text-zinc-300 font-bold">587</span> (TLS/STARTTLS), <span className="text-zinc-300 font-bold">465</span> (SSL)</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

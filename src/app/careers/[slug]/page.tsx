@@ -269,7 +269,11 @@ export default function JobDetailPage() {
             formData.append('linkedinId', linkedinId);
             formData.append('responses', JSON.stringify(formResponses));
 
-            // Append resume file
+            // Append all uploaded files (resume and any other file fields)
+            Object.entries(files).forEach(([fieldId, file]) => {
+                formData.append(`file_${fieldId}`, file);
+            });
+            // Also send legacy 'resume' key for backward compatibility
             if (files['resume']) {
                 formData.append('resume', files['resume']);
             }
