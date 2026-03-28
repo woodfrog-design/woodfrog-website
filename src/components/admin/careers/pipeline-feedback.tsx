@@ -1159,9 +1159,15 @@ ${interviewerData.criteria ? `<div style="background: #fff3e0; padding: 16px; bo
 <p style="margin: 0 0 8px 0; font-weight: bold; color: #333;">🎯 Assessment & Judging Criteria:</p>
 <p style="margin: 0; color: #555; white-space: pre-wrap;">${interviewerData.criteria}</p>
 </div>` : ''}
-${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}" style="color: #ff6b3d; text-decoration: none; font-weight: bold;">Download Resume</a></p>` : '<p>No resume was attached by the candidate.</p>'}
 <p>Best regards,<br/>The Hiring Team<br/><strong>Woodfrog</strong></p>
 </div>`;
+
+            // Always append resume link — this is added separately so it can never be accidentally removed
+            const resumeFooter = resumeUrl
+                ? `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 12px 20px; border-top: 2px solid #ff6b3d; margin-top: 8px;">
+<p style="margin: 0;">📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}" style="color: #ff6b3d; text-decoration: none; font-weight: bold;">View / Download Resume</a></p>
+</div>`
+                : '';
 
             await fetch('/api/candidates/send-email', {
                 method: 'POST',
@@ -1169,9 +1175,7 @@ ${resumeUrl ? `<p>📄 <strong>Candidate Resume:</strong> <a href="${resumeUrl}"
                 body: JSON.stringify({
                     to: interviewerData.email,
                     subject: `Interview Assignment: ${candidateName} — ${pendingTarget}`,
-                    body: interviewerBody,
-                    attachmentUrl: resumeUrl || undefined,
-                    attachmentName: `${candidateName.replace(/\s+/g, '_')}_Resume.pdf`
+                    body: interviewerBody + resumeFooter,
                 })
             });
         }

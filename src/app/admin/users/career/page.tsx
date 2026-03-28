@@ -455,15 +455,7 @@ export default function AdminCareersPage() {
                             </div>
                         </div>
 
-                        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 space-y-3">
-                            <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-500">How It Works</h4>
-                            <ul className="space-y-2 text-xs text-zinc-500">
-                                <li>• SMTP settings saved here will be used for all outgoing emails (interview invitations, contact form, etc.)</li>
-                                <li>• If no settings are configured here, the system falls back to environment variables</li>
-                                <li>• For Gmail: use your Gmail address and an <span className="text-zinc-300 font-bold">App Password</span> (not your Gmail password)</li>
-                                <li>• Common ports: <span className="text-zinc-300 font-bold">587</span> (TLS/STARTTLS), <span className="text-zinc-300 font-bold">465</span> (SSL)</li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             )}
