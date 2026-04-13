@@ -59,8 +59,8 @@ function ApplicationStatusTracker({ status, appliedAt, jobTitle, onBack }: {
                     isSelected ? "bg-green-500/10" : isRejected ? "bg-red-500/10" : "bg-[#ff6b3d]/10"
                 )}>
                     {isSelected ? <Trophy className="w-10 h-10 text-green-400" /> :
-                     isRejected ? <XCircle className="w-10 h-10 text-red-400" /> :
-                     <CheckCircle className="w-10 h-10 text-[#ff6b3d]" />}
+                        isRejected ? <XCircle className="w-10 h-10 text-red-400" /> :
+                            <CheckCircle className="w-10 h-10 text-[#ff6b3d]" />}
                 </div>
                 <h2 className="text-3xl font-bold">
                     {isSelected ? 'Selected!' : isRejected ? 'Application Update' : 'Application Tracking'}
@@ -92,11 +92,11 @@ function ApplicationStatusTracker({ status, appliedAt, jobTitle, onBack }: {
                                             : "bg-zinc-900/60 text-zinc-600 border border-white/5"
                                 )}>
                                     {isCompleted ? <CheckCircle className="w-3.5 h-3.5" /> :
-                                     isCurrent ? (
-                                        <div className="w-3.5 h-3.5 rounded-full border-2 border-white flex items-center justify-center">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                                        </div>
-                                     ) : <Circle className="w-3.5 h-3.5" />}
+                                        isCurrent ? (
+                                            <div className="w-3.5 h-3.5 rounded-full border-2 border-white flex items-center justify-center">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                                            </div>
+                                        ) : <Circle className="w-3.5 h-3.5" />}
                                     {stage.label}
                                 </div>
                                 {idx < slicedArr.length - 1 && <ChevronRight className="w-3.5 h-3.5 text-zinc-800 flex-shrink-0" />}
@@ -174,7 +174,7 @@ export default function JobDetailPage() {
             try {
                 const res = await fetch('/api/auth/linkedin/session');
                 const session = await res.json();
-                
+
                 if (session.authenticated) {
                     setCandidateInfo(prev => ({
                         ...prev,
@@ -185,7 +185,7 @@ export default function JobDetailPage() {
                     setLinkedinProfileUrl(session.linkedinProfileUrl || '');
                     setLinkedinId(session.linkedinId || '');
                     setIsLinkedInAuthenticated(true);
-                    
+
                     // If we just landed here and were authenticated, show the form
                     if (view === 'description') setView('form');
 
@@ -269,7 +269,11 @@ export default function JobDetailPage() {
             formData.append('linkedinId', linkedinId);
             formData.append('responses', JSON.stringify(formResponses));
 
-            // Append resume file
+            // Append all uploaded files (resume and any other file fields)
+            Object.entries(files).forEach(([fieldId, file]) => {
+                formData.append(`file_${fieldId}`, file);
+            });
+            // Also send legacy 'resume' key for backward compatibility
             if (files['resume']) {
                 formData.append('resume', files['resume']);
             }
@@ -377,14 +381,14 @@ export default function JobDetailPage() {
                                                     </div>
                                                     <div
                                                         dangerouslySetInnerHTML={{ __html: section.content }}
-                                                        className="prose prose-invert prose-orange max-w-none text-zinc-400 text-lg leading-relaxed space-y-4 rich-text-content"
+                                                        className="prose prose-invert prose-orange max-w-none text-zinc-400 text-lg leading-relaxed rich-text-content"
                                                     />
                                                 </div>
                                             ))
                                         ) : (
                                             <div
                                                 dangerouslySetInnerHTML={{ __html: job.description }}
-                                                className="prose prose-invert prose-orange max-w-none text-zinc-400 text-lg leading-relaxed space-y-4 rich-text-content"
+                                                className="prose prose-invert prose-orange max-w-none text-zinc-400 text-lg leading-relaxed rich-text-content"
                                             />
                                         )}
                                     </div>
@@ -443,7 +447,7 @@ export default function JobDetailPage() {
                                                 <h2 className="text-4xl font-bold">Verify your Identity</h2>
                                                 <p className="text-zinc-500 max-w-sm mx-auto text-lg">To provide the most authentic responses and speed up your application, please connect with LinkedIn.</p>
                                             </div>
-                                            
+
                                             {errorMessage && (
                                                 <div className="max-w-md mx-auto p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center gap-3 text-red-400 text-sm">
                                                     <AlertCircle className="w-4 h-4 shrink-0" />
@@ -706,10 +710,10 @@ export default function JobDetailPage() {
             </div>
 
             <style jsx global>{`
-                .rich-text-content h2 { color: white; font-weight: 900; font-size: 2.25rem; margin-top: 3rem; margin-bottom: 1.5rem; }
-                .rich-text-content h3 { color: white; font-weight: 800; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
-                .rich-text-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 2rem; }
-                .rich-text-content li { margin-bottom: 0.75rem; }
+                .rich-text-content h2 { color: white; font-weight: 900; font-size: 2.25rem; margin-top: 3.5rem; margin-bottom: 1.5rem; }
+                .rich-text-content h3 { color: white; font-weight: 800; font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1.25rem; }
+                .rich-text-content ul, .rich-text-content ol { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+                .rich-text-content li { margin-bottom: 1.5rem; }
                 .rich-text-content p { margin-bottom: 1.5rem; line-height: 1.8; }
                 .rich-text-content b, .rich-text-content strong { color: white; font-weight: 700; }
             `}</style>

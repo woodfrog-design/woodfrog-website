@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { getSmtpConfig } from '@/lib/smtp';
 
 export async function POST(req: NextRequest) {
     try {
@@ -10,23 +11,20 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'Missing fields: to, subject, body' }, { status: 400 });
         }
 
-        const missingVars = [];
-        if (!process.env.SMTP_HOST) missingVars.push('SMTP_HOST');
-        if (!process.env.SMTP_USER) missingVars.push('SMTP_USER');
-        if (!process.env.SMTP_PASS) missingVars.push('SMTP_PASS');
+        const smtpConfig = await getSmtpConfig();
 
-        if (missingVars.length > 0) {
-            console.error('Missing SMTP environment variables:', missingVars.join(', '));
-            return NextResponse.json({ error: `Server config error: Missing [${missingVars.join(', ')}]` }, { status: 500 });
+        if (!smtpConfig.host || !smtpConfig.user || !smtpConfig.pass) {
+            console.error('SMTP not configured');
+            return NextResponse.json({ error: 'SMTP is not configured. Please set up SMTP in Admin Settings.' }, { status: 500 });
         }
 
         const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT) || 587,
-            secure: Number(process.env.SMTP_PORT) === 465,
+            host: smtpConfig.host,
+            port: smtpConfig.port,
+            secure: smtpConfig.secure,
             auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS,
+                user: smtpConfig.user,
+                pass: smtpConfig.pass,
             },
         });
 
@@ -34,7 +32,7 @@ export async function POST(req: NextRequest) {
 
         // Build mail options
         const mailOptions: any = {
-            from: `"Woodfrog Careers" <${process.env.SMTP_USER}>`,
+            from: `"${smtpConfig.senderName || 'Woodfrog'} Careers" <${smtpConfig.user}>`,
             to,
             subject,
             html: emailBody,

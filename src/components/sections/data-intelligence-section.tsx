@@ -183,10 +183,7 @@ export const DataIntelligenceSection = () => {
     const activeSubtaskTools = activeTask?.subtasks[currentSubtaskIndex]?.tools || [];
 
     return (
-        <section 
-            ref={sectionRef} 
-            className="relative w-full lg:min-h-screen bg-transparent pt-12 md:pt-32 pb-8 md:pb-24 overflow-hidden [--radial-radius:140px] md:[--radial-radius:240px]"
-        >
+        <section ref={sectionRef} className="relative w-full lg:min-h-screen bg-transparent pt-12 md:pt-32 pb-8 md:pb-24 overflow-hidden">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 md:gap-16 items-center">
 
                 {/* Mobile-only heading above the circle */}
@@ -242,8 +239,9 @@ export const DataIntelligenceSection = () => {
                     {/* Orbiting Tool Nodes */}
                     {TOOLS.map((tool, index) => {
                         const angle = (index / TOOLS.length) * 2 * Math.PI - Math.PI / 2;
-                        const x = `calc(cos(${angle}rad) * var(--radial-radius))`;
-                        const y = `calc(sin(${angle}rad) * var(--radial-radius))`;
+                        const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 140 : 240;
+                        const x = Math.cos(angle) * radius;
+                        const y = Math.sin(angle) * radius;
 
                         const isTaskActive = activeTask?.tools.includes(tool.id);
                         const isSubtaskActive = activeSubtaskTools.includes(tool.id);

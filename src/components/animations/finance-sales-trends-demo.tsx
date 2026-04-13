@@ -177,7 +177,7 @@ export const FinanceSalesTrendsDemo: React.FC = () => {
                         <Plus size={20} />
                     </div>
                     <div>
-                        <h3 className="text-[18px] lg:text-[20px] font-black text-slate-900 tracking-tight">Finance</h3>
+                        <h1 className="text-[18px] lg:text-[20px] font-black text-slate-900 tracking-tight">Finance</h1>
                         <p className="text-[12px] text-slate-400 font-medium">Sales trends over time</p>
                     </div>
                 </div>

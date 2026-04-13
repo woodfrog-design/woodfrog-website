@@ -28,7 +28,6 @@ const FAQItem = ({ question, answer, isOpen, onClick }: { question: string, answ
     return (
         <div className="border border-white/10 rounded-2xl mb-4 overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300">
             <button
-                aria-label={`Toggle answer for: ${question}`}
                 onClick={onClick}
                 className="w-full p-6 md:p-8 flex items-center justify-between text-left group"
             >
@@ -105,12 +104,10 @@ const FAQSection = () => {
                                     className="hidden lg:flex items-center gap-5 p-4 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm w-fit group cursor-pointer hover:bg-white/[0.06] transition-all duration-300"
                                 >
                                     <div className="relative">
-                                        <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)] relative">
+                                        <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
                                             <img
                                                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200&h=200"
                                                 alt="AI Assistant"
-                                                width={56}
-                                                height={56}
                                                 className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500"
                                             />
                                         </div>
@@ -160,12 +157,10 @@ const FAQSection = () => {
                             className="flex items-center gap-5 p-4 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm w-fit group cursor-pointer hover:bg-white/[0.06] transition-all duration-300"
                         >
                             <div className="relative">
-                                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)] relative">
+                                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/30 group-hover:border-brand-primary transition-colors duration-500 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
                                     <img
                                         src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200&h=200"
                                         alt="AI Assistant"
-                                        width={56}
-                                        height={56}
                                         className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-500"
                                     />
                                 </div>

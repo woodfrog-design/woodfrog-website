@@ -483,7 +483,7 @@ const Dashboard: React.FC<{
                 {/* Top Filter Bar */}
                 <div className="flex justify-between items-center relative z-10">
                     <div>
-                        <h3 className="text-[13px] font-black leading-none tracking-tight" style={{ color: ANIMATION_THEME.text.primary }}>Executive Overview</h3>
+                        <h1 className="text-[13px] font-black leading-none tracking-tight" style={{ color: ANIMATION_THEME.text.primary }}>Executive Overview</h1>
                         <p className="text-[8px] font-bold uppercase tracking-widest mt-1" style={{ color: ANIMATION_THEME.text.secondary }}>Intelligence & Performance Core</p>
                     </div>
                     <div className="flex items-center gap-2">

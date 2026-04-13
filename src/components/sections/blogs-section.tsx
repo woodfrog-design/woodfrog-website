@@ -116,9 +116,9 @@ const BlogsSection = () => {
                                             <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
                                         </div>
 
-                                        <h3 className="text-2xl md:text-3xl font-black text-white leading-tight mb-4 group-hover:text-brand-primary transition-colors duration-500">
+                                        <h2 className="text-2xl md:text-3xl font-black text-white leading-tight mb-4 group-hover:text-brand-primary transition-colors duration-500">
                                             {post.title}
-                                        </h3>
+                                        </h2>
 
                                         <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-8 line-clamp-2">
                                             {post.excerpt}
@@ -127,19 +127,6 @@ const BlogsSection = () => {
                                         <Link href={`/blog/${post.slug}`} className="flex items-center gap-4 group/btn cursor-pointer w-fit">
                                             <span className="text-brand-primary font-black uppercase text-[10px] tracking-[0.2em] relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brand-primary group-hover/btn:after:w-full after:transition-all after:duration-500">
                                                 Read More
-                                                <span style={{
-                                                    position: 'absolute',
-                                                    width: '1px',
-                                                    height: '1px',
-                                                    padding: '0',
-                                                    margin: '-1px',
-                                                    overflow: 'hidden',
-                                                    clip: 'rect(0, 0, 0, 0)',
-                                                    whiteSpace: 'nowrap',
-                                                    borderWidth: '0'
-                                                }}>
-                                                    {" "}about {post.title}
-                                                </span>
                                             </span>
                                         </Link>
                                     </div>

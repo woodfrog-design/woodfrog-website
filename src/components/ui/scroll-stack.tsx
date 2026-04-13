@@ -6,18 +6,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import dynamic from 'next/dynamic';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Dynamic imports for heavy animation demos (~200+ KB total)
-const DataEngineeringDemo = dynamic(() => import("@/components/animations/data-engineering-demo").then(mod => ({ default: mod.DataEngineeringDemo })));
-const SearchDemo = dynamic(() => import("@/components/animations/search-demo").then(mod => ({ default: mod.SearchDemo })));
-const AnalyticsDashboardDemo = dynamic(() => import("@/components/animations/analytics-dashboard-demo").then(mod => ({ default: mod.AnalyticsDashboardDemo })));
-const AutomatedDemo = dynamic(() => import("@/components/animations/automated-demo").then(mod => ({ default: mod.AutomatedDemo })));
-const AIGovernanceDemo = dynamic(() => import("@/components/animations/ai-governance-demo").then(mod => ({ default: mod.AIGovernanceDemo })));
-const ApplicationsAutomationsDemo = dynamic(() => import("@/components/animations/applications-automations-demo").then(mod => ({ default: mod.ApplicationsAutomationsDemo })));
-const SupersetAnalyticsDemo = dynamic(() => import("@/components/animations/superset-analytics-demo").then(mod => ({ default: mod.SupersetAnalyticsDemo })));
+import { DataEngineeringDemo } from "@/components/animations/data-engineering-demo";
+import { SearchDemo } from "@/components/animations/search-demo";
+import { AnalyticsDashboardDemo } from "@/components/animations/analytics-dashboard-demo";
+import { AutomatedDemo } from "@/components/animations/automated-demo";
+import { AIGovernanceDemo } from "@/components/animations/ai-governance-demo";
+import { ApplicationsAutomationsDemo } from "@/components/animations/applications-automations-demo";
+import { SupersetAnalyticsDemo } from "@/components/animations/superset-analytics-demo";
+import { CustomAnalyticsHeroAnimation } from "@/components/animations/custom-analytics-hero-animation";
 
 const ScrollStack = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -33,6 +32,15 @@ const ScrollStack = () => {
             description2: "High-performance, deeply integrated Superset implementations for enterprise BI and startup analytics, backed by real hands-on experience.",
             bg: "var(--brand-card-bg)",
             link: "/superset-analytics"
+        },
+        {
+            id: 0,
+            label: "Intelligence at the Speed of Decision Scale",
+            title: "Custom Analytics",
+            description1: "Bespoke analytics and high-performance dashboards that adapt to your business logic - bridging the gap between raw data and boardroom ready insights.",
+            description2: "Built on real delivery experience, our persona-driven architecture ensures the right people get the right insights at the right moment.",
+            bg: "var(--brand-card-bg)",
+            link: "/custom-analytics"
         },
         {
             id: 2,
@@ -104,11 +112,7 @@ const ScrollStack = () => {
                 // Reduced total scroll distance for faster progression
                 end: `+=${cards.length * 100}%`,
                 pin: true,
-                scrub: 0.5,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
-                fastScrollEnd: true,
-                preventOverlaps: true, // Faster catch-up
+                scrub: 0.5, // Faster catch-up
                 onUpdate: (self) => {
                     // Total duration of the timeline is cards.length - 1
                     // Each unit of time corresponds to one card transition
@@ -171,9 +175,7 @@ const ScrollStack = () => {
                         className="scroll-card absolute w-[92vw] md:w-[90vw] h-[85vh] md:h-[90vh] rounded-[2rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col md:flex-row"
                         style={{
                             zIndex: cards.length - i,
-                            backgroundColor: card.bg,
-                            contain: 'content',
-                            willChange: 'transform, opacity',
+                            backgroundColor: card.bg
                         }}
                     >
                         {/* Background subtle glow */}
@@ -202,22 +204,9 @@ const ScrollStack = () => {
                             </div>
 
                             <div className="mt-8 md:mt-12 group">
-                                <Link href={card.link} aria-label={`Learn more about ${card.title}`} className="inline-flex items-center gap-3 cursor-pointer">
+                                <Link href={card.link} className="inline-flex items-center gap-3 cursor-pointer">
                                     <span className="text-[#f4e8df] text-lg font-bold border-b border-transparent group-hover:border-brand-primary/50 transition-all">
                                         Learn more
-                                        <span style={{
-                                            position: 'absolute',
-                                            width: '1px',
-                                            height: '1px',
-                                            padding: '0',
-                                            margin: '-1px',
-                                            overflow: 'hidden',
-                                            clip: 'rect(0, 0, 0, 0)',
-                                            whiteSpace: 'nowrap',
-                                            borderWidth: '0'
-                                        }}>
-                                            {" "}about {card.title}
-                                        </span>
                                     </span>
                                     <svg
                                         width="18"
@@ -253,6 +242,8 @@ const ScrollStack = () => {
                                     <ApplicationsAutomationsDemo isActive={i === activeIndex} />
                                 ) : card.title === "Superset Analytics" ? (
                                     <SupersetAnalyticsDemo isActive={i === activeIndex} />
+                                ) : card.title === "Custom Analytics" ? (
+                                    <CustomAnalyticsHeroAnimation isActive={i === activeIndex} />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center p-12">
                                         {/* Inner Glass Container for Media */}

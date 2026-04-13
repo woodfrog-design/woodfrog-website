@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 
 const companyImages = [
     '/company1.svg',
@@ -35,6 +34,14 @@ const CompanyLogos = () => {
 
     return (
         <section className={`w-full bg-transparent ${isMobile ? 'py-12' : 'py-24'} overflow-hidden`}>
+            {/* CSS keyframe for marquee - much lighter than Framer Motion's JS-driven animation loop */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes marqueeScroll {
+                    0% { transform: translateX(-33.33%); }
+                    100% { transform: translateX(0%); }
+                }
+            `}} />
 
             <div className={`mx-auto ${isMobile ? 'px-6 mb-8 text-center' : 'px-12 md:px-32 mb-16'}`}>
                 <p className="text-[#8891A5] text-sm font-bold uppercase tracking-[0.4em]">
@@ -58,30 +65,27 @@ const CompanyLogos = () => {
                         willChange: 'transform',
                     }}
                 >
-                    {marqueeItems.map((src, idx) => {
-                        // Priority for the first 4 items to solve LCP delay
-                        const isPriority = idx < 4;
-                        return (
-                            <div
-                                key={idx}
-                                className={`flex items-center justify-center ${isMobile ? 'min-w-[100px]' : 'min-w-[180px]'} opacity-50 hover:opacity-100 transition-opacity duration-500`}
-                            >
-                                <Image
-                                    src={src}
-                                    alt={`Company ${idx % 8 + 1}`}
-                                    width={180}
-                                    height={48}
-                                    priority={isPriority}
-                                    fetchPriority={idx === 0 ? "high" : undefined}
-                                    className="object-contain brightness-0 invert"
-                                    style={{
-                                        height: isMobile ? '1.75rem' : '3rem',
-                                        width: 'auto'
-                                    }}
-                                />
-                            </div>
-                        );
-                    })}
+                    {marqueeItems.map((src, idx) => (
+                        <div
+                            key={idx}
+                            className={`flex items-center justify-center ${isMobile ? 'min-w-[100px]' : 'min-w-[180px]'} opacity-50 hover:opacity-100 transition-opacity duration-500`}
+                        >
+                            {/* Using standard img tag so it's easier for the user to debug local file addition */}
+                            <img
+                                src={src}
+                                alt={`Company ${idx % 8 + 1}`}
+                                className="object-contain brightness-0 invert"
+                                style={{
+                                    height: isMobile ? '1.75rem' : '3rem', // ~h-7 vs h-12
+                                    width: 'auto'
+                                }}
+                                onError={(e) => {
+                                    // Fallback for missing images
+                                    e.currentTarget.style.display = 'none';
+                                }}
+                            />
+                        </div>
+                    ))}
                 </div>
 
 

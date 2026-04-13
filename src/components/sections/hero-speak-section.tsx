@@ -100,6 +100,14 @@ const HeroSpeakSection = () => {
 
     return (
         <section className="relative w-full min-h-[400px] md:min-h-[750px] bg-transparent flex flex-col items-center justify-start overflow-hidden pt-10 md:pt-24 pb-0">
+            {/* Waveform CSS keyframes - injected once */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes waveBar {
+                    0%, 100% { height: 4px; }
+                    50% { height: var(--wave-h); }
+                }
+            `}} />
 
             {/* Header Content */}
             <motion.div
@@ -227,7 +235,7 @@ const HeroSpeakSection = () => {
                                     </div>
                                 </div>
 
-                                {/* Waveform Pill - CSS-driven animations */}
+                                {/* Waveform Pill - Pure CSS animations instead of 19 motion.div instances */}
                                 <div className={`bg-[#0D2D3E] border-2 border-white/20 rounded-full px-6 py-4 flex items-center justify-center ${waveGap} h-[90px] w-[250px] shadow-2xl overflow-hidden scale-90`}>
                                     {waveformBars.map((bar, i) => (
                                         <div
@@ -238,6 +246,7 @@ const HeroSpeakSection = () => {
                                                 // @ts-ignore -- CSS custom property
                                                 '--wave-h': `${bar.targetHeight}px`,
                                                 animation: `waveBar ${bar.duration}s ease-in-out ${bar.delay}s infinite alternate`,
+                                                willChange: 'height',
                                             } as React.CSSProperties}
                                         />
                                     ))}

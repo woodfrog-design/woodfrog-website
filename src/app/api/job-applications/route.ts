@@ -22,12 +22,30 @@ export async function POST(request: Request) {
         const responsesJson = formData.get('responses') as string;
         const responses = JSON.parse(responsesJson || '{}');
         
-        const resumeFile = formData.get('resume') as File | null;
+        // Find resume file: check all file entries (new format: file_*, legacy: resume)
+        let resumeFile: File | null = null;
+        
+        // First, check for any file_* entries (new format from dynamic form fields)
+        for (const [key, value] of formData.entries()) {
+            if (key.startsWith('file_') && value instanceof File && value.size > 0) {
+                resumeFile = value;
+                console.log(`Found file upload via key "${key}":`, value.name, 'Size:', value.size);
+                break;
+            }
+        }
+        
+        // Fallback: check legacy 'resume' key
+        if (!resumeFile) {
+            const legacyResume = formData.get('resume') as File | null;
+            if (legacyResume && legacyResume.size > 0) {
+                resumeFile = legacyResume;
+                console.log('Found file upload via legacy "resume" key:', legacyResume.name, 'Size:', legacyResume.size);
+            }
+        }
+
         let resumeUrl = '';
 
         if (resumeFile) {
-            console.log('Resume file detected:', resumeFile.name, 'Size:', resumeFile.size);
-            
             // Format: Name-job post name -Resume -Date
             const dateStr = new Date().toISOString().split('T')[0];
             const cleanCandidateName = candidateName.replace(/[^a-zA-Z0-9\s]/g, '').trim();
@@ -38,6 +56,8 @@ export async function POST(request: Request) {
             const uploadResult = await uploadFileToDrive(resumeFile, fileName);
             console.log('Google Drive upload successful:', uploadResult.fileId);
             resumeUrl = uploadResult.webViewLink || '';
+        } else {
+            console.log('No resume file found in form submission');
         }
 
         // Duplicate application check (via LinkedIn-verified email)

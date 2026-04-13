@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { getSmtpConfig } from '@/lib/smtp';
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,27 +22,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Validate Environment Variables
-    const missingVars = [];
-    if (!process.env.SMTP_HOST) missingVars.push('SMTP_HOST');
-    if (!process.env.SMTP_USER) missingVars.push('SMTP_USER');
-    if (!process.env.SMTP_PASS) missingVars.push('SMTP_PASS');
+    const smtpConfig = await getSmtpConfig();
 
-    if (missingVars.length > 0) {
-      console.error('Missing SMTP environment variables:', missingVars.join(', '));
+    if (!smtpConfig.host || !smtpConfig.user || !smtpConfig.pass) {
+      console.error('SMTP not configured');
       return NextResponse.json(
-        { error: `Server configuration error: Missing [${missingVars.join(', ')}]. Please check Netlify environment variables.` },
+        { error: 'SMTP is not configured. Please check server settings.' },
         { status: 500 }
       );
     }
 
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: Number(process.env.SMTP_PORT) === 465,
+      host: smtpConfig.host,
+      port: smtpConfig.port,
+      secure: smtpConfig.secure,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: smtpConfig.user,
+        pass: smtpConfig.pass,
       },
     });
 
@@ -106,7 +103,7 @@ export async function POST(req: NextRequest) {
     `;
 
     await transporter.sendMail({
-      from: `"Woodfrog Contact Form" <${process.env.SMTP_USER}>`,
+      from: `"${smtpConfig.senderName || 'Woodfrog'} Contact Form" <${smtpConfig.user}>`,
       to: recipientEmail,
       subject: `New Contact: ${firstName} ${lastName} - ${lookingFor}`,
       html: htmlBody,

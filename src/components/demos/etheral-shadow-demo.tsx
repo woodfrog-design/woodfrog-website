@@ -6,35 +6,34 @@ import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 
 
 gsap.registerPlugin(ScrollTrigger);
+import { CurvedLines } from "@/components/ui/curved-lines";
 import { RevenueChartDemo } from "@/components/animations/revenue-chart-demo";
 import { FinanceSalesTrendsDemo } from "@/components/animations/finance-sales-trends-demo";
 import { ProfitabilityDemo } from "@/components/animations/profitability-demo";
 
 import { ServicesSection } from "@/components/sections/services-section";
 import { CompanyLogos } from "@/components/sections/company-logos";
-
-// Dynamic imports for below-fold sections — code-split into separate JS chunks
-const BlogsSection = dynamic(() => import("../sections/blogs-section").then(mod => ({ default: mod.BlogsSection })));
-const ProductsSection = dynamic(() => import("../sections/products-section").then(mod => ({ default: mod.ProductsSection })));
-const FAQSection = dynamic(() => import("../sections/faq-section").then(mod => ({ default: mod.FAQSection })));
-const DataIntelligenceSection = dynamic(() => import("@/components/sections/data-intelligence-section").then(mod => ({ default: mod.DataIntelligenceSection })));
-const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us").then(mod => ({ default: mod.WhyChooseUs })));
-const ScrollStack = dynamic(() => import("@/components/ui/scroll-stack").then(mod => ({ default: mod.ScrollStack })));
-const HeroSpeakSection = dynamic(() => import("@/components/sections/hero-speak-section"));
-
-// Enterprise Dashboard Components — context stays static (provides hooks), charts are dynamic (heavy Recharts)
+import { BlogsSection } from "../sections/blogs-section";
+import { ProductsSection } from "../sections/products-section";
+import { FAQSection } from "../sections/faq-section";
+import { DataIntelligenceSection } from "@/components/sections/data-intelligence-section";
+import { WhyChooseUs } from "@/components/sections/why-choose-us";
+import { FooterSection } from "@/components/sections/footer-section";
+import { ScrollStack } from "@/components/ui/scroll-stack";
+import HeroSpeakSection from "@/components/sections/hero-speak-section";
+// Enterprise Dashboard Components
 import { DashboardProvider, REGIONS, CATEGORIES, DASHBOARD_COLORS, useDashboard, useFilteredData } from "@/components/enterprise-dashboard/dashboard-context";
-const KPICard = dynamic(() => import("@/components/enterprise-dashboard/kpi-card").then(mod => ({ default: mod.KPICard })));
-const SlicerPanel = dynamic(() => import("@/components/enterprise-dashboard/slicer-panel").then(mod => ({ default: mod.SlicerPanel })));
-const BulletChart = dynamic(() => import("@/components/enterprise-dashboard/bullet-chart").then(mod => ({ default: mod.BulletChart })));
-const TimeSeriesArea = dynamic(() => import("@/components/enterprise-dashboard/time-series-area").then(mod => ({ default: mod.TimeSeriesArea })));
-const FunnelChart = dynamic(() => import("@/components/enterprise-dashboard/funnel-chart").then(mod => ({ default: mod.FunnelChart })));
-const RegionHeatmap = dynamic(() => import("@/components/enterprise-dashboard/region-heatmap").then(mod => ({ default: mod.RegionHeatmap })));
-const ScatterQuadrant = dynamic(() => import("@/components/enterprise-dashboard/scatter-quadrant").then(mod => ({ default: mod.ScatterQuadrant })));
+import { KPICard } from "@/components/enterprise-dashboard/kpi-card";
+import { SlicerPanel } from "@/components/enterprise-dashboard/slicer-panel";
+import { RevenueWaterfall } from "@/components/enterprise-dashboard/revenue-waterfall";
+import { BulletChart } from "@/components/enterprise-dashboard/bullet-chart";
+import { TimeSeriesArea } from "@/components/enterprise-dashboard/time-series-area";
+import { FunnelChart } from "@/components/enterprise-dashboard/funnel-chart";
+import { RegionHeatmap } from "@/components/enterprise-dashboard/region-heatmap";
+import { ScatterQuadrant } from "@/components/enterprise-dashboard/scatter-quadrant";
 
 // Enterprise Dashboard Component
 const EnterpriseDashboard = () => {
@@ -137,12 +136,11 @@ const EnterpriseDashboard = () => {
             >
                 <div className="flex items-center justify-between">
                     <div>
-                        <h2 className="text-xl font-bold" style={{ color: DASHBOARD_COLORS.textPrimary }}>Regional Sales & Operations Intelligence</h2>
+                        <h1 className="text-xl font-bold" style={{ color: DASHBOARD_COLORS.textPrimary }}>Regional Sales & Operations Intelligence</h1>
                         <p className="text-sm" style={{ color: DASHBOARD_COLORS.textSecondary }}>FY 2024 Performance Dashboard • Last updated: Feb 7, 2026</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <button
-                            aria-label="Export dashboard as PDF"
                             className="px-3 py-1.5 text-xs font-medium border rounded-md transition-colors"
                             style={{
                                 color: DASHBOARD_COLORS.textSecondary,
@@ -153,7 +151,6 @@ const EnterpriseDashboard = () => {
                             Export PDF
                         </button>
                         <button
-                            aria-label="Reset all dashboard filters"
                             onClick={clearAllFilters}
                             className="px-3 py-1.5 text-xs font-medium text-white rounded-md hover:opacity-80 transition-opacity"
                             style={{ backgroundColor: DASHBOARD_COLORS.primary }}
@@ -233,31 +230,43 @@ const DemoOne = ({ initialProducts }: { initialProducts?: Product[] }) => {
                 <div className="flex flex-col-reverse lg:flex-row items-center justify-between w-full h-full mx-auto px-6 md:px-12 lg:px-32 select-none relative z-10 gap-0 lg:gap-12">
                     {/* Left Side: Text - Final Award-Winning Arrangement */}
                     <div className="flex-[1.6] flex flex-col items-center lg:items-start text-center lg:text-left gap-2 mb-0 lg:mb-0 -mt-[120px] lg:mt-0 relative z-20">
-                        <h1
-                            className="hero-fade-in text-xl md:text-3xl lg:text-[2.2rem] font-bold tracking-tight text-white mb-2 md:mb-4"
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="text-xl md:text-3xl lg:text-[2.2rem] font-bold tracking-tight text-white mb-2 md:mb-4"
                         >
                             From Data to Analytics to AI
-                        </h1>
-                        <h2
-                            className="hero-fade-in hero-delay-1 flex flex-col text-5xl md:text-[6rem] lg:text-[8.5rem] font-black tracking-tighter leading-[0.95] text-white"
+                        </motion.h2>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.1 }}
+                            className="flex flex-col text-5xl md:text-[6rem] lg:text-[8.5rem] font-black tracking-tighter leading-[0.95] text-white"
                         >
                             <span> End to End</span>
 
                             <span className="text-white italic tracking-tighter pb-2">
                                 Services.
                             </span>
-                        </h2>
+                        </motion.h1>
 
                         {/* Mobile-only subheading */}
-                        <p
-                            className="hero-fade-in hero-delay-2 lg:hidden text-[16px] text-slate-300 font-medium max-w-sm mb-6 px-4"
+                        <motion.p
+                            className="lg:hidden text-[16px] text-slate-300 font-medium max-w-sm mb-6 px-4"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
                         >
                             We partner with you to streamline your data, strengthen analytics, and build AI capabilities that drive measurable growth.
-                        </p>
+                        </motion.p>
 
                         {/* Mobile-only Buttons */}
-                        <div
-                            className="hero-fade-in hero-delay-3 lg:hidden flex flex-row items-center gap-3 w-full justify-center px-4"
+                        <motion.div
+                            className="lg:hidden flex flex-row items-center gap-3 w-full justify-center px-4"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
                         >
                             <Link href="/about" className="flex-1 bg-white text-slate-900 font-bold py-3 rounded-full text-sm shadow-xl active:scale-95 transition-transform flex items-center justify-center">
                                 About Us
@@ -265,7 +274,7 @@ const DemoOne = ({ initialProducts }: { initialProducts?: Product[] }) => {
                             <Link href="/contact" className="flex-1 bg-brand-primary text-black font-bold py-3 rounded-full text-sm shadow-lg active:scale-95 transition-transform flex items-center justify-center">
                                 Contact Us
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Right Side Card Grid - Following fixed replica layout */}
