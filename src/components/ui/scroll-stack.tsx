@@ -16,6 +16,7 @@ import { AutomatedDemo } from "@/components/animations/automated-demo";
 import { AIGovernanceDemo } from "@/components/animations/ai-governance-demo";
 import { ApplicationsAutomationsDemo } from "@/components/animations/applications-automations-demo";
 import { SupersetAnalyticsDemo } from "@/components/animations/superset-analytics-demo";
+import { CustomAnalyticsHeroAnimation } from "@/components/animations/custom-analytics-hero-animation";
 
 const ScrollStack = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -31,6 +32,15 @@ const ScrollStack = () => {
             description2: "High-performance, deeply integrated Superset implementations for enterprise BI and startup analytics, backed by real hands-on experience.",
             bg: "var(--brand-card-bg)",
             link: "/superset-analytics"
+        },
+        {
+            id: 0,
+            label: "Intelligence at the Speed of Decision Scale",
+            title: "Custom Analytics",
+            description1: "Bespoke analytics and high-performance dashboards that adapt to your business logic - bridging the gap between raw data and boardroom ready insights.",
+            description2: "Built on real delivery experience, our persona-driven architecture ensures the right people get the right insights at the right moment.",
+            bg: "var(--brand-card-bg)",
+            link: "/custom-analytics"
         },
         {
             id: 2,
@@ -232,6 +242,8 @@ const ScrollStack = () => {
                                     <ApplicationsAutomationsDemo isActive={i === activeIndex} />
                                 ) : card.title === "Superset Analytics" ? (
                                     <SupersetAnalyticsDemo isActive={i === activeIndex} />
+                                ) : card.title === "Custom Analytics" ? (
+                                    <CustomAnalyticsHeroAnimation isActive={i === activeIndex} />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center p-12">
                                         {/* Inner Glass Container for Media */}

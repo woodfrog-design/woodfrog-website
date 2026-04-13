@@ -14,6 +14,11 @@ const SERVICES = [
         href: "/superset-analytics",
     },
     {
+        title: "Custom Analytics",
+        description: "Config-driven Analytics platform for modularity and speed",
+        href: "/custom-analytics",
+    },
+    {
         title: "Data Visualization",
         description: "Enterprise Data Visualization Experts | Design-driven",
         href: "/data-visualization",
@@ -182,6 +187,18 @@ const ServiceIcon = ({ title }: { title: string }) => {
             <svg className={iconBaseClass} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <rect width="64" height="64" rx="12" fill="#1F1F1F" />
                 <polygon points="22,22 46,28 28,46" fill="#10B981" />
+            </svg>
+        );
+    }
+
+    // Custom Analytics
+    if (title === "Custom Analytics") {
+        return (
+            <svg className={iconBaseClass} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <rect width="64" height="64" rx="12" fill="#1F1F1F" />
+                <rect x="18" y="18" width="12" height="12" rx="2" fill="#10B981" />
+                <rect x="34" y="18" width="12" height="12" rx="2" fill="#FBBF24" />
+                <rect x="18" y="34" width="28" height="12" rx="2" fill="#10B981" />
             </svg>
         );
     }

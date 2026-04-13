@@ -11,6 +11,7 @@ const FooterSection = () => {
     const footerLinks = {
         services: [
             { name: "Superset Analytics", href: "/superset-analytics" },
+            { name: "Custom Analytics", href: "/custom-analytics" },
             { name: "Data Visualization", href: "/data-visualization" },
             { name: "Data Engineering", href: "/data-engineering" },
             { name: "AI Governance", href: "/ai-governance" },
