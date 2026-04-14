@@ -526,19 +526,27 @@ export const CustomAnalyticsHeroAnimation: React.FC<{ isActive?: boolean }> = ({
             ctx.fillRect(0, 0, W, H);
         };
 
+        let lastW = 0;
         const resize = () => {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
             const r = wrap.getBoundingClientRect();
-            W = r.width; H = r.height;
+            const newW = r.width;
+            const newH = r.height;
+            
+            W = newW; H = newH;
             canvas.width = W * dpr; canvas.height = H * dpr;
             canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            buildTL();
+
+            // Only rebuild timeline if width changed (avoid mobile address bar loop)
+            if (Math.abs(newW - lastW) > 2) {
+                lastW = newW;
+                buildTL();
+            }
         };
 
         resize();
         window.addEventListener('resize', resize);
-        buildTL();
 
         let last = performance.now();
         const render = (now: number) => {
