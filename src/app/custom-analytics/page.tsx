@@ -50,8 +50,8 @@ const SERVICES = [
         id: 'visualization',
         title: 'High-Impact Visual Narratives',
         description:
-            'Transform raw data streams into compelling visual stories. Deploy dual-axis trend analysis, hierarchical heatmaps, and geospatial distributions without writing a single line of code.',
-        video: '/videos/custom-analytics/visualize.mp4',
+            'Transform complex metrics into compelling visual stories. Deploy dual-axis trend analysis, hierarchical heatmaps, and geospatial distributions without writing a single line of code.',
+        video: '/videos/custom-analytics/all-charts-visualize.mp4',
         aspect: 'aspect-[1920/870]',
     },
     {
@@ -105,10 +105,10 @@ const SHOWCASE_ITEMS = [
         aspect: 'aspect-[1920/870]',
     },
     {
-        id: 'mekko-chart',
-        title: 'Echo: Generative Intelligence',
+        id: 'vizzy-ai',
+        title: 'Vizzy: Generative Intelligence',
         subtitle: 'Natural Language Synthesis',
-        description: 'Experience a new era of data discovery with Echo. Move beyond static reports by querying your data in plain English. Get immediate, high-fidelity visualizations and structured insights without needing technical proficiency.',
+        description: 'Experience a new era of data discovery with Vizzy. Move beyond static reports by querying your data in plain English. Get immediate, high-fidelity visualizations and structured insights without needing technical proficiency.',
         points: [
             'Instantaneous text-to-visualization for ad-hoc exploration',
             'AI-augmented prompt suggestions for deeper trend discovery',
@@ -116,7 +116,7 @@ const SHOWCASE_ITEMS = [
             'Business-grade insights delivered in natural, action-oriented language',
         ],
         images: ['/images/custom-analytics/1.png', '/images/custom-analytics/2.png'],
-        image: '/images/custom-analytics/echo-fallback.png',
+        image: '/images/custom-analytics/vizzy-fallback.png',
         aspect: 'aspect-[1920/862]',
     },
     {
@@ -153,9 +153,8 @@ function ImageSlideshow({ images, contain }: { images: string[], contain?: boole
             {images.map((img, idx) => (
                 <div
                     key={img}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                        idx === currentIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentIndex ? 'opacity-100' : 'opacity-0'
+                        }`}
                 >
                     <Image
                         src={img}
@@ -204,7 +203,7 @@ export default function CustomAnalyticsPage() {
 
             {/* ───── HERO ───── */}
             <section className="relative bg-transparent overflow-hidden">
-                <div className="w-full px-8 md:px-24 lg:px-32 pt-24 md:pt-32 pb-0">
+                <div className="w-full px-8 md:px-24 lg:px-32 pt-32 md:pt-48 pb-0">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
                         {/* Left */}
                         <div className="space-y-5 md:space-y-8 pt-4 md:pt-8">
@@ -213,18 +212,19 @@ export default function CustomAnalyticsPage() {
                             </span>
 
                             <h1 className="text-[2rem] md:text-[3.2rem] font-bold leading-[1.1] tracking-tight text-white">
-                                Intelligence at the <br className="hidden md:block" />
+                                Beyond today&apos;s BI. <br className="hidden md:block" />
+                                Find{' '}
                                 <span className="relative inline-block">
-                                    <span className="text-brand-primary">Speed of Decision</span>
+                                    <span className="text-brand-primary">Critical</span>
                                     <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-brand-primary rounded-full" />
                                 </span>{' '}
-                                Scale.
+                                Numbers Faster.
                             </h1>
 
                             <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-[520px]">
-                                Our advanced analytics engine is designed for radical agility. Bridge 
-                                the gap between raw data and board-room ready insights with a 
-                                platform that adapts to your logic, not the other way around.
+                                Transform your professional data sources into intuitive,
+                                high-velocity dashboard experiences. Woodfrog delivers the shortest path from
+                                metrics to strategic impact for your entire organization.
                             </p>
 
                             <Link
@@ -244,7 +244,7 @@ export default function CustomAnalyticsPage() {
             </section>
 
             {/* ───── SHOWCASE HEADER ───── */}
-            <div className="w-full px-8 md:px-24 lg:px-32 pt-32 md:pt-48 pb-12">
+            <div className="w-full px-8 md:px-24 lg:px-32 pt-32 md:pt-48 pb-0">
                 <h2 className="text-[2rem] md:text-[2.4rem] font-bold leading-tight max-w-2xl text-white">
                     Built on <span className="text-brand-primary">real delivery</span> experience
                 </h2>
@@ -252,7 +252,7 @@ export default function CustomAnalyticsPage() {
 
             {/* ───── ALTERNATING SHOWCASE ───── */}
             <section className="relative bg-transparent z-10">
-                <div className="w-full px-8 md:px-24 lg:px-32 py-16 md:py-24 space-y-24 md:space-y-40">
+                <div className="w-full px-8 md:px-24 lg:px-32 py-16 md:py-24 space-y-20 md:space-y-32">
                     {SHOWCASE_ITEMS.map((item, index) => {
                         const isEven = index % 2 === 0;
                         return (

@@ -31,9 +31,10 @@ const C = {
 };
 
 const SOURCES = [
-    { id: 'superset', label: 'Apache Superset', icon: 'S', color: '#10B981', dy: -0.22 },
-    { id: 'preset', label: 'Preset.io', icon: 'P', color: '#4285F4', dy: 0 },
-    { id: 'sql', label: 'SQL / Raw Data', icon: 'D', color: '#64748b', dy: 0.22 },
+    { id: 'bi', label: 'New Age BI', sub: 'Preset / Superset', icon: 'B', color: '#10B981', dy: -0.30 },
+    { id: 'sap', label: 'SAP', sub: 'ERP & Finance', icon: 'S', color: '#008FD3', dy: -0.10 },
+    { id: 'sf', label: 'Salesforce', sub: 'CRM & Sales', icon: 'C', color: '#00A1E0', dy: 0.10 },
+    { id: 'dd', label: 'Datadog', sub: 'Logs & Metrics', icon: 'L', color: '#632CA6', dy: 0.30 },
 ];
 
 interface Particle {
@@ -95,9 +96,9 @@ export const CustomAnalyticsHeroAnimation: React.FC<{ isActive?: boolean }> = ({
         const s = {
             t: 0,
             // Scene 1: Source Ingestion
-            srcOp: [0, 0, 0],
-            srcX: [-40, -40, -40],
-            srcSc: [0.8, 0.8, 0.8],
+            srcOp: [0, 0, 0, 0],
+            srcX: [-40, -40, -40, -40],
+            srcSc: [0.8, 0.8, 0.8, 0.8],
             streamActive: 0,
 
             // Scene 2: Core Ignition / Synthesis
@@ -132,7 +133,7 @@ export const CustomAnalyticsHeroAnimation: React.FC<{ isActive?: boolean }> = ({
 
         const resetAll = () => {
             s.t = 0;
-            s.srcOp.fill(0); s.srcX.fill(-40); s.srcSc.fill(0.8);
+            s.srcOp = [0, 0, 0, 0]; s.srcX = [-40, -40, -40, -40]; s.srcSc = [0.8, 0.8, 0.8, 0.8];
             s.streamActive = 0;
             s.coreOp = 0; s.coreY = 0; s.coreScale = 1; s.corePulse = 0;
             s.shatterProg = 0;
@@ -185,7 +186,7 @@ export const CustomAnalyticsHeroAnimation: React.FC<{ isActive?: boolean }> = ({
 
                 // Transition to Prism after synthesis
                 tl.to(s, { streamActive: 0, duration: 0.4 }, 5.5);
-                tl.to(s.srcOp, { 0: 0, 1: 0, 2: 0, duration: 0.6 }, 5.8);
+                tl.to(s.srcOp, { 0: 0, 1: 0, 2: 0, 3: 0, duration: 0.6 }, 5.8);
 
                 // Anticipation: Squeeze Core
                 tl.to(s, { coreScale: 0.8, duration: 0.15, ease: 'power2.in' }, 6.15);
@@ -259,7 +260,13 @@ export const CustomAnalyticsHeroAnimation: React.FC<{ isActive?: boolean }> = ({
                 ctx.textAlign = 'left';
                 ctx.font = '600 12px system-ui';
                 ctx.fillStyle = C.navy;
-                ctx.fillText(src.label, -w / 2 + 42, 0.5);
+                ctx.fillText(src.label, -w / 2 + 42, src.sub ? -4 : 0.5);
+
+                if (src.sub) {
+                    ctx.font = '500 9px system-ui';
+                    ctx.fillStyle = C.slate;
+                    ctx.fillText(src.sub, -w / 2 + 42, 10);
+                }
 
                 ctx.restore();
             });
@@ -526,19 +533,27 @@ export const CustomAnalyticsHeroAnimation: React.FC<{ isActive?: boolean }> = ({
             ctx.fillRect(0, 0, W, H);
         };
 
+        let lastW = 0;
         const resize = () => {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
             const r = wrap.getBoundingClientRect();
-            W = r.width; H = r.height;
+            const newW = r.width;
+            const newH = r.height;
+            
+            W = newW; H = newH;
             canvas.width = W * dpr; canvas.height = H * dpr;
             canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            buildTL();
+
+            // Only rebuild timeline if width changed (avoid mobile address bar loop)
+            if (Math.abs(newW - lastW) > 2) {
+                lastW = newW;
+                buildTL();
+            }
         };
 
         resize();
         window.addEventListener('resize', resize);
-        buildTL();
 
         let last = performance.now();
         const render = (now: number) => {
