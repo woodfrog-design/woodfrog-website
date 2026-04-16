@@ -224,6 +224,22 @@ export default function JobDetailPage() {
         }
     }, [slug, searchParams]);
 
+    // Reset scroll position when switching to the application form
+    useEffect(() => {
+        if (view === 'form') {
+            // Delay to allow AnimatePresence to switch content and height to stabilize
+            const timer = setTimeout(() => {
+                const element = document.getElementById('application-form-container');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                }
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [view]);
+
     const handleLinkedInLogin = async () => {
         setIsLinking(true);
         try {
@@ -316,7 +332,7 @@ export default function JobDetailPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
                     {/* Left Column: Description or Form */}
-                    <div className="lg:col-span-8 space-y-12">
+                    <div className="lg:col-span-8 space-y-12 min-h-[70vh]">
                         <motion.button
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -398,7 +414,10 @@ export default function JobDetailPage() {
                                             <h3 className="text-3xl font-bold">Ready to make an impact?</h3>
                                             <p className="text-zinc-500 max-w-lg mx-auto">Join a team of elite data engineers and AI specialists building the future of enterprise intelligence.</p>
                                             <button
-                                                onClick={() => setView('form')}
+                                                onClick={() => {
+                                                    setView('form');
+                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                }}
                                                 className="mt-8 px-10 py-5 bg-[#ff6b3d] text-white font-black rounded-full hover:scale-105 hover:bg-[#ff8a65] transition-all shadow-[0_20px_40px_rgba(255,107,61,0.2)]"
                                             >
                                                 Apply for this Position
@@ -410,10 +429,11 @@ export default function JobDetailPage() {
                             ) : (
                                 <motion.div
                                     key="form"
+                                    id="application-form-container"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] p-8 md:p-14 relative overflow-hidden"
+                                    className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] p-8 md:p-14 relative overflow-hidden scroll-mt-32"
                                 >
                                     {existingApplication?.applied && formStatus !== 'success' ? (
                                         <ApplicationStatusTracker
@@ -648,7 +668,10 @@ export default function JobDetailPage() {
                         <div className="p-8 bg-white/[0.04] border border-white/5 rounded-[2.5rem] backdrop-blur-xl relative overflow-hidden group">
                             <div className="relative z-10 space-y-8">
                                 <button
-                                    onClick={() => setView('form')}
+                                    onClick={() => {
+                                        setView('form');
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
                                     className="w-full py-5 bg-white text-black font-black rounded-2xl hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 active:scale-95 shadow-xl"
                                 >
                                     Apply for this Job
