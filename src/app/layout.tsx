@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import AdminLayoutWrapper from "@/components/AdminLayoutWrapper";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { PageTransitionIndicator } from "@/components/PageTransitionIndicator";
 import { CookieConsent } from "@/components/CookieConsent";
-import { FirebaseAnalyticsProvider, GA_MEASUREMENT_ID } from "@/components/FirebaseAnalyticsProvider";
+import { FirebaseAnalyticsProvider } from "@/components/FirebaseAnalyticsProvider";
 import { Suspense } from "react";
 
 const inter = Inter({
@@ -62,23 +61,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* ── Google Analytics 4 / Firebase Analytics ── */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              send_page_view: true
-            });
-          `}
-        </Script>
-      </head>
       <body
         className={`${inter.variable} ${robotoMono.variable} antialiased`}
       >
