@@ -52,9 +52,6 @@ export function CookieConsent() {
         localStorage.setItem('cookie-preferences', JSON.stringify(finalPrefs));
         setPreferences(finalPrefs);
         setIsVisible(false);
-
-        // In real implementation, you would trigger Analytics/Pixel loading here based on finalPrefs
-        console.log(`Cookie settings saved: ${choice}`, finalPrefs);
     };
 
     const Toggle = ({ active, onToggle }: { active: boolean; onToggle: () => void }) => (

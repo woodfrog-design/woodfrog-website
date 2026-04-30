@@ -5,6 +5,7 @@ import AdminLayoutWrapper from "@/components/AdminLayoutWrapper";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { PageTransitionIndicator } from "@/components/PageTransitionIndicator";
 import { CookieConsent } from "@/components/CookieConsent";
+import { FirebaseAnalyticsProvider } from "@/components/FirebaseAnalyticsProvider";
 import { Suspense } from "react";
 
 const inter = Inter({
@@ -66,6 +67,7 @@ export default function RootLayout({
           <SmoothScroll>
             <Suspense fallback={null}>
               <PageTransitionIndicator />
+              <FirebaseAnalyticsProvider />
             </Suspense>
             <AdminLayoutWrapper>
               {children}
