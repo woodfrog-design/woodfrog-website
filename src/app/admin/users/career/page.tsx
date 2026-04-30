@@ -24,6 +24,10 @@ export default function AdminCareersPage() {
     const [smtpStatus, setSmtpStatus] = useState<{ type: 'success' | 'error' | ''; message: string }>({ type: '', message: '' });
     const [smtpLoading, setSmtpLoading] = useState(false);
     const [smtpTesting, setSmtpTesting] = useState(false);
+    const [contactSmtpForm, setContactSmtpForm] = useState({ host: '', port: '587', user: '', pass: '', senderName: 'Woodfrog' });
+    const [contactSmtpStatus, setContactSmtpStatus] = useState<{ type: 'success' | 'error' | ''; message: string }>({ type: '', message: '' });
+    const [contactSmtpLoading, setContactSmtpLoading] = useState(false);
+    const [contactSmtpTesting, setContactSmtpTesting] = useState(false);
 
     const router = useRouter();
 
@@ -83,58 +87,50 @@ export default function AdminCareersPage() {
 
     const loadSmtpSettings = async () => {
         try {
-            const res = await fetch('/api/admin/settings');
-            const data = await res.json();
+            const [careersRes, contactRes] = await Promise.all([
+                fetch('/api/admin/settings?purpose=careers'),
+                fetch('/api/admin/settings?purpose=contact'),
+            ]);
+            const careersData = await careersRes.json();
+            const contactData = await contactRes.json();
             setSmtpForm({
-                host: data.host || '',
-                port: String(data.port || '587'),
-                user: data.user || '',
-                pass: data.hasPassword ? data.pass : '',
-                senderName: data.senderName || 'Woodfrog',
+                host: careersData.host || '', port: String(careersData.port || '587'),
+                user: careersData.user || '', pass: careersData.hasPassword ? careersData.pass : '',
+                senderName: careersData.senderName || 'Woodfrog',
+            });
+            setContactSmtpForm({
+                host: contactData.host || '', port: String(contactData.port || '587'),
+                user: contactData.user || '', pass: contactData.hasPassword ? contactData.pass : '',
+                senderName: contactData.senderName || 'Woodfrog',
             });
         } catch (err) {
             console.error('Failed to load SMTP settings', err);
         }
     };
 
-    const handleSmtpTest = async () => {
-        setSmtpTesting(true);
-        setSmtpStatus({ type: '', message: '' });
+    const handleSmtpAction = async (form: typeof smtpForm, purpose: 'careers' | 'contact', action: 'test' | 'save') => {
+        const isTest = action === 'test';
+        const setLoading = purpose === 'contact' ? (isTest ? setContactSmtpTesting : setContactSmtpLoading) : (isTest ? setSmtpTesting : setSmtpLoading);
+        const setStatus = purpose === 'contact' ? setContactSmtpStatus : setSmtpStatus;
+        setLoading(true);
+        setStatus({ type: '', message: '' });
         try {
+            const passToSend = isTest ? form.pass : (form.pass === '••••••••' ? undefined : form.pass);
             const res = await fetch('/api/admin/settings', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...smtpForm, port: Number(smtpForm.port), testConnection: true }),
+                body: JSON.stringify({ ...form, pass: passToSend, port: Number(form.port), purpose, ...(isTest ? { testConnection: true } : {}) }),
             });
             const data = await res.json();
-            setSmtpStatus({ type: data.success ? 'success' : 'error', message: data.message });
-        } catch (err: any) {
-            setSmtpStatus({ type: 'error', message: err.message });
-        } finally {
-            setSmtpTesting(false);
-        }
-    };
-
-    const handleSmtpSave = async () => {
-        setSmtpLoading(true);
-        setSmtpStatus({ type: '', message: '' });
-        try {
-            const passToSend = smtpForm.pass === '••••••••' ? undefined : smtpForm.pass;
-            const res = await fetch('/api/admin/settings', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...smtpForm, pass: passToSend, port: Number(smtpForm.port) }),
-            });
-            const data = await res.json();
-            if (data.success) {
-                setSmtpStatus({ type: 'success', message: 'SMTP settings saved successfully!' });
+            if (isTest) {
+                setStatus({ type: data.success ? 'success' : 'error', message: data.message });
             } else {
-                setSmtpStatus({ type: 'error', message: data.error || 'Failed to save' });
+                setStatus({ type: data.success ? 'success' : 'error', message: data.success ? 'SMTP settings saved successfully!' : (data.error || 'Failed to save') });
             }
         } catch (err: any) {
-            setSmtpStatus({ type: 'error', message: err.message });
+            setStatus({ type: 'error', message: err.message });
         } finally {
-            setSmtpLoading(false);
+            setLoading(false);
         }
     };
 
@@ -382,79 +378,105 @@ export default function AdminCareersPage() {
             {/* ── Settings ── */}
             {view === 'settings' && (
                 <div className="flex-1 p-8 lg:p-12 max-w-3xl mx-auto w-full">
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8">
-                        <div>
-                            <h2 className="text-3xl font-bold mb-2">SMTP Configuration</h2>
-                            <p className="text-zinc-500 text-sm">Configure the email server used for sending interview invitations and candidate communications.</p>
-                        </div>
+                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-12">
 
-                        <div className="bg-[#0F1113] border border-white/5 rounded-2xl p-8 space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">SMTP Host</label>
-                                    <input type="text" value={smtpForm.host}
-                                        onChange={e => setSmtpForm({ ...smtpForm, host: e.target.value })}
-                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
-                                        placeholder="smtp.gmail.com" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Port</label>
-                                    <input type="text" value={smtpForm.port}
-                                        onChange={e => setSmtpForm({ ...smtpForm, port: e.target.value })}
-                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
-                                        placeholder="587" />
-                                </div>
+                        {/* ── Section 1: Interview & Candidate Emails (careers) ── */}
+                        <div className="space-y-6">
+                            <div>
+                                <h2 className="text-3xl font-bold mb-2">Interview & Candidate Emails</h2>
+                                <p className="text-zinc-500 text-sm">SMTP credentials used for sending interview invitations, stage updates, and candidate communications.</p>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Username / Email</label>
-                                    <input type="text" value={smtpForm.user}
-                                        onChange={e => setSmtpForm({ ...smtpForm, user: e.target.value })}
-                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
-                                        placeholder="you@example.com" />
+                            <div className="bg-[#0F1113] border border-white/5 rounded-2xl p-8 space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">SMTP Host</label>
+                                        <input type="text" value={smtpForm.host} onChange={e => setSmtpForm({ ...smtpForm, host: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="smtp.gmail.com" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Port</label>
+                                        <input type="text" value={smtpForm.port} onChange={e => setSmtpForm({ ...smtpForm, port: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="587" />
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Username / Email</label>
+                                        <input type="text" value={smtpForm.user} onChange={e => setSmtpForm({ ...smtpForm, user: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="you@example.com" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Password / App Password</label>
+                                        <input type="password" value={smtpForm.pass} onFocus={e => { if (e.target.value === '••••••••') setSmtpForm({ ...smtpForm, pass: '' }); }} onChange={e => setSmtpForm({ ...smtpForm, pass: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="••••••••" />
+                                    </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Password / App Password</label>
-                                    <input type="password" value={smtpForm.pass}
-                                        onFocus={e => { if (e.target.value === '••••••••') setSmtpForm({ ...smtpForm, pass: '' }); }}
-                                        onChange={e => setSmtpForm({ ...smtpForm, pass: e.target.value })}
-                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm"
-                                        placeholder="••••••••" />
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Sender Name</label>
+                                    <input type="text" value={smtpForm.senderName} onChange={e => setSmtpForm({ ...smtpForm, senderName: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm max-w-sm" placeholder="Woodfrog" />
+                                    <p className="text-[10px] text-zinc-700 ml-1">Appears as the sender name in emails, e.g. &quot;Woodfrog Careers&quot;</p>
                                 </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Sender Name</label>
-                                <input type="text" value={smtpForm.senderName}
-                                    onChange={e => setSmtpForm({ ...smtpForm, senderName: e.target.value })}
-                                    className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm max-w-sm"
-                                    placeholder="Woodfrog" />
-                                <p className="text-[10px] text-zinc-700 ml-1">Appears as the sender name in emails, e.g. "Woodfrog Careers"</p>
-                            </div>
-
-                            {smtpStatus.message && (
-                                <div className={cn(
-                                    "p-4 rounded-xl flex items-center gap-3 text-sm",
-                                    smtpStatus.type === 'success' ? "bg-green-500/10 border border-green-500/20 text-green-400" : "bg-red-500/10 border border-red-500/20 text-red-400"
-                                )}>
-                                    {smtpStatus.type === 'success' ? <CheckCircle className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
-                                    {smtpStatus.message}
+                                {smtpStatus.message && (
+                                    <div className={cn("p-4 rounded-xl flex items-center gap-3 text-sm", smtpStatus.type === 'success' ? "bg-green-500/10 border border-green-500/20 text-green-400" : "bg-red-500/10 border border-red-500/20 text-red-400")}>
+                                        {smtpStatus.type === 'success' ? <CheckCircle className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
+                                        {smtpStatus.message}
+                                    </div>
+                                )}
+                                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                                    <button onClick={() => handleSmtpAction(smtpForm, 'careers', 'test')} disabled={smtpTesting || !smtpForm.host || !smtpForm.user} className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all disabled:opacity-40 text-sm">
+                                        {smtpTesting ? <Loader2 className="w-4 h-4 animate-spin" /> : null} Test Connection
+                                    </button>
+                                    <button onClick={() => handleSmtpAction(smtpForm, 'careers', 'save')} disabled={smtpLoading || !smtpForm.host || !smtpForm.user} className="flex items-center gap-2 px-6 py-3 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all disabled:opacity-40 shadow-[0_10px_20px_rgba(255,107,61,0.2)] text-sm">
+                                        {smtpLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : null} Save Settings
+                                    </button>
                                 </div>
-                            )}
-
-                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                                <button onClick={handleSmtpTest} disabled={smtpTesting || !smtpForm.host || !smtpForm.user}
-                                    className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all disabled:opacity-40 text-sm">
-                                    {smtpTesting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                                    Test Connection
-                                </button>
-                                <button onClick={handleSmtpSave} disabled={smtpLoading || !smtpForm.host || !smtpForm.user}
-                                    className="flex items-center gap-2 px-6 py-3 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all disabled:opacity-40 shadow-[0_10px_20px_rgba(255,107,61,0.2)] text-sm">
-                                    {smtpLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                                    Save SMTP Settings
-                                </button>
                             </div>
                         </div>
 
+                        {/* ── Section 2: Inbound Queries / Contact Form ── */}
+                        <div className="space-y-6">
+                            <div>
+                                <h2 className="text-3xl font-bold mb-2">Inbound Queries (Contact Form)</h2>
+                                <p className="text-zinc-500 text-sm">SMTP credentials used for delivering messages submitted through the website contact form.</p>
+                            </div>
+                            <div className="bg-[#0F1113] border border-white/5 rounded-2xl p-8 space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">SMTP Host</label>
+                                        <input type="text" value={contactSmtpForm.host} onChange={e => setContactSmtpForm({ ...contactSmtpForm, host: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="smtp.gmail.com" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Port</label>
+                                        <input type="text" value={contactSmtpForm.port} onChange={e => setContactSmtpForm({ ...contactSmtpForm, port: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="587" />
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Username / Email</label>
+                                        <input type="text" value={contactSmtpForm.user} onChange={e => setContactSmtpForm({ ...contactSmtpForm, user: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="you@example.com" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Password / App Password</label>
+                                        <input type="password" value={contactSmtpForm.pass} onFocus={e => { if (e.target.value === '••••••••') setContactSmtpForm({ ...contactSmtpForm, pass: '' }); }} onChange={e => setContactSmtpForm({ ...contactSmtpForm, pass: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm" placeholder="••••••••" />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Sender Name</label>
+                                    <input type="text" value={contactSmtpForm.senderName} onChange={e => setContactSmtpForm({ ...contactSmtpForm, senderName: e.target.value })} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 outline-none focus:border-[#ff6b3d]/50 transition-all text-sm max-w-sm" placeholder="Woodfrog" />
+                                    <p className="text-[10px] text-zinc-700 ml-1">Appears as the sender name in contact form emails, e.g. &quot;Woodfrog Contact Form&quot;</p>
+                                </div>
+                                {contactSmtpStatus.message && (
+                                    <div className={cn("p-4 rounded-xl flex items-center gap-3 text-sm", contactSmtpStatus.type === 'success' ? "bg-green-500/10 border border-green-500/20 text-green-400" : "bg-red-500/10 border border-red-500/20 text-red-400")}>
+                                        {contactSmtpStatus.type === 'success' ? <CheckCircle className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
+                                        {contactSmtpStatus.message}
+                                    </div>
+                                )}
+                                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                                    <button onClick={() => handleSmtpAction(contactSmtpForm, 'contact', 'test')} disabled={contactSmtpTesting || !contactSmtpForm.host || !contactSmtpForm.user} className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all disabled:opacity-40 text-sm">
+                                        {contactSmtpTesting ? <Loader2 className="w-4 h-4 animate-spin" /> : null} Test Connection
+                                    </button>
+                                    <button onClick={() => handleSmtpAction(contactSmtpForm, 'contact', 'save')} disabled={contactSmtpLoading || !contactSmtpForm.host || !contactSmtpForm.user} className="flex items-center gap-2 px-6 py-3 bg-[#ff6b3d] text-white font-bold rounded-xl hover:bg-[#ff8a65] transition-all disabled:opacity-40 shadow-[0_10px_20px_rgba(255,107,61,0.2)] text-sm">
+                                        {contactSmtpLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : null} Save Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

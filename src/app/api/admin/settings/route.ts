@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSmtpConfig, saveSmtpConfig } from '@/lib/smtp';
 import nodemailer from 'nodemailer';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
     try {
-        const config = await getSmtpConfig();
+        const { searchParams } = new URL(req.url);
+        const purpose = searchParams.get('purpose') === 'contact' ? 'contact' : 'careers';
+
+        const config = await getSmtpConfig(purpose);
         // Return config but mask the password
         return NextResponse.json({
             host: config.host,
@@ -23,7 +26,8 @@ export async function GET() {
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { host, port, user, pass, senderName, testConnection } = body;
+        const { host, port, user, pass, senderName, testConnection, purpose: rawPurpose } = body;
+        const purpose: 'careers' | 'contact' = rawPurpose === 'contact' ? 'contact' : 'careers';
 
         if (testConnection) {
             // Test the SMTP connection without saving
@@ -59,7 +63,7 @@ export async function POST(req: NextRequest) {
             user,
             pass,
             senderName: senderName || 'Woodfrog',
-        });
+        }, purpose);
 
         if (success) {
             return NextResponse.json({ success: true });

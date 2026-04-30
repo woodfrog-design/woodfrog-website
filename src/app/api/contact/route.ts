@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const smtpConfig = await getSmtpConfig();
+    const smtpConfig = await getSmtpConfig('contact');
 
     if (!smtpConfig.host || !smtpConfig.user || !smtpConfig.pass) {
       console.error('SMTP not configured');
@@ -107,7 +107,6 @@ export async function POST(req: NextRequest) {
       to: recipientEmail,
       subject: `New Contact: ${firstName} ${lastName} - ${lookingFor}`,
       html: htmlBody,
-      replyTo: email || undefined,
     });
 
     return NextResponse.json({ success: true });

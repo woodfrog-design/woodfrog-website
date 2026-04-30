@@ -10,15 +10,18 @@ export interface SmtpConfig {
 }
 
 /**
- * Get SMTP configuration.
+ * Get SMTP configuration for a given purpose.
+ * @param purpose - 'careers' for interview/candidate emails, 'contact' for inbound contact form emails
  * Priority: Supabase admin_settings → Environment variables
  */
-export async function getSmtpConfig(): Promise<SmtpConfig> {
+export async function getSmtpConfig(purpose: 'careers' | 'contact' = 'careers'): Promise<SmtpConfig> {
+    const dbKey = purpose === 'contact' ? 'smtp_contact_config' : 'smtp_config';
+
     try {
         const { data, error } = await supabase
             .from('admin_settings')
             .select('value')
-            .eq('key', 'smtp_config')
+            .eq('key', dbKey)
             .maybeSingle();
 
         if (!error && data?.value) {
@@ -26,7 +29,7 @@ export async function getSmtpConfig(): Promise<SmtpConfig> {
 
             // Validate required fields are present and non-empty
             if (config.host && config.user && config.pass) {
-                console.log('Using SMTP config from database');
+                console.log(`Using ${purpose} SMTP config from database (key: ${dbKey})`);
                 return {
                     host: config.host,
                     port: Number(config.port) || 587,
@@ -38,11 +41,11 @@ export async function getSmtpConfig(): Promise<SmtpConfig> {
             }
         }
     } catch (err) {
-        console.warn('Could not fetch SMTP config from DB, falling back to env vars:', err);
+        console.warn(`Could not fetch ${purpose} SMTP config from DB, falling back to env vars:`, err);
     }
 
     // Fallback to environment variables
-    console.log('Using SMTP config from environment variables');
+    console.log(`Using ${purpose} SMTP config from environment variables`);
     return {
         host: process.env.SMTP_HOST || '',
         port: Number(process.env.SMTP_PORT) || 587,
@@ -55,14 +58,18 @@ export async function getSmtpConfig(): Promise<SmtpConfig> {
 
 /**
  * Save SMTP configuration to Supabase.
+ * @param config - The SMTP settings to save
+ * @param purpose - 'careers' for interview/candidate emails, 'contact' for inbound contact form emails
  */
-export async function saveSmtpConfig(config: Partial<SmtpConfig>): Promise<boolean> {
+export async function saveSmtpConfig(config: Partial<SmtpConfig>, purpose: 'careers' | 'contact' = 'careers'): Promise<boolean> {
+    const dbKey = purpose === 'contact' ? 'smtp_contact_config' : 'smtp_config';
+
     try {
         const { error } = await supabase
             .from('admin_settings')
             .upsert(
                 {
-                    key: 'smtp_config',
+                    key: dbKey,
                     value: config,
                     updated_at: new Date().toISOString(),
                 },
@@ -70,12 +77,12 @@ export async function saveSmtpConfig(config: Partial<SmtpConfig>): Promise<boole
             );
 
         if (error) {
-            console.error('Error saving SMTP config:', error);
+            console.error(`Error saving ${purpose} SMTP config:`, error);
             return false;
         }
         return true;
     } catch (err) {
-        console.error('Error saving SMTP config:', err);
+        console.error(`Error saving ${purpose} SMTP config:`, err);
         return false;
     }
 }
