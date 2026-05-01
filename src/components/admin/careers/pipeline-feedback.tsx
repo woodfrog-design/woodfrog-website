@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
     CheckCircle, Circle, ChevronRight, XCircle, Trophy, Loader2,
     Star, Send, User, Clock, ChevronDown, ChevronUp,
-    ArrowRight, ThumbsDown, Mail, MailCheck, X, Edit3, Video, Calendar as CalendarIcon, Eye, UserPlus, AlertTriangle, AlertCircle
+    ArrowRight, ThumbsDown, Mail, MailCheck, X, Edit3, Video, Calendar as CalendarIcon, Eye, UserPlus, AlertTriangle, AlertCircle, LogOut
 } from 'lucide-react';
 import { InterviewStage, InterviewFeedback, FeedbackFormField } from '@/lib/candidates';
 import { cn } from '@/lib/utils';
@@ -203,6 +203,17 @@ function ScheduleInterviewDialog({ candidateName, candidateEmail, nextStageName,
         } catch (err) { setError('Failed to initiate Google login'); }
     };
 
+    const handleDisconnectGoogle = async () => {
+        try {
+            const res = await fetch('/api/auth/google/disconnect', { method: 'DELETE' });
+            if (res.ok) {
+                setIsGoogleConnected(false);
+            } else {
+                setError('Failed to disconnect Google account');
+            }
+        } catch (err) { setError('Failed to disconnect Google account'); }
+    };
+
 
     const meetLinkDisplay = meetLink || '(Will be generated on send)';
 
@@ -318,9 +329,16 @@ ${additionalDetails ? `<div style="background: #fffbeb; border: 1px solid #fef3c
                         </div>
                     )}
                     {isGoogleConnected === true && (
-                        <div className="bg-green-400/10 border border-green-400/20 rounded-xl p-3 flex items-center gap-3">
-                            <CheckCircle className="w-4 h-4 text-green-400" />
-                            <p className="text-xs font-medium text-green-400">Google Calendar Connected</p>
+                        <div className="bg-green-400/10 border border-green-400/20 rounded-xl p-3 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <CheckCircle className="w-4 h-4 text-green-400" />
+                                <p className="text-xs font-medium text-green-400">Google Calendar Connected</p>
+                            </div>
+                            <button onClick={handleDisconnectGoogle}
+                                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 text-zinc-400 font-bold rounded-lg text-[10px] uppercase tracking-wider hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20 transition-all"
+                                title="Disconnect and login with a different Google account">
+                                <LogOut className="w-3 h-3" /> Switch Account
+                            </button>
                         </div>
                     )}
 
