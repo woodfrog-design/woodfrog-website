@@ -252,7 +252,7 @@ ${additionalDetails ? `<div style="background: #fffbeb; border: 1px solid #fef3c
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     summary: `${nextStageName} Interview - ${candidateName} | Woodfrog`,
-                    dateTime: date && time ? `${date}T${time}` : undefined,
+                    dateTime: date && time ? `${date}T${time}:00+05:30` : undefined,
                     duration: effectiveDuration,
                 }),
             });
